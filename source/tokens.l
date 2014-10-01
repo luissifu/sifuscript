@@ -65,11 +65,11 @@ chr		[^\']
 "\]"						return TK_RIGHTSQBRACKET;
 ";"							return TK_SEMICOLON;
 ","							return TK_COMMA;
-"."							return TK_DOT;
+"\."						return TK_DOT;
 \n 							return TK_NEWLINE;
 
-{minu}("_"|{let}{dig})*		return T_ID;
-{mayu}("_"|{let}{dig})*		return T_CLASSNAME;
+{minu}("_"|{let}|{dig})*	return T_ID;
+{mayu}("_"|{let}|{dig})*	return T_CLASSNAME;
 {dig}+						return CONST_INT;
 {dig}+\.{dig}+				return CONST_FLOAT;
 \"{str}*\"					return CONST_STR;

@@ -98,7 +98,7 @@ void yyerror(const char *s);
 # define YY_YY_GRAMATICA_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -431,18 +431,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  77
+#define YYFINAL  74
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   346
+#define YYLAST   316
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  58
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  49
+#define YYNNTS  50
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  121
+#define YYNRULES  115
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  209
+#define YYNSTATES  195
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
@@ -497,16 +497,15 @@ static const yytype_uint8 yyrline[] =
        0,    33,    33,    34,    35,    38,    41,    42,    45,    48,
       49,    52,    53,    54,    55,    56,    57,    58,    59,    60,
       61,    64,    67,    68,    71,    74,    75,    76,    79,    82,
-      83,    86,    87,    88,    91,    92,    93,    96,    97,    98,
-     101,   102,   105,   106,   109,   110,   113,   114,   115,   116,
-     117,   118,   119,   120,   121,   124,   125,   128,   129,   132,
-     133,   136,   137,   140,   141,   142,   143,   146,   147,   150,
-     151,   154,   155,   158,   159,   162,   163,   166,   169,   170,
-     173,   174,   175,   176,   177,   178,   181,   182,   185,   186,
-     189,   190,   193,   194,   197,   198,   201,   202,   205,   206,
-     209,   210,   213,   214,   217,   218,   219,   222,   223,   226,
-     227,   228,   229,   230,   231,   234,   235,   236,   239,   240,
-     243,   246
+      83,    86,    89,    90,    93,    94,    97,    98,    99,   102,
+     105,   108,   111,   112,   113,   114,   115,   116,   117,   118,
+     119,   122,   125,   126,   129,   130,   131,   134,   135,   138,
+     139,   142,   143,   146,   147,   150,   151,   154,   155,   158,
+     159,   162,   165,   166,   169,   170,   171,   172,   173,   174,
+     177,   178,   181,   182,   185,   186,   189,   190,   193,   194,
+     197,   198,   201,   202,   205,   206,   209,   210,   213,   214,
+     215,   218,   219,   222,   223,   224,   225,   226,   227,   230,
+     231,   232,   235,   236,   239,   242
 };
 #endif
 
@@ -527,12 +526,13 @@ static const char *const yytname[] =
   "TK_RIGHTPAREN", "TK_LEFTSQBRACKET", "TK_RIGHTSQBRACKET", "TK_COMMA",
   "TK_SEMICOLON", "TK_NEWLINE", "TK_DOT", "T_ID", "T_CLASSNAME", "$accept",
   "program", "imports", "moreimps", "statelist", "morestates", "state",
-  "assign", "delimiter", "return", "id", "conditional", "if", "elseif",
-  "else", "loop", "for", "do", "while", "type", "class", "class_dec",
-  "class_st", "accesor", "function", "args", "moreargs", "func_call",
-  "call_args", "var", "print", "block", "var_const", "boolean", "list",
-  "list_elem", "list_e", "expresion", "exp", "e", "term", "fact", "f",
-  "rel_op", "comp_op", "mult_op", "add_op", "neg_op", "ass_op", YY_NULLPTR
+  "assign", "delimiter", "return", "id", "conditional", "maybenl", "if",
+  "elseif", "else", "loop", "for", "do", "while", "type", "class",
+  "class_dec", "class_st", "accesor", "function", "args", "moreargs",
+  "func_call", "call_args", "var", "print", "block", "var_const",
+  "boolean", "list", "list_elem", "list_e", "expresion", "exp", "e",
+  "term", "fact", "f", "rel_op", "comp_op", "mult_op", "add_op", "neg_op",
+  "ass_op", YY_NULLPTR
 };
 #endif
 
@@ -550,10 +550,10 @@ static const yytype_uint16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF -133
+#define YYPACT_NINF -79
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-133)))
+  (!!((Yystate) == (-79)))
 
 #define YYTABLE_NINF -1
 
@@ -564,27 +564,26 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     205,    46,     5,   -27,    46,   186,   289,   -47,     8,   186,
-    -133,  -133,  -133,  -133,  -133,  -133,  -133,  -133,  -133,    40,
-     -14,    57,   269,  -133,   269,  -133,  -133,    37,  -133,    77,
-    -133,  -133,  -133,  -133,     5,  -133,  -133,  -133,  -133,  -133,
-    -133,  -133,  -133,  -133,  -133,  -133,  -133,    46,   125,    45,
-     -14,  -133,  -133,  -133,  -133,   -18,    43,   144,    12,    55,
-    -133,   151,    46,   224,    58,    90,   -17,    44,    59,  -133,
-      50,   -12,    44,    44,    17,   102,    54,  -133,  -133,  -133,
-     269,  -133,    46,    14,   100,   -36,    64,  -133,  -133,  -133,
-      63,    65,    58,  -133,  -133,  -133,    46,  -133,  -133,  -133,
-    -133,  -133,  -133,    46,  -133,  -133,  -133,    46,  -133,  -133,
-      46,  -133,    62,  -133,    72,   106,    46,    58,  -133,  -133,
-    -133,  -133,   242,    74,    70,    79,   104,  -133,    44,    78,
-      83,    75,  -133,  -133,    44,    58,    77,    25,  -133,  -133,
-      46,  -133,  -133,   160,  -133,  -133,  -133,  -133,  -133,    46,
-    -133,    46,    44,  -133,    80,    88,   242,  -133,  -133,    91,
-      70,   281,    70,  -133,  -133,  -133,    44,   186,  -133,  -133,
-      77,  -133,    58,  -133,    44,  -133,    26,    44,  -133,    89,
-      27,    94,  -133,  -133,  -133,  -133,    97,  -133,  -133,  -133,
-    -133,  -133,    58,  -133,  -133,   242,  -133,    58,  -133,    32,
-    -133,  -133,    92,  -133,    58,  -133,    89,  -133,  -133
+     132,    42,   -31,   -42,    42,    42,   246,   -25,    46,    42,
+     -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -10,
+     -79,    64,   222,   -79,   222,   -79,   -79,    29,   -79,    69,
+     -79,   -79,   -79,   -79,   -31,   -79,   -79,   -79,   -79,   -79,
+     -79,   -79,   -79,   -79,   -79,   -79,   -79,    42,    10,    25,
+     -79,   -79,   -79,   -79,   -42,     2,    28,     7,   -15,   -79,
+     118,    42,   -79,    39,   -42,     9,    38,    31,   -42,     9,
+       9,   202,    82,    37,   -79,   -79,   -79,   222,   -79,    42,
+      42,    83,   -17,    47,   -79,   -79,   -79,    44,    50,    39,
+     -79,   -79,    42,   -79,   -79,   -79,   -79,   -79,   -79,    42,
+     -79,   -79,   -79,    42,   -79,   -79,    42,   -79,    51,   177,
+      90,    39,   -79,   -79,   -79,   259,    58,    61,    91,   -79,
+       9,    62,    60,    66,   -79,   -79,     9,   -42,   -42,   -79,
+     -79,    42,   -79,   -79,   125,   -79,   -79,   -79,   -79,   -79,
+      42,   -79,    68,    42,   -79,    63,    72,   259,     1,   -79,
+     -79,   -79,     9,   208,   -79,   -79,    39,    39,     9,   -79,
+     -42,   -79,     9,    84,   -42,    86,   -79,   -79,   -79,    71,
+       1,   238,   -79,   -79,    69,   -79,   -79,    39,   -79,   259,
+     -79,    39,   -42,   -79,   -79,   -79,   -79,   -79,   -79,    87,
+     -79,    39,    84,   -79,   -79
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -592,47 +591,46 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      46,    47,    48,    49,    50,    51,    52,    53,    20,    25,
-      54,     0,     3,     4,    10,    11,    18,     0,    12,    33,
-      13,    37,    38,    39,     0,    14,    15,    19,    16,    17,
-      87,    86,    82,    83,    84,    81,   120,     0,     0,    25,
-       0,   106,   105,    80,    85,     0,    94,    96,    98,   100,
-     103,     0,     0,     0,     0,     0,     0,     0,     0,    54,
-       0,     0,     0,     0,     0,     0,     0,     1,     2,     8,
-      10,   121,     0,     0,    36,     0,     0,    89,    93,    92,
-       0,    90,     0,    30,   107,   108,     0,   109,   110,   112,
-     111,   113,   114,     0,   115,   116,   117,     0,   118,   119,
-       0,   102,     0,    79,     0,     0,     0,     0,    45,    23,
-      22,    24,    68,     0,    58,     0,     7,    77,     0,     0,
-      73,     0,    27,     9,     0,     0,    33,     0,    28,    75,
-       0,   104,    88,     0,    29,    95,    97,    99,   101,     0,
-      78,     0,     0,    44,     0,     0,    68,    61,    62,     0,
-      58,     0,    58,     6,     5,    72,     0,     0,    26,    21,
-      33,    32,     0,    35,     0,    91,     0,     0,    43,    70,
-       0,     0,    56,    57,    60,    59,     0,    71,    74,    31,
-      34,    76,     0,    41,    42,     0,    67,     0,    66,     0,
-      55,    40,     0,    65,     0,    64,    70,    63,    69
+       0,     0,     0,    30,     0,     0,     0,     0,     0,     0,
+      42,    43,    44,    45,    46,    47,    48,    49,    20,    25,
+      50,     0,     3,     4,    10,    11,    18,     0,    12,    33,
+      13,    36,    37,    38,     0,    14,    15,    19,    16,    17,
+      81,    80,    76,    77,    78,    75,   114,     0,     0,    25,
+     100,    99,    74,    79,    30,    88,    90,    92,    94,    97,
+       0,     0,    29,     0,    30,     0,     0,     0,    30,     0,
+       0,     0,     0,     0,     1,     2,     8,    10,   115,     0,
+       0,    35,     0,     0,    83,    87,    86,     0,    84,     0,
+     101,   102,     0,   103,   104,   106,   105,   107,   108,     0,
+     109,   110,   111,     0,   112,   113,     0,    96,     0,     0,
+       0,     0,    23,    22,    24,    62,     0,     0,     7,    71,
+       0,     0,    67,     0,    27,     9,     0,    30,    30,    28,
+      69,     0,    98,    82,     0,    31,    89,    91,    93,    95,
+       0,    73,     0,     0,    41,     0,     0,    62,    53,     6,
+       5,    66,     0,     0,    26,    21,     0,     0,     0,    85,
+      30,    72,     0,    64,    30,     0,    57,    58,    56,     0,
+      53,     0,    65,    68,    33,    34,    70,     0,    40,     0,
+      61,     0,    30,    51,    52,    55,    54,    32,    39,     0,
+      60,     0,    64,    59,    63
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -133,  -133,    20,  -133,    -7,    69,   -22,   159,   -65,  -133,
-      11,  -133,  -133,  -132,  -133,  -133,  -133,  -133,  -133,    -6,
-    -133,  -130,  -133,  -133,     1,    15,   -34,  -133,     3,    13,
-    -133,   -52,    -4,  -133,  -133,    30,  -133,     2,    81,   -64,
-      68,  -133,   118,  -133,  -133,  -133,  -133,  -133,    95
+     -79,   -79,    26,   -79,    -9,    85,   -20,   159,   -61,   -79,
+       5,   -79,   -44,   -79,   -11,   -79,   -79,   -79,   -79,   -79,
+      -6,   -79,    -5,   -79,   -79,    -7,    20,   -23,   -79,    17,
+       0,   -79,   -78,   -45,   -79,   -79,    43,   -79,    -3,    80,
+     -47,    70,   -79,   119,   -79,   -79,   -79,   -79,   -79,    96
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-      -1,    21,    22,   164,    23,    79,    24,    25,   121,    26,
-      51,    28,    29,    84,   138,    30,    31,    32,    33,    34,
-      35,   159,   160,   161,    36,   155,   196,    37,   129,    38,
-      39,    65,    52,    53,    54,    90,    91,    55,    56,    57,
-      58,    59,    60,    96,   103,   107,   110,    61,    82
+      -1,    21,    22,   150,    23,    76,    24,    25,   114,    26,
+      50,    28,    63,    29,    81,   129,    30,    31,    32,    33,
+      34,    35,   169,   170,   171,    36,   146,   180,    37,   121,
+      38,    39,   110,    51,    52,    53,    87,    88,    54,    55,
+      56,    57,    58,    59,    92,    99,   103,   106,    60,    79
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -640,80 +638,74 @@ static const yytype_int16 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      70,    67,    80,    93,   171,    73,    66,   126,   127,    81,
-      71,    27,   115,    27,   118,    78,    72,   119,   120,    63,
-     139,    40,    41,    42,    43,    44,    45,    64,    63,    63,
-     183,   136,   186,    27,   124,    27,    92,   117,   189,   146,
-     144,    76,   125,   147,    89,    85,   104,   105,   106,    86,
-      40,    41,    42,    43,    44,    45,   114,    77,    80,    88,
-      63,    49,    50,   165,   112,   153,   128,    48,   135,   169,
-     130,    63,    63,    63,    27,    94,    95,    46,    63,   172,
-     192,   197,    81,   170,   134,   173,   204,   178,    74,    83,
-      75,    27,   108,   109,    47,    75,    48,   119,   120,   157,
-     158,   187,    49,    50,    63,   116,   123,   122,   131,   191,
-     132,   137,   194,   141,   142,   149,   154,   143,   152,   150,
-     190,   151,   156,     8,   193,   162,   168,   166,   198,    40,
-      41,    42,    43,    44,    45,   167,   179,   180,   182,    89,
-     201,   195,   174,   199,   200,   203,   163,   205,   206,   133,
-     154,   176,   207,   177,    88,    40,    41,    42,    43,    44,
-      45,    62,   184,   130,    40,    41,    42,    43,    44,    45,
-     188,   181,   208,   175,   185,    48,    87,   145,   148,   111,
-     140,    49,    50,    97,    98,    99,   100,   101,   102,   202,
-      40,    41,    42,    43,    44,    45,     0,     0,     0,    47,
-       0,    48,     0,     0,     0,     0,     0,    49,    50,     0,
-      48,     0,     0,     0,     0,     1,    49,    50,     2,     3,
-       4,     5,     6,     7,     8,     9,    10,    11,    12,    13,
-      14,    15,    16,    17,     1,     0,    48,     2,     3,     4,
-       5,     6,     7,     0,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,     0,     0,     0,     0,     0,     0,    18,
-       0,    19,    20,    10,    11,    12,    13,    14,    15,    16,
-      17,   113,     0,     0,     0,     0,     0,     0,    18,     1,
-      19,    20,     2,     3,     4,     5,     6,     7,     0,     9,
-      10,    11,    12,    13,    14,    15,    16,    17,     6,    69,
-       0,     0,    10,    11,    12,    13,    14,    15,    16,    17,
+      67,    64,    65,    86,    77,    27,    70,    27,   118,   119,
+      89,   135,    62,    75,    40,    41,    42,    43,    44,    45,
+     111,   130,   104,   105,   117,    49,   122,    27,    78,    27,
+     166,   167,    68,   144,    90,    91,   112,   113,    71,    82,
+      72,   100,   101,   102,    83,    73,    40,    41,    42,    43,
+      44,    45,   137,    85,    69,   168,   138,    77,   108,   151,
+      48,    84,   112,   113,    74,   155,    49,    93,    94,    95,
+      96,    97,    98,    46,    78,    72,   126,   127,   174,   175,
+      73,    80,    27,   156,   157,   109,   115,   116,   123,    86,
+      47,   172,    48,   124,   128,   133,   132,   176,    49,   188,
+     142,   178,   134,   190,   140,   143,   147,   148,   122,   145,
+       8,   152,   153,   193,    27,   161,   177,   154,   183,   163,
+     181,   164,    40,    41,    42,    43,    44,    45,   158,    40,
+      41,    42,    43,    44,    45,   182,   179,   160,   191,    85,
+     162,   145,     1,   192,   149,     2,     3,     4,     5,     6,
+       7,     8,     9,    10,    11,    12,    13,    14,    15,    16,
+      17,    61,   125,   187,   185,   184,    47,   165,    48,   194,
+     173,   186,   136,   189,    49,    48,   139,   159,   131,   107,
+       0,    49,     0,     0,     0,     0,    18,     1,    19,    20,
+       2,     3,     4,     5,     6,     7,     0,     9,    10,    11,
+      12,    13,    14,    15,    16,    17,    40,    41,    42,    43,
+      44,    45,    40,    41,    42,    43,    44,    45,     0,     0,
+       0,     0,     0,     0,   141,     0,     0,     0,     0,     0,
+       0,    18,     1,    19,    20,     2,     3,     4,     5,     6,
+       7,     0,     9,    10,    11,    12,    13,    14,    15,    16,
+      17,   120,    48,     0,     0,     6,     0,     0,    48,    10,
+      11,    12,    13,    14,    15,    16,    17,    10,    11,    12,
+      13,    14,    15,    16,    17,     0,    18,     0,    19,    20,
       10,    11,    12,    13,    14,    15,    16,    17,     0,     0,
-       0,     0,     0,    18,     0,    19,    20,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    69,     0,
-       0,     0,     0,     0,     0,    68,    69
+       0,     0,     0,     0,     0,    20,     0,     0,     0,     0,
+       0,     0,    66,    20,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,    20
 };
 
 static const yytype_int16 yycheck[] =
 {
-       6,     5,    24,    55,   136,     9,     4,    72,    73,    45,
-      57,     0,    64,     2,    66,    22,     8,    53,    54,    46,
-      85,     4,     5,     6,     7,     8,     9,    54,    46,    46,
-     160,    83,   162,    22,    46,    24,    54,    54,   170,   103,
-      92,    55,    54,   107,    48,    34,    34,    35,    36,    47,
-       4,     5,     6,     7,     8,     9,    63,     0,    80,    48,
-      46,    56,    57,   128,    62,   117,    49,    50,    54,   134,
-      74,    46,    46,    46,    63,    32,    33,    31,    46,    54,
-      54,    54,    45,   135,    82,   137,    54,   152,    48,    12,
-      50,    80,    37,    38,    48,    50,    50,    53,    54,    29,
-      30,   166,    56,    57,    46,    15,    56,    48,     6,   174,
-      56,    11,   177,    49,    51,    53,   122,    52,   116,    47,
-     172,    15,    48,    19,   176,    46,    51,    49,   180,     4,
-       5,     6,     7,     8,     9,    52,    56,    49,    47,   143,
-     192,    52,   140,    49,    47,   197,   126,   199,    56,    80,
-     156,   149,   204,   151,   143,     4,     5,     6,     7,     8,
-       9,     2,   161,   167,     4,     5,     6,     7,     8,     9,
-     167,   156,   206,   143,   161,    50,    51,    96,   110,    61,
-      85,    56,    57,    39,    40,    41,    42,    43,    44,   195,
-       4,     5,     6,     7,     8,     9,    -1,    -1,    -1,    48,
-      -1,    50,    -1,    -1,    -1,    -1,    -1,    56,    57,    -1,
-      50,    -1,    -1,    -1,    -1,    10,    56,    57,    13,    14,
-      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
-      25,    26,    27,    28,    10,    -1,    50,    13,    14,    15,
-      16,    17,    18,    -1,    20,    21,    22,    23,    24,    25,
-      26,    27,    28,    -1,    -1,    -1,    -1,    -1,    -1,    54,
-      -1,    56,    57,    21,    22,    23,    24,    25,    26,    27,
-      28,    47,    -1,    -1,    -1,    -1,    -1,    -1,    54,    10,
-      56,    57,    13,    14,    15,    16,    17,    18,    -1,    20,
-      21,    22,    23,    24,    25,    26,    27,    28,    17,    57,
-      -1,    -1,    21,    22,    23,    24,    25,    26,    27,    28,
+       6,     4,     5,    48,    24,     0,     9,     2,    69,    70,
+      54,    89,    54,    22,     4,     5,     6,     7,     8,     9,
+      64,    82,    37,    38,    68,    56,    71,    22,    45,    24,
+      29,    30,    57,   111,    32,    33,    53,    54,    48,    34,
+      50,    34,    35,    36,    47,    55,     4,     5,     6,     7,
+       8,     9,    99,    48,     8,    54,   103,    77,    61,   120,
+      50,    51,    53,    54,     0,   126,    56,    39,    40,    41,
+      42,    43,    44,    31,    45,    50,    79,    80,   156,   157,
+      55,    12,    77,   127,   128,    46,    48,    56,     6,   134,
+      48,   152,    50,    56,    11,    51,    49,   158,    56,   177,
+     109,   162,    52,   181,    53,    15,    48,    46,   153,   115,
+      19,    49,    52,   191,   109,    47,   160,    51,    47,    56,
+     164,    49,     4,     5,     6,     7,     8,     9,   131,     4,
+       5,     6,     7,     8,     9,    49,    52,   140,   182,   134,
+     143,   147,    10,    56,   118,    13,    14,    15,    16,    17,
+      18,    19,    20,    21,    22,    23,    24,    25,    26,    27,
+      28,     2,    77,   174,   171,   170,    48,   147,    50,   192,
+     153,   171,    92,   179,    56,    50,   106,   134,    82,    60,
+      -1,    56,    -1,    -1,    -1,    -1,    54,    10,    56,    57,
+      13,    14,    15,    16,    17,    18,    -1,    20,    21,    22,
+      23,    24,    25,    26,    27,    28,     4,     5,     6,     7,
+       8,     9,     4,     5,     6,     7,     8,     9,    -1,    -1,
+      -1,    -1,    -1,    -1,    47,    -1,    -1,    -1,    -1,    -1,
+      -1,    54,    10,    56,    57,    13,    14,    15,    16,    17,
+      18,    -1,    20,    21,    22,    23,    24,    25,    26,    27,
+      28,    49,    50,    -1,    -1,    17,    -1,    -1,    50,    21,
+      22,    23,    24,    25,    26,    27,    28,    21,    22,    23,
+      24,    25,    26,    27,    28,    -1,    54,    -1,    56,    57,
       21,    22,    23,    24,    25,    26,    27,    28,    -1,    -1,
-      -1,    -1,    -1,    54,    -1,    56,    57,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    57,    -1,
-      -1,    -1,    -1,    -1,    -1,    56,    57
+      -1,    -1,    -1,    -1,    -1,    57,    -1,    -1,    -1,    -1,
+      -1,    -1,    56,    57,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    57
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -722,25 +714,24 @@ static const yytype_uint8 yystos[] =
 {
        0,    10,    13,    14,    15,    16,    17,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    54,    56,
-      57,    59,    60,    62,    64,    65,    67,    68,    69,    70,
-      73,    74,    75,    76,    77,    78,    82,    85,    87,    88,
+      57,    59,    60,    62,    64,    65,    67,    68,    69,    71,
+      74,    75,    76,    77,    78,    79,    83,    86,    88,    89,
        4,     5,     6,     7,     8,     9,    31,    48,    50,    56,
-      57,    68,    90,    91,    92,    95,    96,    97,    98,    99,
-     100,   105,    65,    46,    54,    89,    95,    90,    56,    57,
-      77,    57,     8,    90,    48,    50,    55,     0,    62,    63,
-      64,    45,   106,    12,    71,    68,    95,    51,    68,    90,
-      93,    94,    54,    89,    32,    33,   101,    39,    40,    41,
-      42,    43,    44,   102,    34,    35,    36,   103,    37,    38,
-     104,   100,    95,    47,    62,    89,    15,    54,    89,    53,
-      54,    66,    48,    56,    46,    54,    66,    66,    49,    86,
-      90,     6,    56,    63,    95,    54,    89,    11,    72,    66,
-     106,    49,    51,    52,    89,    96,    97,    97,    98,    53,
-      47,    15,    95,    89,    77,    83,    48,    29,    30,    79,
-      80,    81,    46,    60,    61,    66,    49,    52,    51,    66,
-      89,    71,    54,    89,    95,    93,    95,    95,    66,    56,
-      49,    83,    47,    79,    82,    87,    79,    66,    86,    71,
-      89,    66,    54,    89,    66,    52,    84,    54,    89,    49,
-      47,    89,    77,    89,    54,    89,    56,    89,    84
+      68,    91,    92,    93,    96,    97,    98,    99,   100,   101,
+     106,    65,    54,    70,    96,    96,    56,    78,    57,     8,
+      96,    48,    50,    55,     0,    62,    63,    64,    45,   107,
+      12,    72,    68,    96,    51,    68,    91,    94,    95,    70,
+      32,    33,   102,    39,    40,    41,    42,    43,    44,   103,
+      34,    35,    36,   104,    37,    38,   105,   101,    96,    46,
+      90,    70,    53,    54,    66,    48,    56,    70,    66,    66,
+      49,    87,    91,     6,    56,    63,    96,    96,    11,    73,
+      66,   107,    49,    51,    52,    90,    97,    98,    98,    99,
+      53,    47,    62,    15,    90,    78,    84,    48,    46,    60,
+      61,    66,    49,    52,    51,    66,    70,    70,    96,    94,
+      96,    47,    96,    56,    49,    84,    29,    30,    54,    80,
+      81,    82,    66,    87,    90,    90,    66,    70,    66,    52,
+      85,    70,    49,    47,    80,    83,    88,    72,    90,    78,
+      90,    70,    56,    90,    85
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -749,16 +740,15 @@ static const yytype_uint8 yyr1[] =
        0,    58,    59,    59,    59,    60,    61,    61,    62,    63,
       63,    64,    64,    64,    64,    64,    64,    64,    64,    64,
       64,    65,    66,    66,    67,    68,    68,    68,    69,    70,
-      70,    71,    71,    71,    72,    72,    72,    73,    73,    73,
-      74,    74,    75,    75,    76,    76,    77,    77,    77,    77,
-      77,    77,    77,    77,    77,    78,    78,    79,    79,    80,
-      80,    81,    81,    82,    82,    82,    82,    83,    83,    84,
-      84,    85,    85,    86,    86,    87,    87,    88,    89,    89,
-      90,    90,    90,    90,    90,    90,    91,    91,    92,    92,
-      93,    93,    94,    94,    95,    95,    96,    96,    97,    97,
-      98,    98,    99,    99,   100,   100,   100,   101,   101,   102,
-     102,   102,   102,   102,   102,   103,   103,   103,   104,   104,
-     105,   106
+      70,    71,    72,    72,    73,    73,    74,    74,    74,    75,
+      76,    77,    78,    78,    78,    78,    78,    78,    78,    78,
+      78,    79,    80,    80,    81,    81,    81,    82,    82,    83,
+      83,    84,    84,    85,    85,    86,    86,    87,    87,    88,
+      88,    89,    90,    90,    91,    91,    91,    91,    91,    91,
+      92,    92,    93,    93,    94,    94,    95,    95,    96,    96,
+      97,    97,    98,    98,    99,    99,   100,   100,   101,   101,
+     101,   102,   102,   103,   103,   103,   103,   103,   103,   104,
+     104,   104,   105,   105,   106,   107
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -766,17 +756,16 @@ static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,     1,     1,     4,     1,     0,     2,     2,
        0,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     4,     1,     1,     3,     1,     4,     3,     3,     4,
-       3,     4,     3,     0,     3,     2,     0,     1,     1,     1,
-       7,     6,     6,     5,     4,     3,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     6,     5,     2,     0,     2,
-       2,     1,     1,     8,     7,     7,     6,     3,     0,     4,
-       0,     5,     4,     1,     3,     3,     5,     3,     3,     2,
-       1,     1,     1,     1,     1,     1,     1,     1,     3,     2,
-       1,     3,     1,     1,     1,     3,     1,     3,     1,     3,
-       1,     3,     2,     1,     3,     1,     1,     1,     1,     1,
+       1,     4,     1,     1,     3,     1,     4,     3,     3,     1,
+       0,     4,     5,     0,     3,     0,     1,     1,     1,     7,
+       6,     4,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     6,     2,     0,     2,     2,     1,     1,     1,     8,
+       7,     3,     0,     4,     0,     5,     4,     1,     3,     3,
+       5,     3,     3,     2,     1,     1,     1,     1,     1,     1,
+       1,     1,     3,     2,     1,     3,     1,     1,     1,     3,
+       1,     3,     1,     3,     1,     3,     2,     1,     3,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1
+       1,     1,     1,     1,     1,     1
 };
 
 
@@ -1455,719 +1444,683 @@ yyreduce:
         case 2:
 #line 33 "gramatica.y" /* yacc.c:1646  */
     { cout << "program" << endl; }
-#line 1459 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1448 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 34 "gramatica.y" /* yacc.c:1646  */
     { cout << "program" << endl; }
-#line 1465 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1454 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 35 "gramatica.y" /* yacc.c:1646  */
     { cout << "program" << endl; }
-#line 1471 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1460 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 38 "gramatica.y" /* yacc.c:1646  */
     { cout << "imports" << endl; }
-#line 1477 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1466 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 41 "gramatica.y" /* yacc.c:1646  */
     { ; }
-#line 1483 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1472 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 42 "gramatica.y" /* yacc.c:1646  */
     { ; }
-#line 1489 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1478 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 45 "gramatica.y" /* yacc.c:1646  */
     { cout << "statelist" << endl; }
-#line 1495 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1484 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 48 "gramatica.y" /* yacc.c:1646  */
     { ; }
-#line 1501 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1490 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 49 "gramatica.y" /* yacc.c:1646  */
     { ; }
-#line 1507 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1496 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 52 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1513 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1502 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 53 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1519 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1508 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 54 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1525 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1514 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 55 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1531 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1520 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 56 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1537 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1526 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 57 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1543 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1532 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 58 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1549 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1538 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 59 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1555 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1544 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 60 "gramatica.y" /* yacc.c:1646  */
     { cout << "state" << endl; }
-#line 1561 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1550 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 61 "gramatica.y" /* yacc.c:1646  */
-    { cout << "state" << endl; }
-#line 1567 "gramatica.tab.c" /* yacc.c:1646  */
+    { cout << endl; }
+#line 1556 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 64 "gramatica.y" /* yacc.c:1646  */
     { cout << "assign" << endl; }
-#line 1573 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1562 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 67 "gramatica.y" /* yacc.c:1646  */
     { cout << "delim" << endl; }
-#line 1579 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1568 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 68 "gramatica.y" /* yacc.c:1646  */
     { cout << "delim" << endl; }
-#line 1585 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1574 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 71 "gramatica.y" /* yacc.c:1646  */
     { cout << "return" << endl; }
-#line 1591 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1580 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
 #line 74 "gramatica.y" /* yacc.c:1646  */
     { cout << "id" << endl; }
-#line 1597 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1586 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
 #line 75 "gramatica.y" /* yacc.c:1646  */
     { cout << "id" << endl; }
-#line 1603 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1592 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
 #line 76 "gramatica.y" /* yacc.c:1646  */
     { cout << "id" << endl; }
-#line 1609 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1598 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
 #line 79 "gramatica.y" /* yacc.c:1646  */
     { cout << "cond" << endl; }
-#line 1615 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1604 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
 #line 82 "gramatica.y" /* yacc.c:1646  */
-    { cout << "if" << endl; }
-#line 1621 "gramatica.tab.c" /* yacc.c:1646  */
+    { ; }
+#line 1610 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
 #line 83 "gramatica.y" /* yacc.c:1646  */
-    { cout << "if" << endl; }
-#line 1627 "gramatica.tab.c" /* yacc.c:1646  */
+    { ; }
+#line 1616 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
 #line 86 "gramatica.y" /* yacc.c:1646  */
-    { cout << "else if" << endl; }
-#line 1633 "gramatica.tab.c" /* yacc.c:1646  */
+    { cout << "if" << endl; }
+#line 1622 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 87 "gramatica.y" /* yacc.c:1646  */
+#line 89 "gramatica.y" /* yacc.c:1646  */
     { cout << "else if" << endl; }
-#line 1639 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1628 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 88 "gramatica.y" /* yacc.c:1646  */
+#line 90 "gramatica.y" /* yacc.c:1646  */
     { ; }
-#line 1645 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1634 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 91 "gramatica.y" /* yacc.c:1646  */
+#line 93 "gramatica.y" /* yacc.c:1646  */
     { cout << "else" << endl; }
-#line 1651 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1640 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 92 "gramatica.y" /* yacc.c:1646  */
-    { cout << "else" << endl; }
-#line 1657 "gramatica.tab.c" /* yacc.c:1646  */
+#line 94 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1646 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 93 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1663 "gramatica.tab.c" /* yacc.c:1646  */
+#line 97 "gramatica.y" /* yacc.c:1646  */
+    { cout << "loop" << endl; }
+#line 1652 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 96 "gramatica.y" /* yacc.c:1646  */
+#line 98 "gramatica.y" /* yacc.c:1646  */
     { cout << "loop" << endl; }
-#line 1669 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1658 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 97 "gramatica.y" /* yacc.c:1646  */
+#line 99 "gramatica.y" /* yacc.c:1646  */
     { cout << "loop" << endl; }
-#line 1675 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1664 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 98 "gramatica.y" /* yacc.c:1646  */
-    { cout << "loop" << endl; }
-#line 1681 "gramatica.tab.c" /* yacc.c:1646  */
+#line 102 "gramatica.y" /* yacc.c:1646  */
+    { cout << "for" << endl; }
+#line 1670 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 101 "gramatica.y" /* yacc.c:1646  */
-    { cout << "for" << endl; }
-#line 1687 "gramatica.tab.c" /* yacc.c:1646  */
+#line 105 "gramatica.y" /* yacc.c:1646  */
+    { cout << "do" << endl; }
+#line 1676 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 102 "gramatica.y" /* yacc.c:1646  */
-    { cout << "for" << endl; }
-#line 1693 "gramatica.tab.c" /* yacc.c:1646  */
+#line 108 "gramatica.y" /* yacc.c:1646  */
+    { cout << "while" << endl; }
+#line 1682 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 105 "gramatica.y" /* yacc.c:1646  */
-    { cout << "do" << endl; }
-#line 1699 "gramatica.tab.c" /* yacc.c:1646  */
+#line 111 "gramatica.y" /* yacc.c:1646  */
+    { cout << "type" << endl; }
+#line 1688 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 106 "gramatica.y" /* yacc.c:1646  */
-    { cout << "do" << endl; }
-#line 1705 "gramatica.tab.c" /* yacc.c:1646  */
+#line 112 "gramatica.y" /* yacc.c:1646  */
+    { cout << "type" << endl; }
+#line 1694 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 109 "gramatica.y" /* yacc.c:1646  */
-    { cout << "while" << endl; }
-#line 1711 "gramatica.tab.c" /* yacc.c:1646  */
+#line 113 "gramatica.y" /* yacc.c:1646  */
+    { cout << "type" << endl; }
+#line 1700 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 110 "gramatica.y" /* yacc.c:1646  */
-    { cout << "while" << endl; }
-#line 1717 "gramatica.tab.c" /* yacc.c:1646  */
+#line 114 "gramatica.y" /* yacc.c:1646  */
+    { cout << "type" << endl; }
+#line 1706 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 113 "gramatica.y" /* yacc.c:1646  */
+#line 115 "gramatica.y" /* yacc.c:1646  */
     { cout << "type" << endl; }
-#line 1723 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1712 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 114 "gramatica.y" /* yacc.c:1646  */
+#line 116 "gramatica.y" /* yacc.c:1646  */
     { cout << "type" << endl; }
-#line 1729 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1718 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 115 "gramatica.y" /* yacc.c:1646  */
+#line 117 "gramatica.y" /* yacc.c:1646  */
     { cout << "type" << endl; }
-#line 1735 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1724 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 116 "gramatica.y" /* yacc.c:1646  */
+#line 118 "gramatica.y" /* yacc.c:1646  */
     { cout << "type" << endl; }
-#line 1741 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1730 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
-#line 117 "gramatica.y" /* yacc.c:1646  */
-    { cout << "type" << endl; }
-#line 1747 "gramatica.tab.c" /* yacc.c:1646  */
+#line 119 "gramatica.y" /* yacc.c:1646  */
+    { cout << "class type" << endl; }
+#line 1736 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 118 "gramatica.y" /* yacc.c:1646  */
-    { cout << "type" << endl; }
-#line 1753 "gramatica.tab.c" /* yacc.c:1646  */
+#line 122 "gramatica.y" /* yacc.c:1646  */
+    { cout << "class" << endl; }
+#line 1742 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 119 "gramatica.y" /* yacc.c:1646  */
-    { cout << "type" << endl; }
-#line 1759 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 53:
-#line 120 "gramatica.y" /* yacc.c:1646  */
-    { cout << "type" << endl; }
-#line 1765 "gramatica.tab.c" /* yacc.c:1646  */
+#line 125 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1748 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 121 "gramatica.y" /* yacc.c:1646  */
-    { cout << "class type" << endl; }
-#line 1771 "gramatica.tab.c" /* yacc.c:1646  */
+#line 129 "gramatica.y" /* yacc.c:1646  */
+    { cout << "class var" << endl; }
+#line 1754 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 124 "gramatica.y" /* yacc.c:1646  */
-    { cout << "class" << endl; }
-#line 1777 "gramatica.tab.c" /* yacc.c:1646  */
+#line 130 "gramatica.y" /* yacc.c:1646  */
+    { cout << "class func" << endl; }
+#line 1760 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 125 "gramatica.y" /* yacc.c:1646  */
-    { cout << "class" << endl; }
-#line 1783 "gramatica.tab.c" /* yacc.c:1646  */
+#line 131 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1766 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 128 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1789 "gramatica.tab.c" /* yacc.c:1646  */
+#line 134 "gramatica.y" /* yacc.c:1646  */
+    { cout << "acc priv" << endl; }
+#line 1772 "gramatica.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 58:
+#line 135 "gramatica.y" /* yacc.c:1646  */
+    { cout << "acc pub" << endl; }
+#line 1778 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 59:
-#line 132 "gramatica.y" /* yacc.c:1646  */
-    { cout << "class var" << endl; }
-#line 1795 "gramatica.tab.c" /* yacc.c:1646  */
+#line 138 "gramatica.y" /* yacc.c:1646  */
+    { cout << "func" << endl; }
+#line 1784 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 60:
-#line 133 "gramatica.y" /* yacc.c:1646  */
-    { cout << "class func" << endl; }
-#line 1801 "gramatica.tab.c" /* yacc.c:1646  */
+#line 139 "gramatica.y" /* yacc.c:1646  */
+    { cout << "func" << endl; }
+#line 1790 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 136 "gramatica.y" /* yacc.c:1646  */
-    { cout << "acc priv" << endl; }
-#line 1807 "gramatica.tab.c" /* yacc.c:1646  */
+#line 142 "gramatica.y" /* yacc.c:1646  */
+    { cout << "args" << endl; }
+#line 1796 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 137 "gramatica.y" /* yacc.c:1646  */
-    { cout << "acc pub" << endl; }
-#line 1813 "gramatica.tab.c" /* yacc.c:1646  */
+#line 143 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1802 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 140 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func" << endl; }
-#line 1819 "gramatica.tab.c" /* yacc.c:1646  */
+#line 146 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1808 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 141 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func" << endl; }
-#line 1825 "gramatica.tab.c" /* yacc.c:1646  */
+#line 147 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1814 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 142 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func" << endl; }
-#line 1831 "gramatica.tab.c" /* yacc.c:1646  */
+#line 150 "gramatica.y" /* yacc.c:1646  */
+    { cout << "func call" << endl; }
+#line 1820 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 143 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func" << endl; }
-#line 1837 "gramatica.tab.c" /* yacc.c:1646  */
+#line 151 "gramatica.y" /* yacc.c:1646  */
+    { cout << "func call" << endl; }
+#line 1826 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 146 "gramatica.y" /* yacc.c:1646  */
+#line 154 "gramatica.y" /* yacc.c:1646  */
     { cout << "args" << endl; }
-#line 1843 "gramatica.tab.c" /* yacc.c:1646  */
+#line 1832 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 147 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1849 "gramatica.tab.c" /* yacc.c:1646  */
+#line 155 "gramatica.y" /* yacc.c:1646  */
+    { cout << "args" << endl; }
+#line 1838 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 150 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1855 "gramatica.tab.c" /* yacc.c:1646  */
+#line 158 "gramatica.y" /* yacc.c:1646  */
+    { cout << "var" << endl; }
+#line 1844 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 151 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1861 "gramatica.tab.c" /* yacc.c:1646  */
+#line 159 "gramatica.y" /* yacc.c:1646  */
+    { cout << "var" << endl; }
+#line 1850 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 154 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func call" << endl; }
-#line 1867 "gramatica.tab.c" /* yacc.c:1646  */
+#line 162 "gramatica.y" /* yacc.c:1646  */
+    { cout << "print" << endl; }
+#line 1856 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 155 "gramatica.y" /* yacc.c:1646  */
-    { cout << "func call" << endl; }
-#line 1873 "gramatica.tab.c" /* yacc.c:1646  */
+#line 165 "gramatica.y" /* yacc.c:1646  */
+    { cout << "block" << endl; }
+#line 1862 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 158 "gramatica.y" /* yacc.c:1646  */
-    { cout << "args" << endl; }
-#line 1879 "gramatica.tab.c" /* yacc.c:1646  */
+#line 166 "gramatica.y" /* yacc.c:1646  */
+    { cout << "block" << endl; }
+#line 1868 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 159 "gramatica.y" /* yacc.c:1646  */
-    { cout << "args" << endl; }
-#line 1885 "gramatica.tab.c" /* yacc.c:1646  */
+#line 169 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1874 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 162 "gramatica.y" /* yacc.c:1646  */
-    { cout << "var" << endl; }
-#line 1891 "gramatica.tab.c" /* yacc.c:1646  */
+#line 170 "gramatica.y" /* yacc.c:1646  */
+    { cout << "const" << endl; }
+#line 1880 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 163 "gramatica.y" /* yacc.c:1646  */
-    { cout << "var" << endl; }
-#line 1897 "gramatica.tab.c" /* yacc.c:1646  */
+#line 171 "gramatica.y" /* yacc.c:1646  */
+    { cout << "const" << endl; }
+#line 1886 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 166 "gramatica.y" /* yacc.c:1646  */
-    { cout << "print" << endl; }
-#line 1903 "gramatica.tab.c" /* yacc.c:1646  */
+#line 172 "gramatica.y" /* yacc.c:1646  */
+    { cout << "const" << endl; }
+#line 1892 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 169 "gramatica.y" /* yacc.c:1646  */
-    { cout << "block" << endl; }
-#line 1909 "gramatica.tab.c" /* yacc.c:1646  */
+#line 173 "gramatica.y" /* yacc.c:1646  */
+    { cout << "const" << endl; }
+#line 1898 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 170 "gramatica.y" /* yacc.c:1646  */
-    { cout << "block" << endl; }
-#line 1915 "gramatica.tab.c" /* yacc.c:1646  */
+#line 174 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1904 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 173 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1921 "gramatica.tab.c" /* yacc.c:1646  */
+#line 177 "gramatica.y" /* yacc.c:1646  */
+    { cout << "true" << endl; }
+#line 1910 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 174 "gramatica.y" /* yacc.c:1646  */
-    { cout << "const" << endl; }
-#line 1927 "gramatica.tab.c" /* yacc.c:1646  */
+#line 178 "gramatica.y" /* yacc.c:1646  */
+    { cout << "false" << endl; }
+#line 1916 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 175 "gramatica.y" /* yacc.c:1646  */
-    { cout << "const" << endl; }
-#line 1933 "gramatica.tab.c" /* yacc.c:1646  */
+#line 181 "gramatica.y" /* yacc.c:1646  */
+    { cout << "list" << endl; }
+#line 1922 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 176 "gramatica.y" /* yacc.c:1646  */
-    { cout << "const" << endl; }
-#line 1939 "gramatica.tab.c" /* yacc.c:1646  */
+#line 182 "gramatica.y" /* yacc.c:1646  */
+    { cout << "list" << endl; }
+#line 1928 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 177 "gramatica.y" /* yacc.c:1646  */
-    { cout << "const" << endl; }
-#line 1945 "gramatica.tab.c" /* yacc.c:1646  */
+#line 185 "gramatica.y" /* yacc.c:1646  */
+    { cout << "list elem" << endl; }
+#line 1934 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 178 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1951 "gramatica.tab.c" /* yacc.c:1646  */
+#line 186 "gramatica.y" /* yacc.c:1646  */
+    { cout << "list elem" << endl; }
+#line 1940 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 181 "gramatica.y" /* yacc.c:1646  */
-    { cout << "true" << endl; }
-#line 1957 "gramatica.tab.c" /* yacc.c:1646  */
+#line 189 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1946 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 182 "gramatica.y" /* yacc.c:1646  */
-    { cout << "false" << endl; }
-#line 1963 "gramatica.tab.c" /* yacc.c:1646  */
+#line 190 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 1952 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 185 "gramatica.y" /* yacc.c:1646  */
-    { cout << "list" << endl; }
-#line 1969 "gramatica.tab.c" /* yacc.c:1646  */
+#line 193 "gramatica.y" /* yacc.c:1646  */
+    { cout << "expresion" << endl; }
+#line 1958 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 186 "gramatica.y" /* yacc.c:1646  */
-    { cout << "list" << endl; }
-#line 1975 "gramatica.tab.c" /* yacc.c:1646  */
+#line 194 "gramatica.y" /* yacc.c:1646  */
+    { cout << "expresion" << endl; }
+#line 1964 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 189 "gramatica.y" /* yacc.c:1646  */
-    { cout << "list elem" << endl; }
-#line 1981 "gramatica.tab.c" /* yacc.c:1646  */
+#line 197 "gramatica.y" /* yacc.c:1646  */
+    { cout << "exp" << endl; }
+#line 1970 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 190 "gramatica.y" /* yacc.c:1646  */
-    { cout << "list elem" << endl; }
-#line 1987 "gramatica.tab.c" /* yacc.c:1646  */
+#line 198 "gramatica.y" /* yacc.c:1646  */
+    { cout << "exp" << endl; }
+#line 1976 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 193 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1993 "gramatica.tab.c" /* yacc.c:1646  */
+#line 201 "gramatica.y" /* yacc.c:1646  */
+    { cout << "e" << endl; }
+#line 1982 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 194 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 1999 "gramatica.tab.c" /* yacc.c:1646  */
+#line 202 "gramatica.y" /* yacc.c:1646  */
+    { cout << "e" << endl; }
+#line 1988 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 197 "gramatica.y" /* yacc.c:1646  */
-    { cout << "expresion" << endl; }
-#line 2005 "gramatica.tab.c" /* yacc.c:1646  */
+#line 205 "gramatica.y" /* yacc.c:1646  */
+    { cout << "term" << endl; }
+#line 1994 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 198 "gramatica.y" /* yacc.c:1646  */
-    { cout << "expresion" << endl; }
-#line 2011 "gramatica.tab.c" /* yacc.c:1646  */
+#line 206 "gramatica.y" /* yacc.c:1646  */
+    { cout << "term" << endl; }
+#line 2000 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 201 "gramatica.y" /* yacc.c:1646  */
-    { cout << "exp" << endl; }
-#line 2017 "gramatica.tab.c" /* yacc.c:1646  */
+#line 209 "gramatica.y" /* yacc.c:1646  */
+    { cout << "fact" << endl; }
+#line 2006 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 202 "gramatica.y" /* yacc.c:1646  */
-    { cout << "exp" << endl; }
-#line 2023 "gramatica.tab.c" /* yacc.c:1646  */
+#line 210 "gramatica.y" /* yacc.c:1646  */
+    { cout << "fact" << endl; }
+#line 2012 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 205 "gramatica.y" /* yacc.c:1646  */
-    { cout << "e" << endl; }
-#line 2029 "gramatica.tab.c" /* yacc.c:1646  */
+#line 213 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 2018 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 206 "gramatica.y" /* yacc.c:1646  */
-    { cout << "e" << endl; }
-#line 2035 "gramatica.tab.c" /* yacc.c:1646  */
+#line 214 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 2024 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 209 "gramatica.y" /* yacc.c:1646  */
-    { cout << "term" << endl; }
-#line 2041 "gramatica.tab.c" /* yacc.c:1646  */
+#line 215 "gramatica.y" /* yacc.c:1646  */
+    { ; }
+#line 2030 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 210 "gramatica.y" /* yacc.c:1646  */
-    { cout << "term" << endl; }
-#line 2047 "gramatica.tab.c" /* yacc.c:1646  */
+#line 218 "gramatica.y" /* yacc.c:1646  */
+    { cout << "rel op" << endl; }
+#line 2036 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 213 "gramatica.y" /* yacc.c:1646  */
-    { cout << "fact" << endl; }
-#line 2053 "gramatica.tab.c" /* yacc.c:1646  */
+#line 219 "gramatica.y" /* yacc.c:1646  */
+    { cout << "rel op" << endl; }
+#line 2042 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 214 "gramatica.y" /* yacc.c:1646  */
-    { cout << "fact" << endl; }
-#line 2059 "gramatica.tab.c" /* yacc.c:1646  */
+#line 222 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2048 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 217 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 2065 "gramatica.tab.c" /* yacc.c:1646  */
+#line 223 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2054 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 218 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 2071 "gramatica.tab.c" /* yacc.c:1646  */
+#line 224 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2060 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 219 "gramatica.y" /* yacc.c:1646  */
-    { ; }
-#line 2077 "gramatica.tab.c" /* yacc.c:1646  */
+#line 225 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2066 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 107:
-#line 222 "gramatica.y" /* yacc.c:1646  */
-    { cout << "rel op" << endl; }
-#line 2083 "gramatica.tab.c" /* yacc.c:1646  */
+#line 226 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2072 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 108:
-#line 223 "gramatica.y" /* yacc.c:1646  */
-    { cout << "rel op" << endl; }
-#line 2089 "gramatica.tab.c" /* yacc.c:1646  */
+#line 227 "gramatica.y" /* yacc.c:1646  */
+    { cout << "comp op" << endl; }
+#line 2078 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 109:
-#line 226 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2095 "gramatica.tab.c" /* yacc.c:1646  */
+#line 230 "gramatica.y" /* yacc.c:1646  */
+    { cout << "mult op" << endl; }
+#line 2084 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 110:
-#line 227 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2101 "gramatica.tab.c" /* yacc.c:1646  */
+#line 231 "gramatica.y" /* yacc.c:1646  */
+    { cout << "mult op" << endl; }
+#line 2090 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 111:
-#line 228 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2107 "gramatica.tab.c" /* yacc.c:1646  */
+#line 232 "gramatica.y" /* yacc.c:1646  */
+    { cout << "mult op" << endl; }
+#line 2096 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 229 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2113 "gramatica.tab.c" /* yacc.c:1646  */
+#line 235 "gramatica.y" /* yacc.c:1646  */
+    { cout << "add op" << endl; }
+#line 2102 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 113:
-#line 230 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2119 "gramatica.tab.c" /* yacc.c:1646  */
+#line 236 "gramatica.y" /* yacc.c:1646  */
+    { cout << "add op" << endl; }
+#line 2108 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 114:
-#line 231 "gramatica.y" /* yacc.c:1646  */
-    { cout << "comp op" << endl; }
-#line 2125 "gramatica.tab.c" /* yacc.c:1646  */
+#line 239 "gramatica.y" /* yacc.c:1646  */
+    { cout << "neg op" << endl; }
+#line 2114 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
   case 115:
-#line 234 "gramatica.y" /* yacc.c:1646  */
-    { cout << "mult op" << endl; }
-#line 2131 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 116:
-#line 235 "gramatica.y" /* yacc.c:1646  */
-    { cout << "mult op" << endl; }
-#line 2137 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 117:
-#line 236 "gramatica.y" /* yacc.c:1646  */
-    { cout << "mult op" << endl; }
-#line 2143 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 118:
-#line 239 "gramatica.y" /* yacc.c:1646  */
-    { cout << "add op" << endl; }
-#line 2149 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 119:
-#line 240 "gramatica.y" /* yacc.c:1646  */
-    { cout << "add op" << endl; }
-#line 2155 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 120:
-#line 243 "gramatica.y" /* yacc.c:1646  */
-    { cout << "neg op" << endl; }
-#line 2161 "gramatica.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 121:
-#line 246 "gramatica.y" /* yacc.c:1646  */
+#line 242 "gramatica.y" /* yacc.c:1646  */
     { cout << "ass op" << endl; }
-#line 2167 "gramatica.tab.c" /* yacc.c:1646  */
+#line 2120 "gramatica.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 2171 "gramatica.tab.c" /* yacc.c:1646  */
+#line 2124 "gramatica.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2395,9 +2348,10 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 249 "gramatica.y" /* yacc.c:1906  */
+#line 245 "gramatica.y" /* yacc.c:1906  */
 
 int main() {
+	//yydebug = 1;
 	do {
 		yyparse();
 	} while (!feof(yyin));

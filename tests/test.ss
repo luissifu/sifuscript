@@ -1,14 +1,25 @@
 import "uno.ss"
 import "otro.ss"
 
+
+
+
 class Prueba {
 	private int variable
-	private int funcionClase() {}
+	public function int funcionClase() {}
 }
+
+
+
+
 
 function tipovoid() {
 	int algo = 1;
 }
+
+
+
+
 
 function int contipo() {
 	Prueba p
@@ -16,10 +27,18 @@ function int contipo() {
 	return ret
 }
 
+
+
+
+
 function int conargs(int uno, int dos) 
 {
 	return uno + dos
 }
+
+
+
+
 
 char a = '0'
 short b = 1
@@ -29,19 +48,22 @@ float e = 4.0
 double f = 5.0
 string g = "6"
 
+
+
+
 int operaciones = 1 + 2 - 3 * 4 / 5 % 6
 
-int x = 2
 
+
+
+int x = 2
 if x == 1
 {
 	print "1"
-}
-else if x == 2
+} elif x == 2
 {
 	print "2"
-}
-else
+} else
 {
 	print "3"
 }
@@ -49,7 +71,10 @@ else
 int listauno = [1,2,3,4,5]
 int listados = []
 
-for x = 2; x < 3; x = x + 1
+
+
+
+for x = 2; x < 3; x + 1
 {
 	print x
 }

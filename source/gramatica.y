@@ -58,7 +58,7 @@ state : assign 																		{ cout << "state" << endl; }
 	  |	print 																		{ cout << "state" << endl; }
 	  |	return 																		{ cout << "state" << endl; }
 	  |	func_call																	{ cout << "state" << endl; }
-	  |	TK_NEWLINE																	{ cout << "state" << endl; }
+	  |	TK_NEWLINE																	{ cout << endl; }
 	  ;
 
 assign : id ass_op expresion delimiter 												{ cout << "assign" << endl; }
@@ -68,28 +68,29 @@ delimiter : TK_NEWLINE 																{ cout << "delim" << endl; }
 		  | TK_SEMICOLON 															{ cout << "delim" << endl; }
 		  ;
 
-return : TK_RETURN var_const delimiter 												{ cout << "return" << endl; }
+return : TK_RETURN expresion delimiter 												{ cout << "return" << endl; }
 	   ;
 
 id : T_ID																			{ cout << "id" << endl; }
    | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ cout << "id" << endl; }
-   | T_CLASSNAME TK_DOT T_ID 														{ cout << "id" << endl; }
+   | T_ID TK_DOT T_ID 																{ cout << "id" << endl; }
    ;
 
 conditional : if elseif else 														{ cout << "cond" << endl; }
 			;
 
-if : TK_IF expresion TK_NEWLINE block 			 		 							{ cout << "if" << endl; }
-   | TK_IF expresion block 						 									{ cout << "if" << endl; }
+maybenl : TK_NEWLINE 																{ ; }
+		| /*E*/ 																	{ ; }
+		; 
+
+if : TK_IF expresion maybenl block 			 		 								{ cout << "if" << endl; }
    ;
 
-elseif : TK_ELIF TK_NEWLINE block elseif 											{ cout << "else if" << endl; }
-	   | TK_ELIF block elseif 														{ cout << "else if" << endl; }
+elseif : TK_ELIF expresion maybenl block elseif										{ cout << "else if" << endl; }
 	   | /*E*/ 																		{ ; }
 	   ;
 
-else : TK_ELSE TK_NEWLINE block 													{ cout << "else" << endl; }
-	 | TK_ELSE block 																{ cout << "else" << endl; }
+else : TK_ELSE maybenl block 														{ cout << "else" << endl; }
 	 | /*E*/  																		{ ; }
 	 ;
 
@@ -98,16 +99,13 @@ loop : for 																			{ cout << "loop" << endl; }
 	 | while 																		{ cout << "loop" << endl; }
 	 ;
 
-for : TK_FOR assign expresion TK_SEMICOLON expresion TK_NEWLINE block				{ cout << "for" << endl; }
-	| TK_FOR assign expresion TK_SEMICOLON expresion block 							{ cout << "for" << endl; }
+for : TK_FOR assign expresion TK_SEMICOLON expresion maybenl block					{ cout << "for" << endl; }
 	;
 
-do : TK_DO TK_NEWLINE block TK_WHILE expresion delimiter 							{ cout << "do" << endl; }
-   | TK_DO block TK_WHILE expresion delimiter			 							{ cout << "do" << endl; }
+do : TK_DO maybenl block TK_WHILE expresion delimiter	 							{ cout << "do" << endl; }
    ;
 
-while : TK_WHILE expresion TK_NEWLINE block											{ cout << "while" << endl; }
-	  | TK_WHILE expresion block													{ cout << "while" << endl; }
+while : TK_WHILE expresion maybenl block											{ cout << "while" << endl; }
 	  ;
 
 type : TPNM_BOOL																	{ cout << "type" << endl; }
@@ -121,8 +119,7 @@ type : TPNM_BOOL																	{ cout << "type" << endl; }
 	 | T_CLASSNAME																	{ cout << "class type" << endl; }
 	 ;
 
-class : TK_CLASS T_CLASSNAME TK_NEWLINE TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 	{ cout << "class" << endl; }
-	  | TK_CLASS T_CLASSNAME TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 				{ cout << "class" << endl; }
+class : TK_CLASS T_CLASSNAME maybenl TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 		{ cout << "class" << endl; }
 	  ;
 
 class_dec : class_st class_dec 														{ ; }
@@ -131,16 +128,15 @@ class_dec : class_st class_dec 														{ ; }
 
 class_st : accesor var 																{ cout << "class var" << endl; }
 		 | accesor function 														{ cout << "class func" << endl; }
+		 | TK_NEWLINE 		 														{ ; }
 		 ;
 
 accesor : ACC_PRIVATE 																{ cout << "acc priv" << endl; }
 		| ACC_PUBLIC 																{ cout << "acc pub" << endl; }
 		;
 
-function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN TK_NEWLINE block		{ cout << "func" << endl; }
-		 | TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN block					{ cout << "func" << endl; }
-		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN TK_NEWLINE block			{ cout << "func" << endl; }
-		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN block 						{ cout << "func" << endl; }
+function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block			{ cout << "func" << endl; }
+		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block				{ cout << "func" << endl; }
 		 ;
 
 args : type T_ID moreargs 															{ cout << "args" << endl; }
@@ -163,7 +159,7 @@ var : type id delimiter 															{ cout << "var" << endl; }
 	| type id ass_op expresion delimiter 											{ cout << "var" << endl; }
 	;
 
-print : TK_PRINT var_const delimiter 												{ cout << "print" << endl; }
+print : TK_PRINT expresion delimiter 												{ cout << "print" << endl; }
 	  ;
 
 block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 									{ cout << "block" << endl; }
@@ -248,6 +244,7 @@ ass_op : OP_ASSIGN																	{ cout << "ass op" << endl; }
 
 %%
 int main() {
+	//yydebug = 1;
 	do {
 		yyparse();
 	} while (!feof(yyin));
