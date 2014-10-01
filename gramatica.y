@@ -16,7 +16,7 @@ void yyerror(const char *s);
 }
 
 %token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT CONST_STR CONST_CHAR
-%token <token> TK_IF TK_ELSE TK_FOR TK_DO TK_WHILE
+%token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE
 %token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT
 %token <token> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
 %token <token> ACC_PRIVATE ACC_PUBLIC
@@ -31,14 +31,23 @@ void yyerror(const char *s);
 %%
 
 program : imports statelist 														{ cout << "program" << endl; }
+		| imports 																	{ cout << "program" << endl; }
+		| statelist																	{ cout << "program" << endl; }
 		;
 
-imports : TK_IMPORT CONST_STR delimiter imports 									{ cout << "imports" << endl; }
-		| /*E*/																		{ ; }
+imports : TK_IMPORT CONST_STR delimiter moreimps 									{ cout << "imports" << endl; }
 		;
 
-statelist : state statelist															{ ; }
-		  | /*E*/																	{ ; }
+moreimps : imports																	{ ; }
+		 | /*E*/																	{ ; }
+		 ;
+
+statelist : state morestates														{ ; }
+		  ;
+
+morestates : state morestates 														{ ; }
+		   | /*E*/																	{ ; }
+		   ;
 
 state : assign 																		{ ; }
 	  |	conditional																	{ ; }
@@ -48,7 +57,6 @@ state : assign 																		{ ; }
 	  |	var 																		{ ; }
 	  |	print 																		{ ; }
 	  |	func_call																	{ ; }
-	  |	/*E*/ 																		{ ; }
 	  ;
 
 assign : id OP_ASSIGN expresion delimiter 											{ ; }
@@ -63,18 +71,21 @@ id : T_ID																			{ ; }
    | T_CLASSNAME TK_DOT T_ID 														{ ; }
    ;
 
-conditional : TK_IF expresion TK_NEWLINE block elseif else 							{ ; }
-			| TK_IF expresion block elseif else 									{ ; }
+conditional : if elseif else TK_NEWLINE 											{ ; }
 			;
 
-elseif : TK_ELSE TK_IF TK_NEWLINE block elseif										{ ; }
-	   | TK_ELSE TK_IF block elseif													{ ; }
+if : TK_IF expresion TK_NEWLINE block 			 		 							{ ; }
+   | TK_IF expresion block 						 									{ ; }
+   ;
+
+elseif : TK_ELIF TK_NEWLINE block elseif 											{ ; }
+	   | TK_ELIF block elseif 														{ ; }
 	   | /*E*/ 																		{ ; }
 	   ;
 
 else : TK_ELSE TK_NEWLINE block 													{ ; }
 	 | TK_ELSE block 																{ ; }
-	 | /*E*/ 																		{ ; }
+	 | /*E*/  																		{ ; }
 	 ;
 
 loop : for 																			{ ; }
@@ -82,8 +93,8 @@ loop : for 																			{ ; }
 	 | while 																		{ ; }
 	 ;
 
-for : assign TK_SEMICOLON expresion TK_SEMICOLON expresion TK_NEWLINE block 		{ ; }
-	| assign TK_SEMICOLON expresion TK_SEMICOLON expresion block 					{ ; }
+for : TK_FOR assign TK_SEMICOLON expresion TK_SEMICOLON expresion TK_NEWLINE block	{ ; }
+	| TK_FOR assign TK_SEMICOLON expresion TK_SEMICOLON expresion block 			{ ; }
 	;
 
 do : TK_DO TK_NEWLINE block TK_WHILE expresion delimiter 							{ ; }
@@ -101,7 +112,7 @@ type : TPNM_BOOL																	{ ; }
 	 | TPNM_LONG																	{ ; }
 	 | TPNM_FLOAT																	{ ; }
 	 | TPNM_DOUBLE																	{ ; }
-	 | TPNM_SHORT																	{ ; }
+	 | TPNM_STR																	{ ; }
 	 | T_CLASSNAME																	{ ; }
 	 ;
 
@@ -121,10 +132,10 @@ accesor : ACC_PRIVATE 																{ ; }
 		| ACC_PUBLIC 																{ ; }
 		;
 
-function : TK_FUNCTION type T_ID args TK_NEWLINE block 								{ ; }
-		 | TK_FUNCTION T_ID args TK_NEWLINE block 									{ ; }
-		 | TK_FUNCTION type T_ID args block 										{ ; }
-		 | TK_FUNCTION T_ID args block 												{ ; }
+function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN TK_NEWLINE block		{ ; }
+		 | TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN block					{ ; }
+		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN TK_NEWLINE block			{ ; }
+		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN block 						{ ; }
 		 ;
 
 args : type T_ID moreargs 															{ ; }
@@ -151,6 +162,7 @@ print : TK_PRINT var_const delimiter 												{ ; }
 	  ;
 
 block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 									{ ; }
+	  | TK_LEFTBRACKET TK_RIGHTBRACKET 												{ ; }
 	  | state 																		{ ; }
 	  ;
 
@@ -223,6 +235,6 @@ add_op : OP_ADD 																	{ ; }
 	   | OP_SUB 																	{ ; }
 	   ;
 
-neg_op : OP_NEG																		{ ; }
+neg_op : OP_NOT																		{ ; }
 	   ;
 

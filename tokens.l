@@ -23,6 +23,7 @@ chr		[^\']
 "not"						return OP_NOT;
 "if"						return TK_IF;
 "else"						return TK_ELSE;
+"elif"						return TK_ELIF;
 "for"						return TK_FOR;
 "do"						return TK_DO;
 "while"						return TK_WHILE;
