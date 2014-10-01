@@ -31,6 +31,7 @@ chr		[^\']
 "class"						return TK_CLASS;
 "import"					return TK_IMPORT;
 "print"						return TK_PRINT;
+"return"					return TK_RETURN;
 "boolean"					return TPNM_BOOL;
 "char"						return TPNM_CHAR;
 "short"						return TPNM_SHORT;
