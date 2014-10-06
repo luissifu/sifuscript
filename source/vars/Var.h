@@ -18,7 +18,7 @@ class Var {
 		//
 		std::string getName();
 		int getType();
-		int getDirection();
+		int getAddress();
 	private:
 		std::string name;
 		int type;
