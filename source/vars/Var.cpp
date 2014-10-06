@@ -19,6 +19,6 @@ int Var::getType() {
 	return type;
 }
 
-int Var::getDirection() {
+int Var::getAddress() {
 	return address;
 }
