@@ -1,19 +1,68 @@
-%{
+/*
+ * gramatica.y file
+ in order to specify the grammar
+ */
+
+%{ 
+#include "Expression.h"
+
 #include <cstdio>
 #include <iostream>
 using namespace std;
-
-extern "C" int yylex();
-extern "C" int yyparse();
-extern "C" FILE *yyin;
  
-void yyerror(const char *s);
 %}
+ 
+
+ 
+/*** yacc/bison Declarations ***/
+%output  "gramatica.c"
+
+/* write out a header file containing the token defines */
+%defines "gramatica.h"
+
+/* Require bison 2.3 or later */
+%require "2.3"
+
+/* add debug output code to generated parser. disable this for release
+ * versions. */
+%debug
+
+/* start symbol is named "start" */
+%start program
+
+/* use newer C++ skeleton file */
+%skeleton "lalr1.cc"
+
+/* namespace to enclose parser in */
+%name-prefix="sifuscript"
+
+/* set the parser's class identifier */
+%define "parser_class_name" "Gramatica"
+
+/* keep track of the current position within the input */
+%locations
+%initial-action
+{
+    // initialize the initial location object
+    @$.begin.filename = @$.end.filename = &driver.streamname;
+};
+
+/* The driver is passed by reference to the parser and to the scanner. This
+ * provides a simple but effective pure interface, not relying on global
+ * variables. */
+%parse-param { class Driver& driver }
+
+/* verbose error messages */
+%error-verbose
+
+/*** THE GRAMMAR ***/
 
 %union 
 {
 	int token;
 }
+
+%token			END	0	"end of file"
 
 %token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
@@ -27,6 +76,21 @@ void yyerror(const char *s);
 %token <token> TK_LEFTBRACKET TK_RIGHTBRACKET TK_LEFTPAREN TK_RIGHTPAREN TK_LEFTSQBRACKET TK_RIGHTSQBRACKET
 %token <token> TK_COMMA TK_SEMICOLON TK_NEWLINE TK_DOT
 %token <token> T_ID T_CLASSNAME
+
+
+%{
+
+#include "driver.h"
+#include "tokens.h"
+
+/* this "connects" the bison parser in the driver to the flex scanner class
+ * object. it defines the yylex() function call to pull the next token from the
+ * current lexer object of the driver context. */
+#undef yylex
+#define yylex driver.lexer->lex
+
+%}
+
 
 %%
 
@@ -242,15 +306,11 @@ neg_op : OP_NOT																		{ cout << "neg op" << endl; }
 ass_op : OP_ASSIGN																	{ cout << "ass op" << endl; }
 	   ;
 
+ 
 %%
-int main() {
-	//yydebug = 1;
-	do {
-		yyparse();
-	} while (!feof(yyin));
-}
 
-void yyerror(const char *s) {
-	cout << "Error: " << s << endl;
-	exit(-1);
+void sifuscript::Gramatica::error(const Gramatica::location_type& l,
+			    const std::string& m)
+{
+    driver.error(l, m);
 }
