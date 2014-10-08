@@ -7,7 +7,7 @@
 #include <vector>
 
 // forward declaration
-//class CalcContext;
+class SifuContext;
 
 /** The example namespace is used to encapsulate the three parser classes
  * sifuscript::Gramatica, sifuscript::Tokens and sifuscript::Driver */
@@ -23,7 +23,7 @@ class Driver
 {
 public:
     /// construct a new parser driver context
-    Driver();
+	Driver(class SifuContext& cont);
 
     /// enable debug output in the flex scanner
     bool trace_scanning;
@@ -72,6 +72,10 @@ public:
     /** Pointer to the current lexer instance, this is used to connect the
      * parser to the scanner. It is used in the yylex macro. */
     class Token* lexer;
+
+	/** Reference to the Context Class filled during parsing of the
+     * expressions.(Variable-tables and so on) */
+    class SifuContext& context;
 
 };
 

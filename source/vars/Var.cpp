@@ -7,7 +7,7 @@ Var::Var(std::string name, int type, int address) {
 	this->address = 0;
 }
 
-bool Var::isOfType(int t) {
+bool Var::isOfType(vartype t) {
 	return type == t;
 }
 

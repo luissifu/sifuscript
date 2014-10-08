@@ -569,12 +569,12 @@ static yyconst flex_int16_t yy_chk[216] =
 
 static yyconst flex_int16_t yy_rule_linenum[61] =
     {   0,
-       73,   74,   75,   76,   77,   78,   79,   80,   81,   82,
-       83,   84,   85,   86,   87,   88,   89,   90,   91,   92,
-       93,   94,   95,   96,   97,   98,   99,  100,  101,  102,
-      103,  104,  105,  106,  107,  108,  109,  110,  111,  112,
-      113,  114,  115,  116,  117,  118,  119,  120,  121,  122,
-      123,  124,  125,  127,  128,  129,  130,  131,  132,  134
+       71,   72,   73,   74,   75,   76,   77,   78,   79,   80,
+       81,   82,   83,   84,   85,   86,   87,   88,   89,   90,
+       91,   92,   93,   94,   95,   96,   97,   98,   99,  100,
+      101,  102,  103,  104,  105,  106,  107,  108,  109,  110,
+      111,  112,  113,  114,  115,  116,  117,  118,  119,  120,
+      121,  122,  123,  125,  126,  127,  128,  129,  130,  132
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -586,8 +586,8 @@ static yyconst flex_int16_t yy_rule_linenum[61] =
 #define YY_RESTORE_YY_MORE_OFFSET
 #line 1 "..\\GitHub\\sifuscript\\source\\tokens.l"
 /*
- * Lexer.l file
- * 
+ * Tokens.l file
+ * in order to specify the work of the Lexer
  */
 #line 7 "..\\GitHub\\sifuscript\\source\\tokens.l"
 
@@ -617,7 +617,7 @@ typedef sifuscript::Gramatica::token_type token_type;
 /* enables the use of start condition stacks */
 /* The following paragraph suffices to track locations accurately. Each time
  * yylex is invoked, the begin position is moved onto the end position. */
-#line 51 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 50 "..\\GitHub\\sifuscript\\source\\tokens.l"
 	#define YY_USER_ACTION  yylloc->columns(yyleng);//not necessary, nowhere else found:-(
 #line 623 "tokens.c"
 
@@ -769,7 +769,7 @@ YY_DECL
 	register int yy_act;
     
 /* %% [7.0] user's declarations go here */
-#line 62 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 61 "..\\GitHub\\sifuscript\\source\\tokens.l"
 
 
 
@@ -779,9 +779,8 @@ YY_DECL
     yylloc->step();
 
 
- /*** BEGIN EXAMPLE - Change the example lexer rules below ***/
 
-#line 785 "tokens.c"
+#line 784 "tokens.c"
 
 	if ( !(yy_init) )
 		{
@@ -892,313 +891,313 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 73 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 71 "..\\GitHub\\sifuscript\\source\\tokens.l"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 74 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 72 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_NULL;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 75 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 73 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_FALSE;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 76 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 74 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_TRUE;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 77 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 75 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_AND;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 78 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 76 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_OR;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 79 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 77 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_NOT;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 80 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 78 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_IF;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 81 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 79 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_ELSE;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 82 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 80 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_ELIF;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 83 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 81 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_FOR;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 84 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 82 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_DO;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 85 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 83 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_WHILE;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 86 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 84 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_FUNC;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 87 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 85 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_CLASS;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 88 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 86 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_IMPORT;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 89 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 87 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_PRINT;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 90 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 88 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_RETURN;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 91 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 89 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_BOOL;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 92 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 90 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_CHAR;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 93 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 91 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_SHORT;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 94 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 92 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_INT;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 95 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 93 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_LONG;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 96 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 94 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_FLOAT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 97 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 95 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_DOUBLE;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 98 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 96 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TPNM_STR;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 99 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 97 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::ACC_PRIVATE;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 100 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 98 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::ACC_PUBLIC;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 101 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 99 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_NOT;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 102 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 100 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_AND;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 103 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 101 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_OR;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 104 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 102 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_MULT;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 105 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 103 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_DIV;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 106 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 104 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_MOD;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 107 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 105 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_ADD;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 108 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 106 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_SUB;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 109 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 107 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_LESS;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 110 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 108 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_MORE;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 111 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 109 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_MOREEQ;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 112 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 110 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_LESSEQ;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 113 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 111 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_EQ;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 114 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 112 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_NOTEQ;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 115 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 113 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::OP_ASSIGN;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 116 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 114 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_LEFTBRACKET;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 117 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 115 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_RIGHTBRACKET;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 118 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 116 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_LEFTPAREN;
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 119 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 117 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_RIGHTPAREN;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 120 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 118 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_LEFTSQBRACKET;
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 121 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 119 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_RIGHTSQBRACKET;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 122 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 120 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_SEMICOLON;
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 123 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 121 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_COMMA;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 124 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 122 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_DOT;
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
-#line 125 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 123 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::TK_NEWLINE;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 127 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 125 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::T_ID;
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 128 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 126 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::T_CLASSNAME;
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 129 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 127 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_INT;
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 130 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 128 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_FLOAT;
 	YY_BREAK
 case 58:
 /* rule 58 can match eol */
 YY_RULE_SETUP
-#line 131 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 129 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_STR;
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 132 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 130 "..\\GitHub\\sifuscript\\source\\tokens.l"
 return token::CONST_CHAR;
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 134 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 132 "..\\GitHub\\sifuscript\\source\\tokens.l"
 ;
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 137 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 135 "..\\GitHub\\sifuscript\\source\\tokens.l"
 ECHO;
 	YY_BREAK
-#line 1202 "tokens.c"
+#line 1201 "tokens.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2238,7 +2237,7 @@ void Examplefree (void * ptr )
 
 /* %ok-for-header */
 
-#line 136 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 134 "..\\GitHub\\sifuscript\\source\\tokens.l"
 
 
 

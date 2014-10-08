@@ -1,3 +1,5 @@
+#include <string>
+
 enum vartype {
 	VARTYPE_BOOL,
 	VARTYPE_CHAR,
@@ -14,7 +16,7 @@ class Var {
 	public:
 		Var(std::string name, int type, int address);
 		//
-		bool isOfType(int t);
+		bool isOfType(vartype t);
 		//
 		std::string getName();
 		int getType();

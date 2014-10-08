@@ -67,7 +67,6 @@ chr		[^\']
     yylloc->step();
 %}
 
-/*** TOKEN RULES ***/
 
 [ \t\r]						;
 "null"						return token::CONST_NULL;

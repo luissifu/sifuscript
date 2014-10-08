@@ -9,9 +9,10 @@
 
 namespace sifuscript {
 
-	Driver::Driver()
+	Driver::Driver(SifuContext& cont)
 		: trace_scanning(false),
-		trace_parsing(false)
+		trace_parsing(false),
+		context(cont)
 	{
 	}
 
