@@ -4,7 +4,7 @@
  */
 
 %{
-
+#include "helpers.h"
 #include "tokens.h"
 #include <iostream> 
 using namespace std; 
@@ -71,68 +71,68 @@ chr		[^\']
 %}
 
 
-[ \t\r]						;
-"null"						return token::CONST_NULL;
-"true"						return token::CONST_FALSE;
-"false"						return token::CONST_TRUE;
-"and"						return token::OP_AND;
-"or"						return token::OP_OR;
-"not"						return token::OP_NOT;
-"if"						return token::TK_IF;
-"else"						return token::TK_ELSE;
-"elif"						return token::TK_ELIF;
-"for"						return token::TK_FOR;
-"do"						return token::TK_DO;
-"while"						return token::TK_WHILE;
-"function"					return token::TK_FUNC;
-"class"						return token::TK_CLASS;
-"import"					return token::TK_IMPORT;
-"print"						return token::TK_PRINT;
-"return"					return token::TK_RETURN;
-"boolean"					return token::TPNM_BOOL;
-"char"						return token::TPNM_CHAR;
-"short"						return token::TPNM_SHORT;
-"int"						return token::TPNM_INT;
-"long"						return token::TPNM_LONG;
-"float"						return token::TPNM_FLOAT;
-"double"					return token::TPNM_DOUBLE;
-"string"					return token::TPNM_STR;
-"private"					return token::ACC_PRIVATE;
-"public"					return token::ACC_PUBLIC;
-"!"							return token::OP_NOT;
-"&&"						return token::OP_AND;
-"\|\|"						return token::OP_OR;
-"*"							return token::OP_MULT;
-"/"							return token::OP_DIV;
-"%"							return token::OP_MOD;
-"+"							return token::OP_ADD;
-"-"							return token::OP_SUB;
-"<"							return token::OP_LESS;
-">"							return token::OP_MORE;
-">="						return token::OP_MOREEQ;
-"<="						return token::OP_LESSEQ;
-"=="						return token::OP_EQ;
-"!="						return token::OP_NOTEQ;
-"="							return token::OP_ASSIGN;
-"{"							return token::TK_LEFTBRACKET;
-"}"							return token::TK_RIGHTBRACKET;
-"("							return token::TK_LEFTPAREN;
-")"							return token::TK_RIGHTPAREN;
-"\["						return token::TK_LEFTSQBRACKET;
-"\]"						return token::TK_RIGHTSQBRACKET;
-";"							return token::TK_SEMICOLON;
-","							return token::TK_COMMA;
-"\."						return token::TK_DOT;
-\n 							return token::TK_NEWLINE;
+[ \t\r]						{ ; }
+"null"						{ return token::CONST_NULL; }
+"true"						{ return token::CONST_FALSE; }
+"false"						{ return token::CONST_TRUE; }
+"and"						{ return token::OP_AND; }
+"or"						{ return token::OP_OR; }
+"not"						{ return token::OP_NOT; }
+"if"						{ return token::TK_IF; }
+"else"						{ return token::TK_ELSE; }
+"elif"						{ return token::TK_ELIF; }
+"for"						{ return token::TK_FOR; }
+"do"						{ return token::TK_DO; }
+"while"						{ return token::TK_WHILE; }
+"function"					{ return token::TK_FUNC; }
+"class"						{ return token::TK_CLASS; }
+"import"					{ return token::TK_IMPORT; }
+"print"						{ return token::TK_PRINT; }
+"return"					{ return token::TK_RETURN; }
+"boolean"					{ return token::TPNM_BOOL; }
+"char"						{ return token::TPNM_CHAR; }
+"short"						{ return token::TPNM_SHORT; }
+"int"						{ return token::TPNM_INT; }
+"long"						{ return token::TPNM_LONG; }
+"float"						{ return token::TPNM_FLOAT; }
+"double"					{ return token::TPNM_DOUBLE; }
+"string"					{ return token::TPNM_STR; }
+"private"					{ return token::ACC_PRIVATE; }
+"public"					{ return token::ACC_PUBLIC; }
+"!"							{ return token::OP_NOT; }
+"&&"						{ return token::OP_AND; }
+"\|\|"						{ return token::OP_OR; }
+"*"							{ return token::OP_MULT; }
+"/"							{ return token::OP_DIV; }
+"%"							{ return token::OP_MOD; }
+"+"							{ return token::OP_ADD; }
+"-"							{ return token::OP_SUB; }
+"<"							{ return token::OP_LESS; }
+">"							{ return token::OP_MORE; }
+">="						{ return token::OP_MOREEQ; }
+"<="						{ return token::OP_LESSEQ; }
+"=="						{ return token::OP_EQ; }
+"!="						{ return token::OP_NOTEQ; }
+"="							{ return token::OP_ASSIGN; }
+"{"							{ return token::TK_LEFTBRACKET; }
+"}"							{ return token::TK_RIGHTBRACKET; }
+"("							{ return token::TK_LEFTPAREN; }
+")"							{ return token::TK_RIGHTPAREN; }
+"\["						{ return token::TK_LEFTSQBRACKET; }
+"\]"						{ return token::TK_RIGHTSQBRACKET; }
+";"							{ return token::TK_SEMICOLON; }
+","							{ return token::TK_COMMA; }
+"\."						{ return token::TK_DOT; }
+\n 							{ return token::TK_NEWLINE; }
 
-{minu}("_"|{let}|{dig})*	return token::T_ID;
-{mayu}("_"|{let}|{dig})*	return token::T_CLASSNAME;
-{dig}+						return token::CONST_INT;
-{dig}+\.{dig}+				return token::CONST_FLOAT;
-\"{str}*\"					return token::CONST_STR;
-\'{chr}\'					return token::CONST_CHAR;
+{minu}("_"|{let}|{dig})*	{ if (checkVar(yytext)) return token::T_ID; }
+{mayu}("_"|{let}|{dig})*	{ return token::T_CLASSNAME; }
+{dig}+						{ return token::CONST_INT; }
+{dig}+\.{dig}+				{ return token::CONST_FLOAT; }
+\"{str}*\"					{ return token::CONST_STR; }
+\'{chr}\'					{ return token::CONST_CHAR; }
 
-.							;
+.							{ ; }
 
  
 %% /*** Additional Code ***/

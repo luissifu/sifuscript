@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 			bool result = driver.parse_stream(infile, argv[ai]);
 			if (result)
 			{
-				std::cout << "Mi_Patito:" << std::endl;
+				std::cout << "Compiled Succesfully" << std::endl;
 			}
 
 			readfile = true;
@@ -53,16 +53,12 @@ int main(int argc, char *argv[])
 	std::cout << "Reading Code from stdin" << std::endl;
 
 	std::string line;
-	while( std::cout << "input: " &&
-	   std::getline(std::cin, line) &&
-	   !line.empty() )
-	{
-		
+	while( std::cout << "input: " && std::getline(std::cin, line) && !line.empty() )
+	{		
 		bool result = driver.parse_string(line, "input");
-
 		if (result)
 		{
-			
+			std::cout << "Compiled Succesfully" << std::endl;
 		}
 	}
 }

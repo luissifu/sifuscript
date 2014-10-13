@@ -93,116 +93,116 @@ using namespace std;
 
 %%
 
-program : imports statelist 														{ cout << "program" << endl; }
-		| imports 																	{ cout << "program" << endl; }
-		| statelist																	{ cout << "program" << endl; }
+program : imports statelist 														{ ; }
+		| imports 																	{ ; }
+		| statelist																	{ ; }
 		;
 
-imports : TK_IMPORT CONST_STR delimiter moreimps 									{ cout << "imports" << endl; }
+imports : TK_IMPORT CONST_STR delimiter moreimps 									{ ; }
 		;
 
 moreimps : imports																	{ ; }
 		 | /*E*/																	{ ; }
 		 ;
 
-statelist : state morestates														{ cout << "statelist" << endl; }
+statelist : state morestates														{ ; }
 		  ;
 
 morestates : state morestates 														{ ; }
 		   | /*E*/																	{ ; }
 		   ;
 
-state : assign 																		{ cout << "state" << endl; }
-	  |	conditional																	{ cout << "state" << endl; }
-	  |	loop 																		{ cout << "state" << endl; }
-	  |	class 																		{ cout << "state" << endl; }
-	  |	function																	{ cout << "state" << endl; }
-	  |	var 																		{ cout << "state" << endl; }
-	  |	print 																		{ cout << "state" << endl; }
-	  |	return 																		{ cout << "state" << endl; }
-	  |	func_call																	{ cout << "state" << endl; }
-	  |	TK_NEWLINE																	{ cout << endl; }
+state : assign 																		{ ; }
+	  |	conditional																	{ ; }
+	  |	loop 																		{ ; }
+	  |	class 																		{ ; }
+	  |	function																	{ ; }
+	  |	var 																		{ ; }
+	  |	print 																		{ ; }
+	  |	return 																		{ ; }
+	  |	func_call																	{ ; }
+	  |	TK_NEWLINE																	{ ; }
 	  ;
 
-assign : id ass_op expresion delimiter 												{ cout << "assign" << endl; }
+assign : id ass_op expresion delimiter 												{ ; }
 	   ;
 
-delimiter : TK_NEWLINE 																{ cout << "delim" << endl; }
-		  | TK_SEMICOLON 															{ cout << "delim" << endl; }
+delimiter : TK_NEWLINE 																{ ; }
+		  | TK_SEMICOLON 															{ ; }
 		  ;
 
-return : TK_RETURN expresion delimiter 												{ cout << "return" << endl; }
+return : TK_RETURN expresion delimiter 												{ ; }
 	   ;
 
-id : T_ID																			{ cout << "id" << endl; }
-   | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ cout << "id" << endl; }
-   | T_ID TK_DOT T_ID 																{ cout << "id" << endl; }
+id : T_ID																			{ ; }
+   | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ ; }
+   | T_ID TK_DOT T_ID 																{ ; }
    ;
 
-conditional : if elseif else 														{ cout << "cond" << endl; }
+conditional : if elseif else 														{ ; }
 			;
 
 maybenl : TK_NEWLINE 																{ ; }
 		| /*E*/ 																	{ ; }
 		; 
 
-if : TK_IF expresion maybenl block 			 		 								{ cout << "if" << endl; }
+if : TK_IF expresion maybenl block 			 		 								{ ; }
    ;
 
-elseif : TK_ELIF expresion maybenl block elseif										{ cout << "else if" << endl; }
+elseif : TK_ELIF expresion maybenl block elseif										{ ; }
 	   | /*E*/ 																		{ ; }
 	   ;
 
-else : TK_ELSE maybenl block 														{ cout << "else" << endl; }
+else : TK_ELSE maybenl block 														{ ; }
 	 | /*E*/  																		{ ; }
 	 ;
 
-loop : for 																			{ cout << "loop" << endl; }
-	 | do 																			{ cout << "loop" << endl; }
-	 | while 																		{ cout << "loop" << endl; }
+loop : for 																			{ ; }
+	 | do 																			{ ; }
+	 | while 																		{ ; }
 	 ;
 
-for : TK_FOR assign expresion TK_SEMICOLON expresion maybenl block					{ cout << "for" << endl; }
+for : TK_FOR assign expresion TK_SEMICOLON expresion maybenl block					{ ; }
 	;
 
-do : TK_DO maybenl block TK_WHILE expresion delimiter	 							{ cout << "do" << endl; }
+do : TK_DO maybenl block TK_WHILE expresion delimiter	 							{ ; }
    ;
 
-while : TK_WHILE expresion maybenl block											{ cout << "while" << endl; }
+while : TK_WHILE expresion maybenl block											{ ; }
 	  ;
 
-type : TPNM_BOOL																	{ cout << "type" << endl; }
-	 | TPNM_CHAR																	{ cout << "type" << endl; }
-	 | TPNM_SHORT																	{ cout << "type" << endl; }
-	 | TPNM_INT																		{ cout << "type" << endl; }
-	 | TPNM_LONG																	{ cout << "type" << endl; }
-	 | TPNM_FLOAT																	{ cout << "type" << endl; }
-	 | TPNM_DOUBLE																	{ cout << "type" << endl; }
-	 | TPNM_STR																		{ cout << "type" << endl; }
-	 | T_CLASSNAME																	{ cout << "class type" << endl; }
+type : TPNM_BOOL																	{ ; }
+	 | TPNM_CHAR																	{ ; }
+	 | TPNM_SHORT																	{ ; }
+	 | TPNM_INT																		{ ; }
+	 | TPNM_LONG																	{ ; }
+	 | TPNM_FLOAT																	{ ; }
+	 | TPNM_DOUBLE																	{ ; }
+	 | TPNM_STR																		{ ; }
+	 | T_CLASSNAME																	{ ; }
 	 ;
 
-class : TK_CLASS T_CLASSNAME maybenl TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 		{ cout << "class" << endl; }
+class : TK_CLASS T_CLASSNAME maybenl TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 		{ ; }
 	  ;
 
 class_dec : class_st class_dec 														{ ; }
 		  | /*E*/
 		  ;
 
-class_st : accesor var 																{ cout << "class var" << endl; }
-		 | accesor function 														{ cout << "class func" << endl; }
+class_st : accesor var 																{ ; }
+		 | accesor function 														{ ; }
 		 | TK_NEWLINE 		 														{ ; }
 		 ;
 
-accesor : ACC_PRIVATE 																{ cout << "acc priv" << endl; }
-		| ACC_PUBLIC 																{ cout << "acc pub" << endl; }
+accesor : ACC_PRIVATE 																{ ; }
+		| ACC_PUBLIC 																{ ; }
 		;
 
-function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block			{ cout << "func" << endl; }
-		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block				{ cout << "func" << endl; }
+function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block			{ ; }
+		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block				{ ; }
 		 ;
 
-args : type T_ID moreargs 															{ cout << "args" << endl; }
+args : type T_ID moreargs 															{ ; }
 	 | /*E*/ 																		{ ; }
 	 ;
 
@@ -210,67 +210,67 @@ moreargs : TK_COMMA type T_ID moreargs 												{ ; }
 		 | /*E*/																	{ ; }
 		 ;
 
-func_call : T_ID TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 					{ cout << "func call" << endl; }
-		  | T_ID TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ cout << "func call" << endl; }
+func_call : T_ID TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 					{ ; }
+		  | T_ID TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ ; }
 		  ;
 
-call_args : var_const 																{ cout << "args" << endl; }
-		  | var_const TK_COMMA call_args 											{ cout << "args" << endl; }
+call_args : var_const 																{ ; }
+		  | var_const TK_COMMA call_args 											{ ; }
 		  ;
 
-var : type id delimiter 															{ cout << "var" << endl; }
-	| type id ass_op expresion delimiter 											{ cout << "var" << endl; }
+var : type id delimiter 															{ ; }
+	| type id ass_op expresion delimiter 											{ ; }
 	;
 
-print : TK_PRINT expresion delimiter 												{ cout << "print" << endl; }
+print : TK_PRINT expresion delimiter 												{ ; }
 	  ;
 
-block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 									{ cout << "block" << endl; }
-	  | TK_LEFTBRACKET TK_RIGHTBRACKET 												{ cout << "block" << endl; }
+block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 									{ ; }
+	  | TK_LEFTBRACKET TK_RIGHTBRACKET 												{ ; }
 	  ;
 
 var_const : boolean 																{ ; }
-		  | CONST_CHAR 																{ cout << "const" << endl; }
-		  | CONST_INT 																{ cout << "const" << endl; }
-		  | CONST_FLOAT 															{ cout << "const" << endl; }
-		  | CONST_STR 																{ cout << "const" << endl; }
+		  | CONST_CHAR 																{ ; }
+		  | CONST_INT 																{ ; }
+		  | CONST_FLOAT 															{ ; }
+		  | CONST_STR 																{ ; }
 		  | list 																	{ ; }
 		  ;
 
-boolean : CONST_TRUE 																{ cout << "true" << endl; }
-		| CONST_FALSE 																{ cout << "false" << endl; }
+boolean : CONST_TRUE 																{ ; }
+		| CONST_FALSE 																{ ; }
 		;
 
-list : TK_LEFTSQBRACKET list_elem TK_RIGHTSQBRACKET			 						{ cout << "list" << endl; }
-	 | TK_LEFTSQBRACKET TK_RIGHTSQBRACKET 		 									{ cout << "list" << endl; }
+list : TK_LEFTSQBRACKET list_elem TK_RIGHTSQBRACKET			 						{ ; }
+	 | TK_LEFTSQBRACKET TK_RIGHTSQBRACKET 		 									{ ; }
 	 ;
 
-list_elem : list_e 																	{ cout << "list elem" << endl; }
-		  | list_e TK_COMMA list_elem 												{ cout << "list elem" << endl; }
+list_elem : list_e 																	{ ; }
+		  | list_e TK_COMMA list_elem 												{ ; }
 		  ;
 
 list_e : var_const 																	{ ; }
 	   | id 																		{ ; }
 	   ;
 
-expresion : exp 																	{ cout << "expresion" << endl; }
-		  | exp rel_op exp 															{ cout << "expresion" << endl; }
+expresion : exp 																	{ ; }
+		  | exp rel_op exp 															{ ; }
 		  ;
 
-exp : e 																			{ cout << "exp" << endl; }
-	| e comp_op e 																	{ cout << "exp" << endl; }
+exp : e 																			{ ; }
+	| e comp_op e 																	{ ; }
 	;
 
-e : term 																			{ cout << "e" << endl; }
-  | term mult_op e 																	{ cout << "e" << endl; }
+e : term 																			{ ; }
+  | term mult_op e 																	{ ; }
   ;
 
-term : fact																			{ cout << "term" << endl; }
-	 | fact add_op term																{ cout << "term" << endl; }
+term : fact																			{ ; }
+	 | fact add_op term																{ ; }
 	 ;
 
-fact : neg_op f 																	{ cout << "fact" << endl; }
-	 | f 																			{ cout << "fact" << endl; }
+fact : neg_op f 																	{ ; }
+	 | f 																			{ ; }
 	 ;
 
 f : TK_LEFTPAREN expresion TK_RIGHTPAREN 											{ ; }
@@ -278,31 +278,31 @@ f : TK_LEFTPAREN expresion TK_RIGHTPAREN 											{ ; }
   | id 																				{ ; }
   ;
 
-rel_op : OP_AND 																	{ cout << "rel op" << endl; }
-	   | OP_OR 																		{ cout << "rel op" << endl; }
+rel_op : OP_AND 																	{ ; }
+	   | OP_OR 																		{ ; }
 	   ;
 
-comp_op : OP_LESS 																	{ cout << "comp op" << endl; }
-		| OP_MORE 																	{ cout << "comp op" << endl; }
-		| OP_LESSEQ																	{ cout << "comp op" << endl; }
-		| OP_MOREEQ																	{ cout << "comp op" << endl; }
-		| OP_EQ 																	{ cout << "comp op" << endl; }
-		| OP_NOTEQ 																	{ cout << "comp op" << endl; }
+comp_op : OP_LESS 																	{ ; }
+		| OP_MORE 																	{ ; }
+		| OP_LESSEQ																	{ ; }
+		| OP_MOREEQ																	{ ; }
+		| OP_EQ 																	{ ; }
+		| OP_NOTEQ 																	{ ; }
 		;
 
-mult_op : OP_MULT 																	{ cout << "mult op" << endl; }
-		| OP_DIV 																	{ cout << "mult op" << endl; }
-		| OP_MOD 																	{ cout << "mult op" << endl; }
+mult_op : OP_MULT 																	{ ; }
+		| OP_DIV 																	{ ; }
+		| OP_MOD 																	{ ; }
 		;
 
-add_op : OP_ADD 																	{ cout << "add op" << endl; }
-	   | OP_SUB 																	{ cout << "add op" << endl; }
+add_op : OP_ADD 																	{ ; }
+	   | OP_SUB 																	{ ; }
 	   ;
 
-neg_op : OP_NOT																		{ cout << "neg op" << endl; }
+neg_op : OP_NOT																		{ ; }
 	   ;
 	   
-ass_op : OP_ASSIGN																	{ cout << "ass op" << endl; }
+ass_op : OP_ASSIGN																	{ ; }
 	   ;
 
  

@@ -598,7 +598,7 @@ static yyconst flex_int16_t yy_rule_linenum[61] =
  * in order to specify the work of the Lexer
  */
 #line 7 "tokens.ll"
-
+#include "helpers.h"
 #include "tokens.h"
 #include <iostream> 
 using namespace std; 
@@ -913,305 +913,305 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 74 "tokens.ll"
-;
+{ ; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 75 "tokens.ll"
-return token::CONST_NULL;
+{ return token::CONST_NULL; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 76 "tokens.ll"
-return token::CONST_FALSE;
+{ return token::CONST_FALSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 77 "tokens.ll"
-return token::CONST_TRUE;
+{ return token::CONST_TRUE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 78 "tokens.ll"
-return token::OP_AND;
+{ return token::OP_AND; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 79 "tokens.ll"
-return token::OP_OR;
+{ return token::OP_OR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 80 "tokens.ll"
-return token::OP_NOT;
+{ return token::OP_NOT; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 81 "tokens.ll"
-return token::TK_IF;
+{ return token::TK_IF; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 82 "tokens.ll"
-return token::TK_ELSE;
+{ return token::TK_ELSE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 83 "tokens.ll"
-return token::TK_ELIF;
+{ return token::TK_ELIF; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 84 "tokens.ll"
-return token::TK_FOR;
+{ return token::TK_FOR; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 85 "tokens.ll"
-return token::TK_DO;
+{ return token::TK_DO; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 86 "tokens.ll"
-return token::TK_WHILE;
+{ return token::TK_WHILE; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 87 "tokens.ll"
-return token::TK_FUNC;
+{ return token::TK_FUNC; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 88 "tokens.ll"
-return token::TK_CLASS;
+{ return token::TK_CLASS; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 89 "tokens.ll"
-return token::TK_IMPORT;
+{ return token::TK_IMPORT; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 90 "tokens.ll"
-return token::TK_PRINT;
+{ return token::TK_PRINT; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 91 "tokens.ll"
-return token::TK_RETURN;
+{ return token::TK_RETURN; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 92 "tokens.ll"
-return token::TPNM_BOOL;
+{ return token::TPNM_BOOL; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 93 "tokens.ll"
-return token::TPNM_CHAR;
+{ return token::TPNM_CHAR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 94 "tokens.ll"
-return token::TPNM_SHORT;
+{ return token::TPNM_SHORT; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 95 "tokens.ll"
-return token::TPNM_INT;
+{ return token::TPNM_INT; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 96 "tokens.ll"
-return token::TPNM_LONG;
+{ return token::TPNM_LONG; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 97 "tokens.ll"
-return token::TPNM_FLOAT;
+{ return token::TPNM_FLOAT; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 98 "tokens.ll"
-return token::TPNM_DOUBLE;
+{ return token::TPNM_DOUBLE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 99 "tokens.ll"
-return token::TPNM_STR;
+{ return token::TPNM_STR; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 100 "tokens.ll"
-return token::ACC_PRIVATE;
+{ return token::ACC_PRIVATE; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 101 "tokens.ll"
-return token::ACC_PUBLIC;
+{ return token::ACC_PUBLIC; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 102 "tokens.ll"
-return token::OP_NOT;
+{ return token::OP_NOT; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 103 "tokens.ll"
-return token::OP_AND;
+{ return token::OP_AND; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 104 "tokens.ll"
-return token::OP_OR;
+{ return token::OP_OR; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 105 "tokens.ll"
-return token::OP_MULT;
+{ return token::OP_MULT; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 106 "tokens.ll"
-return token::OP_DIV;
+{ return token::OP_DIV; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 107 "tokens.ll"
-return token::OP_MOD;
+{ return token::OP_MOD; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 108 "tokens.ll"
-return token::OP_ADD;
+{ return token::OP_ADD; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 109 "tokens.ll"
-return token::OP_SUB;
+{ return token::OP_SUB; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 110 "tokens.ll"
-return token::OP_LESS;
+{ return token::OP_LESS; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 111 "tokens.ll"
-return token::OP_MORE;
+{ return token::OP_MORE; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 112 "tokens.ll"
-return token::OP_MOREEQ;
+{ return token::OP_MOREEQ; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 113 "tokens.ll"
-return token::OP_LESSEQ;
+{ return token::OP_LESSEQ; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 #line 114 "tokens.ll"
-return token::OP_EQ;
+{ return token::OP_EQ; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 115 "tokens.ll"
-return token::OP_NOTEQ;
+{ return token::OP_NOTEQ; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 #line 116 "tokens.ll"
-return token::OP_ASSIGN;
+{ return token::OP_ASSIGN; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 #line 117 "tokens.ll"
-return token::TK_LEFTBRACKET;
+{ return token::TK_LEFTBRACKET; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 #line 118 "tokens.ll"
-return token::TK_RIGHTBRACKET;
+{ return token::TK_RIGHTBRACKET; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 119 "tokens.ll"
-return token::TK_LEFTPAREN;
+{ return token::TK_LEFTPAREN; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 120 "tokens.ll"
-return token::TK_RIGHTPAREN;
+{ return token::TK_RIGHTPAREN; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 #line 121 "tokens.ll"
-return token::TK_LEFTSQBRACKET;
+{ return token::TK_LEFTSQBRACKET; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 #line 122 "tokens.ll"
-return token::TK_RIGHTSQBRACKET;
+{ return token::TK_RIGHTSQBRACKET; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 #line 123 "tokens.ll"
-return token::TK_SEMICOLON;
+{ return token::TK_SEMICOLON; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 #line 124 "tokens.ll"
-return token::TK_COMMA;
+{ return token::TK_COMMA; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
 #line 125 "tokens.ll"
-return token::TK_DOT;
+{ return token::TK_DOT; }
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
 #line 126 "tokens.ll"
-return token::TK_NEWLINE;
+{ return token::TK_NEWLINE; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
 #line 128 "tokens.ll"
-return token::T_ID;
+{ if (checkVar(yytext)) return token::T_ID; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 129 "tokens.ll"
-return token::T_CLASSNAME;
+{ return token::T_CLASSNAME; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 130 "tokens.ll"
-return token::CONST_INT;
+{ return token::CONST_INT; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 131 "tokens.ll"
-return token::CONST_FLOAT;
+{ return token::CONST_FLOAT; }
 	YY_BREAK
 case 58:
 /* rule 58 can match eol */
 YY_RULE_SETUP
 #line 132 "tokens.ll"
-return token::CONST_STR;
+{ return token::CONST_STR; }
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
 #line 133 "tokens.ll"
-return token::CONST_CHAR;
+{ return token::CONST_CHAR; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
 #line 135 "tokens.ll"
-;
+{ ; }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
@@ -2309,4 +2309,3 @@ int SifuFlexLexer::yywrap()
 {
     return 1;
 }
-

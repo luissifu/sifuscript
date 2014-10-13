@@ -611,25 +611,25 @@ namespace ss {
             {
   case 2:
 #line 96 "gramatica.yy" // lalr1.cc:847
-    { cout << "program" << endl; }
+    { ; }
 #line 616 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 3:
 #line 97 "gramatica.yy" // lalr1.cc:847
-    { cout << "program" << endl; }
+    { ; }
 #line 622 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 4:
 #line 98 "gramatica.yy" // lalr1.cc:847
-    { cout << "program" << endl; }
+    { ; }
 #line 628 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 5:
 #line 101 "gramatica.yy" // lalr1.cc:847
-    { cout << "imports" << endl; }
+    { ; }
 #line 634 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -647,7 +647,7 @@ namespace ss {
 
   case 8:
 #line 108 "gramatica.yy" // lalr1.cc:847
-    { cout << "statelist" << endl; }
+    { ; }
 #line 652 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -665,109 +665,109 @@ namespace ss {
 
   case 11:
 #line 115 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 670 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 12:
 #line 116 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 676 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 13:
 #line 117 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 682 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 14:
 #line 118 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 688 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 15:
 #line 119 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 694 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 16:
 #line 120 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 700 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 17:
 #line 121 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 706 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 18:
 #line 122 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 712 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 19:
 #line 123 "gramatica.yy" // lalr1.cc:847
-    { cout << "state" << endl; }
+    { ; }
 #line 718 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 20:
 #line 124 "gramatica.yy" // lalr1.cc:847
-    { cout << endl; }
+    { ; }
 #line 724 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 21:
 #line 127 "gramatica.yy" // lalr1.cc:847
-    { cout << "assign" << endl; }
+    { ; }
 #line 730 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 22:
 #line 130 "gramatica.yy" // lalr1.cc:847
-    { cout << "delim" << endl; }
+    { ; }
 #line 736 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 23:
 #line 131 "gramatica.yy" // lalr1.cc:847
-    { cout << "delim" << endl; }
+    { ; }
 #line 742 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 24:
 #line 134 "gramatica.yy" // lalr1.cc:847
-    { cout << "return" << endl; }
+    { ; }
 #line 748 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 25:
 #line 137 "gramatica.yy" // lalr1.cc:847
-    { cout << "id" << endl; }
+    { ; }
 #line 754 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 26:
 #line 138 "gramatica.yy" // lalr1.cc:847
-    { cout << "id" << endl; }
+    { ; }
 #line 760 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 27:
 #line 139 "gramatica.yy" // lalr1.cc:847
-    { cout << "id" << endl; }
+    { ; }
 #line 766 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 28:
 #line 142 "gramatica.yy" // lalr1.cc:847
-    { cout << "cond" << endl; }
+    { ; }
 #line 772 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -785,13 +785,13 @@ namespace ss {
 
   case 31:
 #line 149 "gramatica.yy" // lalr1.cc:847
-    { cout << "if" << endl; }
+    { ; }
 #line 790 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 32:
 #line 152 "gramatica.yy" // lalr1.cc:847
-    { cout << "else if" << endl; }
+    { ; }
 #line 796 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -803,7 +803,7 @@ namespace ss {
 
   case 34:
 #line 156 "gramatica.yy" // lalr1.cc:847
-    { cout << "else" << endl; }
+    { ; }
 #line 808 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -815,97 +815,97 @@ namespace ss {
 
   case 36:
 #line 160 "gramatica.yy" // lalr1.cc:847
-    { cout << "loop" << endl; }
+    { ; }
 #line 820 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 37:
 #line 161 "gramatica.yy" // lalr1.cc:847
-    { cout << "loop" << endl; }
+    { ; }
 #line 826 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 38:
 #line 162 "gramatica.yy" // lalr1.cc:847
-    { cout << "loop" << endl; }
+    { ; }
 #line 832 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 39:
 #line 165 "gramatica.yy" // lalr1.cc:847
-    { cout << "for" << endl; }
+    { ; }
 #line 838 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 40:
 #line 168 "gramatica.yy" // lalr1.cc:847
-    { cout << "do" << endl; }
+    { ; }
 #line 844 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 41:
 #line 171 "gramatica.yy" // lalr1.cc:847
-    { cout << "while" << endl; }
+    { ; }
 #line 850 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 42:
 #line 174 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 856 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 43:
 #line 175 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 862 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 44:
 #line 176 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 868 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 45:
 #line 177 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 874 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 46:
 #line 178 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 880 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 47:
 #line 179 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 886 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 48:
 #line 180 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 892 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 49:
 #line 181 "gramatica.yy" // lalr1.cc:847
-    { cout << "type" << endl; }
+    { ; }
 #line 898 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 50:
 #line 182 "gramatica.yy" // lalr1.cc:847
-    { cout << "class type" << endl; }
+    { ; }
 #line 904 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 51:
 #line 185 "gramatica.yy" // lalr1.cc:847
-    { cout << "class" << endl; }
+    { ; }
 #line 910 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -917,13 +917,13 @@ namespace ss {
 
   case 54:
 #line 192 "gramatica.yy" // lalr1.cc:847
-    { cout << "class var" << endl; }
+    { ; }
 #line 922 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 55:
 #line 193 "gramatica.yy" // lalr1.cc:847
-    { cout << "class func" << endl; }
+    { ; }
 #line 928 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -935,31 +935,31 @@ namespace ss {
 
   case 57:
 #line 197 "gramatica.yy" // lalr1.cc:847
-    { cout << "acc priv" << endl; }
+    { ; }
 #line 940 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 58:
 #line 198 "gramatica.yy" // lalr1.cc:847
-    { cout << "acc pub" << endl; }
+    { ; }
 #line 946 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 59:
 #line 201 "gramatica.yy" // lalr1.cc:847
-    { cout << "func" << endl; }
+    { ; }
 #line 952 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 60:
 #line 202 "gramatica.yy" // lalr1.cc:847
-    { cout << "func" << endl; }
+    { ; }
 #line 958 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 61:
 #line 205 "gramatica.yy" // lalr1.cc:847
-    { cout << "args" << endl; }
+    { ; }
 #line 964 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -983,55 +983,55 @@ namespace ss {
 
   case 65:
 #line 213 "gramatica.yy" // lalr1.cc:847
-    { cout << "func call" << endl; }
+    { ; }
 #line 988 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 66:
 #line 214 "gramatica.yy" // lalr1.cc:847
-    { cout << "func call" << endl; }
+    { ; }
 #line 994 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 67:
 #line 217 "gramatica.yy" // lalr1.cc:847
-    { cout << "args" << endl; }
+    { ; }
 #line 1000 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 68:
 #line 218 "gramatica.yy" // lalr1.cc:847
-    { cout << "args" << endl; }
+    { ; }
 #line 1006 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 69:
 #line 221 "gramatica.yy" // lalr1.cc:847
-    { cout << "var" << endl; }
+    { ; }
 #line 1012 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 70:
 #line 222 "gramatica.yy" // lalr1.cc:847
-    { cout << "var" << endl; }
+    { ; }
 #line 1018 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 71:
 #line 225 "gramatica.yy" // lalr1.cc:847
-    { cout << "print" << endl; }
+    { ; }
 #line 1024 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 72:
 #line 228 "gramatica.yy" // lalr1.cc:847
-    { cout << "block" << endl; }
+    { ; }
 #line 1030 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 73:
 #line 229 "gramatica.yy" // lalr1.cc:847
-    { cout << "block" << endl; }
+    { ; }
 #line 1036 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1043,25 +1043,25 @@ namespace ss {
 
   case 75:
 #line 233 "gramatica.yy" // lalr1.cc:847
-    { cout << "const" << endl; }
+    { ; }
 #line 1048 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 76:
 #line 234 "gramatica.yy" // lalr1.cc:847
-    { cout << "const" << endl; }
+    { ; }
 #line 1054 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 77:
 #line 235 "gramatica.yy" // lalr1.cc:847
-    { cout << "const" << endl; }
+    { ; }
 #line 1060 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 78:
 #line 236 "gramatica.yy" // lalr1.cc:847
-    { cout << "const" << endl; }
+    { ; }
 #line 1066 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1073,37 +1073,37 @@ namespace ss {
 
   case 80:
 #line 240 "gramatica.yy" // lalr1.cc:847
-    { cout << "true" << endl; }
+    { ; }
 #line 1078 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 81:
 #line 241 "gramatica.yy" // lalr1.cc:847
-    { cout << "false" << endl; }
+    { ; }
 #line 1084 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 82:
 #line 244 "gramatica.yy" // lalr1.cc:847
-    { cout << "list" << endl; }
+    { ; }
 #line 1090 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 83:
 #line 245 "gramatica.yy" // lalr1.cc:847
-    { cout << "list" << endl; }
+    { ; }
 #line 1096 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 84:
 #line 248 "gramatica.yy" // lalr1.cc:847
-    { cout << "list elem" << endl; }
+    { ; }
 #line 1102 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 85:
 #line 249 "gramatica.yy" // lalr1.cc:847
-    { cout << "list elem" << endl; }
+    { ; }
 #line 1108 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1121,61 +1121,61 @@ namespace ss {
 
   case 88:
 #line 256 "gramatica.yy" // lalr1.cc:847
-    { cout << "expresion" << endl; }
+    { ; }
 #line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 89:
 #line 257 "gramatica.yy" // lalr1.cc:847
-    { cout << "expresion" << endl; }
+    { ; }
 #line 1132 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 90:
 #line 260 "gramatica.yy" // lalr1.cc:847
-    { cout << "exp" << endl; }
+    { ; }
 #line 1138 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 91:
 #line 261 "gramatica.yy" // lalr1.cc:847
-    { cout << "exp" << endl; }
+    { ; }
 #line 1144 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 92:
 #line 264 "gramatica.yy" // lalr1.cc:847
-    { cout << "e" << endl; }
+    { ; }
 #line 1150 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 93:
 #line 265 "gramatica.yy" // lalr1.cc:847
-    { cout << "e" << endl; }
+    { ; }
 #line 1156 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 94:
 #line 268 "gramatica.yy" // lalr1.cc:847
-    { cout << "term" << endl; }
+    { ; }
 #line 1162 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 95:
 #line 269 "gramatica.yy" // lalr1.cc:847
-    { cout << "term" << endl; }
+    { ; }
 #line 1168 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 96:
 #line 272 "gramatica.yy" // lalr1.cc:847
-    { cout << "fact" << endl; }
+    { ; }
 #line 1174 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 97:
 #line 273 "gramatica.yy" // lalr1.cc:847
-    { cout << "fact" << endl; }
+    { ; }
 #line 1180 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1199,91 +1199,91 @@ namespace ss {
 
   case 101:
 #line 281 "gramatica.yy" // lalr1.cc:847
-    { cout << "rel op" << endl; }
+    { ; }
 #line 1204 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 102:
 #line 282 "gramatica.yy" // lalr1.cc:847
-    { cout << "rel op" << endl; }
+    { ; }
 #line 1210 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 103:
 #line 285 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1216 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 104:
 #line 286 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1222 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 105:
 #line 287 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1228 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 106:
 #line 288 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1234 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 107:
 #line 289 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1240 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 108:
 #line 290 "gramatica.yy" // lalr1.cc:847
-    { cout << "comp op" << endl; }
+    { ; }
 #line 1246 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 109:
 #line 293 "gramatica.yy" // lalr1.cc:847
-    { cout << "mult op" << endl; }
+    { ; }
 #line 1252 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 110:
 #line 294 "gramatica.yy" // lalr1.cc:847
-    { cout << "mult op" << endl; }
+    { ; }
 #line 1258 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 111:
 #line 295 "gramatica.yy" // lalr1.cc:847
-    { cout << "mult op" << endl; }
+    { ; }
 #line 1264 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 112:
 #line 298 "gramatica.yy" // lalr1.cc:847
-    { cout << "add op" << endl; }
+    { ; }
 #line 1270 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 113:
 #line 299 "gramatica.yy" // lalr1.cc:847
-    { cout << "add op" << endl; }
+    { ; }
 #line 1276 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 114:
 #line 302 "gramatica.yy" // lalr1.cc:847
-    { cout << "neg op" << endl; }
+    { ; }
 #line 1282 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 115:
 #line 305 "gramatica.yy" // lalr1.cc:847
-    { cout << "ass op" << endl; }
+    { ; }
 #line 1288 "gramatica.cpp" // lalr1.cc:847
     break;
 
