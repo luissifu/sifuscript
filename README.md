@@ -1,8 +1,15 @@
 Sifuscript
 ==========
 
+Windows
+----------
+Compilador:
+	
+	build.bat
+
+
 Linux
 ----------
-Compilar:
+Compilador:
 	
-	make all
+	make sifuc
