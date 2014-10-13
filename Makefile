@@ -1,5 +1,5 @@
 #Source files
-OBJS = source/gramatica.tab.c source/lex.yy.c
+OBJS = $(wildcard source/*.cpp) $(wildcard source/*/*.cpp)
 
 #Compiler
 CC = g++
@@ -14,5 +14,5 @@ LINK_FLAG = -lfl
 NAME = build/sifuc
 
 #Targets
-all : $(OBJS) 
+sifuc : $(OBJS) 
 	$(CC) $(OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)

@@ -6,12 +6,14 @@
 #include <string>
 #include <vector>
 
+#include "../tokens.h"
+
 // forward declaration
 class SifuContext;
 
 /** The example namespace is used to encapsulate the three parser classes
- * sifuscript::Gramatica, sifuscript::Tokens and sifuscript::Driver */
-namespace sifuscript {
+ * ss::Gramatica, ss::Tokens and ss::Driver */
+namespace ss {
 
 /** The Driver class brings together all components. It creates an instance of
  * the Tokens and Gramatica classes and connects them. Then the input stream is
@@ -79,6 +81,6 @@ public:
 
 };
 
-} // namespace sifuscript
+} // namespace ss
 
 #endif //DRIVER_H

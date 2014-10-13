@@ -1,62 +1,65 @@
-/* A Bison parser, made by GNU Bison 2.7.  */
+// A Bison parser, made by GNU Bison 3.0.2.
 
-/* Skeleton implementation for Bison LALR(1) parsers in C++
-   
-      Copyright (C) 2002-2012 Free Software Foundation, Inc.
-   
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+// Skeleton implementation for Bison LALR(1) parsers in C++
 
-/* As a special exception, you may create a larger work that contains
-   part or all of the Bison parser skeleton and distribute that work
-   under terms of your choice, so long as that work isn't itself a
-   parser generator using the skeleton or a modified version thereof
-   as a parser skeleton.  Alternatively, if you modify or redistribute
-   the parser skeleton itself, you may (at your option) remove this
-   special exception, which will cause the skeleton and the resulting
-   Bison output files to be licensed under the GNU General Public
-   License without this special exception.
-   
-   This special exception was added by the Free Software Foundation in
-   version 2.2 of Bison.  */
+// Copyright (C) 2002-2013 Free Software Foundation, Inc.
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// As a special exception, you may create a larger work that contains
+// part or all of the Bison parser skeleton and distribute that work
+// under terms of your choice, so long as that work isn't itself a
+// parser generator using the skeleton or a modified version thereof
+// as a parser skeleton.  Alternatively, if you modify or redistribute
+// the parser skeleton itself, you may (at your option) remove this
+// special exception, which will cause the skeleton and the resulting
+// Bison output files to be licensed under the GNU General Public
+// License without this special exception.
+
+// This special exception was added by the Free Software Foundation in
+// version 2.2 of Bison.
 
 // Take the name prefix into account.
-#define yylex   sifuscriptlex
+#define yylex   sslex
 
-/* First part of user declarations.  */
-/* Line 279 of lalr1.cc  */
-#line 6 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+// First part of user declarations.
+#line 6 "gramatica.yy" // lalr1.cc:399
  
-#include "Expression.h"
+#include "expr/Expression.h"
 
 #include <cstdio>
 #include <iostream>
 using namespace std;
  
 
-/* Line 279 of lalr1.cc  */
-#line 49 "gramatica.c"
+#line 47 "gramatica.cpp" // lalr1.cc:399
 
+# ifndef YY_NULLPTR
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULLPTR nullptr
+#  else
+#   define YY_NULLPTR 0
+#  endif
+# endif
 
 #include "gramatica.h"
 
-/* User implementation prologue.  */
-/* Line 285 of lalr1.cc  */
-#line 81 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+// User implementation prologue.
+#line 81 "gramatica.yy" // lalr1.cc:407
 
 
-#include "driver.h"
-#include "tokens.h"
+#include "driver/Driver.h"
 
 /* this "connects" the bison parser in the driver to the flex scanner class
  * object. it defines the yylex() function call to pull the next token from the
@@ -65,22 +68,13 @@ using namespace std;
 #define yylex driver.lexer->lex
 
 
-/* Line 285 of lalr1.cc  */
-#line 70 "gramatica.c"
+#line 72 "gramatica.cpp" // lalr1.cc:407
 
-
-# ifndef YY_NULL
-#  if defined __cplusplus && 201103L <= __cplusplus
-#   define YY_NULL nullptr
-#  else
-#   define YY_NULL 0
-#  endif
-# endif
 
 #ifndef YY_
 # if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
-#   include <libintl.h> /* FIXME: INFRINGES ON USER NAME SPACE */
+#   include <libintl.h> // FIXME: INFRINGES ON USER NAME SPACE.
 #   define YY_(msgid) dgettext ("bison-runtime", msgid)
 #  endif
 # endif
@@ -89,7 +83,7 @@ using namespace std;
 # endif
 #endif
 
-#define YYRHSLOC(Rhs, K) ((Rhs)[K])
+#define YYRHSLOC(Rhs, K) ((Rhs)[K].location)
 /* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
    If N is 0, then set CURRENT to the empty location which ends
    the previous symbol: RHS[0] (always defined).  */
@@ -110,58 +104,57 @@ using namespace std;
 # endif
 
 
-/* Suppress unused-variable warnings by "using" E.  */
-#define YYUSE(e) ((void) (e))
+// Suppress unused-variable warnings by "using" E.
+#define YYUSE(E) ((void) (E))
 
-/* Enable debugging if requested.  */
+// Enable debugging if requested.
 #if YYDEBUG
 
-/* A pseudo ostream that takes yydebug_ into account.  */
+// A pseudo ostream that takes yydebug_ into account.
 # define YYCDEBUG if (yydebug_) (*yycdebug_)
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)	\
-do {							\
-  if (yydebug_)						\
-    {							\
-      *yycdebug_ << Title << ' ';			\
-      yy_symbol_print_ ((Type), (Value), (Location));	\
-      *yycdebug_ << std::endl;				\
-    }							\
-} while (false)
+# define YY_SYMBOL_PRINT(Title, Symbol)         \
+  do {                                          \
+    if (yydebug_)                               \
+    {                                           \
+      *yycdebug_ << Title << ' ';               \
+      yy_print_ (*yycdebug_, Symbol);           \
+      *yycdebug_ << std::endl;                  \
+    }                                           \
+  } while (false)
 
-# define YY_REDUCE_PRINT(Rule)		\
-do {					\
-  if (yydebug_)				\
-    yy_reduce_print_ (Rule);		\
-} while (false)
+# define YY_REDUCE_PRINT(Rule)          \
+  do {                                  \
+    if (yydebug_)                       \
+      yy_reduce_print_ (Rule);          \
+  } while (false)
 
-# define YY_STACK_PRINT()		\
-do {					\
-  if (yydebug_)				\
-    yystack_print_ ();			\
-} while (false)
+# define YY_STACK_PRINT()               \
+  do {                                  \
+    if (yydebug_)                       \
+      yystack_print_ ();                \
+  } while (false)
 
-#else /* !YYDEBUG */
+#else // !YYDEBUG
 
 # define YYCDEBUG if (false) std::cerr
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location) YYUSE(Type)
-# define YY_REDUCE_PRINT(Rule)        static_cast<void>(0)
-# define YY_STACK_PRINT()             static_cast<void>(0)
+# define YY_SYMBOL_PRINT(Title, Symbol)  YYUSE(Symbol)
+# define YY_REDUCE_PRINT(Rule)           static_cast<void>(0)
+# define YY_STACK_PRINT()                static_cast<void>(0)
 
-#endif /* !YYDEBUG */
+#endif // !YYDEBUG
 
-#define yyerrok		(yyerrstatus_ = 0)
-#define yyclearin	(yychar = yyempty_)
+#define yyerrok         (yyerrstatus_ = 0)
+#define yyclearin       (yyempty = true)
 
-#define YYACCEPT	goto yyacceptlab
-#define YYABORT		goto yyabortlab
-#define YYERROR		goto yyerrorlab
+#define YYACCEPT        goto yyacceptlab
+#define YYABORT         goto yyabortlab
+#define YYERROR         goto yyerrorlab
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 
-namespace sifuscript {
-/* Line 353 of lalr1.cc  */
-#line 165 "gramatica.c"
+namespace ss {
+#line 158 "gramatica.cpp" // lalr1.cc:474
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -186,7 +179,7 @@ namespace sifuscript {
             case '\\':
               if (*++yyp != '\\')
                 goto do_not_strip_quotes;
-              /* Fall through.  */
+              // Fall through.
             default:
               yyr += *yyp;
               break;
@@ -209,72 +202,213 @@ namespace sifuscript {
       yycdebug_ (&std::cerr),
 #endif
       driver (driver_yyarg)
+  {}
+
+  Gramatica::~Gramatica ()
+  {}
+
+
+  /*---------------.
+  | Symbol types.  |
+  `---------------*/
+
+  inline
+  Gramatica::syntax_error::syntax_error (const location_type& l, const std::string& m)
+    : std::runtime_error (m)
+    , location (l)
+  {}
+
+  // basic_symbol.
+  template <typename Base>
+  inline
+  Gramatica::basic_symbol<Base>::basic_symbol ()
+    : value ()
+  {}
+
+  template <typename Base>
+  inline
+  Gramatica::basic_symbol<Base>::basic_symbol (const basic_symbol& other)
+    : Base (other)
+    , value ()
+    , location (other.location)
+  {
+    value = other.value;
+  }
+
+
+  template <typename Base>
+  inline
+  Gramatica::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const semantic_type& v, const location_type& l)
+    : Base (t)
+    , value (v)
+    , location (l)
+  {}
+
+
+  /// Constructor for valueless symbols.
+  template <typename Base>
+  inline
+  Gramatica::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const location_type& l)
+    : Base (t)
+    , value ()
+    , location (l)
+  {}
+
+  template <typename Base>
+  inline
+  Gramatica::basic_symbol<Base>::~basic_symbol ()
   {
   }
 
-  Gramatica::~Gramatica ()
+  template <typename Base>
+  inline
+  void
+  Gramatica::basic_symbol<Base>::move (basic_symbol& s)
   {
+    super_type::move(s);
+    value = s.value;
+    location = s.location;
+  }
+
+  // by_type.
+  inline
+  Gramatica::by_type::by_type ()
+     : type (empty)
+  {}
+
+  inline
+  Gramatica::by_type::by_type (const by_type& other)
+    : type (other.type)
+  {}
+
+  inline
+  Gramatica::by_type::by_type (token_type t)
+    : type (yytranslate_ (t))
+  {}
+
+  inline
+  void
+  Gramatica::by_type::move (by_type& that)
+  {
+    type = that.type;
+    that.type = empty;
+  }
+
+  inline
+  int
+  Gramatica::by_type::type_get () const
+  {
+    return type;
+  }
+
+
+  // by_state.
+  inline
+  Gramatica::by_state::by_state ()
+    : state (empty)
+  {}
+
+  inline
+  Gramatica::by_state::by_state (const by_state& other)
+    : state (other.state)
+  {}
+
+  inline
+  void
+  Gramatica::by_state::move (by_state& that)
+  {
+    state = that.state;
+    that.state = empty;
+  }
+
+  inline
+  Gramatica::by_state::by_state (state_type s)
+    : state (s)
+  {}
+
+  inline
+  Gramatica::symbol_number_type
+  Gramatica::by_state::type_get () const
+  {
+    return state == empty ? 0 : yystos_[state];
+  }
+
+  inline
+  Gramatica::stack_symbol_type::stack_symbol_type ()
+  {}
+
+
+  inline
+  Gramatica::stack_symbol_type::stack_symbol_type (state_type s, symbol_type& that)
+    : super_type (s, that.location)
+  {
+    value = that.value;
+    // that is emptied.
+    that.type = empty;
+  }
+
+  inline
+  Gramatica::stack_symbol_type&
+  Gramatica::stack_symbol_type::operator= (const stack_symbol_type& that)
+  {
+    state = that.state;
+    value = that.value;
+    location = that.location;
+    return *this;
+  }
+
+
+  template <typename Base>
+  inline
+  void
+  Gramatica::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
+  {
+    if (yymsg)
+      YY_SYMBOL_PRINT (yymsg, yysym);
+
+    // User destructor.
+    YYUSE (yysym.type_get ());
   }
 
 #if YYDEBUG
-  /*--------------------------------.
-  | Print this symbol on YYOUTPUT.  |
-  `--------------------------------*/
-
-  inline void
-  Gramatica::yy_symbol_value_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
+  template <typename Base>
+  void
+  Gramatica::yy_print_ (std::ostream& yyo,
+                                     const basic_symbol<Base>& yysym) const
   {
-    YYUSE (yylocationp);
-    YYUSE (yyvaluep);
-    std::ostream& yyo = debug_stream ();
     std::ostream& yyoutput = yyo;
     YYUSE (yyoutput);
-    switch (yytype)
-      {
-         default:
-	  break;
-      }
-  }
-
-
-  void
-  Gramatica::yy_symbol_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
-  {
-    *yycdebug_ << (yytype < yyntokens_ ? "token" : "nterm")
-	       << ' ' << yytname_[yytype] << " ("
-	       << *yylocationp << ": ";
-    yy_symbol_value_print_ (yytype, yyvaluep, yylocationp);
-    *yycdebug_ << ')';
+    symbol_number_type yytype = yysym.type_get ();
+    yyo << (yytype < yyntokens_ ? "token" : "nterm")
+        << ' ' << yytname_[yytype] << " ("
+        << yysym.location << ": ";
+    YYUSE (yytype);
+    yyo << ')';
   }
 #endif
 
+  inline
   void
-  Gramatica::yydestruct_ (const char* yymsg,
-			   int yytype, semantic_type* yyvaluep, location_type* yylocationp)
+  Gramatica::yypush_ (const char* m, state_type s, symbol_type& sym)
   {
-    YYUSE (yylocationp);
-    YYUSE (yymsg);
-    YYUSE (yyvaluep);
-
-    if (yymsg)
-      YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
-
-    switch (yytype)
-      {
-  
-	default:
-	  break;
-      }
+    stack_symbol_type t (s, sym);
+    yypush_ (m, t);
   }
 
+  inline
+  void
+  Gramatica::yypush_ (const char* m, stack_symbol_type& s)
+  {
+    if (m)
+      YY_SYMBOL_PRINT (m, s);
+    yystack_.push (s);
+  }
+
+  inline
   void
   Gramatica::yypop_ (unsigned int n)
   {
-    yystate_stack_.pop (n);
-    yysemantic_stack_.pop (n);
-    yylocation_stack_.pop (n);
+    yystack_.pop (n);
   }
 
 #if YYDEBUG
@@ -302,7 +436,17 @@ namespace sifuscript {
   {
     yydebug_ = l;
   }
-#endif
+#endif // YYDEBUG
+
+  inline Gramatica::state_type
+  Gramatica::yy_lr_goto_state_ (state_type yystate, int yysym)
+  {
+    int yyr = yypgoto_[yysym - yyntokens_] + yystate;
+    if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
+      return yytable_[yyr];
+    else
+      return yydefgoto_[yysym - yyntokens_];
+  }
 
   inline bool
   Gramatica::yy_pact_value_is_default_ (int yyvalue)
@@ -319,32 +463,25 @@ namespace sifuscript {
   int
   Gramatica::parse ()
   {
-    /// Lookahead and lookahead in internal form.
-    int yychar = yyempty_;
-    int yytoken = 0;
+    /// Whether yyla contains a lookahead.
+    bool yyempty = true;
 
     // State.
     int yyn;
+    /// Length of the RHS of the rule being reduced.
     int yylen = 0;
-    int yystate = 0;
 
     // Error handling.
     int yynerrs_ = 0;
     int yyerrstatus_ = 0;
 
-    /// Semantic value of the lookahead.
-    static semantic_type yyval_default;
-    semantic_type yylval = yyval_default;
-    /// Location of the lookahead.
-    location_type yylloc;
+    /// The lookahead symbol.
+    symbol_type yyla;
+
     /// The locations where the error started and ended.
-    location_type yyerror_range[3];
+    stack_symbol_type yyerror_range[3];
 
-    /// $$.
-    semantic_type yyval;
-    /// @$.
-    location_type yyloc;
-
+    /// The return value of parse ().
     int yyresult;
 
     // FIXME: This shoud be completely indented.  It is not yet to
@@ -354,102 +491,89 @@ namespace sifuscript {
     YYCDEBUG << "Starting parse" << std::endl;
 
 
-/* User initialization code.  */
-/* Line 545 of lalr1.cc  */
-#line 45 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+    // User initialization code.
+    #line 45 "gramatica.yy" // lalr1.cc:725
 {
     // initialize the initial location object
-    yylloc.begin.filename = yylloc.end.filename = &driver.streamname;
+    yyla.location.begin.filename = yyla.location.end.filename = &driver.streamname;
 }
-/* Line 545 of lalr1.cc  */
-#line 366 "gramatica.c"
 
-    /* Initialize the stacks.  The initial state will be pushed in
+#line 502 "gramatica.cpp" // lalr1.cc:725
+
+    /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
        location values to have been already stored, initialize these
        stacks with a primary value.  */
-    yystate_stack_ = state_stack_type (0);
-    yysemantic_stack_ = semantic_stack_type (0);
-    yylocation_stack_ = location_stack_type (0);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
+    yystack_.clear ();
+    yypush_ (YY_NULLPTR, 0, yyla);
 
-    /* New state.  */
+    // A new symbol was pushed on the stack.
   yynewstate:
-    yystate_stack_.push (yystate);
-    YYCDEBUG << "Entering state " << yystate << std::endl;
+    YYCDEBUG << "Entering state " << yystack_[0].state << std::endl;
 
-    /* Accept?  */
-    if (yystate == yyfinal_)
+    // Accept?
+    if (yystack_[0].state == yyfinal_)
       goto yyacceptlab;
 
     goto yybackup;
 
-    /* Backup.  */
+    // Backup.
   yybackup:
 
-    /* Try to take a decision without lookahead.  */
-    yyn = yypact_[yystate];
+    // Try to take a decision without lookahead.
+    yyn = yypact_[yystack_[0].state];
     if (yy_pact_value_is_default_ (yyn))
       goto yydefault;
 
-    /* Read a lookahead token.  */
-    if (yychar == yyempty_)
+    // Read a lookahead token.
+    if (yyempty)
       {
         YYCDEBUG << "Reading a token: ";
-        yychar = yylex (&yylval, &yylloc);
+        try
+          {
+            yyla.type = yytranslate_ (yylex (&yyla.value, &yyla.location));
+          }
+        catch (const syntax_error& yyexc)
+          {
+            error (yyexc);
+            goto yyerrlab1;
+          }
+        yyempty = false;
       }
+    YY_SYMBOL_PRINT ("Next token is", yyla);
 
-    /* Convert token to internal form.  */
-    if (yychar <= yyeof_)
-      {
-	yychar = yytoken = yyeof_;
-	YYCDEBUG << "Now at end of input." << std::endl;
-      }
-    else
-      {
-	yytoken = yytranslate_ (yychar);
-	YY_SYMBOL_PRINT ("Next token is", yytoken, &yylval, &yylloc);
-      }
-
-    /* If the proper action on seeing token YYTOKEN is to reduce or to
-       detect an error, take that action.  */
-    yyn += yytoken;
-    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yytoken)
+    /* If the proper action on seeing token YYLA.TYPE is to reduce or
+       to detect an error, take that action.  */
+    yyn += yyla.type_get ();
+    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yyla.type_get ())
       goto yydefault;
 
-    /* Reduce or error.  */
+    // Reduce or error.
     yyn = yytable_[yyn];
     if (yyn <= 0)
       {
-	if (yy_table_value_is_error_ (yyn))
-	  goto yyerrlab;
-	yyn = -yyn;
-	goto yyreduce;
+        if (yy_table_value_is_error_ (yyn))
+          goto yyerrlab;
+        yyn = -yyn;
+        goto yyreduce;
       }
 
-    /* Shift the lookahead token.  */
-    YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
+    // Discard the token being shifted.
+    yyempty = true;
 
-    /* Discard the token being shifted.  */
-    yychar = yyempty_;
-
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
-
-    /* Count tokens shifted since error; after three, turn off error
-       status.  */
+    // Count tokens shifted since error; after three, turn off error status.
     if (yyerrstatus_)
       --yyerrstatus_;
 
-    yystate = yyn;
+    // Shift the lookahead token.
+    yypush_ ("Shifting", yyn, yyla);
     goto yynewstate;
 
   /*-----------------------------------------------------------.
   | yydefault -- do the default action for the current state.  |
   `-----------------------------------------------------------*/
   yydefault:
-    yyn = yydefact_[yystate];
+    yyn = yydefact_[yystack_[0].state];
     if (yyn == 0)
       goto yyerrlab;
     goto yyreduce;
@@ -459,779 +583,761 @@ namespace sifuscript {
   `-----------------------------*/
   yyreduce:
     yylen = yyr2_[yyn];
-    /* If YYLEN is nonzero, implement the default value of the action:
-       `$$ = $1'.  Otherwise, use the top of the stack.
-
-       Otherwise, the following line sets YYVAL to garbage.
-       This behavior is undocumented and Bison
-       users should not rely upon it.  */
-    if (yylen)
-      yyval = yysemantic_stack_[yylen - 1];
-    else
-      yyval = yysemantic_stack_[0];
-
-    // Compute the default @$.
     {
-      slice<location_type, location_stack_type> slice (yylocation_stack_, yylen);
-      YYLLOC_DEFAULT (yyloc, slice, yylen);
-    }
+      stack_symbol_type yylhs;
+      yylhs.state = yy_lr_goto_state_(yystack_[yylen].state, yyr1_[yyn]);
+      /* If YYLEN is nonzero, implement the default value of the
+         action: '$$ = $1'.  Otherwise, use the top of the stack.
 
-    // Perform the reduction.
-    YY_REDUCE_PRINT (yyn);
-    switch (yyn)
+         Otherwise, the following line sets YYLHS.VALUE to garbage.
+         This behavior is undocumented and Bison users should not rely
+         upon it.  */
+      if (yylen)
+        yylhs.value = yystack_[yylen - 1].value;
+      else
+        yylhs.value = yystack_[0].value;
+
+      // Compute the default @$.
       {
-          case 2:
-/* Line 670 of lalr1.cc  */
-#line 97 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+        slice<stack_symbol_type, stack_type> slice (yystack_, yylen);
+        YYLLOC_DEFAULT (yylhs.location, slice, yylen);
+      }
+
+      // Perform the reduction.
+      YY_REDUCE_PRINT (yyn);
+      try
+        {
+          switch (yyn)
+            {
+  case 2:
+#line 96 "gramatica.yy" // lalr1.cc:847
     { cout << "program" << endl; }
+#line 616 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 3:
-/* Line 670 of lalr1.cc  */
-#line 98 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 97 "gramatica.yy" // lalr1.cc:847
     { cout << "program" << endl; }
+#line 622 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 4:
-/* Line 670 of lalr1.cc  */
-#line 99 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 98 "gramatica.yy" // lalr1.cc:847
     { cout << "program" << endl; }
+#line 628 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 5:
-/* Line 670 of lalr1.cc  */
-#line 102 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 101 "gramatica.yy" // lalr1.cc:847
     { cout << "imports" << endl; }
+#line 634 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 6:
-/* Line 670 of lalr1.cc  */
-#line 105 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 104 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 640 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 7:
-/* Line 670 of lalr1.cc  */
-#line 106 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 105 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 646 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 8:
-/* Line 670 of lalr1.cc  */
-#line 109 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 108 "gramatica.yy" // lalr1.cc:847
     { cout << "statelist" << endl; }
+#line 652 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 9:
-/* Line 670 of lalr1.cc  */
-#line 112 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 111 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 658 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 10:
-/* Line 670 of lalr1.cc  */
-#line 113 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 112 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 664 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 11:
-/* Line 670 of lalr1.cc  */
-#line 116 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 115 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 670 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 12:
-/* Line 670 of lalr1.cc  */
-#line 117 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 116 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 676 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 13:
-/* Line 670 of lalr1.cc  */
-#line 118 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 117 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 682 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 14:
-/* Line 670 of lalr1.cc  */
-#line 119 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 118 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 688 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 15:
-/* Line 670 of lalr1.cc  */
-#line 120 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 119 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 694 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 16:
-/* Line 670 of lalr1.cc  */
-#line 121 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 120 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 700 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 17:
-/* Line 670 of lalr1.cc  */
-#line 122 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 121 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 706 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 18:
-/* Line 670 of lalr1.cc  */
-#line 123 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 122 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 712 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 19:
-/* Line 670 of lalr1.cc  */
-#line 124 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 123 "gramatica.yy" // lalr1.cc:847
     { cout << "state" << endl; }
+#line 718 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 20:
-/* Line 670 of lalr1.cc  */
-#line 125 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 124 "gramatica.yy" // lalr1.cc:847
     { cout << endl; }
+#line 724 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 21:
-/* Line 670 of lalr1.cc  */
-#line 128 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 127 "gramatica.yy" // lalr1.cc:847
     { cout << "assign" << endl; }
+#line 730 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 22:
-/* Line 670 of lalr1.cc  */
-#line 131 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 130 "gramatica.yy" // lalr1.cc:847
     { cout << "delim" << endl; }
+#line 736 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 23:
-/* Line 670 of lalr1.cc  */
-#line 132 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 131 "gramatica.yy" // lalr1.cc:847
     { cout << "delim" << endl; }
+#line 742 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 24:
-/* Line 670 of lalr1.cc  */
-#line 135 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 134 "gramatica.yy" // lalr1.cc:847
     { cout << "return" << endl; }
+#line 748 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 25:
-/* Line 670 of lalr1.cc  */
-#line 138 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 137 "gramatica.yy" // lalr1.cc:847
     { cout << "id" << endl; }
+#line 754 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 26:
-/* Line 670 of lalr1.cc  */
-#line 139 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 138 "gramatica.yy" // lalr1.cc:847
     { cout << "id" << endl; }
+#line 760 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 27:
-/* Line 670 of lalr1.cc  */
-#line 140 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 139 "gramatica.yy" // lalr1.cc:847
     { cout << "id" << endl; }
+#line 766 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 28:
-/* Line 670 of lalr1.cc  */
-#line 143 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 142 "gramatica.yy" // lalr1.cc:847
     { cout << "cond" << endl; }
+#line 772 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 29:
-/* Line 670 of lalr1.cc  */
-#line 146 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 145 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 778 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 30:
-/* Line 670 of lalr1.cc  */
-#line 147 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 146 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 784 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 31:
-/* Line 670 of lalr1.cc  */
-#line 150 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 149 "gramatica.yy" // lalr1.cc:847
     { cout << "if" << endl; }
+#line 790 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 32:
-/* Line 670 of lalr1.cc  */
-#line 153 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 152 "gramatica.yy" // lalr1.cc:847
     { cout << "else if" << endl; }
+#line 796 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 33:
-/* Line 670 of lalr1.cc  */
-#line 154 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 153 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 802 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 34:
-/* Line 670 of lalr1.cc  */
-#line 157 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 156 "gramatica.yy" // lalr1.cc:847
     { cout << "else" << endl; }
+#line 808 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 35:
-/* Line 670 of lalr1.cc  */
-#line 158 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 157 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 814 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 36:
-/* Line 670 of lalr1.cc  */
-#line 161 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 160 "gramatica.yy" // lalr1.cc:847
     { cout << "loop" << endl; }
+#line 820 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 37:
-/* Line 670 of lalr1.cc  */
-#line 162 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 161 "gramatica.yy" // lalr1.cc:847
     { cout << "loop" << endl; }
+#line 826 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 38:
-/* Line 670 of lalr1.cc  */
-#line 163 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 162 "gramatica.yy" // lalr1.cc:847
     { cout << "loop" << endl; }
+#line 832 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 39:
-/* Line 670 of lalr1.cc  */
-#line 166 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 165 "gramatica.yy" // lalr1.cc:847
     { cout << "for" << endl; }
+#line 838 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 40:
-/* Line 670 of lalr1.cc  */
-#line 169 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 168 "gramatica.yy" // lalr1.cc:847
     { cout << "do" << endl; }
+#line 844 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 41:
-/* Line 670 of lalr1.cc  */
-#line 172 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 171 "gramatica.yy" // lalr1.cc:847
     { cout << "while" << endl; }
+#line 850 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 42:
-/* Line 670 of lalr1.cc  */
-#line 175 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 174 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 856 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 43:
-/* Line 670 of lalr1.cc  */
-#line 176 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 175 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 862 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 44:
-/* Line 670 of lalr1.cc  */
-#line 177 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 176 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 868 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 45:
-/* Line 670 of lalr1.cc  */
-#line 178 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 177 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 874 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 46:
-/* Line 670 of lalr1.cc  */
-#line 179 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 178 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 880 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 47:
-/* Line 670 of lalr1.cc  */
-#line 180 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 179 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 886 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 48:
-/* Line 670 of lalr1.cc  */
-#line 181 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 180 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 892 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 49:
-/* Line 670 of lalr1.cc  */
-#line 182 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 181 "gramatica.yy" // lalr1.cc:847
     { cout << "type" << endl; }
+#line 898 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 50:
-/* Line 670 of lalr1.cc  */
-#line 183 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 182 "gramatica.yy" // lalr1.cc:847
     { cout << "class type" << endl; }
+#line 904 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 51:
-/* Line 670 of lalr1.cc  */
-#line 186 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 185 "gramatica.yy" // lalr1.cc:847
     { cout << "class" << endl; }
+#line 910 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 52:
-/* Line 670 of lalr1.cc  */
-#line 189 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 188 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 916 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 54:
-/* Line 670 of lalr1.cc  */
-#line 193 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 192 "gramatica.yy" // lalr1.cc:847
     { cout << "class var" << endl; }
+#line 922 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 55:
-/* Line 670 of lalr1.cc  */
-#line 194 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 193 "gramatica.yy" // lalr1.cc:847
     { cout << "class func" << endl; }
+#line 928 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 56:
-/* Line 670 of lalr1.cc  */
-#line 195 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 194 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 934 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 57:
-/* Line 670 of lalr1.cc  */
-#line 198 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 197 "gramatica.yy" // lalr1.cc:847
     { cout << "acc priv" << endl; }
+#line 940 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 58:
-/* Line 670 of lalr1.cc  */
-#line 199 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 198 "gramatica.yy" // lalr1.cc:847
     { cout << "acc pub" << endl; }
+#line 946 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 59:
-/* Line 670 of lalr1.cc  */
-#line 202 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 201 "gramatica.yy" // lalr1.cc:847
     { cout << "func" << endl; }
+#line 952 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 60:
-/* Line 670 of lalr1.cc  */
-#line 203 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 202 "gramatica.yy" // lalr1.cc:847
     { cout << "func" << endl; }
+#line 958 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 61:
-/* Line 670 of lalr1.cc  */
-#line 206 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 205 "gramatica.yy" // lalr1.cc:847
     { cout << "args" << endl; }
+#line 964 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 62:
-/* Line 670 of lalr1.cc  */
-#line 207 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 206 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 970 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 63:
-/* Line 670 of lalr1.cc  */
-#line 210 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 209 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 976 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 64:
-/* Line 670 of lalr1.cc  */
-#line 211 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 210 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 982 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 65:
-/* Line 670 of lalr1.cc  */
-#line 214 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 213 "gramatica.yy" // lalr1.cc:847
     { cout << "func call" << endl; }
+#line 988 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 66:
-/* Line 670 of lalr1.cc  */
-#line 215 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 214 "gramatica.yy" // lalr1.cc:847
     { cout << "func call" << endl; }
+#line 994 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 67:
-/* Line 670 of lalr1.cc  */
-#line 218 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 217 "gramatica.yy" // lalr1.cc:847
     { cout << "args" << endl; }
+#line 1000 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 68:
-/* Line 670 of lalr1.cc  */
-#line 219 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 218 "gramatica.yy" // lalr1.cc:847
     { cout << "args" << endl; }
+#line 1006 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 69:
-/* Line 670 of lalr1.cc  */
-#line 222 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 221 "gramatica.yy" // lalr1.cc:847
     { cout << "var" << endl; }
+#line 1012 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 70:
-/* Line 670 of lalr1.cc  */
-#line 223 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 222 "gramatica.yy" // lalr1.cc:847
     { cout << "var" << endl; }
+#line 1018 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 71:
-/* Line 670 of lalr1.cc  */
-#line 226 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 225 "gramatica.yy" // lalr1.cc:847
     { cout << "print" << endl; }
+#line 1024 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 72:
-/* Line 670 of lalr1.cc  */
-#line 229 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 228 "gramatica.yy" // lalr1.cc:847
     { cout << "block" << endl; }
+#line 1030 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 73:
-/* Line 670 of lalr1.cc  */
-#line 230 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 229 "gramatica.yy" // lalr1.cc:847
     { cout << "block" << endl; }
+#line 1036 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 74:
-/* Line 670 of lalr1.cc  */
-#line 233 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 232 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1042 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 75:
-/* Line 670 of lalr1.cc  */
-#line 234 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 233 "gramatica.yy" // lalr1.cc:847
     { cout << "const" << endl; }
+#line 1048 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 76:
-/* Line 670 of lalr1.cc  */
-#line 235 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 234 "gramatica.yy" // lalr1.cc:847
     { cout << "const" << endl; }
+#line 1054 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 77:
-/* Line 670 of lalr1.cc  */
-#line 236 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 235 "gramatica.yy" // lalr1.cc:847
     { cout << "const" << endl; }
+#line 1060 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 78:
-/* Line 670 of lalr1.cc  */
-#line 237 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 236 "gramatica.yy" // lalr1.cc:847
     { cout << "const" << endl; }
+#line 1066 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 79:
-/* Line 670 of lalr1.cc  */
-#line 238 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 237 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1072 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 80:
-/* Line 670 of lalr1.cc  */
-#line 241 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 240 "gramatica.yy" // lalr1.cc:847
     { cout << "true" << endl; }
+#line 1078 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 81:
-/* Line 670 of lalr1.cc  */
-#line 242 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 241 "gramatica.yy" // lalr1.cc:847
     { cout << "false" << endl; }
+#line 1084 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 82:
-/* Line 670 of lalr1.cc  */
-#line 245 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 244 "gramatica.yy" // lalr1.cc:847
     { cout << "list" << endl; }
+#line 1090 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 83:
-/* Line 670 of lalr1.cc  */
-#line 246 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 245 "gramatica.yy" // lalr1.cc:847
     { cout << "list" << endl; }
+#line 1096 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 84:
-/* Line 670 of lalr1.cc  */
-#line 249 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 248 "gramatica.yy" // lalr1.cc:847
     { cout << "list elem" << endl; }
+#line 1102 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 85:
-/* Line 670 of lalr1.cc  */
-#line 250 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 249 "gramatica.yy" // lalr1.cc:847
     { cout << "list elem" << endl; }
+#line 1108 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 86:
-/* Line 670 of lalr1.cc  */
-#line 253 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 252 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1114 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 87:
-/* Line 670 of lalr1.cc  */
-#line 254 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 253 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1120 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 88:
-/* Line 670 of lalr1.cc  */
-#line 257 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 256 "gramatica.yy" // lalr1.cc:847
     { cout << "expresion" << endl; }
+#line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 89:
-/* Line 670 of lalr1.cc  */
-#line 258 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 257 "gramatica.yy" // lalr1.cc:847
     { cout << "expresion" << endl; }
+#line 1132 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 90:
-/* Line 670 of lalr1.cc  */
-#line 261 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 260 "gramatica.yy" // lalr1.cc:847
     { cout << "exp" << endl; }
+#line 1138 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 91:
-/* Line 670 of lalr1.cc  */
-#line 262 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 261 "gramatica.yy" // lalr1.cc:847
     { cout << "exp" << endl; }
+#line 1144 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 92:
-/* Line 670 of lalr1.cc  */
-#line 265 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 264 "gramatica.yy" // lalr1.cc:847
     { cout << "e" << endl; }
+#line 1150 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 93:
-/* Line 670 of lalr1.cc  */
-#line 266 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 265 "gramatica.yy" // lalr1.cc:847
     { cout << "e" << endl; }
+#line 1156 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 94:
-/* Line 670 of lalr1.cc  */
-#line 269 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 268 "gramatica.yy" // lalr1.cc:847
     { cout << "term" << endl; }
+#line 1162 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 95:
-/* Line 670 of lalr1.cc  */
-#line 270 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 269 "gramatica.yy" // lalr1.cc:847
     { cout << "term" << endl; }
+#line 1168 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 96:
-/* Line 670 of lalr1.cc  */
-#line 273 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 272 "gramatica.yy" // lalr1.cc:847
     { cout << "fact" << endl; }
+#line 1174 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 97:
-/* Line 670 of lalr1.cc  */
-#line 274 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 273 "gramatica.yy" // lalr1.cc:847
     { cout << "fact" << endl; }
+#line 1180 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 98:
-/* Line 670 of lalr1.cc  */
-#line 277 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 276 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1186 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 99:
-/* Line 670 of lalr1.cc  */
-#line 278 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 277 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1192 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 100:
-/* Line 670 of lalr1.cc  */
-#line 279 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 278 "gramatica.yy" // lalr1.cc:847
     { ; }
+#line 1198 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 101:
-/* Line 670 of lalr1.cc  */
-#line 282 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 281 "gramatica.yy" // lalr1.cc:847
     { cout << "rel op" << endl; }
+#line 1204 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 102:
-/* Line 670 of lalr1.cc  */
-#line 283 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 282 "gramatica.yy" // lalr1.cc:847
     { cout << "rel op" << endl; }
+#line 1210 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 103:
-/* Line 670 of lalr1.cc  */
-#line 286 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 285 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1216 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 104:
-/* Line 670 of lalr1.cc  */
-#line 287 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 286 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1222 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 105:
-/* Line 670 of lalr1.cc  */
-#line 288 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 287 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1228 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 106:
-/* Line 670 of lalr1.cc  */
-#line 289 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 288 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1234 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 107:
-/* Line 670 of lalr1.cc  */
-#line 290 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 289 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1240 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 108:
-/* Line 670 of lalr1.cc  */
-#line 291 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 290 "gramatica.yy" // lalr1.cc:847
     { cout << "comp op" << endl; }
+#line 1246 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 109:
-/* Line 670 of lalr1.cc  */
-#line 294 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 293 "gramatica.yy" // lalr1.cc:847
     { cout << "mult op" << endl; }
+#line 1252 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 110:
-/* Line 670 of lalr1.cc  */
-#line 295 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 294 "gramatica.yy" // lalr1.cc:847
     { cout << "mult op" << endl; }
+#line 1258 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 111:
-/* Line 670 of lalr1.cc  */
-#line 296 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 295 "gramatica.yy" // lalr1.cc:847
     { cout << "mult op" << endl; }
+#line 1264 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 112:
-/* Line 670 of lalr1.cc  */
-#line 299 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 298 "gramatica.yy" // lalr1.cc:847
     { cout << "add op" << endl; }
+#line 1270 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 113:
-/* Line 670 of lalr1.cc  */
-#line 300 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 299 "gramatica.yy" // lalr1.cc:847
     { cout << "add op" << endl; }
+#line 1276 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 114:
-/* Line 670 of lalr1.cc  */
-#line 303 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 302 "gramatica.yy" // lalr1.cc:847
     { cout << "neg op" << endl; }
+#line 1282 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 115:
-/* Line 670 of lalr1.cc  */
-#line 306 "..\\GitHub\\sifuscript\\source\\gramatica.y"
+#line 305 "gramatica.yy" // lalr1.cc:847
     { cout << "ass op" << endl; }
+#line 1288 "gramatica.cpp" // lalr1.cc:847
     break;
 
 
-/* Line 670 of lalr1.cc  */
-#line 1164 "gramatica.c"
-      default:
-        break;
-      }
+#line 1292 "gramatica.cpp" // lalr1.cc:847
+            default:
+              break;
+            }
+        }
+      catch (const syntax_error& yyexc)
+        {
+          error (yyexc);
+          YYERROR;
+        }
+      YY_SYMBOL_PRINT ("-> $$ =", yylhs);
+      yypop_ (yylen);
+      yylen = 0;
+      YY_STACK_PRINT ();
 
-    /* User semantic actions sometimes alter yychar, and that requires
-       that yytoken be updated with the new translation.  We take the
-       approach of translating immediately before every use of yytoken.
-       One alternative is translating here after every semantic action,
-       but that translation would be missed if the semantic action
-       invokes YYABORT, YYACCEPT, or YYERROR immediately after altering
-       yychar.  In the case of YYABORT or YYACCEPT, an incorrect
-       destructor might then be invoked immediately.  In the case of
-       YYERROR, subsequent parser actions might lead to an incorrect
-       destructor call or verbose syntax error message before the
-       lookahead is translated.  */
-    YY_SYMBOL_PRINT ("-> $$ =", yyr1_[yyn], &yyval, &yyloc);
-
-    yypop_ (yylen);
-    yylen = 0;
-    YY_STACK_PRINT ();
-
-    yysemantic_stack_.push (yyval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the result of the reduction.  */
-    yyn = yyr1_[yyn];
-    yystate = yypgoto_[yyn - yyntokens_] + yystate_stack_[0];
-    if (0 <= yystate && yystate <= yylast_
-	&& yycheck_[yystate] == yystate_stack_[0])
-      yystate = yytable_[yystate];
-    else
-      yystate = yydefgoto_[yyn - yyntokens_];
+      // Shift the result of the reduction.
+      yypush_ (YY_NULLPTR, yylhs);
+    }
     goto yynewstate;
 
-  /*------------------------------------.
-  | yyerrlab -- here on detecting error |
-  `------------------------------------*/
+  /*--------------------------------------.
+  | yyerrlab -- here on detecting error.  |
+  `--------------------------------------*/
   yyerrlab:
-    /* Make sure we have latest lookahead translation.  See comments at
-       user semantic actions for why this is necessary.  */
-    yytoken = yytranslate_ (yychar);
-
-    /* If not already recovering from an error, report this error.  */
+    // If not already recovering from an error, report this error.
     if (!yyerrstatus_)
       {
-	++yynerrs_;
-	if (yychar == yyempty_)
-	  yytoken = yyempty_;
-	error (yylloc, yysyntax_error_ (yystate, yytoken));
+        ++yynerrs_;
+        error (yyla.location, yysyntax_error_ (yystack_[0].state,
+                                           yyempty ? yyempty_ : yyla.type_get ()));
       }
 
-    yyerror_range[1] = yylloc;
+
+    yyerror_range[1].location = yyla.location;
     if (yyerrstatus_ == 3)
       {
         /* If just tried and failed to reuse lookahead token after an
            error, discard it.  */
-        if (yychar <= yyeof_)
+
+        // Return failure if at end of input.
+        if (yyla.type_get () == yyeof_)
+          YYABORT;
+        else if (!yyempty)
           {
-            /* Return failure if at end of input.  */
-            if (yychar == yyeof_)
-              YYABORT;
-          }
-        else
-          {
-            yydestruct_ ("Error: discarding", yytoken, &yylval, &yylloc);
-            yychar = yyempty_;
+            yy_destroy_ ("Error: discarding", yyla);
+            yyempty = true;
           }
       }
 
-    /* Else will try to reuse lookahead token after shifting the error
-       token.  */
+    // Else will try to reuse lookahead token after shifting the error token.
     goto yyerrlab1;
 
 
@@ -1245,126 +1351,105 @@ namespace sifuscript {
        code.  */
     if (false)
       goto yyerrorlab;
-
-    yyerror_range[1] = yylocation_stack_[yylen - 1];
-    /* Do not reclaim the symbols of the rule which action triggered
+    yyerror_range[1].location = yystack_[yylen - 1].location;
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYERROR.  */
     yypop_ (yylen);
     yylen = 0;
-    yystate = yystate_stack_[0];
     goto yyerrlab1;
 
   /*-------------------------------------------------------------.
   | yyerrlab1 -- common code for both syntax error and YYERROR.  |
   `-------------------------------------------------------------*/
   yyerrlab1:
-    yyerrstatus_ = 3;	/* Each real token shifted decrements this.  */
+    yyerrstatus_ = 3;   // Each real token shifted decrements this.
+    {
+      stack_symbol_type error_token;
+      for (;;)
+        {
+          yyn = yypact_[yystack_[0].state];
+          if (!yy_pact_value_is_default_ (yyn))
+            {
+              yyn += yyterror_;
+              if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
+                {
+                  yyn = yytable_[yyn];
+                  if (0 < yyn)
+                    break;
+                }
+            }
 
-    for (;;)
-      {
-	yyn = yypact_[yystate];
-	if (!yy_pact_value_is_default_ (yyn))
-	{
-	  yyn += yyterror_;
-	  if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
-	    {
-	      yyn = yytable_[yyn];
-	      if (0 < yyn)
-		break;
-	    }
-	}
+          // Pop the current state because it cannot handle the error token.
+          if (yystack_.size () == 1)
+            YYABORT;
 
-	/* Pop the current state because it cannot handle the error token.  */
-	if (yystate_stack_.height () == 1)
-	  YYABORT;
+          yyerror_range[1].location = yystack_[0].location;
+          yy_destroy_ ("Error: popping", yystack_[0]);
+          yypop_ ();
+          YY_STACK_PRINT ();
+        }
 
-	yyerror_range[1] = yylocation_stack_[0];
-	yydestruct_ ("Error: popping",
-		     yystos_[yystate],
-		     &yysemantic_stack_[0], &yylocation_stack_[0]);
-	yypop_ ();
-	yystate = yystate_stack_[0];
-	YY_STACK_PRINT ();
-      }
+      yyerror_range[2].location = yyla.location;
+      YYLLOC_DEFAULT (error_token.location, yyerror_range, 2);
 
-    yyerror_range[2] = yylloc;
-    // Using YYLLOC is tempting, but would change the location of
-    // the lookahead.  YYLOC is available though.
-    YYLLOC_DEFAULT (yyloc, yyerror_range, 2);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the error token.  */
-    YY_SYMBOL_PRINT ("Shifting", yystos_[yyn],
-		     &yysemantic_stack_[0], &yylocation_stack_[0]);
-
-    yystate = yyn;
+      // Shift the error token.
+      error_token.state = yyn;
+      yypush_ ("Shifting", error_token);
+    }
     goto yynewstate;
 
-    /* Accept.  */
+    // Accept.
   yyacceptlab:
     yyresult = 0;
     goto yyreturn;
 
-    /* Abort.  */
+    // Abort.
   yyabortlab:
     yyresult = 1;
     goto yyreturn;
 
   yyreturn:
-    if (yychar != yyempty_)
-      {
-        /* Make sure we have latest lookahead translation.  See comments
-           at user semantic actions for why this is necessary.  */
-        yytoken = yytranslate_ (yychar);
-        yydestruct_ ("Cleanup: discarding lookahead", yytoken, &yylval,
-                     &yylloc);
-      }
+    if (!yyempty)
+      yy_destroy_ ("Cleanup: discarding lookahead", yyla);
 
-    /* Do not reclaim the symbols of the rule which action triggered
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYABORT or YYACCEPT.  */
     yypop_ (yylen);
-    while (1 < yystate_stack_.height ())
+    while (1 < yystack_.size ())
       {
-        yydestruct_ ("Cleanup: popping",
-                     yystos_[yystate_stack_[0]],
-                     &yysemantic_stack_[0],
-                     &yylocation_stack_[0]);
+        yy_destroy_ ("Cleanup: popping", yystack_[0]);
         yypop_ ();
       }
 
     return yyresult;
-    }
+  }
     catch (...)
       {
         YYCDEBUG << "Exception caught: cleaning lookahead and stack"
                  << std::endl;
         // Do not try to display the values of the reclaimed symbols,
         // as their printer might throw an exception.
-        if (yychar != yyempty_)
-          {
-            /* Make sure we have latest lookahead translation.  See
-               comments at user semantic actions for why this is
-               necessary.  */
-            yytoken = yytranslate_ (yychar);
-            yydestruct_ (YY_NULL, yytoken, &yylval, &yylloc);
-          }
+        if (!yyempty)
+          yy_destroy_ (YY_NULLPTR, yyla);
 
-        while (1 < yystate_stack_.height ())
+        while (1 < yystack_.size ())
           {
-            yydestruct_ (YY_NULL,
-                         yystos_[yystate_stack_[0]],
-                         &yysemantic_stack_[0],
-                         &yylocation_stack_[0]);
+            yy_destroy_ (YY_NULLPTR, yystack_[0]);
             yypop_ ();
           }
         throw;
       }
   }
 
+  void
+  Gramatica::error (const syntax_error& yyexc)
+  {
+    error (yyexc.location, yyexc.what());
+  }
+
   // Generate an error message.
   std::string
-  Gramatica::yysyntax_error_ (int yystate, int yytoken)
+  Gramatica::yysyntax_error_ (state_type yystate, symbol_number_type yytoken) const
   {
     std::string yyres;
     // Number of reported tokens (one for the "unexpected", one per
@@ -1389,7 +1474,7 @@ namespace sifuscript {
          a consistent state with a default action.  There might have
          been a previous inconsistent state, consistent state with a
          non-default action, or user semantic action that manipulated
-         yychar.
+         yyla.  (However, yyla is currently not documented for users.)
        - Of course, the expected token list depends on states to have
          correct lookahead information, and it depends on the parser not
          to perform extra reductions after fetching a lookahead from the
@@ -1410,7 +1495,7 @@ namespace sifuscript {
                YYCHECK.  In other words, skip the first -YYN actions for
                this state because they are default actions.  */
             int yyxbegin = yyn < 0 ? -yyn : 0;
-            /* Stay within bounds of both yycheck and yytname.  */
+            // Stay within bounds of both yycheck and yytname.
             int yychecklim = yylast_ - yyn + 1;
             int yyxend = yychecklim < yyntokens_ ? yychecklim : yyntokens_;
             for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
@@ -1428,7 +1513,7 @@ namespace sifuscript {
           }
       }
 
-    char const* yyformat = YY_NULL;
+    char const* yyformat = YY_NULLPTR;
     switch (yycount)
       {
 #define YYCASE_(N, S)                         \
@@ -1458,13 +1543,14 @@ namespace sifuscript {
   }
 
 
-  /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
-     STATE-NUM.  */
   const signed char Gramatica::yypact_ninf_ = -79;
+
+  const signed char Gramatica::yytable_ninf_ = -1;
+
   const short int
   Gramatica::yypact_[] =
   {
-       132,    42,   -31,   -42,    42,    42,   246,   -25,    46,    42,
+     132,    42,   -31,   -42,    42,    42,   246,   -25,    46,    42,
      -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -10,
      -79,    64,   222,   -79,   222,   -79,   -79,    29,   -79,    69,
      -79,   -79,   -79,   -79,   -31,   -79,   -79,   -79,   -79,   -79,
@@ -1486,13 +1572,10 @@ namespace sifuscript {
      -79,    39,    84,   -79,   -79
   };
 
-  /* YYDEFACT[S] -- default reduction number in state S.  Performed when
-     YYTABLE doesn't specify something else to do.  Zero means the
-     default is an error.  */
   const unsigned char
   Gramatica::yydefact_[] =
   {
-         0,     0,     0,    30,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,    30,     0,     0,     0,     0,     0,     0,
       42,    43,    44,    45,    46,    47,    48,    49,    20,    25,
       50,     0,     3,     4,    10,    11,    18,     0,    12,    33,
       13,    36,    37,    38,     0,    14,    15,    19,    16,    17,
@@ -1514,36 +1597,30 @@ namespace sifuscript {
       60,     0,    64,    59,    63
   };
 
-  /* YYPGOTO[NTERM-NUM].  */
   const short int
   Gramatica::yypgoto_[] =
   {
-       -79,   -79,    26,   -79,    -9,    85,   -20,   159,   -61,   -79,
+     -79,   -79,    26,   -79,    -9,    85,   -20,   159,   -61,   -79,
        5,   -79,   -44,   -79,   -11,   -79,   -79,   -79,   -79,   -79,
       -6,   -79,    -5,   -79,   -79,    -7,    20,   -23,   -79,    17,
        0,   -79,   -78,   -45,   -79,   -79,    43,   -79,    -3,    80,
      -47,    70,   -79,   119,   -79,   -79,   -79,   -79,   -79,    96
   };
 
-  /* YYDEFGOTO[NTERM-NUM].  */
   const short int
   Gramatica::yydefgoto_[] =
   {
-        -1,    21,    22,   150,    23,    76,    24,    25,   114,    26,
+      -1,    21,    22,   150,    23,    76,    24,    25,   114,    26,
       50,    28,    63,    29,    81,   129,    30,    31,    32,    33,
       34,    35,   169,   170,   171,    36,   146,   180,    37,   121,
       38,    39,   110,    51,    52,    53,    87,    88,    54,    55,
       56,    57,    58,    59,    92,    99,   103,   106,    60,    79
   };
 
-  /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
-     positive, shift that token.  If negative, reduce the rule which
-     number is the opposite.  If YYTABLE_NINF_, syntax error.  */
-  const signed char Gramatica::yytable_ninf_ = -1;
   const unsigned char
   Gramatica::yytable_[] =
   {
-        67,    64,    65,    86,    77,    27,    70,    27,   118,   119,
+      67,    64,    65,    86,    77,    27,    70,    27,   118,   119,
       89,   135,    62,    75,    40,    41,    42,    43,    44,    45,
      111,   130,   104,   105,   117,    49,   122,    27,    78,    27,
      166,   167,    68,   144,    90,    91,   112,   113,    71,    82,
@@ -1577,11 +1654,10 @@ namespace sifuscript {
        0,     0,     0,     0,     0,     0,    20
   };
 
-  /* YYCHECK.  */
   const short int
   Gramatica::yycheck_[] =
   {
-         6,     4,     5,    48,    24,     0,     9,     2,    69,    70,
+       6,     4,     5,    48,    24,     0,     9,     2,    69,    70,
       54,    89,    54,    22,     4,     5,     6,     7,     8,     9,
       64,    82,    37,    38,    68,    56,    71,    22,    45,    24,
       29,    30,    57,   111,    32,    33,    53,    54,    48,    34,
@@ -1615,12 +1691,10 @@ namespace sifuscript {
       -1,    -1,    -1,    -1,    -1,    -1,    57
   };
 
-  /* STOS_[STATE-NUM] -- The (internal number of the) accessing
-     symbol of state STATE-NUM.  */
   const unsigned char
   Gramatica::yystos_[] =
   {
-         0,    10,    13,    14,    15,    16,    17,    18,    19,    20,
+       0,    10,    13,    14,    15,    16,    17,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    54,    56,
       57,    59,    60,    62,    64,    65,    67,    68,    69,    71,
       74,    75,    76,    77,    78,    79,    83,    86,    88,    89,
@@ -1642,26 +1716,10 @@ namespace sifuscript {
       90,    70,    56,    90,    85
   };
 
-#if YYDEBUG
-  /* TOKEN_NUMBER_[YYLEX-NUM] -- Internal symbol number corresponding
-     to YYLEX-NUM.  */
-  const unsigned short int
-  Gramatica::yytoken_number_[] =
-  {
-         0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
-     305,   306,   307,   308,   309,   310,   311,   312
-  };
-#endif
-
-  /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
   const unsigned char
   Gramatica::yyr1_[] =
   {
-         0,    58,    59,    59,    59,    60,    61,    61,    62,    63,
+       0,    58,    59,    59,    59,    60,    61,    61,    62,    63,
       63,    64,    64,    64,    64,    64,    64,    64,    64,    64,
       64,    65,    66,    66,    67,    68,    68,    68,    69,    70,
       70,    71,    72,    72,    73,    73,    74,    74,    74,    75,
@@ -1675,11 +1733,10 @@ namespace sifuscript {
      104,   104,   105,   105,   106,   107
   };
 
-  /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
   const unsigned char
   Gramatica::yyr2_[] =
   {
-         0,     2,     2,     1,     1,     4,     1,     0,     2,     2,
+       0,     2,     2,     1,     1,     4,     1,     0,     2,     2,
        0,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     4,     1,     1,     3,     1,     4,     3,     3,     1,
        0,     4,     5,     0,     3,     0,     1,     1,     1,     7,
@@ -1694,12 +1751,13 @@ namespace sifuscript {
   };
 
 
-  /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
-     First, the terminals, then, starting at \a yyntokens_, nonterminals.  */
+
+  // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
+  // First, the terminals, then, starting at \a yyntokens_, nonterminals.
   const char*
   const Gramatica::yytname_[] =
   {
-    "\"end of file\"", "error", "$undefined", "CONST_NULL", "CONST_FALSE",
+  "\"end of file\"", "error", "$undefined", "CONST_NULL", "CONST_FALSE",
   "CONST_TRUE", "CONST_INT", "CONST_FLOAT", "CONST_STR", "CONST_CHAR",
   "TK_IF", "TK_ELSE", "TK_ELIF", "TK_FOR", "TK_DO", "TK_WHILE",
   "TK_RETURN", "TK_FUNC", "TK_CLASS", "TK_IMPORT", "TK_PRINT", "TPNM_BOOL",
@@ -1717,84 +1775,25 @@ namespace sifuscript {
   "func_call", "call_args", "var", "print", "block", "var_const",
   "boolean", "list", "list_elem", "list_e", "expresion", "exp", "e",
   "term", "fact", "f", "rel_op", "comp_op", "mult_op", "add_op", "neg_op",
-  "ass_op", YY_NULL
+  "ass_op", YY_NULLPTR
   };
 
 #if YYDEBUG
-  /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
-  const Gramatica::rhs_number_type
-  Gramatica::yyrhs_[] =
-  {
-        59,     0,    -1,    60,    62,    -1,    60,    -1,    62,    -1,
-      19,     8,    66,    61,    -1,    60,    -1,    -1,    64,    63,
-      -1,    64,    63,    -1,    -1,    65,    -1,    69,    -1,    74,
-      -1,    79,    -1,    83,    -1,    88,    -1,    89,    -1,    67,
-      -1,    86,    -1,    54,    -1,    68,   107,    96,    66,    -1,
-      54,    -1,    53,    -1,    16,    96,    66,    -1,    56,    -1,
-      56,    50,     6,    51,    -1,    56,    55,    56,    -1,    71,
-      72,    73,    -1,    54,    -1,    -1,    10,    96,    70,    90,
-      -1,    12,    96,    70,    90,    72,    -1,    -1,    11,    70,
-      90,    -1,    -1,    75,    -1,    76,    -1,    77,    -1,    13,
-      65,    96,    53,    96,    70,    90,    -1,    14,    70,    90,
-      15,    96,    66,    -1,    15,    96,    70,    90,    -1,    21,
-      -1,    22,    -1,    23,    -1,    24,    -1,    25,    -1,    26,
-      -1,    27,    -1,    28,    -1,    57,    -1,    18,    57,    70,
-      46,    80,    47,    -1,    81,    80,    -1,    -1,    82,    88,
-      -1,    82,    83,    -1,    54,    -1,    29,    -1,    30,    -1,
-      17,    78,    56,    48,    84,    49,    70,    90,    -1,    17,
-      56,    48,    84,    49,    70,    90,    -1,    78,    56,    85,
-      -1,    -1,    52,    78,    56,    85,    -1,    -1,    56,    48,
-      87,    49,    66,    -1,    56,    48,    49,    66,    -1,    91,
-      -1,    91,    52,    87,    -1,    78,    68,    66,    -1,    78,
-      68,   107,    96,    66,    -1,    20,    96,    66,    -1,    46,
-      62,    47,    -1,    46,    47,    -1,    92,    -1,     9,    -1,
-       6,    -1,     7,    -1,     8,    -1,    93,    -1,     5,    -1,
-       4,    -1,    50,    94,    51,    -1,    50,    51,    -1,    95,
-      -1,    95,    52,    94,    -1,    91,    -1,    68,    -1,    97,
-      -1,    97,   102,    97,    -1,    98,    -1,    98,   103,    98,
-      -1,    99,    -1,    99,   104,    98,    -1,   100,    -1,   100,
-     105,    99,    -1,   106,   101,    -1,   101,    -1,    48,    96,
-      49,    -1,    91,    -1,    68,    -1,    32,    -1,    33,    -1,
-      39,    -1,    40,    -1,    42,    -1,    41,    -1,    43,    -1,
-      44,    -1,    34,    -1,    35,    -1,    36,    -1,    37,    -1,
-      38,    -1,    31,    -1,    45,    -1
-  };
-
-  /* YYPRHS[YYN] -- Index of the first RHS symbol of rule number YYN in
-     YYRHS.  */
-  const unsigned short int
-  Gramatica::yyprhs_[] =
-  {
-         0,     0,     3,     6,     8,    10,    15,    17,    18,    21,
-      24,    25,    27,    29,    31,    33,    35,    37,    39,    41,
-      43,    45,    50,    52,    54,    58,    60,    65,    69,    73,
-      75,    76,    81,    87,    88,    92,    93,    95,    97,    99,
-     107,   114,   119,   121,   123,   125,   127,   129,   131,   133,
-     135,   137,   144,   147,   148,   151,   154,   156,   158,   160,
-     169,   177,   181,   182,   187,   188,   194,   199,   201,   205,
-     209,   215,   219,   223,   226,   228,   230,   232,   234,   236,
-     238,   240,   242,   246,   249,   251,   255,   257,   259,   261,
-     265,   267,   271,   273,   277,   279,   283,   286,   288,   292,
-     294,   296,   298,   300,   302,   304,   306,   308,   310,   312,
-     314,   316,   318,   320,   322,   324
-  };
-
-  /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
   const unsigned short int
   Gramatica::yyrline_[] =
   {
-         0,    97,    97,    98,    99,   102,   105,   106,   109,   112,
-     113,   116,   117,   118,   119,   120,   121,   122,   123,   124,
-     125,   128,   131,   132,   135,   138,   139,   140,   143,   146,
-     147,   150,   153,   154,   157,   158,   161,   162,   163,   166,
-     169,   172,   175,   176,   177,   178,   179,   180,   181,   182,
-     183,   186,   189,   190,   193,   194,   195,   198,   199,   202,
-     203,   206,   207,   210,   211,   214,   215,   218,   219,   222,
-     223,   226,   229,   230,   233,   234,   235,   236,   237,   238,
-     241,   242,   245,   246,   249,   250,   253,   254,   257,   258,
-     261,   262,   265,   266,   269,   270,   273,   274,   277,   278,
-     279,   282,   283,   286,   287,   288,   289,   290,   291,   294,
-     295,   296,   299,   300,   303,   306
+       0,    96,    96,    97,    98,   101,   104,   105,   108,   111,
+     112,   115,   116,   117,   118,   119,   120,   121,   122,   123,
+     124,   127,   130,   131,   134,   137,   138,   139,   142,   145,
+     146,   149,   152,   153,   156,   157,   160,   161,   162,   165,
+     168,   171,   174,   175,   176,   177,   178,   179,   180,   181,
+     182,   185,   188,   189,   192,   193,   194,   197,   198,   201,
+     202,   205,   206,   209,   210,   213,   214,   217,   218,   221,
+     222,   225,   228,   229,   232,   233,   234,   235,   236,   237,
+     240,   241,   244,   245,   248,   249,   252,   253,   256,   257,
+     260,   261,   264,   265,   268,   269,   272,   273,   276,   277,
+     278,   281,   282,   285,   286,   287,   288,   289,   290,   293,
+     294,   295,   298,   299,   302,   305
   };
 
   // Print the state stack on the debug stream.
@@ -1802,9 +1801,11 @@ namespace sifuscript {
   Gramatica::yystack_print_ ()
   {
     *yycdebug_ << "Stack now";
-    for (state_stack_type::const_iterator i = yystate_stack_.begin ();
-	 i != yystate_stack_.end (); ++i)
-      *yycdebug_ << ' ' << *i;
+    for (stack_type::const_iterator
+           i = yystack_.begin (),
+           i_end = yystack_.end ();
+         i != i_end; ++i)
+      *yycdebug_ << ' ' << i->state;
     *yycdebug_ << std::endl;
   }
 
@@ -1814,19 +1815,18 @@ namespace sifuscript {
   {
     unsigned int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
-    /* Print the symbols being reduced, and their result.  */
+    // Print the symbols being reduced, and their result.
     *yycdebug_ << "Reducing stack by rule " << yyrule - 1
-	       << " (line " << yylno << "):" << std::endl;
-    /* The symbols being reduced.  */
+               << " (line " << yylno << "):" << std::endl;
+    // The symbols being reduced.
     for (int yyi = 0; yyi < yynrhs; yyi++)
       YY_SYMBOL_PRINT ("   $" << yyi + 1 << " =",
-		       yyrhs_[yyprhs_[yyrule] + yyi],
-		       &(yysemantic_stack_[(yynrhs) - (yyi + 1)]),
-		       &(yylocation_stack_[(yynrhs) - (yyi + 1)]));
+                       yystack_[(yynrhs) - (yyi + 1)]);
   }
 #endif // YYDEBUG
 
-  /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
+  // Symbol number corresponding to token number t.
+  inline
   Gramatica::token_number_type
   Gramatica::yytranslate_ (int t)
   {
@@ -1834,7 +1834,7 @@ namespace sifuscript {
     const token_number_type
     translate_table[] =
     {
-           0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+     0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1867,34 +1867,24 @@ namespace sifuscript {
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
       55,    56,    57
     };
-    if ((unsigned int) t <= yyuser_token_number_max_)
+    const unsigned int user_token_number_max_ = 312;
+    const token_number_type undef_token_ = 2;
+
+    if (static_cast<int>(t) <= yyeof_)
+      return yyeof_;
+    else if (static_cast<unsigned int> (t) <= user_token_number_max_)
       return translate_table[t];
     else
-      return yyundef_token_;
+      return undef_token_;
   }
 
-  const int Gramatica::yyeof_ = 0;
-  const int Gramatica::yylast_ = 316;
-  const int Gramatica::yynnts_ = 50;
-  const int Gramatica::yyempty_ = -2;
-  const int Gramatica::yyfinal_ = 74;
-  const int Gramatica::yyterror_ = 1;
-  const int Gramatica::yyerrcode_ = 256;
-  const int Gramatica::yyntokens_ = 58;
 
-  const unsigned int Gramatica::yyuser_token_number_max_ = 312;
-  const Gramatica::token_number_type Gramatica::yyundef_token_ = 2;
+} // ss
+#line 1884 "gramatica.cpp" // lalr1.cc:1155
+#line 309 "gramatica.yy" // lalr1.cc:1156
 
 
-} // sifuscript
-/* Line 1141 of lalr1.cc  */
-#line 1892 "gramatica.c"
-/* Line 1142 of lalr1.cc  */
-#line 310 "..\\GitHub\\sifuscript\\source\\gramatica.y"
-
-
-void sifuscript::Gramatica::error(const Gramatica::location_type& l,
-			    const std::string& m)
+void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)
 {
     driver.error(l, m);
 }

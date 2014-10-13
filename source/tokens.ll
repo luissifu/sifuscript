@@ -6,13 +6,12 @@
 %{
 
 #include "tokens.h"
-
 #include <iostream> 
 using namespace std; 
 
 /* import the parser's token type into a local typedef */
-typedef sifuscript::Gramatica::token token;
-typedef sifuscript::Gramatica::token_type token_type;
+typedef ss::Gramatica::token token;
+typedef ss::Gramatica::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -20,7 +19,9 @@ typedef sifuscript::Gramatica::token_type token_type;
 
 /* This disables inclusion of unistd.h, which is not available under Visual C++
  * on Win32. The C++ scanner uses STL streams instead. */
+#ifdef _WIN32
 #define YY_NO_UNISTD_H
+#endif
 %}
 
 
@@ -28,11 +29,13 @@ typedef sifuscript::Gramatica::token_type token_type;
 /* enable c++ scanner class generation */
 %option c++
 
-/* change the name of the scanner class. results in "ExampleFlexLexer" */
-%option prefix="Example"
+/* change the name of the scanner class. results in "SifuFlexLexer" */
+%option prefix="Sifu"
 
 /* the manual says "somewhat more optimized" */
 %option batch
+
+%option outfile="tokens.cpp"
 
 /* enable scanner to generate debug output. disable this for release
  * versions. */
@@ -134,36 +137,31 @@ chr		[^\']
  
 %% /*** Additional Code ***/
 
-namespace sifuscript {
-
-Token::Token(std::istream* in,
-		 std::ostream* out)
-    : ExampleFlexLexer(in, out)
+namespace ss 
 {
+
+	Token::Token(std::istream* in, std::ostream* out) : SifuFlexLexer(in, out) {}
+
+	Token::~Token() {}
+
+	void Token::set_debug(bool b)
+	{
+	    yy_flex_debug = b;
+	}
+
 }
 
-Token::~Token()
-{
-}
-
-void Token::set_debug(bool b)
-{
-    yy_flex_debug = b;
-}
-
-}
-
-/* This implementation of ExampleFlexLexer::yylex() is required to fill the
- * vtable of the class ExampleFlexLexer. We define the scanner's main yylex
+/* This implementation of SifuFlexLexer::yylex() is required to fill the
+ * vtable of the class SifuFlexLexer. We define the scanner's main yylex
  * function via YY_DECL to reside in the Scanner class instead. */
 
 #ifdef yylex
 #undef yylex
 #endif
 
-int ExampleFlexLexer::yylex()
+int SifuFlexLexer::yylex()
 {
-    std::cerr << "in ExampleFlexLexer::yylex() !" << std::endl;
+    std::cerr << "in SifuFlexLexer::yylex() !" << std::endl;
     return 0;
 }
 
@@ -173,7 +171,7 @@ int ExampleFlexLexer::yylex()
  * another input file, and scanning continues. If it returns true (non-zero),
  * then the scanner terminates, returning 0 to its caller. */
 
-int ExampleFlexLexer::yywrap()
+int SifuFlexLexer::yywrap()
 {
     return 1;
 }

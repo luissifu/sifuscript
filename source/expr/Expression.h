@@ -6,7 +6,7 @@
 #include <ostream>
 #include <stdexcept>
 
-#include "vars/Var.h"
+#include "../vars/Var.h"
 
 
 /*Here we gonna start for the abstract syntaxtrees we create during the parsing(gramatica)**/
@@ -26,7 +26,7 @@ class BaseObject
 /**************************************************************************************************************************************************/
 /***** CONTEXT specific stuff - contection of variable Tables and so on *****/
 /** Calculator context used to save the parsed expressions. This context is
- * passed along to the sifuscript::Driver class and fill during parsing via bison
+ * passed along to the ss::Driver class and fill during parsing via bison
  * actions. So that via Driver every Element of the abract Syntaxtree or BISON/FLEX can access the context
  */
 class SifuContext

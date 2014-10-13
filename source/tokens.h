@@ -9,29 +9,29 @@
 #ifndef YY_DECL
 
 #define	YY_DECL						\
-    sifuscript::Gramatica::token_type				\
-    sifuscript::Token::lex(				\
-	sifuscript::Gramatica::semantic_type* yylval,		\
-	sifuscript::Gramatica::location_type* yylloc		\
+    ss::Gramatica::token_type				\
+    ss::Token::lex(				\
+	ss::Gramatica::semantic_type* yylval,		\
+	ss::Gramatica::location_type* yylloc		\
     )
 #endif
 
 #ifndef __FLEX_LEXER_H
-#define yyFlexLexer ExampleFlexLexer
+#define yyFlexLexer SifuFlexLexer
 #include "FlexLexer.h"
 #undef yyFlexLexer
 #endif
 
 #include "gramatica.h"
 
-namespace sifuscript {
+namespace ss {
 
 /** Scanner is a derived class to add some extra function to the scanner
  * class. Flex itself creates a class named yyFlexLexer, which is renamed using
  * macros to ExampleFlexLexer. However we change the context of the generated
  * yylex() function to be contained within the Scanner class. This is required
  * because the yylex() defined in ExampleFlexLexer has no parameters. */
-class Token : public ExampleFlexLexer
+class Token : public SifuFlexLexer
 {
 public:
     /** Create a new scanner object. The streams arg_yyin and arg_yyout default

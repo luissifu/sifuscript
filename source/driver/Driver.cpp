@@ -4,10 +4,9 @@
 #include <fstream>
 #include <sstream>
 
-#include "driver.h"
-#include "tokens.h"
+#include "Driver.h"
 
-namespace sifuscript {
+namespace ss {
 
 	Driver::Driver(SifuContext& cont)
 		: trace_scanning(false),

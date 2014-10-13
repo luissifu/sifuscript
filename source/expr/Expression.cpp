@@ -4,9 +4,7 @@
  */
  
 #include "Expression.h"
- 
 #include <stdlib.h>
-
 
 // free all saved expression trees
 void SifuContext::clearExpressions()

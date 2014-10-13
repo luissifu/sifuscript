@@ -1,6 +1,6 @@
-#line 2 "tokens.c"
+#line 2 "tokens.cpp"
 
-#line 4 "tokens.c"
+#line 4 "tokens.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -17,7 +17,7 @@
 #define FLEX_SCANNER
 #define YY_FLEX_MAJOR_VERSION 2
 #define YY_FLEX_MINOR_VERSION 5
-#define YY_FLEX_SUBMINOR_VERSION 37
+#define YY_FLEX_SUBMINOR_VERSION 35
 #if YY_FLEX_SUBMINOR_VERSION > 0
 #define FLEX_BETA
 #endif
@@ -29,7 +29,7 @@
      * We will address this in a future release of flex, or omit the C++ scanner
      * altogether.
      */
-    #define yyFlexLexer ExampleFlexLexer
+    #define yyFlexLexer SifuFlexLexer
 /* %endif */
 
 /* %if-c-only */
@@ -192,7 +192,15 @@ typedef unsigned int flex_uint32_t;
 
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k.
+ * Moreover, YY_BUF_SIZE is 2*YY_READ_BUF_SIZE in the general case.
+ * Ditto for the __ia64__ case accordingly.
+ */
+#define YY_BUF_SIZE 32768
+#else
 #define YY_BUF_SIZE 16384
+#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -204,13 +212,8 @@ typedef unsigned int flex_uint32_t;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #endif
 
-#ifndef YY_TYPEDEF_YY_SIZE_T
-#define YY_TYPEDEF_YY_SIZE_T
-typedef size_t yy_size_t;
-#endif
-
 /* %if-not-reentrant */
-extern yy_size_t yyleng;
+extern int yyleng;
 /* %endif */
 
 /* %if-c-only */
@@ -240,6 +243,11 @@ extern yy_size_t yyleng;
 
 #define unput(c) yyunput( c, (yytext_ptr)  )
 
+#ifndef YY_TYPEDEF_YY_SIZE_T
+#define YY_TYPEDEF_YY_SIZE_T
+typedef size_t yy_size_t;
+#endif
+
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
 struct yy_buffer_state
@@ -262,7 +270,7 @@ struct yy_buffer_state
 	/* Number of characters read into yy_ch_buf, not including EOB
 	 * characters.
 	 */
-	yy_size_t yy_n_chars;
+	int yy_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -343,9 +351,9 @@ struct yy_buffer_state
 /* %endif */
 /* %endif */
 
-void *Examplealloc (yy_size_t  );
-void *Examplerealloc (void *,yy_size_t  );
-void Examplefree (void *  );
+void *Sifualloc (yy_size_t  );
+void *Sifurealloc (void *,yy_size_t  );
+void Sifufree (void *  );
 
 #define yy_new_buffer yy_create_buffer
 
@@ -569,12 +577,12 @@ static yyconst flex_int16_t yy_chk[216] =
 
 static yyconst flex_int16_t yy_rule_linenum[61] =
     {   0,
-       71,   72,   73,   74,   75,   76,   77,   78,   79,   80,
-       81,   82,   83,   84,   85,   86,   87,   88,   89,   90,
-       91,   92,   93,   94,   95,   96,   97,   98,   99,  100,
-      101,  102,  103,  104,  105,  106,  107,  108,  109,  110,
-      111,  112,  113,  114,  115,  116,  117,  118,  119,  120,
-      121,  122,  123,  125,  126,  127,  128,  129,  130,  132
+       74,   75,   76,   77,   78,   79,   80,   81,   82,   83,
+       84,   85,   86,   87,   88,   89,   90,   91,   92,   93,
+       94,   95,   96,   97,   98,   99,  100,  101,  102,  103,
+      104,  105,  106,  107,  108,  109,  110,  111,  112,  113,
+      114,  115,  116,  117,  118,  119,  120,  121,  122,  123,
+      124,  125,  126,  128,  129,  130,  131,  132,  133,  135
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -584,21 +592,20 @@ static yyconst flex_int16_t yy_rule_linenum[61] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 1 "tokens.ll"
 /*
  * Tokens.l file
  * in order to specify the work of the Lexer
  */
-#line 7 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 7 "tokens.ll"
 
 #include "tokens.h"
-
 #include <iostream> 
 using namespace std; 
 
 /* import the parser's token type into a local typedef */
-typedef sifuscript::Gramatica::token token;
-typedef sifuscript::Gramatica::token_type token_type;
+typedef ss::Gramatica::token token;
+typedef ss::Gramatica::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -606,10 +613,12 @@ typedef sifuscript::Gramatica::token_type token_type;
 
 /* This disables inclusion of unistd.h, which is not available under Visual C++
  * on Win32. The C++ scanner uses STL streams instead. */
+#ifdef _WIN32
 #define YY_NO_UNISTD_H
+#endif
 /*** Flex Declarations and Options ***/
 /* enable c++ scanner class generation */
-/* change the name of the scanner class. results in "ExampleFlexLexer" */
+/* change the name of the scanner class. results in "SifuFlexLexer" */
 /* the manual says "somewhat more optimized" */
 /* enable scanner to generate debug output. disable this for release
  * versions. */
@@ -617,17 +626,24 @@ typedef sifuscript::Gramatica::token_type token_type;
 /* enables the use of start condition stacks */
 /* The following paragraph suffices to track locations accurately. Each time
  * yylex is invoked, the begin position is moved onto the end position. */
-#line 50 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 53 "tokens.ll"
 	#define YY_USER_ACTION  yylloc->columns(yyleng);//not necessary, nowhere else found:-(
-#line 623 "tokens.c"
+#line 632 "tokens.cpp"
 
 #define INITIAL 0
 
-/*windows compatibility case*/
-#include <io.h>
-#define isatty _isatty
-#define fileno _fileno
-    
+#ifndef YY_NO_UNISTD_H
+/* Special case for "unistd.h", since it is non-ANSI. We include it way
+ * down here because we want the user's section 1 to have been scanned first.
+ * The user has a chance to override it with an option.
+ */
+/* %if-c-only */
+/* %endif */
+/* %if-c++-only */
+#include <unistd.h>
+/* %endif */
+#endif
+
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -669,7 +685,12 @@ static int yy_flex_strlen (yyconst char * );
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define YY_READ_BUF_SIZE 16384
+#else
 #define YY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -769,7 +790,7 @@ YY_DECL
 	register int yy_act;
     
 /* %% [7.0] user's declarations go here */
-#line 61 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 64 "tokens.ll"
 
 
 
@@ -780,7 +801,7 @@ YY_DECL
 
 
 
-#line 784 "tokens.c"
+#line 805 "tokens.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -891,313 +912,313 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 71 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 74 "tokens.ll"
 ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 72 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 75 "tokens.ll"
 return token::CONST_NULL;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 73 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 76 "tokens.ll"
 return token::CONST_FALSE;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 74 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 77 "tokens.ll"
 return token::CONST_TRUE;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 75 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 78 "tokens.ll"
 return token::OP_AND;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 76 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 79 "tokens.ll"
 return token::OP_OR;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 77 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 80 "tokens.ll"
 return token::OP_NOT;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 78 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 81 "tokens.ll"
 return token::TK_IF;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 79 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 82 "tokens.ll"
 return token::TK_ELSE;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 80 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 83 "tokens.ll"
 return token::TK_ELIF;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 81 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 84 "tokens.ll"
 return token::TK_FOR;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 82 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 85 "tokens.ll"
 return token::TK_DO;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 83 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 86 "tokens.ll"
 return token::TK_WHILE;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 84 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 87 "tokens.ll"
 return token::TK_FUNC;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 85 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 88 "tokens.ll"
 return token::TK_CLASS;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 86 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 89 "tokens.ll"
 return token::TK_IMPORT;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 87 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 90 "tokens.ll"
 return token::TK_PRINT;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 88 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 91 "tokens.ll"
 return token::TK_RETURN;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 89 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 92 "tokens.ll"
 return token::TPNM_BOOL;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 90 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 93 "tokens.ll"
 return token::TPNM_CHAR;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 91 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 94 "tokens.ll"
 return token::TPNM_SHORT;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 92 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 95 "tokens.ll"
 return token::TPNM_INT;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 93 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 96 "tokens.ll"
 return token::TPNM_LONG;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 94 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 97 "tokens.ll"
 return token::TPNM_FLOAT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 95 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 98 "tokens.ll"
 return token::TPNM_DOUBLE;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 96 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 99 "tokens.ll"
 return token::TPNM_STR;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 97 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 100 "tokens.ll"
 return token::ACC_PRIVATE;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 98 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 101 "tokens.ll"
 return token::ACC_PUBLIC;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 99 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 102 "tokens.ll"
 return token::OP_NOT;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 100 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 103 "tokens.ll"
 return token::OP_AND;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 101 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 104 "tokens.ll"
 return token::OP_OR;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 102 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 105 "tokens.ll"
 return token::OP_MULT;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 103 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 106 "tokens.ll"
 return token::OP_DIV;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 104 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 107 "tokens.ll"
 return token::OP_MOD;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 105 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 108 "tokens.ll"
 return token::OP_ADD;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 106 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 109 "tokens.ll"
 return token::OP_SUB;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 107 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 110 "tokens.ll"
 return token::OP_LESS;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 108 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 111 "tokens.ll"
 return token::OP_MORE;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 109 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 112 "tokens.ll"
 return token::OP_MOREEQ;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 110 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 113 "tokens.ll"
 return token::OP_LESSEQ;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 111 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 114 "tokens.ll"
 return token::OP_EQ;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 112 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 115 "tokens.ll"
 return token::OP_NOTEQ;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 113 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 116 "tokens.ll"
 return token::OP_ASSIGN;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 114 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 117 "tokens.ll"
 return token::TK_LEFTBRACKET;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 115 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 118 "tokens.ll"
 return token::TK_RIGHTBRACKET;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 116 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 119 "tokens.ll"
 return token::TK_LEFTPAREN;
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 117 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 120 "tokens.ll"
 return token::TK_RIGHTPAREN;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 118 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 121 "tokens.ll"
 return token::TK_LEFTSQBRACKET;
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 119 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 122 "tokens.ll"
 return token::TK_RIGHTSQBRACKET;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 120 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 123 "tokens.ll"
 return token::TK_SEMICOLON;
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 121 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 124 "tokens.ll"
 return token::TK_COMMA;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 122 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 125 "tokens.ll"
 return token::TK_DOT;
 	YY_BREAK
 case 53:
 /* rule 53 can match eol */
 YY_RULE_SETUP
-#line 123 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 126 "tokens.ll"
 return token::TK_NEWLINE;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 125 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 128 "tokens.ll"
 return token::T_ID;
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 126 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 129 "tokens.ll"
 return token::T_CLASSNAME;
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 127 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 130 "tokens.ll"
 return token::CONST_INT;
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 128 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 131 "tokens.ll"
 return token::CONST_FLOAT;
 	YY_BREAK
 case 58:
 /* rule 58 can match eol */
 YY_RULE_SETUP
-#line 129 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 132 "tokens.ll"
 return token::CONST_STR;
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
-#line 130 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 133 "tokens.ll"
 return token::CONST_CHAR;
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 132 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 135 "tokens.ll"
 ;
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 135 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 138 "tokens.ll"
 ECHO;
 	YY_BREAK
-#line 1201 "tokens.c"
+#line 1222 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1371,9 +1392,9 @@ yyFlexLexer::yyFlexLexer( std::istream* arg_yyin, std::ostream* arg_yyout )
 yyFlexLexer::~yyFlexLexer()
 {
 	delete [] yy_state_buf;
-	Examplefree(yy_start_stack  );
+	Sifufree(yy_start_stack  );
 	yy_delete_buffer( YY_CURRENT_BUFFER );
-	Examplefree(yy_buffer_stack  );
+	Sifufree(yy_buffer_stack  );
 }
 
 /* The contents of this function are C++ specific, so the () macro is not used.
@@ -1485,21 +1506,21 @@ int yyFlexLexer::yy_get_next_buffer()
 
 	else
 		{
-			yy_size_t num_to_read =
+			int num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
 			{ /* Not enough room in the buffer - grow it. */
 
 			/* just a shorter name for the current buffer */
-			YY_BUFFER_STATE b = YY_CURRENT_BUFFER_LVALUE;
+			YY_BUFFER_STATE b = YY_CURRENT_BUFFER;
 
 			int yy_c_buf_p_offset =
 				(int) ((yy_c_buf_p) - b->yy_ch_buf);
 
 			if ( b->yy_is_our_buffer )
 				{
-				yy_size_t new_size = b->yy_buf_size * 2;
+				int new_size = b->yy_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->yy_buf_size += b->yy_buf_size / 8;
@@ -1508,7 +1529,7 @@ int yyFlexLexer::yy_get_next_buffer()
 
 				b->yy_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					Examplerealloc((void *) b->yy_ch_buf,b->yy_buf_size + 2  );
+					Sifurealloc((void *) b->yy_ch_buf,b->yy_buf_size + 2  );
 				}
 			else
 				/* Can't grow it, we don't own it. */
@@ -1530,7 +1551,7 @@ int yyFlexLexer::yy_get_next_buffer()
 
 		/* Read in more data. */
 		YY_INPUT( (&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move]),
-			(yy_n_chars), num_to_read );
+			(yy_n_chars), (size_t) num_to_read );
 
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
@@ -1557,7 +1578,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	if ((yy_size_t) ((yy_n_chars) + number_to_move) > YY_CURRENT_BUFFER_LVALUE->yy_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
 		yy_size_t new_size = (yy_n_chars) + number_to_move + ((yy_n_chars) >> 1);
-		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) Examplerealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,new_size  );
+		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) Sifurealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,new_size  );
 		if ( ! YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
 			YY_FATAL_ERROR( "out of dynamic memory in yy_get_next_buffer()" );
 	}
@@ -1638,7 +1659,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 	yy_is_jam = (yy_current_state == 155);
 
-		return yy_is_jam ? 0 : yy_current_state;
+	return yy_is_jam ? 0 : yy_current_state;
 }
 
 /* %if-c-only */
@@ -1657,7 +1678,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
 		{ /* need to shift things up to make room */
 		/* +2 for EOB chars. */
-		register yy_size_t number_to_move = (yy_n_chars) + 2;
+		register int number_to_move = (yy_n_chars) + 2;
 		register char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
 					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
 		register char *source =
@@ -1708,7 +1729,7 @@ int yyFlexLexer::yy_get_next_buffer()
 
 		else
 			{ /* need more input */
-			yy_size_t offset = (yy_c_buf_p) - (yytext_ptr);
+			int offset = (yy_c_buf_p) - (yytext_ptr);
 			++(yy_c_buf_p);
 
 			switch ( yy_get_next_buffer(  ) )
@@ -1848,7 +1869,7 @@ int yyFlexLexer::yy_get_next_buffer()
 {
 	YY_BUFFER_STATE b;
     
-	b = (YY_BUFFER_STATE) Examplealloc(sizeof( struct yy_buffer_state )  );
+	b = (YY_BUFFER_STATE) Sifualloc(sizeof( struct yy_buffer_state )  );
 	if ( ! b )
 		YY_FATAL_ERROR( "out of dynamic memory in yy_create_buffer()" );
 
@@ -1857,7 +1878,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	/* yy_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->yy_ch_buf = (char *) Examplealloc(b->yy_buf_size + 2  );
+	b->yy_ch_buf = (char *) Sifualloc(b->yy_buf_size + 2  );
 	if ( ! b->yy_ch_buf )
 		YY_FATAL_ERROR( "out of dynamic memory in yy_create_buffer()" );
 
@@ -1886,10 +1907,19 @@ int yyFlexLexer::yy_get_next_buffer()
 		YY_CURRENT_BUFFER_LVALUE = (YY_BUFFER_STATE) 0;
 
 	if ( b->yy_is_our_buffer )
-		Examplefree((void *) b->yy_ch_buf  );
+		Sifufree((void *) b->yy_ch_buf  );
 
-	Examplefree((void *) b  );
+	Sifufree((void *) b  );
 }
+
+/* %if-c-only */
+/* %endif */
+
+/* %if-c++-only */
+
+extern "C" int isatty (int );
+
+/* %endif */
 
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
@@ -2031,7 +2061,7 @@ void yyFlexLexer::yypop_buffer_state (void)
 void yyFlexLexer::yyensure_buffer_stack(void)
 /* %endif */
 {
-	yy_size_t num_to_alloc;
+	int num_to_alloc;
     
 	if (!(yy_buffer_stack)) {
 
@@ -2040,7 +2070,7 @@ void yyFlexLexer::yyensure_buffer_stack(void)
 		 * immediate realloc on the next call.
          */
 		num_to_alloc = 1;
-		(yy_buffer_stack) = (struct yy_buffer_state**)Examplealloc
+		(yy_buffer_stack) = (struct yy_buffer_state**)Sifualloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								);
 		if ( ! (yy_buffer_stack) )
@@ -2059,7 +2089,7 @@ void yyFlexLexer::yyensure_buffer_stack(void)
 		int grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = (yy_buffer_stack_max) + grow_size;
-		(yy_buffer_stack) = (struct yy_buffer_state**)Examplerealloc
+		(yy_buffer_stack) = (struct yy_buffer_state**)Sifurealloc
 								((yy_buffer_stack),
 								num_to_alloc * sizeof(struct yy_buffer_state*)
 								);
@@ -2096,10 +2126,10 @@ void yyFlexLexer::yyensure_buffer_stack(void)
 		new_size = (yy_start_stack_depth) * sizeof( int );
 
 		if ( ! (yy_start_stack) )
-			(yy_start_stack) = (int *) Examplealloc(new_size  );
+			(yy_start_stack) = (int *) Sifualloc(new_size  );
 
 		else
-			(yy_start_stack) = (int *) Examplerealloc((void *) (yy_start_stack),new_size  );
+			(yy_start_stack) = (int *) Sifurealloc((void *) (yy_start_stack),new_size  );
 
 		if ( ! (yy_start_stack) )
 			YY_FATAL_ERROR( "out of memory expanding start-condition stack" );
@@ -2208,12 +2238,12 @@ static int yy_flex_strlen (yyconst char * s )
 }
 #endif
 
-void *Examplealloc (yy_size_t  size )
+void *Sifualloc (yy_size_t  size )
 {
 	return (void *) malloc( size );
 }
 
-void *Examplerealloc  (void * ptr, yy_size_t  size )
+void *Sifurealloc  (void * ptr, yy_size_t  size )
 {
 	/* The cast to (char *) in the following accommodates both
 	 * implementations that use char* generic pointers, and those
@@ -2225,9 +2255,9 @@ void *Examplerealloc  (void * ptr, yy_size_t  size )
 	return (void *) realloc( (char *) ptr, size );
 }
 
-void Examplefree (void * ptr )
+void Sifufree (void * ptr )
 {
-	free( (char *) ptr );	/* see Examplerealloc() for (char *) cast */
+	free( (char *) ptr );	/* see Sifurealloc() for (char *) cast */
 }
 
 /* %if-tables-serialization definitions */
@@ -2237,40 +2267,35 @@ void Examplefree (void * ptr )
 
 /* %ok-for-header */
 
-#line 134 "..\\GitHub\\sifuscript\\source\\tokens.l"
+#line 138 "tokens.ll"
 
 
 
-namespace sifuscript {
-
-Token::Token(std::istream* in,
-		 std::ostream* out)
-    : ExampleFlexLexer(in, out)
+namespace ss 
 {
+
+	Token::Token(std::istream* in, std::ostream* out) : SifuFlexLexer(in, out) {}
+
+	Token::~Token() {}
+
+	void Token::set_debug(bool b)
+	{
+	    yy_flex_debug = b;
+	}
+
 }
 
-Token::~Token()
-{
-}
-
-void Token::set_debug(bool b)
-{
-    yy_flex_debug = b;
-}
-
-}
-
-/* This implementation of ExampleFlexLexer::yylex() is required to fill the
- * vtable of the class ExampleFlexLexer. We define the scanner's main yylex
+/* This implementation of SifuFlexLexer::yylex() is required to fill the
+ * vtable of the class SifuFlexLexer. We define the scanner's main yylex
  * function via YY_DECL to reside in the Scanner class instead. */
 
 #ifdef yylex
 #undef yylex
 #endif
 
-int ExampleFlexLexer::yylex()
+int SifuFlexLexer::yylex()
 {
-    std::cerr << "in ExampleFlexLexer::yylex() !" << std::endl;
+    std::cerr << "in SifuFlexLexer::yylex() !" << std::endl;
     return 0;
 }
 
@@ -2280,7 +2305,7 @@ int ExampleFlexLexer::yylex()
  * another input file, and scanning continues. If it returns true (non-zero),
  * then the scanner terminates, returning 0 to its caller. */
 
-int ExampleFlexLexer::yywrap()
+int SifuFlexLexer::yywrap()
 {
     return 1;
 }

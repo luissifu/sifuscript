@@ -4,7 +4,7 @@
  */
 
 %{ 
-#include "Expression.h"
+#include "expr/Expression.h"
 
 #include <cstdio>
 #include <iostream>
@@ -15,7 +15,7 @@ using namespace std;
 
  
 /*** yacc/bison Declarations ***/
-%output  "gramatica.c"
+%output  "gramatica.cpp"
 
 /* write out a header file containing the token defines */
 %defines "gramatica.h"
@@ -34,7 +34,7 @@ using namespace std;
 %skeleton "lalr1.cc"
 
 /* namespace to enclose parser in */
-%name-prefix="sifuscript"
+%name-prefix="ss"
 
 /* set the parser's class identifier */
 %define "parser_class_name" "Gramatica"
@@ -62,7 +62,7 @@ using namespace std;
 	int token;
 }
 
-%token			END	0	"end of file"
+%token END 0 "end of file"
 
 %token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
@@ -80,8 +80,7 @@ using namespace std;
 
 %{
 
-#include "driver.h"
-#include "tokens.h"
+#include "driver/Driver.h"
 
 /* this "connects" the bison parser in the driver to the flex scanner class
  * object. it defines the yylex() function call to pull the next token from the
@@ -309,8 +308,7 @@ ass_op : OP_ASSIGN																	{ cout << "ass op" << endl; }
  
 %%
 
-void sifuscript::Gramatica::error(const Gramatica::location_type& l,
-			    const std::string& m)
+void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)
 {
     driver.error(l, m);
 }
