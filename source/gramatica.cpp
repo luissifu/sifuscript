@@ -162,7 +162,7 @@ namespace ss {
      apostrophe, a comma, or backslash (other than backslash-backslash).
      YYSTR is taken from yytname.  */
   std::string
-  Gramatica::yytnamerr_ (const char *yystr)
+   "Gramatica" ::yytnamerr_ (const char *yystr)
   {
     if (*yystr == '"')
       {
@@ -195,7 +195,7 @@ namespace ss {
 
 
   /// Build a parser object.
-  Gramatica::Gramatica (class Driver& driver_yyarg)
+   "Gramatica" :: "Gramatica"  (class Driver& driver_yyarg)
     :
 #if YYDEBUG
       yydebug_ (false),
@@ -204,7 +204,7 @@ namespace ss {
       driver (driver_yyarg)
   {}
 
-  Gramatica::~Gramatica ()
+   "Gramatica" ::~ "Gramatica"  ()
   {}
 
 
@@ -213,7 +213,7 @@ namespace ss {
   `---------------*/
 
   inline
-  Gramatica::syntax_error::syntax_error (const location_type& l, const std::string& m)
+   "Gramatica" ::syntax_error::syntax_error (const location_type& l, const std::string& m)
     : std::runtime_error (m)
     , location (l)
   {}
@@ -221,13 +221,13 @@ namespace ss {
   // basic_symbol.
   template <typename Base>
   inline
-  Gramatica::basic_symbol<Base>::basic_symbol ()
+   "Gramatica" ::basic_symbol<Base>::basic_symbol ()
     : value ()
   {}
 
   template <typename Base>
   inline
-  Gramatica::basic_symbol<Base>::basic_symbol (const basic_symbol& other)
+   "Gramatica" ::basic_symbol<Base>::basic_symbol (const basic_symbol& other)
     : Base (other)
     , value ()
     , location (other.location)
@@ -238,7 +238,7 @@ namespace ss {
 
   template <typename Base>
   inline
-  Gramatica::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const semantic_type& v, const location_type& l)
+   "Gramatica" ::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const semantic_type& v, const location_type& l)
     : Base (t)
     , value (v)
     , location (l)
@@ -248,7 +248,7 @@ namespace ss {
   /// Constructor for valueless symbols.
   template <typename Base>
   inline
-  Gramatica::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const location_type& l)
+   "Gramatica" ::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const location_type& l)
     : Base (t)
     , value ()
     , location (l)
@@ -256,14 +256,14 @@ namespace ss {
 
   template <typename Base>
   inline
-  Gramatica::basic_symbol<Base>::~basic_symbol ()
+   "Gramatica" ::basic_symbol<Base>::~basic_symbol ()
   {
   }
 
   template <typename Base>
   inline
   void
-  Gramatica::basic_symbol<Base>::move (basic_symbol& s)
+   "Gramatica" ::basic_symbol<Base>::move (basic_symbol& s)
   {
     super_type::move(s);
     value = s.value;
@@ -272,23 +272,23 @@ namespace ss {
 
   // by_type.
   inline
-  Gramatica::by_type::by_type ()
+   "Gramatica" ::by_type::by_type ()
      : type (empty)
   {}
 
   inline
-  Gramatica::by_type::by_type (const by_type& other)
+   "Gramatica" ::by_type::by_type (const by_type& other)
     : type (other.type)
   {}
 
   inline
-  Gramatica::by_type::by_type (token_type t)
+   "Gramatica" ::by_type::by_type (token_type t)
     : type (yytranslate_ (t))
   {}
 
   inline
   void
-  Gramatica::by_type::move (by_type& that)
+   "Gramatica" ::by_type::move (by_type& that)
   {
     type = that.type;
     that.type = empty;
@@ -296,7 +296,7 @@ namespace ss {
 
   inline
   int
-  Gramatica::by_type::type_get () const
+   "Gramatica" ::by_type::type_get () const
   {
     return type;
   }
@@ -304,42 +304,42 @@ namespace ss {
 
   // by_state.
   inline
-  Gramatica::by_state::by_state ()
+   "Gramatica" ::by_state::by_state ()
     : state (empty)
   {}
 
   inline
-  Gramatica::by_state::by_state (const by_state& other)
+   "Gramatica" ::by_state::by_state (const by_state& other)
     : state (other.state)
   {}
 
   inline
   void
-  Gramatica::by_state::move (by_state& that)
+   "Gramatica" ::by_state::move (by_state& that)
   {
     state = that.state;
     that.state = empty;
   }
 
   inline
-  Gramatica::by_state::by_state (state_type s)
+   "Gramatica" ::by_state::by_state (state_type s)
     : state (s)
   {}
 
   inline
-  Gramatica::symbol_number_type
-  Gramatica::by_state::type_get () const
+   "Gramatica" ::symbol_number_type
+   "Gramatica" ::by_state::type_get () const
   {
     return state == empty ? 0 : yystos_[state];
   }
 
   inline
-  Gramatica::stack_symbol_type::stack_symbol_type ()
+   "Gramatica" ::stack_symbol_type::stack_symbol_type ()
   {}
 
 
   inline
-  Gramatica::stack_symbol_type::stack_symbol_type (state_type s, symbol_type& that)
+   "Gramatica" ::stack_symbol_type::stack_symbol_type (state_type s, symbol_type& that)
     : super_type (s, that.location)
   {
     value = that.value;
@@ -348,8 +348,8 @@ namespace ss {
   }
 
   inline
-  Gramatica::stack_symbol_type&
-  Gramatica::stack_symbol_type::operator= (const stack_symbol_type& that)
+   "Gramatica" ::stack_symbol_type&
+   "Gramatica" ::stack_symbol_type::operator= (const stack_symbol_type& that)
   {
     state = that.state;
     value = that.value;
@@ -361,7 +361,7 @@ namespace ss {
   template <typename Base>
   inline
   void
-  Gramatica::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
+   "Gramatica" ::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
   {
     if (yymsg)
       YY_SYMBOL_PRINT (yymsg, yysym);
@@ -373,7 +373,7 @@ namespace ss {
 #if YYDEBUG
   template <typename Base>
   void
-  Gramatica::yy_print_ (std::ostream& yyo,
+   "Gramatica" ::yy_print_ (std::ostream& yyo,
                                      const basic_symbol<Base>& yysym) const
   {
     std::ostream& yyoutput = yyo;
@@ -389,7 +389,7 @@ namespace ss {
 
   inline
   void
-  Gramatica::yypush_ (const char* m, state_type s, symbol_type& sym)
+   "Gramatica" ::yypush_ (const char* m, state_type s, symbol_type& sym)
   {
     stack_symbol_type t (s, sym);
     yypush_ (m, t);
@@ -397,7 +397,7 @@ namespace ss {
 
   inline
   void
-  Gramatica::yypush_ (const char* m, stack_symbol_type& s)
+   "Gramatica" ::yypush_ (const char* m, stack_symbol_type& s)
   {
     if (m)
       YY_SYMBOL_PRINT (m, s);
@@ -406,40 +406,40 @@ namespace ss {
 
   inline
   void
-  Gramatica::yypop_ (unsigned int n)
+   "Gramatica" ::yypop_ (unsigned int n)
   {
     yystack_.pop (n);
   }
 
 #if YYDEBUG
   std::ostream&
-  Gramatica::debug_stream () const
+   "Gramatica" ::debug_stream () const
   {
     return *yycdebug_;
   }
 
   void
-  Gramatica::set_debug_stream (std::ostream& o)
+   "Gramatica" ::set_debug_stream (std::ostream& o)
   {
     yycdebug_ = &o;
   }
 
 
-  Gramatica::debug_level_type
-  Gramatica::debug_level () const
+   "Gramatica" ::debug_level_type
+   "Gramatica" ::debug_level () const
   {
     return yydebug_;
   }
 
   void
-  Gramatica::set_debug_level (debug_level_type l)
+   "Gramatica" ::set_debug_level (debug_level_type l)
   {
     yydebug_ = l;
   }
 #endif // YYDEBUG
 
-  inline Gramatica::state_type
-  Gramatica::yy_lr_goto_state_ (state_type yystate, int yysym)
+  inline  "Gramatica" ::state_type
+   "Gramatica" ::yy_lr_goto_state_ (state_type yystate, int yysym)
   {
     int yyr = yypgoto_[yysym - yyntokens_] + yystate;
     if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
@@ -449,19 +449,19 @@ namespace ss {
   }
 
   inline bool
-  Gramatica::yy_pact_value_is_default_ (int yyvalue)
+   "Gramatica" ::yy_pact_value_is_default_ (int yyvalue)
   {
     return yyvalue == yypact_ninf_;
   }
 
   inline bool
-  Gramatica::yy_table_value_is_error_ (int yyvalue)
+   "Gramatica" ::yy_table_value_is_error_ (int yyvalue)
   {
     return yyvalue == yytable_ninf_;
   }
 
   int
-  Gramatica::parse ()
+   "Gramatica" ::parse ()
   {
     /// Whether yyla contains a lookahead.
     bool yyempty = true;
@@ -1442,14 +1442,14 @@ namespace ss {
   }
 
   void
-  Gramatica::error (const syntax_error& yyexc)
+   "Gramatica" ::error (const syntax_error& yyexc)
   {
     error (yyexc.location, yyexc.what());
   }
 
   // Generate an error message.
   std::string
-  Gramatica::yysyntax_error_ (state_type yystate, symbol_number_type yytoken) const
+   "Gramatica" ::yysyntax_error_ (state_type yystate, symbol_number_type yytoken) const
   {
     std::string yyres;
     // Number of reported tokens (one for the "unexpected", one per
@@ -1543,12 +1543,12 @@ namespace ss {
   }
 
 
-  const signed char Gramatica::yypact_ninf_ = -79;
+  const signed char  "Gramatica" ::yypact_ninf_ = -79;
 
-  const signed char Gramatica::yytable_ninf_ = -1;
+  const signed char  "Gramatica" ::yytable_ninf_ = -1;
 
   const short int
-  Gramatica::yypact_[] =
+   "Gramatica" ::yypact_[] =
   {
      132,    42,   -31,   -42,    42,    42,   246,   -25,    46,    42,
      -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -79,   -10,
@@ -1573,7 +1573,7 @@ namespace ss {
   };
 
   const unsigned char
-  Gramatica::yydefact_[] =
+   "Gramatica" ::yydefact_[] =
   {
        0,     0,     0,    30,     0,     0,     0,     0,     0,     0,
       42,    43,    44,    45,    46,    47,    48,    49,    20,    25,
@@ -1598,7 +1598,7 @@ namespace ss {
   };
 
   const short int
-  Gramatica::yypgoto_[] =
+   "Gramatica" ::yypgoto_[] =
   {
      -79,   -79,    26,   -79,    -9,    85,   -20,   159,   -61,   -79,
        5,   -79,   -44,   -79,   -11,   -79,   -79,   -79,   -79,   -79,
@@ -1608,7 +1608,7 @@ namespace ss {
   };
 
   const short int
-  Gramatica::yydefgoto_[] =
+   "Gramatica" ::yydefgoto_[] =
   {
       -1,    21,    22,   150,    23,    76,    24,    25,   114,    26,
       50,    28,    63,    29,    81,   129,    30,    31,    32,    33,
@@ -1618,7 +1618,7 @@ namespace ss {
   };
 
   const unsigned char
-  Gramatica::yytable_[] =
+   "Gramatica" ::yytable_[] =
   {
       67,    64,    65,    86,    77,    27,    70,    27,   118,   119,
       89,   135,    62,    75,    40,    41,    42,    43,    44,    45,
@@ -1655,7 +1655,7 @@ namespace ss {
   };
 
   const short int
-  Gramatica::yycheck_[] =
+   "Gramatica" ::yycheck_[] =
   {
        6,     4,     5,    48,    24,     0,     9,     2,    69,    70,
       54,    89,    54,    22,     4,     5,     6,     7,     8,     9,
@@ -1692,7 +1692,7 @@ namespace ss {
   };
 
   const unsigned char
-  Gramatica::yystos_[] =
+   "Gramatica" ::yystos_[] =
   {
        0,    10,    13,    14,    15,    16,    17,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    54,    56,
@@ -1717,7 +1717,7 @@ namespace ss {
   };
 
   const unsigned char
-  Gramatica::yyr1_[] =
+   "Gramatica" ::yyr1_[] =
   {
        0,    58,    59,    59,    59,    60,    61,    61,    62,    63,
       63,    64,    64,    64,    64,    64,    64,    64,    64,    64,
@@ -1734,7 +1734,7 @@ namespace ss {
   };
 
   const unsigned char
-  Gramatica::yyr2_[] =
+   "Gramatica" ::yyr2_[] =
   {
        0,     2,     2,     1,     1,     4,     1,     0,     2,     2,
        0,     1,     1,     1,     1,     1,     1,     1,     1,     1,
@@ -1755,7 +1755,7 @@ namespace ss {
   // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
   // First, the terminals, then, starting at \a yyntokens_, nonterminals.
   const char*
-  const Gramatica::yytname_[] =
+  const  "Gramatica" ::yytname_[] =
   {
   "\"end of file\"", "error", "$undefined", "CONST_NULL", "CONST_FALSE",
   "CONST_TRUE", "CONST_INT", "CONST_FLOAT", "CONST_STR", "CONST_CHAR",
@@ -1780,7 +1780,7 @@ namespace ss {
 
 #if YYDEBUG
   const unsigned short int
-  Gramatica::yyrline_[] =
+   "Gramatica" ::yyrline_[] =
   {
        0,    96,    96,    97,    98,   101,   104,   105,   108,   111,
      112,   115,   116,   117,   118,   119,   120,   121,   122,   123,
@@ -1798,7 +1798,7 @@ namespace ss {
 
   // Print the state stack on the debug stream.
   void
-  Gramatica::yystack_print_ ()
+   "Gramatica" ::yystack_print_ ()
   {
     *yycdebug_ << "Stack now";
     for (stack_type::const_iterator
@@ -1811,7 +1811,7 @@ namespace ss {
 
   // Report on the debug stream that the rule \a yyrule is going to be reduced.
   void
-  Gramatica::yy_reduce_print_ (int yyrule)
+   "Gramatica" ::yy_reduce_print_ (int yyrule)
   {
     unsigned int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
@@ -1827,8 +1827,8 @@ namespace ss {
 
   // Symbol number corresponding to token number t.
   inline
-  Gramatica::token_number_type
-  Gramatica::yytranslate_ (int t)
+   "Gramatica" ::token_number_type
+   "Gramatica" ::yytranslate_ (int t)
   {
     static
     const token_number_type

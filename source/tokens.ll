@@ -125,7 +125,7 @@ chr		[^\']
 "\."						{ return token::TK_DOT; }
 \n 							{ return token::TK_NEWLINE; }
 
-{minu}("_"|{let}|{dig})*	{ if (checkVar(yytext)) return token::T_ID; }
+{minu}("_"|{let}|{dig})*	{ /*if (driver.checkVar(yytext))*/ return token::T_ID; }
 {mayu}("_"|{let}|{dig})*	{ return token::T_CLASSNAME; }
 {dig}+						{ return token::CONST_INT; }
 {dig}+\.{dig}+				{ return token::CONST_FLOAT; }

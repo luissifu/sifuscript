@@ -1179,7 +1179,7 @@ YY_RULE_SETUP
 case 54:
 YY_RULE_SETUP
 #line 128 "tokens.ll"
-{ if (checkVar(yytext)) return token::T_ID; }
+{ /*if (driver.checkVar(yytext))*/ return token::T_ID; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP

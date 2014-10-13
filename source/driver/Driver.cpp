@@ -52,4 +52,11 @@ namespace ss {
 		std::cerr << m << std::endl;
 	}
 
+	bool Driver::checkVar(const char* name) {
+		if (context.existsVariable(std::string(name)))
+			std::cout << "Already declared" << std::endl;
+
+		return true;
+	}
+
 } // namespace example

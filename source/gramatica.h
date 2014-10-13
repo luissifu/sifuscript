@@ -116,7 +116,7 @@ namespace ss {
 
 
   /// A Bison parser.
-  class Gramatica
+  class  "Gramatica" 
   {
   public:
 #ifndef YYSTYPE
@@ -295,8 +295,8 @@ namespace ss {
 
 
     /// Build a parser object.
-    Gramatica (class Driver& driver_yyarg);
-    virtual ~Gramatica ();
+     "Gramatica"  (class Driver& driver_yyarg);
+    virtual ~ "Gramatica"  ();
 
     /// Parse.
     /// \returns  0 iff parsing succeeded.
@@ -326,8 +326,8 @@ namespace ss {
 
   private:
     /// This class is not copyable.
-    Gramatica (const Gramatica&);
-    Gramatica& operator= (const Gramatica&);
+     "Gramatica"  (const  "Gramatica" &);
+     "Gramatica" & operator= (const  "Gramatica" &);
 
     /// State numbers.
     typedef int state_type;

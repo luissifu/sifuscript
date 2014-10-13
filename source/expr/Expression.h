@@ -37,27 +37,27 @@ public:
 	typedef std::map<std::string, Var*> Var_Store;
 	Var_Store variables;
 
-    ///Array of defined function
+	///Array of defined function
 	typedef std::vector<BaseObject*> Func_Store;
 	Func_Store	functions;
 
-    // free the saved expression trees
-    ~SifuContext()
-    {
+	// free the saved expression trees
+	~SifuContext()
+	{
 		clearExpressions();
-    }
+	}
 
-    // free all saved expression trees
-    void clearExpressions();
+	// free all saved expression trees
+	void clearExpressions();
 
-    // check if the given variable name exists in the storage
-    bool existsVariable(const std::string &varname) const;
-    
-    // add a var
-    void addVariable(Var* var);
+	// check if the given variable name exists in the storage
+	bool existsVariable(const std::string &varname) const;
+	
+	// add a var
+	void addVariable(Var* var);
 
-    // return the given variable from the storage. throws an exception if it does not exist.
-    Var* getVariable(const std::string &varname) const;
+	// return the given variable from the storage. throws an exception if it does not exist.
+	Var* getVariable(const std::string &varname) const;
 };
 
 #endif // EXPRESSION_H
