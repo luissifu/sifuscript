@@ -4,10 +4,9 @@
  */
 
 %{
-#include "helpers.h"
 #include "tokens.h"
-#include <iostream> 
-using namespace std; 
+#include <iostream>
+using namespace std;
 
 /* import the parser's token type into a local typedef */
 typedef ss::Gramatica::token token;
@@ -42,7 +41,7 @@ typedef ss::Gramatica::token_type token_type;
 %option debug
 
 /* no support for include files is planned */
-%option yywrap nounput 
+%option yywrap nounput
 
 /* enables the use of start condition stacks */
 %option stack
@@ -60,7 +59,7 @@ minu	[a-z]
 str		[^\"]
 chr		[^\']
 
- 
+
 %%
 
 
@@ -134,10 +133,10 @@ chr		[^\']
 
 .							{ ; }
 
- 
+
 %% /*** Additional Code ***/
 
-namespace ss 
+namespace ss
 {
 
 	Token::Token(std::istream* in, std::ostream* out) : SifuFlexLexer(in, out) {}

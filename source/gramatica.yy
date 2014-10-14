@@ -3,17 +3,17 @@
  in order to specify the grammar
  */
 
-%{ 
+%{
 #include "expr/Expression.h"
 
 #include <cstdio>
 #include <iostream>
 using namespace std;
- 
-%}
- 
 
- 
+%}
+
+
+
 /*** yacc/bison Declarations ***/
 %output  "gramatica.cpp"
 
@@ -37,7 +37,7 @@ using namespace std;
 %name-prefix "ss"
 
 /* set the parser's class identifier */
-%define "parser_class_name" { "Gramatica" }
+%define "parser_class_name" { Gramatica }
 
 /* keep track of the current position within the input */
 %locations
@@ -57,7 +57,7 @@ using namespace std;
 
 /*** THE GRAMMAR ***/
 
-%union 
+%union
 {
 	int token;
 }
@@ -144,7 +144,7 @@ conditional : if elseif else 														{ ; }
 
 maybenl : TK_NEWLINE 																{ ; }
 		| /*E*/ 																	{ ; }
-		; 
+		;
 
 if : TK_IF expresion maybenl block 			 		 								{ ; }
    ;
@@ -301,11 +301,11 @@ add_op : OP_ADD 																	{ ; }
 
 neg_op : OP_NOT																		{ ; }
 	   ;
-	   
+
 ass_op : OP_ASSIGN																	{ ; }
 	   ;
 
- 
+
 %%
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)
