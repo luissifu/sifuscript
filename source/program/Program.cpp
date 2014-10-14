@@ -15,7 +15,7 @@ void Program::save() {
 	}
 }
 
-void Program::createStatement(char op, Var* left, Var* right, Var+ result) {
+void Program::createStatement(char op, Var* left, Var* right, Var* result) {
 	Statement stmt(op, left->getAddress(), right->getAddress(), result->getAddress());
 	statlist.push_back(stmt);
 }

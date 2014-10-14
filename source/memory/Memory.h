@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 enum memtype {
 	TYPE_CHAR,

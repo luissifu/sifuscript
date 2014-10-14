@@ -2,11 +2,11 @@
 
 Memory::Memory() {}
 
-Memory::setName(std::string name) {
+void Memory::setName(std::string name) {
 	this->name = name;
 }
 
-void Memory::add(int type) {
+int Memory::add(int type) {
 	switch(type)
 	{
 		case TYPE_CHAR:
