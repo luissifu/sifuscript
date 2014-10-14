@@ -1,11 +1,12 @@
 #pragma once
+#include <string>
 
 enum OP_INSTRUCTIONS {
 	OP_ADD,
 	OP_SUB,
 	OP_MULT,
 	OP_DIV
-}
+};
 
 class Statement {
 	public:
@@ -17,4 +18,4 @@ class Statement {
 		int left;
 		int right;
 		int result;
-}
+};
