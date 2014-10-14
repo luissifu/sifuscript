@@ -56,7 +56,7 @@ using namespace std;
 #include "gramatica.h"
 
 // User implementation prologue.
-#line 81 "gramatica.yy" // lalr1.cc:407
+#line 83 "gramatica.yy" // lalr1.cc:407
 
 
 #include "driver/Driver.h"
@@ -610,679 +610,679 @@ namespace ss {
           switch (yyn)
             {
   case 2:
-#line 96 "gramatica.yy" // lalr1.cc:847
+#line 98 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 616 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 3:
-#line 97 "gramatica.yy" // lalr1.cc:847
+#line 99 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 622 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 4:
-#line 98 "gramatica.yy" // lalr1.cc:847
+#line 100 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 628 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 5:
-#line 101 "gramatica.yy" // lalr1.cc:847
+#line 103 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 634 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 6:
-#line 104 "gramatica.yy" // lalr1.cc:847
+#line 106 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 640 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 7:
-#line 105 "gramatica.yy" // lalr1.cc:847
+#line 107 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 646 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 8:
-#line 108 "gramatica.yy" // lalr1.cc:847
+#line 110 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 652 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 9:
-#line 111 "gramatica.yy" // lalr1.cc:847
+#line 113 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 658 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 10:
-#line 112 "gramatica.yy" // lalr1.cc:847
+#line 114 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 664 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 11:
-#line 115 "gramatica.yy" // lalr1.cc:847
+#line 117 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 670 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 12:
-#line 116 "gramatica.yy" // lalr1.cc:847
+#line 118 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 676 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 13:
-#line 117 "gramatica.yy" // lalr1.cc:847
+#line 119 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 682 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 14:
-#line 118 "gramatica.yy" // lalr1.cc:847
+#line 120 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 688 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 15:
-#line 119 "gramatica.yy" // lalr1.cc:847
+#line 121 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 694 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 16:
-#line 120 "gramatica.yy" // lalr1.cc:847
+#line 122 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 700 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 17:
-#line 121 "gramatica.yy" // lalr1.cc:847
+#line 123 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 706 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 18:
-#line 122 "gramatica.yy" // lalr1.cc:847
+#line 124 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 712 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 19:
-#line 123 "gramatica.yy" // lalr1.cc:847
+#line 125 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 718 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 20:
-#line 124 "gramatica.yy" // lalr1.cc:847
+#line 126 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 724 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 21:
-#line 127 "gramatica.yy" // lalr1.cc:847
+#line 129 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 730 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 22:
-#line 130 "gramatica.yy" // lalr1.cc:847
+#line 132 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 736 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 23:
-#line 131 "gramatica.yy" // lalr1.cc:847
+#line 133 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 742 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 24:
-#line 134 "gramatica.yy" // lalr1.cc:847
+#line 136 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 748 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 25:
-#line 137 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 139 "gramatica.yy" // lalr1.cc:847
+    { cout << (yystack_[0].value.string) << endl; }
 #line 754 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 26:
-#line 138 "gramatica.yy" // lalr1.cc:847
+#line 140 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 760 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 27:
-#line 139 "gramatica.yy" // lalr1.cc:847
+#line 141 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 766 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 28:
-#line 142 "gramatica.yy" // lalr1.cc:847
+#line 144 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 772 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 29:
-#line 145 "gramatica.yy" // lalr1.cc:847
+#line 147 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 778 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 30:
-#line 146 "gramatica.yy" // lalr1.cc:847
+#line 148 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 784 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 31:
-#line 149 "gramatica.yy" // lalr1.cc:847
+#line 151 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 790 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 32:
-#line 152 "gramatica.yy" // lalr1.cc:847
+#line 154 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 796 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 33:
-#line 153 "gramatica.yy" // lalr1.cc:847
+#line 155 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 802 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 34:
-#line 156 "gramatica.yy" // lalr1.cc:847
+#line 158 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 808 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 35:
-#line 157 "gramatica.yy" // lalr1.cc:847
+#line 159 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 814 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 36:
-#line 160 "gramatica.yy" // lalr1.cc:847
+#line 162 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 820 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 37:
-#line 161 "gramatica.yy" // lalr1.cc:847
+#line 163 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 826 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 38:
-#line 162 "gramatica.yy" // lalr1.cc:847
+#line 164 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 832 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 39:
-#line 165 "gramatica.yy" // lalr1.cc:847
+#line 167 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 838 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 40:
-#line 168 "gramatica.yy" // lalr1.cc:847
+#line 170 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 844 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 41:
-#line 171 "gramatica.yy" // lalr1.cc:847
+#line 173 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 850 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 42:
-#line 174 "gramatica.yy" // lalr1.cc:847
+#line 176 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 856 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 43:
-#line 175 "gramatica.yy" // lalr1.cc:847
+#line 177 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 862 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 44:
-#line 176 "gramatica.yy" // lalr1.cc:847
+#line 178 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 868 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 45:
-#line 177 "gramatica.yy" // lalr1.cc:847
+#line 179 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 874 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 46:
-#line 178 "gramatica.yy" // lalr1.cc:847
+#line 180 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 880 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 47:
-#line 179 "gramatica.yy" // lalr1.cc:847
+#line 181 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 886 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 48:
-#line 180 "gramatica.yy" // lalr1.cc:847
+#line 182 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 892 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 49:
-#line 181 "gramatica.yy" // lalr1.cc:847
+#line 183 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 898 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 50:
-#line 182 "gramatica.yy" // lalr1.cc:847
+#line 184 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 904 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 51:
-#line 185 "gramatica.yy" // lalr1.cc:847
+#line 187 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 910 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 52:
-#line 188 "gramatica.yy" // lalr1.cc:847
+#line 190 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 916 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 54:
-#line 192 "gramatica.yy" // lalr1.cc:847
+#line 194 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 922 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 55:
-#line 193 "gramatica.yy" // lalr1.cc:847
+#line 195 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 928 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 56:
-#line 194 "gramatica.yy" // lalr1.cc:847
+#line 196 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 934 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 57:
-#line 197 "gramatica.yy" // lalr1.cc:847
+#line 199 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 940 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 58:
-#line 198 "gramatica.yy" // lalr1.cc:847
+#line 200 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 946 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 59:
-#line 201 "gramatica.yy" // lalr1.cc:847
+#line 203 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 952 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 60:
-#line 202 "gramatica.yy" // lalr1.cc:847
+#line 204 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 958 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 61:
-#line 205 "gramatica.yy" // lalr1.cc:847
+#line 207 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 964 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 62:
-#line 206 "gramatica.yy" // lalr1.cc:847
+#line 208 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 970 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 63:
-#line 209 "gramatica.yy" // lalr1.cc:847
+#line 211 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 976 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 64:
-#line 210 "gramatica.yy" // lalr1.cc:847
+#line 212 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 982 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 65:
-#line 213 "gramatica.yy" // lalr1.cc:847
+#line 215 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 988 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 66:
-#line 214 "gramatica.yy" // lalr1.cc:847
+#line 216 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 994 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 67:
-#line 217 "gramatica.yy" // lalr1.cc:847
+#line 219 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1000 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 68:
-#line 218 "gramatica.yy" // lalr1.cc:847
+#line 220 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1006 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 69:
-#line 221 "gramatica.yy" // lalr1.cc:847
+#line 223 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1012 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 70:
-#line 222 "gramatica.yy" // lalr1.cc:847
+#line 224 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1018 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 71:
-#line 225 "gramatica.yy" // lalr1.cc:847
+#line 227 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1024 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 72:
-#line 228 "gramatica.yy" // lalr1.cc:847
+#line 230 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1030 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 73:
-#line 229 "gramatica.yy" // lalr1.cc:847
+#line 231 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1036 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 74:
-#line 232 "gramatica.yy" // lalr1.cc:847
+#line 234 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1042 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 75:
-#line 233 "gramatica.yy" // lalr1.cc:847
+#line 235 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1048 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 76:
-#line 234 "gramatica.yy" // lalr1.cc:847
+#line 236 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1054 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 77:
-#line 235 "gramatica.yy" // lalr1.cc:847
+#line 237 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1060 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 78:
-#line 236 "gramatica.yy" // lalr1.cc:847
+#line 238 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1066 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 79:
-#line 237 "gramatica.yy" // lalr1.cc:847
+#line 239 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1072 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 80:
-#line 240 "gramatica.yy" // lalr1.cc:847
+#line 242 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1078 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 81:
-#line 241 "gramatica.yy" // lalr1.cc:847
+#line 243 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1084 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 82:
-#line 244 "gramatica.yy" // lalr1.cc:847
+#line 246 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1090 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 83:
-#line 245 "gramatica.yy" // lalr1.cc:847
+#line 247 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1096 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 84:
-#line 248 "gramatica.yy" // lalr1.cc:847
+#line 250 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1102 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 85:
-#line 249 "gramatica.yy" // lalr1.cc:847
+#line 251 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1108 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 86:
-#line 252 "gramatica.yy" // lalr1.cc:847
+#line 254 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1114 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 87:
-#line 253 "gramatica.yy" // lalr1.cc:847
+#line 255 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1120 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 88:
-#line 256 "gramatica.yy" // lalr1.cc:847
+#line 258 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 89:
-#line 257 "gramatica.yy" // lalr1.cc:847
+#line 259 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1132 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 90:
-#line 260 "gramatica.yy" // lalr1.cc:847
+#line 262 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1138 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 91:
-#line 261 "gramatica.yy" // lalr1.cc:847
+#line 263 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1144 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 92:
-#line 264 "gramatica.yy" // lalr1.cc:847
+#line 266 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1150 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 93:
-#line 265 "gramatica.yy" // lalr1.cc:847
+#line 267 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1156 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 94:
-#line 268 "gramatica.yy" // lalr1.cc:847
+#line 270 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1162 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 95:
-#line 269 "gramatica.yy" // lalr1.cc:847
+#line 271 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1168 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 96:
-#line 272 "gramatica.yy" // lalr1.cc:847
+#line 274 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1174 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 97:
-#line 273 "gramatica.yy" // lalr1.cc:847
+#line 275 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1180 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 98:
-#line 276 "gramatica.yy" // lalr1.cc:847
+#line 278 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1186 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 99:
-#line 277 "gramatica.yy" // lalr1.cc:847
+#line 279 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1192 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 100:
-#line 278 "gramatica.yy" // lalr1.cc:847
+#line 280 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1198 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 101:
-#line 281 "gramatica.yy" // lalr1.cc:847
+#line 283 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1204 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 102:
-#line 282 "gramatica.yy" // lalr1.cc:847
+#line 284 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1210 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 103:
-#line 285 "gramatica.yy" // lalr1.cc:847
+#line 287 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1216 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 104:
-#line 286 "gramatica.yy" // lalr1.cc:847
+#line 288 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1222 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 105:
-#line 287 "gramatica.yy" // lalr1.cc:847
+#line 289 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1228 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 106:
-#line 288 "gramatica.yy" // lalr1.cc:847
+#line 290 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1234 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 107:
-#line 289 "gramatica.yy" // lalr1.cc:847
+#line 291 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1240 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 108:
-#line 290 "gramatica.yy" // lalr1.cc:847
+#line 292 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1246 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 109:
-#line 293 "gramatica.yy" // lalr1.cc:847
+#line 295 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1252 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 110:
-#line 294 "gramatica.yy" // lalr1.cc:847
+#line 296 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1258 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 111:
-#line 295 "gramatica.yy" // lalr1.cc:847
+#line 297 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1264 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 112:
-#line 298 "gramatica.yy" // lalr1.cc:847
+#line 300 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1270 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 113:
-#line 299 "gramatica.yy" // lalr1.cc:847
+#line 301 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1276 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 114:
-#line 302 "gramatica.yy" // lalr1.cc:847
+#line 304 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1282 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 115:
-#line 305 "gramatica.yy" // lalr1.cc:847
+#line 307 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1288 "gramatica.cpp" // lalr1.cc:847
     break;
@@ -1782,18 +1782,18 @@ namespace ss {
   const unsigned short int
    Gramatica ::yyrline_[] =
   {
-       0,    96,    96,    97,    98,   101,   104,   105,   108,   111,
-     112,   115,   116,   117,   118,   119,   120,   121,   122,   123,
-     124,   127,   130,   131,   134,   137,   138,   139,   142,   145,
-     146,   149,   152,   153,   156,   157,   160,   161,   162,   165,
-     168,   171,   174,   175,   176,   177,   178,   179,   180,   181,
-     182,   185,   188,   189,   192,   193,   194,   197,   198,   201,
-     202,   205,   206,   209,   210,   213,   214,   217,   218,   221,
-     222,   225,   228,   229,   232,   233,   234,   235,   236,   237,
-     240,   241,   244,   245,   248,   249,   252,   253,   256,   257,
-     260,   261,   264,   265,   268,   269,   272,   273,   276,   277,
-     278,   281,   282,   285,   286,   287,   288,   289,   290,   293,
-     294,   295,   298,   299,   302,   305
+       0,    98,    98,    99,   100,   103,   106,   107,   110,   113,
+     114,   117,   118,   119,   120,   121,   122,   123,   124,   125,
+     126,   129,   132,   133,   136,   139,   140,   141,   144,   147,
+     148,   151,   154,   155,   158,   159,   162,   163,   164,   167,
+     170,   173,   176,   177,   178,   179,   180,   181,   182,   183,
+     184,   187,   190,   191,   194,   195,   196,   199,   200,   203,
+     204,   207,   208,   211,   212,   215,   216,   219,   220,   223,
+     224,   227,   230,   231,   234,   235,   236,   237,   238,   239,
+     242,   243,   246,   247,   250,   251,   254,   255,   258,   259,
+     262,   263,   266,   267,   270,   271,   274,   275,   278,   279,
+     280,   283,   284,   287,   288,   289,   290,   291,   292,   295,
+     296,   297,   300,   301,   304,   307
   };
 
   // Print the state stack on the debug stream.
@@ -1881,7 +1881,7 @@ namespace ss {
 
 } // ss
 #line 1884 "gramatica.cpp" // lalr1.cc:1155
-#line 309 "gramatica.yy" // lalr1.cc:1156
+#line 311 "gramatica.yy" // lalr1.cc:1156
 
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)

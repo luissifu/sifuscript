@@ -1178,7 +1178,7 @@ YY_RULE_SETUP
 case 54:
 YY_RULE_SETUP
 #line 127 "tokens.ll"
-{ /*if (driver.checkVar(yytext))*/ return token::T_ID; }
+{ yylval->string = strdup(yytext); return token::T_ID; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP

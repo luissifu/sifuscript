@@ -60,11 +60,13 @@ using namespace std;
 %union
 {
 	int token;
+    char* string;
 }
 
 %token END 0 "end of file"
 
-%token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT CONST_STR CONST_CHAR
+%token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT
+%token <string> CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
 %token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT
 %token <token> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
@@ -75,7 +77,7 @@ using namespace std;
 %token <token> OP_ASSIGN
 %token <token> TK_LEFTBRACKET TK_RIGHTBRACKET TK_LEFTPAREN TK_RIGHTPAREN TK_LEFTSQBRACKET TK_RIGHTSQBRACKET
 %token <token> TK_COMMA TK_SEMICOLON TK_NEWLINE TK_DOT
-%token <token> T_ID T_CLASSNAME
+%token <string> T_ID T_CLASSNAME
 
 
 %{
@@ -134,7 +136,7 @@ delimiter : TK_NEWLINE 																{ ; }
 return : TK_RETURN expresion delimiter 												{ ; }
 	   ;
 
-id : T_ID																			{ ; }
+id : T_ID																			{ cout << $1 << endl; }
    | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ ; }
    | T_ID TK_DOT T_ID 																{ ; }
    ;

@@ -31,7 +31,7 @@ namespace ss {
 	bool Driver::parse_file(const std::string &filename)
 	{
 		std::ifstream in(filename.c_str());
-		if (!in.good()) 
+		if (!in.good())
 			return false;
 		return parse_stream(in, filename);
 	}
@@ -50,13 +50,6 @@ namespace ss {
 	void Driver::error(const std::string& m)
 	{
 		std::cerr << m << std::endl;
-	}
-
-	bool Driver::checkVar(const char* name) {
-		if (context.existsVariable(std::string(name)))
-			std::cout << "Already declared" << std::endl;
-
-		return true;
 	}
 
 } // namespace example

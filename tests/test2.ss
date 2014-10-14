@@ -1,2 +1,7 @@
-int listauno = [1,2,3,4,5]
-int listados = []
+int x = 2
+int y = 3
+int z = 4
+
+int x = 1
+
+print x

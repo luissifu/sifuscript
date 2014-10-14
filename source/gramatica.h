@@ -126,8 +126,9 @@ namespace ss {
     #line 61 "gramatica.yy" // lalr1.cc:372
 
 	int token;
+    char* string;
 
-#line 131 "gramatica.h" // lalr1.cc:372
+#line 132 "gramatica.h" // lalr1.cc:372
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -510,7 +511,7 @@ namespace ss {
 
 
 } // ss
-#line 514 "gramatica.h" // lalr1.cc:372
+#line 515 "gramatica.h" // lalr1.cc:372
 
 
 

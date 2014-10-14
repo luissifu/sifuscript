@@ -79,8 +79,6 @@ public:
 	/** Reference to the Context Class filled during parsing of the
 	 * expressions.(Variable-tables and so on) */
 	class SifuContext& context;
-
-	bool checkVar(const char* name);
 };
 
 } // namespace ss
