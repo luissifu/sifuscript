@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include <ostream>
+#include <iostream>
 #include <stdexcept>
 
 #include "../vars/Var.h"
@@ -52,12 +53,14 @@ public:
 
 	// check if the given variable name exists in the storage
 	bool existsVariable(const std::string &varname) const;
-	
+
 	// add a var
 	void addVariable(Var* var);
 
 	// return the given variable from the storage. throws an exception if it does not exist.
 	Var* getVariable(const std::string &varname) const;
+
+	void dump();
 };
 
 #endif // EXPRESSION_H

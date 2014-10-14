@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 			if (result)
 			{
 				std::cout << "Compiled Succesfully" << std::endl;
+				driver.context.dump();
 			}
             else
             {

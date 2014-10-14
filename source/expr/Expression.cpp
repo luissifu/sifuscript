@@ -2,7 +2,7 @@
  * Expression.c
  * Implementation of functions used to build the syntax tree and the context-saving
  */
- 
+
 #include "Expression.h"
 #include <stdlib.h>
 
@@ -20,7 +20,7 @@ void SifuContext::clearExpressions()
 		delete &it->first;
 		delete it->second;
 	}
-	functions.clear();
+	variables.clear();
 }
 
 // check if the given variable name exists in the storage
@@ -44,5 +44,10 @@ Var* SifuContext::getVariable(const std::string &varname) const
 	else
 		return vi->second;
 }
- 
 
+void SifuContext::dump() {
+    for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
+    {
+        std::cout << it->first << std::endl;
+    }
+}
