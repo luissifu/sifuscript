@@ -88,14 +88,14 @@ chr		[^\']
 "import"					{ return token::TK_IMPORT; }
 "print"						{ return token::TK_PRINT; }
 "return"					{ return token::TK_RETURN; }
-"boolean"					{ return token::TPNM_BOOL; }
-"char"						{ return token::TPNM_CHAR; }
-"short"						{ return token::TPNM_SHORT; }
-"int"						{ return token::TPNM_INT; }
-"long"						{ return token::TPNM_LONG; }
-"float"						{ return token::TPNM_FLOAT; }
-"double"					{ return token::TPNM_DOUBLE; }
-"string"					{ return token::TPNM_STR; }
+"boolean"					{ yylval->string = strdup(yytext); return token::TPNM_BOOL; }
+"char"						{ yylval->string = strdup(yytext); return token::TPNM_CHAR; }
+"short"						{ yylval->string = strdup(yytext); return token::TPNM_SHORT; }
+"int"						{ yylval->string = strdup(yytext); return token::TPNM_INT; }
+"long"						{ yylval->string = strdup(yytext); return token::TPNM_LONG; }
+"float"						{ yylval->string = strdup(yytext); return token::TPNM_FLOAT; }
+"double"					{ yylval->string = strdup(yytext); return token::TPNM_DOUBLE; }
+"string"					{ yylval->string = strdup(yytext); return token::TPNM_STR; }
 "private"					{ return token::ACC_PRIVATE; }
 "public"					{ return token::ACC_PUBLIC; }
 "!"							{ return token::OP_NOT; }

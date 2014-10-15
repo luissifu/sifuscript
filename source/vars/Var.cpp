@@ -3,8 +3,7 @@
 Var::Var(std::string name, int type, int address) {
 	this->name = name;
 	this->type = type;
-	//cambiar mas adelante
-	this->address = 0;
+	this->address = address;
 }
 
 bool Var::isOfType(vartype t) {

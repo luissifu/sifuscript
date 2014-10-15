@@ -749,7 +749,7 @@ namespace ss {
 
   case 25:
 #line 139 "gramatica.yy" // lalr1.cc:847
-    { cout << (yystack_[0].value.string) << endl; }
+    { driver.addId((yystack_[0].value.string)); }
 #line 754 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -851,55 +851,55 @@ namespace ss {
 
   case 42:
 #line 176 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 856 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 43:
 #line 177 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 862 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 44:
 #line 178 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 868 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 45:
 #line 179 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 874 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 46:
 #line 180 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 880 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 47:
 #line 181 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 886 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 48:
 #line 182 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 892 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 49:
 #line 183 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 898 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 50:
 #line 184 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addType((yystack_[0].value.string)); }
 #line 904 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1007,7 +1007,7 @@ namespace ss {
 
   case 69:
 #line 223 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.checkVar(); }
 #line 1012 "gramatica.cpp" // lalr1.cc:847
     break;
 

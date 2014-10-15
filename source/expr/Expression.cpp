@@ -17,7 +17,7 @@ void SifuContext::clearExpressions()
 
 	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
 	{
-		delete &it->first;
+		//delete &it->first;
 		delete it->second;
 	}
 	variables.clear();
@@ -32,6 +32,7 @@ bool SifuContext::existsVariable(const std::string &varname) const
 // check if the given variable name exists in the storage
 void SifuContext::addVariable(Var* var)
 {
+	std::cout << "added var: " << var->getName() << std::endl;
 	variables[var->getName()] = var;
 }
 
@@ -46,8 +47,9 @@ Var* SifuContext::getVariable(const std::string &varname) const
 }
 
 void SifuContext::dump() {
+	std::cout << "Dumping var table..." << std::endl;
     for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
     {
-        std::cout << it->first << std::endl;
+        std::cout << it->second->getName() << ":" << it->second->getType() << "[" << it->second->getAddress() << "]" << std::endl;
     }
 }

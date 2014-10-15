@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <stack>
 
 #include "../tokens.h"
 #include "../expr/Expression.h"
@@ -79,6 +80,16 @@ public:
 	/** Reference to the Context Class filled during parsing of the
 	 * expressions.(Variable-tables and so on) */
 	class SifuContext& context;
+
+	//Extra
+	std::stack<std::string> idstack;
+	std::stack<int> typestack;
+
+	void addId(char* str);
+
+	void checkVar();
+
+	void addType(char* type);
 };
 
 } // namespace ss

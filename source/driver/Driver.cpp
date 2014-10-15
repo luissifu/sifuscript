@@ -52,4 +52,71 @@ namespace ss {
 		std::cerr << m << std::endl;
 	}
 
+	void Driver::addId(char* str) {
+		std::string s(str);
+		idstack.push(s);
+	}
+
+	void Driver::checkVar() {
+		std::string var = idstack.top();
+		idstack.pop();
+
+		int type = typestack.top();
+		typestack.pop();
+
+		if (context.existsVariable(var))
+		{
+			std::cout << "Already exists" << std::endl;
+			return;
+		}
+
+		Var* v = new Var(var, type, 0);
+		context.addVariable(v);
+	}
+
+	void Driver::addType(char* type) {
+		std::string typen(type);
+
+		int maptype;
+
+		if (typen.compare("boolean") == 0)
+		{
+			maptype = VARTYPE_BOOL;
+		}
+		else if (typen.compare("char") == 0)
+		{
+			maptype = VARTYPE_CHAR;
+		}
+		else if (typen.compare("short") == 0)
+		{
+			maptype = VARTYPE_SHORT;
+		}
+		else if (typen.compare("int") == 0)
+		{
+			maptype = VARTYPE_INT;
+		}
+		else if (typen.compare("long") == 0)
+		{
+			maptype = VARTYPE_LONG;
+		}
+		else if (typen.compare("float") == 0)
+		{
+			maptype = VARTYPE_FLOAT;
+		}
+		else if (typen.compare("double") == 0)
+		{
+			maptype = VARTYPE_DOUBLE;
+		}
+		else if (typen.compare("string") == 0)
+		{
+			maptype = VARTYPE_STRING;
+		}
+		else
+		{
+			maptype = VARTYPE_CLASS;
+		}
+
+		typestack.push(maptype);
+	}
+
 } // namespace example

@@ -1002,42 +1002,42 @@ YY_RULE_SETUP
 case 19:
 YY_RULE_SETUP
 #line 91 "tokens.ll"
-{ return token::TPNM_BOOL; }
+{ yylval->string = strdup(yytext); return token::TPNM_BOOL; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 92 "tokens.ll"
-{ return token::TPNM_CHAR; }
+{ yylval->string = strdup(yytext); return token::TPNM_CHAR; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 93 "tokens.ll"
-{ return token::TPNM_SHORT; }
+{ yylval->string = strdup(yytext); return token::TPNM_SHORT; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 94 "tokens.ll"
-{ return token::TPNM_INT; }
+{ yylval->string = strdup(yytext); return token::TPNM_INT; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 95 "tokens.ll"
-{ return token::TPNM_LONG; }
+{ yylval->string = strdup(yytext); return token::TPNM_LONG; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 96 "tokens.ll"
-{ return token::TPNM_FLOAT; }
+{ yylval->string = strdup(yytext); return token::TPNM_FLOAT; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 97 "tokens.ll"
-{ return token::TPNM_DOUBLE; }
+{ yylval->string = strdup(yytext); return token::TPNM_DOUBLE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 98 "tokens.ll"
-{ return token::TPNM_STR; }
+{ yylval->string = strdup(yytext); return token::TPNM_STR; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP

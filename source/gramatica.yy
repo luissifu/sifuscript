@@ -69,7 +69,7 @@ using namespace std;
 %token <string> CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
 %token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT
-%token <token> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
+%token <string> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
 %token <token> ACC_PRIVATE ACC_PUBLIC
 %token <token> OP_NOT OP_AND OP_OR
 %token <token> OP_MULT OP_DIV OP_MOD OP_ADD OP_SUB
@@ -136,7 +136,7 @@ delimiter : TK_NEWLINE 																{ ; }
 return : TK_RETURN expresion delimiter 												{ ; }
 	   ;
 
-id : T_ID																			{ cout << $1 << endl; }
+id : T_ID																			{ driver.addId($1); }
    | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ ; }
    | T_ID TK_DOT T_ID 																{ ; }
    ;
@@ -173,15 +173,15 @@ do : TK_DO maybenl block TK_WHILE expresion delimiter	 							{ ; }
 while : TK_WHILE expresion maybenl block											{ ; }
 	  ;
 
-type : TPNM_BOOL																	{ ; }
-	 | TPNM_CHAR																	{ ; }
-	 | TPNM_SHORT																	{ ; }
-	 | TPNM_INT																		{ ; }
-	 | TPNM_LONG																	{ ; }
-	 | TPNM_FLOAT																	{ ; }
-	 | TPNM_DOUBLE																	{ ; }
-	 | TPNM_STR																		{ ; }
-	 | T_CLASSNAME																	{ ; }
+type : TPNM_BOOL																	{ driver.addType($1); }
+	 | TPNM_CHAR																	{ driver.addType($1); }
+	 | TPNM_SHORT																	{ driver.addType($1); }
+	 | TPNM_INT																		{ driver.addType($1); }
+	 | TPNM_LONG																	{ driver.addType($1); }
+	 | TPNM_FLOAT																	{ driver.addType($1); }
+	 | TPNM_DOUBLE																	{ driver.addType($1); }
+	 | TPNM_STR																		{ driver.addType($1); }
+	 | T_CLASSNAME																	{ driver.addType($1); }
 	 ;
 
 class : TK_CLASS T_CLASSNAME maybenl TK_LEFTBRACKET class_dec TK_RIGHTBRACKET 		{ ; }
@@ -220,7 +220,7 @@ call_args : var_const 																{ ; }
 		  | var_const TK_COMMA call_args 											{ ; }
 		  ;
 
-var : type id delimiter 															{ ; }
+var : type id delimiter 															{ driver.checkVar(); }
 	| type id ass_op expresion delimiter 											{ ; }
 	;
 
