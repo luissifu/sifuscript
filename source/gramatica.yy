@@ -65,7 +65,7 @@ using namespace std;
 
 %token END 0 "end of file"
 
-%token <token> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT
+%token <string> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT
 %token <string> CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
 %token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT
@@ -232,15 +232,15 @@ block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 									{ ; }
 	  ;
 
 var_const : boolean 																{ ; }
-		  | CONST_CHAR 																{ ; }
-		  | CONST_INT 																{ ; }
-		  | CONST_FLOAT 															{ ; }
-		  | CONST_STR 																{ ; }
+		  | CONST_CHAR 																{ driver.addConst($1, 'c'); }
+		  | CONST_INT 																{ driver.addConst($1, 'i'); }
+		  | CONST_FLOAT 															{ driver.addConst($1, 'f'); }
+		  | CONST_STR 																{ driver.addConst($1, 's'); }
 		  | list 																	{ ; }
 		  ;
 
-boolean : CONST_TRUE 																{ ; }
-		| CONST_FALSE 																{ ; }
+boolean : CONST_TRUE 																{ driver.addConst($1, 'b'); }
+		| CONST_FALSE 																{ driver.addConst($1, 'b'); }
 		;
 
 list : TK_LEFTSQBRACKET list_elem TK_RIGHTSQBRACKET			 						{ ; }

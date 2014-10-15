@@ -917,17 +917,17 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 74 "tokens.ll"
-{ return token::CONST_NULL; }
+{ yylval->string = strdup(yytext); return token::CONST_NULL; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 75 "tokens.ll"
-{ return token::CONST_FALSE; }
+{ yylval->string = strdup(yytext); return token::CONST_FALSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 76 "tokens.ll"
-{ return token::CONST_TRUE; }
+{ yylval->string = strdup(yytext); return token::CONST_TRUE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
@@ -1183,29 +1183,29 @@ YY_RULE_SETUP
 case 55:
 YY_RULE_SETUP
 #line 128 "tokens.ll"
-{ return token::T_CLASSNAME; }
+{ yylval->string = strdup(yytext); return token::T_CLASSNAME; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 129 "tokens.ll"
-{ return token::CONST_INT; }
+{ yylval->string = strdup(yytext); return token::CONST_INT; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 130 "tokens.ll"
-{ return token::CONST_FLOAT; }
+{ yylval->string = strdup(yytext); return token::CONST_FLOAT; }
 	YY_BREAK
 case 58:
 /* rule 58 can match eol */
 YY_RULE_SETUP
 #line 131 "tokens.ll"
-{ return token::CONST_STR; }
+{ yylval->string = strdup(yytext); return token::CONST_STR; }
 	YY_BREAK
 case 59:
 /* rule 59 can match eol */
 YY_RULE_SETUP
 #line 132 "tokens.ll"
-{ return token::CONST_CHAR; }
+{ yylval->string = strdup(yytext); return token::CONST_CHAR; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP

@@ -71,9 +71,9 @@ chr		[^\']
 
 
 [ \t\r]						{ ; }
-"null"						{ return token::CONST_NULL; }
-"true"						{ return token::CONST_FALSE; }
-"false"						{ return token::CONST_TRUE; }
+"null"						{ yylval->string = strdup(yytext); return token::CONST_NULL; }
+"true"						{ yylval->string = strdup(yytext); return token::CONST_FALSE; }
+"false"						{ yylval->string = strdup(yytext); return token::CONST_TRUE; }
 "and"						{ return token::OP_AND; }
 "or"						{ return token::OP_OR; }
 "not"						{ return token::OP_NOT; }
@@ -125,11 +125,11 @@ chr		[^\']
 \n 							{ return token::TK_NEWLINE; }
 
 {minu}("_"|{let}|{dig})*	{ yylval->string = strdup(yytext); return token::T_ID; }
-{mayu}("_"|{let}|{dig})*	{ return token::T_CLASSNAME; }
-{dig}+						{ return token::CONST_INT; }
-{dig}+\.{dig}+				{ return token::CONST_FLOAT; }
-\"{str}*\"					{ return token::CONST_STR; }
-\'{chr}\'					{ return token::CONST_CHAR; }
+{mayu}("_"|{let}|{dig})*	{ yylval->string = strdup(yytext); return token::T_CLASSNAME; }
+{dig}+						{ yylval->string = strdup(yytext); return token::CONST_INT; }
+{dig}+\.{dig}+				{ yylval->string = strdup(yytext); return token::CONST_FLOAT; }
+\"{str}*\"					{ yylval->string = strdup(yytext); return token::CONST_STR; }
+\'{chr}\'					{ yylval->string = strdup(yytext); return token::CONST_CHAR; }
 
 .							{ ; }
 

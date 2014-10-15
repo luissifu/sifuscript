@@ -5,7 +5,7 @@ OBJS = $(wildcard source/*.cpp) $(wildcard source/*/*.cpp)
 CC = g++
 
 #Compiler Flags
-COMP_FLAG = -w
+COMP_FLAG = -w -std=c++11
 
 #Linker Flags
 LINK_FLAG = -lfl
@@ -14,5 +14,5 @@ LINK_FLAG = -lfl
 NAME = build/sifuc
 
 #Targets
-sifuc : $(OBJS) 
+sifuc : $(OBJS)
 	$(CC) $(OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)

@@ -1043,25 +1043,25 @@ namespace ss {
 
   case 75:
 #line 235 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 'c'); }
 #line 1048 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 76:
 #line 236 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 'i'); }
 #line 1054 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 77:
 #line 237 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 'f'); }
 #line 1060 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 78:
 #line 238 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 's'); }
 #line 1066 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1073,13 +1073,13 @@ namespace ss {
 
   case 80:
 #line 242 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 'b'); }
 #line 1078 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 81:
 #line 243 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.addConst((yystack_[0].value.string), 'b'); }
 #line 1084 "gramatica.cpp" // lalr1.cc:847
     break;
 

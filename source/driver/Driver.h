@@ -90,6 +90,7 @@ public:
 	std::stack<std::string> idstack;
 	std::stack<int> typestack;
 	std::vector<Var*> temps;
+	std::vector<Var*> consts;
 
 	Aritmetic aritmetic;
 
@@ -110,6 +111,8 @@ public:
 	char getMappedOp(char op);
 
 	void genAssign();
+
+	void addConst(char* name, char type);
 };
 
 } // namespace ss

@@ -233,4 +233,37 @@ namespace ss {
 		program.createStatement(realop, left->getAddress(), -1, result->getAddress());
 	}
 
+	void Driver::addConst(char* name, char type) {
+		Var* v;
+
+		switch(type)
+		{
+			case 'b':
+				v = new Var("const", VARTYPE_BOOL, 0);
+				break;
+
+			case 'c':
+				v = new Var("const", VARTYPE_CHAR, 0);
+				break;
+
+			case 'i':
+				v = new Var("const", VARTYPE_LONG, 0);
+				break;
+
+			case 'f':
+				v = new Var("const", VARTYPE_DOUBLE, 0);
+				break;
+
+			case 's':
+				v = new Var("const", VARTYPE_STRING, 0);
+				break;
+
+			default:
+				return;
+		}
+
+		consts.push_back(v);
+		aritmetic.operands.push(v);
+	}
+
 } // namespace example
