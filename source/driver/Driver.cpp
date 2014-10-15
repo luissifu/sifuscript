@@ -159,12 +159,35 @@ namespace ss {
 			return;
 
 		char topop = aritmetic.operators.top();
+		bool unary = false;
 
 		switch(type)
 		{
 			case '+':
 				if (topop != '+' && topop != '-')
 					return;
+				break;
+
+			case '*':
+				if (topop != '*' && topop != '/' && topop != '%')
+					return;
+				break;
+
+			case '&':
+				if (topop != '&' && topop != '|')
+					return;
+				break;
+
+			case '>':
+				if (topop != '>' && topop != '<' && topop != 'l' && topop != 'm' && topop != 'e' && topop != 'n')
+					return;
+				break;
+
+			case '!':
+				if (topop != '!')
+					return;
+				else
+					unary = true;
 				break;
 
 			default:
@@ -175,36 +198,67 @@ namespace ss {
 
 		char realop = getMappedOp(topop);
 
-		Var* right = aritmetic.operands.top();
-		aritmetic.operands.pop();
-
-		Var* left = aritmetic.operands.top();
-		aritmetic.operands.pop();
-
-		int restype = aritmetic.isValid(realop, left->getType(), right->getType());
-
-		if (restype == -1)
+		if (!unary)
 		{
-			std::cout << "Invalid operation" << std::endl;
-			return;
+			Var* right = aritmetic.operands.top();
+			aritmetic.operands.pop();
+
+			Var* left = aritmetic.operands.top();
+			aritmetic.operands.pop();
+
+			int restype = aritmetic.isValid(realop, left->getType(), right->getType());
+
+			if (restype == -1)
+			{
+				std::cout << "Invalid operation" << std::endl;
+				return;
+			}
+
+			Var* result = new Var("temp", restype, 1);
+			temps.push_back(result);
+			aritmetic.operands.push(result);
+
+			program.createStatement(realop, left->getAddress(), right->getAddress(), result->getAddress());
 		}
+		else
+		{
+			Var* left = aritmetic.operands.top();
+			aritmetic.operands.pop();
 
-		Var* result = new Var("temp", restype, 0);
-		temps.push_back(result);
-		aritmetic.operands.push(result);
+			int restype = aritmetic.isValid(realop, left->getType(), -1);
 
-		program.createStatement(realop, left->getAddress(), right->getAddress(), result->getAddress());
+			if (restype == -1)
+			{
+				std::cout << "Invalid operation" << std::endl;
+				return;
+			}
+
+			Var* result = new Var("temp", restype, 1);
+			temps.push_back(result);
+			aritmetic.operands.push(result);
+
+			program.createStatement(realop, left->getAddress(), -1, result->getAddress());
+		}
 	}
 
 	char Driver::getMappedOp(char op) {
 		switch(op)
 		{
+			case '=': return OP_ASSIGN;
 			case '+': return OP_ADD;
 			case '-': return OP_SUB;
 			case '*': return OP_MULT;
 			case '/': return OP_DIV;
 			case '%': return OP_MOD;
-			case '=': return OP_ASSIGN;
+			case '&': return OP_AND;
+			case '|': return OP_OR;
+			case '<': return OP_LESS;
+			case '>': return OP_MORE;
+			case 'l': return OP_LESSEQ;
+			case 'm': return OP_MOREEQ;
+			case 'e': return OP_EQ;
+			case 'n': return OP_NOTEQ;
+			case '!': return OP_NOT;
 		}
 	}
 
@@ -239,23 +293,23 @@ namespace ss {
 		switch(type)
 		{
 			case 'b':
-				v = new Var("const", VARTYPE_BOOL, 0);
+				v = new Var("const", VARTYPE_BOOL, 2);
 				break;
 
 			case 'c':
-				v = new Var("const", VARTYPE_CHAR, 0);
+				v = new Var("const", VARTYPE_CHAR, 2);
 				break;
 
 			case 'i':
-				v = new Var("const", VARTYPE_LONG, 0);
+				v = new Var("const", VARTYPE_LONG, 2);
 				break;
 
 			case 'f':
-				v = new Var("const", VARTYPE_DOUBLE, 0);
+				v = new Var("const", VARTYPE_DOUBLE, 2);
 				break;
 
 			case 's':
-				v = new Var("const", VARTYPE_STRING, 0);
+				v = new Var("const", VARTYPE_STRING, 2);
 				break;
 
 			default:

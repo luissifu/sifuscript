@@ -126,7 +126,7 @@ state : assign 																		{ ; }
 	  |	TK_NEWLINE																	{ ; }
 	  ;
 
-assign : id ass_op stat_exp_aux3 expresion delimiter 								{ driver.genAssign(); }
+assign : id ass_op stat_assign_aux expresion delimiter 								{ driver.genAssign(); }
 	   ;
 
 delimiter : TK_NEWLINE 																{ ; }
@@ -255,23 +255,23 @@ list_e : var_const 																	{ ; }
 	   | id 																		{ ; }
 	   ;
 
-expresion : exp 																	{ ; }
-		  | exp rel_op exp 															{ ; }
+expresion : exp stat_exp_aux4														{ ; }
+		  | exp stat_exp_aux4 rel_op expresion										{ ; }
 		  ;
 
 exp : e 																			{ ; }
-	| e comp_op e 																	{ ; }
+	| e comp_op e stat_exp_aux5														{ ; }
 	;
 
-e : term 																			{ ; }
-  | term mult_op e 																	{ ; }
+e : term stat_exp_aux2																{ ; }
+  | term stat_exp_aux2 add_op e 													{ ; }
   ;
 
-term : fact	stat_exp_aux2															{ ; }
-	 | fact stat_exp_aux2 add_op term												{ ; }
+term : fact	stat_exp_aux3															{ ; }
+	 | fact stat_exp_aux3 mult_op term												{ ; }
 	 ;
 
-fact : neg_op f 																	{ ; }
+fact : neg_op f 																	{ driver.genExp('!');; }
 	 | f 																			{ ; }
 	 ;
 
@@ -280,31 +280,31 @@ f : TK_LEFTPAREN stat_exp_aux1 expresion TK_RIGHTPAREN 								{ driver.endExp()
   | id                                                                              { driver.toOperand(); }
   ;
 
-rel_op : OP_AND 																	{ /*driver.toOperator('&');*/ }
-	   | OP_OR 																		{ /*driver.toOperator('|');*/ }
+rel_op : OP_AND 																	{ driver.toOperator('&'); }
+	   | OP_OR 																		{ driver.toOperator('|'); }
 	   ;
 
-comp_op : OP_LESS 																	{ /*driver.toOperator('<');*/ }
-		| OP_MORE 																	{ /*driver.toOperator('>');*/ }
-        | OP_LESSEQ																	{ /*driver.toOperator('l');*/ }
-        | OP_MOREEQ																	{ /*driver.toOperator('m');*/ }
-        | OP_EQ 																	{ /*driver.toOperator('e');*/ }
-        | OP_NOTEQ 																	{ /*driver.toOperator('n');*/ }
+comp_op : OP_LESS 																	{ driver.toOperator('<'); }
+		| OP_MORE 																	{ driver.toOperator('>'); }
+        | OP_LESSEQ																	{ driver.toOperator('l'); }
+        | OP_MOREEQ																	{ driver.toOperator('m'); }
+        | OP_EQ 																	{ driver.toOperator('e'); }
+        | OP_NOTEQ 																	{ driver.toOperator('n'); }
 		;
 
-mult_op : OP_MULT 																	{ /*driver.toOperator('*');*/ }
-		| OP_DIV 																	{ /*driver.toOperator('/');*/ }
-        | OP_MOD 																	{ /*driver.toOperator('%');*/ }
+mult_op : OP_MULT 																	{ driver.toOperator('*'); }
+		| OP_DIV 																	{ driver.toOperator('/'); }
+        | OP_MOD 																	{ driver.toOperator('%'); }
 		;
 
 add_op : OP_ADD 																	{ driver.toOperator('+'); }
 	   | OP_SUB 																	{ driver.toOperator('-'); }
 	   ;
 
-neg_op : OP_NOT																		{ /*driver.toOperator('!');*/ }
+neg_op : OP_NOT																		{ driver.toOperator('!'); }
 	   ;
 
-ass_op : OP_ASSIGN																	{ /*driver.toOperator('=');*/ }
+ass_op : OP_ASSIGN																	{ driver.toOperator('='); }
 	   ;
 
 stat_exp_aux1 : /*E*/                                                               { driver.toOperator('('); }
@@ -313,8 +313,17 @@ stat_exp_aux1 : /*E*/                                                           
 stat_exp_aux2 : /*E*/                                                               { driver.genExp('+'); }
               ;
 
-stat_exp_aux3 : /*E*/                                                               { driver.toOperand(); driver.toOperator('='); }
+stat_exp_aux3 : /*E*/                                                               { driver.genExp('*'); }
+             ;
+
+stat_exp_aux4 : /*E*/                                                               { driver.genExp('&'); }
               ;
+
+stat_exp_aux5 : /*E*/                                                               { driver.genExp('>'); }
+              ;
+
+stat_assign_aux : /*E*/                                                             { driver.toOperand(); }
+                ;
 %%
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)

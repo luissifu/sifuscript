@@ -369,7 +369,7 @@ namespace ss {
   static const unsigned char yydefact_[];
 
   // YYPGOTO[NTERM-NUM].
-  static const short int yypgoto_[];
+  static const signed char yypgoto_[];
 
   // YYDEFGOTO[NTERM-NUM].
   static const short int yydefgoto_[];
@@ -494,8 +494,8 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 333,     ///< Last index in yytable_.
-      yynnts_ = 53,  ///< Number of nonterminal symbols.
+      yylast_ = 313,     ///< Last index in yytable_.
+      yynnts_ = 56,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
       yyfinal_ = 74, ///< Termination state number.
       yyterror_ = 1,
