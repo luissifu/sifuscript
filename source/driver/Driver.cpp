@@ -8,12 +8,22 @@
 
 namespace ss {
 
-	Driver::Driver(SifuContext& cont)
+	Driver::Driver(SifuContext& cont, Program& prog)
 		: trace_scanning(false),
 		trace_parsing(false),
-		context(cont)
+		context(cont),
+		program(prog)
 	{
 	}
+
+	Driver::~Driver() {
+		for (int i = 0; i < temps.size(); i++)
+		{
+			delete temps[i];
+		}
+		temps.clear();
+	}
+
 
 	bool Driver::parse_stream(std::istream& in, const std::string& sname)
 	{
@@ -117,6 +127,110 @@ namespace ss {
 		}
 
 		typestack.push(maptype);
+	}
+
+	void Driver::toOperand() {
+		std::string name = idstack.top();
+		idstack.pop();
+
+		Var* v = context.getVariable(name);
+
+		aritmetic.operands.push(v);
+	}
+
+	void Driver::toOperator(char op) {
+		aritmetic.operators.push(op);
+	}
+
+	void Driver::endExp() {
+		char paren = aritmetic.operators.top();
+
+		if (paren != '(')
+		{
+			std::cout << "Malformed expresion" << std::endl;
+			return;
+		}
+
+		aritmetic.operators.pop();
+	}
+
+	void Driver::genExp(char type) {
+		if (aritmetic.operators.empty())
+			return;
+
+		char topop = aritmetic.operators.top();
+
+		switch(type)
+		{
+			case '+':
+				if (topop != '+' && topop != '-')
+					return;
+				break;
+
+			default:
+				return;
+		}
+
+		aritmetic.operators.pop();
+
+		char realop = getMappedOp(topop);
+
+		Var* right = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		Var* left = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		int restype = aritmetic.isValid(realop, left->getType(), right->getType());
+
+		if (restype == -1)
+		{
+			std::cout << "Invalid operation" << std::endl;
+			return;
+		}
+
+		Var* result = new Var("temp", restype, 0);
+		temps.push_back(result);
+		aritmetic.operands.push(result);
+
+		program.createStatement(realop, left->getAddress(), right->getAddress(), result->getAddress());
+	}
+
+	char Driver::getMappedOp(char op) {
+		switch(op)
+		{
+			case '+': return OP_ADD;
+			case '-': return OP_SUB;
+			case '*': return OP_MULT;
+			case '/': return OP_DIV;
+			case '%': return OP_MOD;
+			case '=': return OP_ASSIGN;
+		}
+	}
+
+	void Driver::genAssign() {
+		if (aritmetic.operators.empty())
+			return;
+
+		char eq = aritmetic.operators.top();
+
+		if (eq != '=')
+		{
+			std::cout << "Malformed assignment" << std::endl;
+			return;
+		}
+
+		aritmetic.operators.pop();
+
+		char realop = getMappedOp(eq);
+
+		Var* left = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		Var* result = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		program.createStatement(realop, left->getAddress(), -1, result->getAddress());
 	}
 
 } // namespace example

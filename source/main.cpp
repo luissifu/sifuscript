@@ -4,6 +4,7 @@
 
 #include "expr/Expression.h"
 #include "driver/Driver.h"
+#include "program/Program.h"
 
 #include <stdio.h>
 
@@ -14,7 +15,8 @@
 int main(int argc, char *argv[])
 {
 	SifuContext context;
-	ss::Driver driver(context);
+	Program object;
+	ss::Driver driver(context, object);
 	bool readfile = false;
 
 	for(int ai = 1; ai < argc; ++ai)
@@ -43,6 +45,7 @@ int main(int argc, char *argv[])
 			{
 				std::cout << "Compiled Succesfully" << std::endl;
 				driver.context.dump();
+				driver.program.save();
 			}
             else
             {

@@ -5,7 +5,9 @@ enum OP_INSTRUCTIONS {
 	OP_ADD,
 	OP_SUB,
 	OP_MULT,
-	OP_DIV
+	OP_DIV,
+	OP_MOD,
+	OP_ASSIGN
 };
 
 class Statement {

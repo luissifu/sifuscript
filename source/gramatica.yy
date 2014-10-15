@@ -126,7 +126,7 @@ state : assign 																		{ ; }
 	  |	TK_NEWLINE																	{ ; }
 	  ;
 
-assign : id ass_op expresion delimiter 												{ ; }
+assign : id ass_op stat_exp_aux3 expresion delimiter 								{ driver.genAssign(); }
 	   ;
 
 delimiter : TK_NEWLINE 																{ ; }
@@ -137,7 +137,7 @@ return : TK_RETURN expresion delimiter 												{ ; }
 	   ;
 
 id : T_ID																			{ driver.addId($1); }
-   | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ ; }
+   | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 								{ driver.addId($1); }
    | T_ID TK_DOT T_ID 																{ ; }
    ;
 
@@ -267,47 +267,54 @@ e : term 																			{ ; }
   | term mult_op e 																	{ ; }
   ;
 
-term : fact																			{ ; }
-	 | fact add_op term																{ ; }
+term : fact	stat_exp_aux2															{ ; }
+	 | fact stat_exp_aux2 add_op term												{ ; }
 	 ;
 
 fact : neg_op f 																	{ ; }
 	 | f 																			{ ; }
 	 ;
 
-f : TK_LEFTPAREN expresion TK_RIGHTPAREN 											{ ; }
+f : TK_LEFTPAREN stat_exp_aux1 expresion TK_RIGHTPAREN 								{ driver.endExp(); }
   | var_const 																		{ ; }
-  | id 																				{ ; }
+  | id                                                                              { driver.toOperand(); }
   ;
 
-rel_op : OP_AND 																	{ ; }
-	   | OP_OR 																		{ ; }
+rel_op : OP_AND 																	{ /*driver.toOperator('&');*/ }
+	   | OP_OR 																		{ /*driver.toOperator('|');*/ }
 	   ;
 
-comp_op : OP_LESS 																	{ ; }
-		| OP_MORE 																	{ ; }
-		| OP_LESSEQ																	{ ; }
-		| OP_MOREEQ																	{ ; }
-		| OP_EQ 																	{ ; }
-		| OP_NOTEQ 																	{ ; }
+comp_op : OP_LESS 																	{ /*driver.toOperator('<');*/ }
+		| OP_MORE 																	{ /*driver.toOperator('>');*/ }
+        | OP_LESSEQ																	{ /*driver.toOperator('l');*/ }
+        | OP_MOREEQ																	{ /*driver.toOperator('m');*/ }
+        | OP_EQ 																	{ /*driver.toOperator('e');*/ }
+        | OP_NOTEQ 																	{ /*driver.toOperator('n');*/ }
 		;
 
-mult_op : OP_MULT 																	{ ; }
-		| OP_DIV 																	{ ; }
-		| OP_MOD 																	{ ; }
+mult_op : OP_MULT 																	{ /*driver.toOperator('*');*/ }
+		| OP_DIV 																	{ /*driver.toOperator('/');*/ }
+        | OP_MOD 																	{ /*driver.toOperator('%');*/ }
 		;
 
-add_op : OP_ADD 																	{ ; }
-	   | OP_SUB 																	{ ; }
+add_op : OP_ADD 																	{ driver.toOperator('+'); }
+	   | OP_SUB 																	{ driver.toOperator('-'); }
 	   ;
 
-neg_op : OP_NOT																		{ ; }
+neg_op : OP_NOT																		{ /*driver.toOperator('!');*/ }
 	   ;
 
-ass_op : OP_ASSIGN																	{ ; }
+ass_op : OP_ASSIGN																	{ /*driver.toOperator('=');*/ }
 	   ;
 
+stat_exp_aux1 : /*E*/                                                               { driver.toOperator('('); }
+              ;
 
+stat_exp_aux2 : /*E*/                                                               { driver.genExp('+'); }
+              ;
+
+stat_exp_aux3 : /*E*/                                                               { driver.toOperand(); driver.toOperator('='); }
+              ;
 %%
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)

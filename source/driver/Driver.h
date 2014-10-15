@@ -9,6 +9,8 @@
 
 #include "../tokens.h"
 #include "../expr/Expression.h"
+#include "../expr/Aritmetic.h"
+#include "../program/Program.h"
 
 // forward declaration
 //class SifuContext;
@@ -27,7 +29,8 @@ class Driver
 {
 public:
 	/// construct a new parser driver context
-	Driver(class SifuContext& cont);
+	Driver(class SifuContext& cont, Program& prog);
+	~Driver();
 
 	/// enable debug output in the flex scanner
 	bool trace_scanning;
@@ -81,15 +84,32 @@ public:
 	 * expressions.(Variable-tables and so on) */
 	class SifuContext& context;
 
+	Program& program;
+
 	//Extra
 	std::stack<std::string> idstack;
 	std::stack<int> typestack;
+	std::vector<Var*> temps;
+
+	Aritmetic aritmetic;
 
 	void addId(char* str);
 
 	void checkVar();
 
 	void addType(char* type);
+
+	void toOperand();
+
+	void toOperator(char op);
+
+	void endExp();
+
+	void genExp(char type);
+
+	char getMappedOp(char op);
+
+	void genAssign();
 };
 
 } // namespace ss
