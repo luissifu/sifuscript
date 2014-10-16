@@ -43,13 +43,8 @@ int main(int argc, char *argv[])
 			bool result = driver.parse_stream(infile, argv[ai]);
 			if (result)
 			{
-				std::cout << "Compiled Succesfully" << std::endl;
 				driver.context.dump();
 				driver.program.save();
-			}
-			else
-			{
-				std::cout << "Error detected" << std::endl;
 			}
 
 			readfile = true;

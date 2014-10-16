@@ -23,15 +23,24 @@ namespace ss {
 
 	bool Driver::parse_stream(std::istream& in, const std::string& sname)
 	{
-		streamname = sname;
+		try
+		{
+			streamname = sname;
 
-		Token scanner(&in);
-		scanner.set_debug(trace_scanning);
-		this->lexer = &scanner;
+			Token scanner(&in);
+			scanner.set_debug(trace_scanning);
+			this->lexer = &scanner;
 
-		Gramatica parser(*this);
-		parser.set_debug_level(trace_parsing);
-		return (parser.parse() == 0);
+			Gramatica parser(*this);
+			parser.set_debug_level(trace_parsing);
+			return (parser.parse() == 0);
+		}
+		catch(...)
+		{
+			std::cout << "Error detected" << std::endl;
+
+			return false;
+		}
 	}
 
 	bool Driver::parse_file(const std::string &filename)
