@@ -32,7 +32,6 @@ bool SifuContext::existsVariable(const std::string &varname) const
 // check if the given variable name exists in the storage
 void SifuContext::addVariable(Var* var)
 {
-	std::cout << "added var: " << var->getName() << std::endl;
 	variables[var->getName()] = var;
 }
 

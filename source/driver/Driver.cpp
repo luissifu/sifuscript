@@ -225,15 +225,13 @@ namespace ss {
 			Var* left = aritmetic.operands.top();
 			aritmetic.operands.pop();
 
-			int restype = aritmetic.isValid(realop, left->getType(), -1);
-
-			if (restype == -1)
+			if (left->getType() != VARTYPE_BOOL)
 			{
 				std::cout << "Invalid operation" << std::endl;
 				return;
 			}
 
-			Var* result = new Var("temp", restype, 1);
+			Var* result = new Var("temp", VARTYPE_BOOL, 1);
 			temps.push_back(result);
 			aritmetic.operands.push(result);
 

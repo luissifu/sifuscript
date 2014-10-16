@@ -9,6 +9,7 @@ Program::Program(std::string name) {
 }
 
 void Program::save() {
+	std::cout << "Program result: " << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
 	{
 		std::cout << statlist[i].toString() << std::endl;
