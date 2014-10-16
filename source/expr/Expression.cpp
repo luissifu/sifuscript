@@ -49,6 +49,12 @@ void SifuContext::dump() {
 	std::cout << "Dumping var table..." << std::endl;
     for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
     {
-        std::cout << it->second->getName() << ":" << it->second->getType() << "[" << it->second->getAddress() << "]" << std::endl;
+        std::cout << it->second->getName() << " : " << vartypenames[it->second->getType()] << " [" << toHex(it->second->getAddress()) << "]" << std::endl;
     }
+}
+
+std::string SifuContext::toHex(int i) {
+	std::stringstream stream;
+	stream << "0x" << std::setfill ('0') << std::setw(sizeof(int)*2) << std::hex << i;
+	return stream.str();
 }

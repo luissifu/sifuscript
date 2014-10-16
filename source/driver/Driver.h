@@ -11,6 +11,7 @@
 #include "../expr/Expression.h"
 #include "../expr/Aritmetic.h"
 #include "../program/Program.h"
+#include "../memory/MemManager.h"
 
 // forward declaration
 //class SifuContext;
@@ -113,6 +114,8 @@ public:
 	void genAssign();
 
 	void addConst(char* name, char type);
+
+	void clearExp();
 };
 
 } // namespace ss

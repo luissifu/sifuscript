@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 enum OP_INSTRUCTIONS {
 	OP_ASSIGN,
@@ -42,6 +44,7 @@ class Statement {
 		Statement(char op, int l, int r, int res);
 		std::string toString();
 		std::string toObj();
+		std::string toHex(int i);
 	private:
 		char operation;
 		int left;

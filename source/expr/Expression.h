@@ -6,6 +6,9 @@
 #include <ostream>
 #include <iostream>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
+
 
 #include "../vars/Var.h"
 
@@ -61,6 +64,8 @@ public:
 	Var* getVariable(const std::string &varname) const;
 
 	void dump();
+
+	std::string toHex(int i);
 };
 
 #endif // EXPRESSION_H

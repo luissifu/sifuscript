@@ -255,7 +255,7 @@ list_e : var_const 																	{ ; }
 	   | id 																		{ ; }
 	   ;
 
-expresion : exp stat_exp_aux4														{ ; }
+expresion : exp stat_exp_aux4														{ driver.clearExp(); }
 		  | exp stat_exp_aux4 rel_op expresion										{ ; }
 		  ;
 

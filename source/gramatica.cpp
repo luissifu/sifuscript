@@ -1121,7 +1121,7 @@ namespace ss {
 
   case 88:
 #line 258 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 

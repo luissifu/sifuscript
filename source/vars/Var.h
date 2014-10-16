@@ -13,6 +13,18 @@ enum vartype {
 	VARTYPE_CLASS
 };
 
+const std::string vartypenames[] = {
+	"BOOL ",
+	"CHAR ",
+	"SHORT",
+	"INT  ",
+	"LONG ",
+	"FLOAT",
+	"DOUBL",
+	"STR  ",
+	"CLASS"
+};
+
 class Var {
 	public:
 		Var(std::string name, int type, int address);

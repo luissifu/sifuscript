@@ -17,11 +17,7 @@ namespace ss {
 	}
 
 	Driver::~Driver() {
-		for (int i = 0; i < temps.size(); i++)
-		{
-			delete temps[i];
-		}
-		temps.clear();
+		clearExp();
 	}
 
 
@@ -152,6 +148,20 @@ namespace ss {
 		}
 
 		aritmetic.operators.pop();
+	}
+
+	void Driver::clearExp() {
+		for (int i = 0; i < temps.size(); i++)
+		{
+			delete temps[i];
+		}
+		temps.clear();
+
+		for (int i = 0; i < consts.size(); i++)
+		{
+			delete consts[i];
+		}
+		consts.clear();
 	}
 
 	void Driver::genExp(char type) {
