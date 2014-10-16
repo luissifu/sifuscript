@@ -53,126 +53,126 @@
 
 namespace ss {
 #line 56 "position.hh" // location.cc:291
-	/// Abstract a position.
-	class position
-	{
-	public:
-		/// Construct a position.
-		explicit position (std::string* f = YY_NULLPTR,
-											 unsigned int l = 1u,
-											 unsigned int c = 1u)
-			: filename (f)
-			, line (l)
-			, column (c)
-		{
-		}
+  /// Abstract a position.
+  class position
+  {
+  public:
+    /// Construct a position.
+    explicit position (std::string* f = YY_NULLPTR,
+                       unsigned int l = 1u,
+                       unsigned int c = 1u)
+      : filename (f)
+      , line (l)
+      , column (c)
+    {
+    }
 
 
-		/// Initialization.
-		void initialize (std::string* fn = YY_NULLPTR,
-										 unsigned int l = 1u,
-										 unsigned int c = 1u)
-		{
-			filename = fn;
-			line = l;
-			column = c;
-		}
+    /// Initialization.
+    void initialize (std::string* fn = YY_NULLPTR,
+                     unsigned int l = 1u,
+                     unsigned int c = 1u)
+    {
+      filename = fn;
+      line = l;
+      column = c;
+    }
 
-		/** \name Line and Column related manipulators
-		 ** \{ */
-		/// (line related) Advance to the COUNT next lines.
-		void lines (int count = 1)
-		{
-			if (count)
-				{
-					column = 1u;
-					line = add_ (line, count, 1);
-				}
-		}
+    /** \name Line and Column related manipulators
+     ** \{ */
+    /// (line related) Advance to the COUNT next lines.
+    void lines (int count = 1)
+    {
+      if (count)
+        {
+          column = 1u;
+          line = add_ (line, count, 1);
+        }
+    }
 
-		/// (column related) Advance to the COUNT next columns.
-		void columns (int count = 1)
-		{
-			column = add_ (column, count, 1);
-		}
-		/** \} */
+    /// (column related) Advance to the COUNT next columns.
+    void columns (int count = 1)
+    {
+      column = add_ (column, count, 1);
+    }
+    /** \} */
 
-		/// File name to which this position refers.
-		std::string* filename;
-		/// Current line number.
-		unsigned int line;
-		/// Current column number.
-		unsigned int column;
+    /// File name to which this position refers.
+    std::string* filename;
+    /// Current line number.
+    unsigned int line;
+    /// Current column number.
+    unsigned int column;
 
-	private:
-		/// Compute max(min, lhs+rhs) (provided min <= lhs).
-		static unsigned int add_ (unsigned int lhs, int rhs, unsigned int min)
-		{
-			return (0 < rhs || -static_cast<unsigned int>(rhs) < lhs
-							? rhs + lhs
-							: min);
-		}
-	};
+  private:
+    /// Compute max(min, lhs+rhs) (provided min <= lhs).
+    static unsigned int add_ (unsigned int lhs, int rhs, unsigned int min)
+    {
+      return (0 < rhs || -static_cast<unsigned int>(rhs) < lhs
+              ? rhs + lhs
+              : min);
+    }
+  };
 
-	/// Add and assign a position.
-	inline position&
-	operator+= (position& res, int width)
-	{
-		res.columns (width);
-		return res;
-	}
+  /// Add and assign a position.
+  inline position&
+  operator+= (position& res, int width)
+  {
+    res.columns (width);
+    return res;
+  }
 
-	/// Add two position objects.
-	inline position
-	operator+ (position res, int width)
-	{
-		return res += width;
-	}
+  /// Add two position objects.
+  inline position
+  operator+ (position res, int width)
+  {
+    return res += width;
+  }
 
-	/// Add and assign a position.
-	inline position&
-	operator-= (position& res, int width)
-	{
-		return res += -width;
-	}
+  /// Add and assign a position.
+  inline position&
+  operator-= (position& res, int width)
+  {
+    return res += -width;
+  }
 
-	/// Add two position objects.
-	inline position
-	operator- (position res, int width)
-	{
-		return res -= width;
-	}
+  /// Add two position objects.
+  inline position
+  operator- (position res, int width)
+  {
+    return res -= width;
+  }
 
-	/// Compare two position objects.
-	inline bool
-	operator== (const position& pos1, const position& pos2)
-	{
-		return (pos1.line == pos2.line
-						&& pos1.column == pos2.column
-						&& (pos1.filename == pos2.filename
-								|| (pos1.filename && pos2.filename
-										&& *pos1.filename == *pos2.filename)));
-	}
+  /// Compare two position objects.
+  inline bool
+  operator== (const position& pos1, const position& pos2)
+  {
+    return (pos1.line == pos2.line
+            && pos1.column == pos2.column
+            && (pos1.filename == pos2.filename
+                || (pos1.filename && pos2.filename
+                    && *pos1.filename == *pos2.filename)));
+  }
 
-	/// Compare two position objects.
-	inline bool
-	operator!= (const position& pos1, const position& pos2)
-	{
-		return !(pos1 == pos2);
-	}
+  /// Compare two position objects.
+  inline bool
+  operator!= (const position& pos1, const position& pos2)
+  {
+    return !(pos1 == pos2);
+  }
 
-	/** \brief Intercept output stream redirection.
-	 ** \param ostr the destination output stream
-	 ** \param pos a reference to the position to redirect
-	 */
-	template <typename YYChar>
-	inline std::basic_ostream<YYChar>&
-	operator<< (std::basic_ostream<YYChar>& ostr, const position& pos)
-	{
-		if (pos.filename)
-			ostr << *pos.filename << ':';
-		return ostr << pos.line << '.' << pos.column;
-	}
+  /** \brief Intercept output stream redirection.
+   ** \param ostr the destination output stream
+   ** \param pos a reference to the position to redirect
+   */
+  template <typename YYChar>
+  inline std::basic_ostream<YYChar>&
+  operator<< (std::basic_ostream<YYChar>& ostr, const position& pos)
+  {
+    if (pos.filename)
+      ostr << *pos.filename << ':';
+    return ostr << pos.line << '.' << pos.column;
+  }
 
 
 } // ss

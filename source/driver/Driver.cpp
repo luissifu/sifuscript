@@ -76,7 +76,7 @@ namespace ss {
 			return;
 		}
 
-		Var* v = new Var(var, type, 0);
+		Var* v = new Var(var, type, memory.request(type,MEM_LOCAL));
 		context.addVariable(v);
 	}
 
@@ -224,7 +224,7 @@ namespace ss {
 				return;
 			}
 
-			Var* result = new Var("temp", restype, 1);
+			Var* result = new Var("temp", restype, memory.request(restype,MEM_TEMP));
 			temps.push_back(result);
 			aritmetic.operands.push(result);
 
@@ -241,7 +241,7 @@ namespace ss {
 				return;
 			}
 
-			Var* result = new Var("temp", VARTYPE_BOOL, 1);
+			Var* result = new Var("temp", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
 			temps.push_back(result);
 			aritmetic.operands.push(result);
 
@@ -301,23 +301,23 @@ namespace ss {
 		switch(type)
 		{
 			case 'b':
-				v = new Var("const", VARTYPE_BOOL, 2);
+				v = new Var("const", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_GLOBAL));
 				break;
 
 			case 'c':
-				v = new Var("const", VARTYPE_CHAR, 2);
+				v = new Var("const", VARTYPE_CHAR, memory.request(VARTYPE_CHAR,MEM_GLOBAL));
 				break;
 
 			case 'i':
-				v = new Var("const", VARTYPE_LONG, 2);
+				v = new Var("const", VARTYPE_LONG, memory.request(VARTYPE_LONG,MEM_GLOBAL));
 				break;
 
 			case 'f':
-				v = new Var("const", VARTYPE_DOUBLE, 2);
+				v = new Var("const", VARTYPE_DOUBLE, memory.request(VARTYPE_DOUBLE,MEM_GLOBAL));
 				break;
 
 			case 's':
-				v = new Var("const", VARTYPE_STRING, 2);
+				v = new Var("const", VARTYPE_STRING, memory.request(VARTYPE_STRING,MEM_GLOBAL));
 				break;
 
 			default:

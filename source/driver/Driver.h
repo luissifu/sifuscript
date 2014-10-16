@@ -87,6 +87,8 @@ public:
 
 	Program& program;
 
+	MemManager memory;
+
 	//Extra
 	std::stack<std::string> idstack;
 	std::stack<int> typestack;
@@ -116,6 +118,8 @@ public:
 	void addConst(char* name, char type);
 
 	void clearExp();
+
+
 };
 
 } // namespace ss

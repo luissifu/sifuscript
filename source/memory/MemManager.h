@@ -1,5 +1,6 @@
 #pragma once
 #include "Memory.h"
+#include "../vars/Var.h"
 
 enum memNames {
 	MEM_GLOBAL,
@@ -10,6 +11,9 @@ enum memNames {
 class MemManager {
 	public:
 		MemManager();
+		int request(int type, int from);
+	private:
+		int requestBool(int from);
 		int requestChar(int from);
 		int requestShort(int from);
 		int requestInt(int from);
@@ -17,7 +21,6 @@ class MemManager {
 		int requestFloat(int from);
 		int requestDouble(int from);
 		int requestString(int from);
-	private:
 		Memory global;
 		Memory local;
 		Memory temp;
