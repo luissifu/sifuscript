@@ -43,8 +43,8 @@ using namespace std;
 %locations
 %initial-action
 {
-    // initialize the initial location object
-    @$.begin.filename = @$.end.filename = &driver.streamname;
+	// initialize the initial location object
+	@$.begin.filename = @$.end.filename = &driver.streamname;
 };
 
 /* The driver is passed by reference to the parser and to the scanner. This
@@ -60,7 +60,7 @@ using namespace std;
 %union
 {
 	int token;
-    char* string;
+	char* string;
 }
 
 %token END 0 "end of file"
@@ -286,15 +286,15 @@ rel_op : OP_AND 																	{ driver.toOperator('&'); }
 
 comp_op : OP_LESS 																	{ driver.toOperator('<'); }
 		| OP_MORE 																	{ driver.toOperator('>'); }
-        | OP_LESSEQ																	{ driver.toOperator('l'); }
-        | OP_MOREEQ																	{ driver.toOperator('m'); }
-        | OP_EQ 																	{ driver.toOperator('e'); }
-        | OP_NOTEQ 																	{ driver.toOperator('n'); }
+		| OP_LESSEQ																	{ driver.toOperator('l'); }
+		| OP_MOREEQ																	{ driver.toOperator('m'); }
+		| OP_EQ 																	{ driver.toOperator('e'); }
+		| OP_NOTEQ 																	{ driver.toOperator('n'); }
 		;
 
 mult_op : OP_MULT 																	{ driver.toOperator('*'); }
 		| OP_DIV 																	{ driver.toOperator('/'); }
-        | OP_MOD 																	{ driver.toOperator('%'); }
+		| OP_MOD 																	{ driver.toOperator('%'); }
 		;
 
 add_op : OP_ADD 																	{ driver.toOperator('+'); }
@@ -308,25 +308,25 @@ ass_op : OP_ASSIGN																	{ driver.toOperator('='); }
 	   ;
 
 stat_exp_aux1 : /*E*/                                                               { driver.toOperator('('); }
-              ;
+			  ;
 
 stat_exp_aux2 : /*E*/                                                               { driver.genExp('+'); }
-              ;
+			  ;
 
 stat_exp_aux3 : /*E*/                                                               { driver.genExp('*'); }
-             ;
+			 ;
 
 stat_exp_aux4 : /*E*/                                                               { driver.genExp('&'); }
-              ;
+			  ;
 
 stat_exp_aux5 : /*E*/                                                               { driver.genExp('>'); }
-              ;
+			  ;
 
 stat_assign_aux : /*E*/                                                             { driver.toOperand(); }
-                ;
+				;
 %%
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)
 {
-    driver.error(l, m);
+	driver.error(l, m);
 }

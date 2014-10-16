@@ -65,8 +65,8 @@ chr		[^\']
 
  /* code to place at the beginning of yylex() */
 %{
-    // reset location
-    yylloc->step();
+	// reset location
+	yylloc->step();
 %}
 
 
@@ -145,7 +145,7 @@ namespace ss
 
 	void Token::set_debug(bool b)
 	{
-	    yy_flex_debug = b;
+		yy_flex_debug = b;
 	}
 
 }
@@ -160,8 +160,8 @@ namespace ss
 
 int SifuFlexLexer::yylex()
 {
-    std::cerr << "in SifuFlexLexer::yylex() !" << std::endl;
-    return 0;
+	std::cerr << "in SifuFlexLexer::yylex() !" << std::endl;
+	return 0;
 }
 
 /* When the scanner receives an end-of-file indication from YY_INPUT, it then
@@ -172,5 +172,5 @@ int SifuFlexLexer::yylex()
 
 int SifuFlexLexer::yywrap()
 {
-    return 1;
+	return 1;
 }

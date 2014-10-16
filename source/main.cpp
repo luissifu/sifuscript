@@ -47,10 +47,10 @@ int main(int argc, char *argv[])
 				driver.context.dump();
 				driver.program.save();
 			}
-            else
-            {
-                std::cout << "Error detected" << std::endl;
-            }
+			else
+			{
+				std::cout << "Error detected" << std::endl;
+			}
 
 			readfile = true;
 		}

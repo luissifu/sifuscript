@@ -47,10 +47,10 @@ Var* SifuContext::getVariable(const std::string &varname) const
 
 void SifuContext::dump() {
 	std::cout << "Dumping var table..." << std::endl;
-    for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
-    {
-        std::cout << it->second->getName() << " : " << vartypenames[it->second->getType()] << " [" << toHex(it->second->getAddress()) << "]" << std::endl;
-    }
+	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
+	{
+		std::cout << it->second->getName() << " : " << vartypenames[it->second->getType()] << " [" << toHex(it->second->getAddress()) << "]" << std::endl;
+	}
 }
 
 std::string SifuContext::toHex(int i) {
