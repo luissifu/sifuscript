@@ -221,7 +221,7 @@ call_args : var_const 																{ ; }
 		  ;
 
 var : type id delimiter 															{ driver.checkVar(); }
-	| type id ass_op expresion delimiter 											{ ; }
+	| type id stat_var_aux ass_op stat_assign_aux expresion delimiter 				{ driver.genAssign(); }
 	;
 
 print : TK_PRINT expresion delimiter 												{ ; }
@@ -255,7 +255,7 @@ list_e : var_const 																	{ ; }
 	   | id 																		{ ; }
 	   ;
 
-expresion : exp stat_exp_aux4														{ driver.clearExp(); }
+expresion : exp stat_exp_aux4														{ /*driver.clearExp();*/ }
 		  | exp stat_exp_aux4 rel_op expresion										{ ; }
 		  ;
 
@@ -324,6 +324,9 @@ stat_exp_aux5 : /*E*/                                                           
 
 stat_assign_aux : /*E*/                                                             { driver.toOperand(); }
 				;
+
+stat_var_aux : /*E*/                                                                { driver.copyId(); driver.checkVar(); }
+             ;
 %%
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)

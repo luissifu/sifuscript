@@ -12,10 +12,16 @@ Memory::Memory() {
 				+ MAX_TYPES * sizeof(float)
 				+ MAX_TYPES * sizeof(double);
 				+ MAX_TYPES * MAX_STRING_SIZE;
+
+	clear();
 }
 
 void Memory::setOffset(int offset) {
 	this->offset = offset;
+}
+
+void Memory::clear() {
+	bool_num = char_num = short_num = int_num = long_num = float_num = double_num = string_num = 0;
 }
 
 void Memory::setName(std::string name) {
@@ -30,7 +36,7 @@ int Memory::add(int type) {
 			location = bool_num * sizeof(bool);
 			bool_num++;
 			break;
-		
+
 		case TYPE_CHAR:
 			location = char_num * sizeof(char)
 						+ MAX_TYPES * sizeof(bool);

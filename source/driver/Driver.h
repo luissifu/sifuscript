@@ -99,6 +99,8 @@ public:
 
 	void addId(char* str);
 
+	void copyId();
+
 	void checkVar();
 
 	void addType(char* type);

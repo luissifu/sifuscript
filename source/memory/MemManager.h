@@ -12,6 +12,7 @@ class MemManager {
 	public:
 		MemManager();
 		int request(int type, int from);
+		void clear(int which);
 	private:
 		int requestBool(int from);
 		int requestChar(int from);

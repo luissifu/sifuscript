@@ -1,3 +1,5 @@
+int var = 2
+
 int parentesis
 parentesis = (1 + 2) * 2 * (2 + 3)
 int artimetica

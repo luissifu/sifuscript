@@ -23,6 +23,7 @@ class Memory {
 		void setName(std::string name);
 		int add(int type);
 		int getBlockSize();
+		void clear();
 	private:
 		int offset;
 		int blocksize;

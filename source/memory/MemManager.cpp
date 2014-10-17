@@ -8,6 +8,23 @@ MemManager::MemManager() {
 	temp.setOffset(global.getBlockSize() + local.getBlockSize());
 }
 
+void MemManager::clear(int which) {
+	switch(which)
+	{
+		case MEM_GLOBAL:
+			global.clear();
+			break;
+
+		case MEM_LOCAL:
+			local.clear();
+			break;
+
+		case MEM_TEMP:
+			temp.clear();
+			break;
+	}
+}
+
 int MemManager::request(int type, int from) {
 	switch(type)
 	{

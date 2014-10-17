@@ -18,6 +18,12 @@ namespace ss {
 
 	Driver::~Driver() {
 		clearExp();
+
+		for (int i = 0; i < consts.size(); i++)
+		{
+			delete consts[i];
+		}
+		consts.clear();
 	}
 
 
@@ -70,6 +76,11 @@ namespace ss {
 	void Driver::addId(char* str) {
 		std::string s(str);
 		idstack.push(s);
+	}
+
+	void Driver::copyId() {
+		std::string copy = idstack.top();
+		idstack.push(copy);
 	}
 
 	void Driver::checkVar() {
@@ -166,11 +177,7 @@ namespace ss {
 		}
 		temps.clear();
 
-		for (int i = 0; i < consts.size(); i++)
-		{
-			delete consts[i];
-		}
-		consts.clear();
+		memory.clear(MEM_TEMP);
 	}
 
 	void Driver::genExp(char type) {
@@ -295,10 +302,10 @@ namespace ss {
 
 		char realop = getMappedOp(eq);
 
-		Var* left = aritmetic.operands.top();
+		Var* result = aritmetic.operands.top();
 		aritmetic.operands.pop();
 
-		Var* result = aritmetic.operands.top();
+		Var* left = aritmetic.operands.top();
 		aritmetic.operands.pop();
 
 		program.createStatement(realop, left->getAddress(), -1, result->getAddress());
