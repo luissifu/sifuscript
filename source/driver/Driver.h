@@ -12,6 +12,7 @@
 #include "../expr/Aritmetic.h"
 #include "../program/Program.h"
 #include "../memory/MemManager.h"
+#include "../except/Exceptions.h"
 
 // forward declaration
 //class SifuContext;

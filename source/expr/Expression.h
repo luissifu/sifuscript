@@ -5,12 +5,12 @@
 #include <vector>
 #include <ostream>
 #include <iostream>
-#include <stdexcept>
 #include <sstream>
 #include <iomanip>
 
 
 #include "../vars/Var.h"
+#include "../except/Exceptions.h"
 
 
 /*Here we gonna start for the abstract syntaxtrees we create during the parsing(gramatica)**/

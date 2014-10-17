@@ -1,8 +1,8 @@
-int x;
+long x;
 x = 1;
-int y;
+long y;
 y = 2;
-int z;
+long z;
 z = 1 + 2 - 3 * 4 / 5 % 6;
 
 boolean w;

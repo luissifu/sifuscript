@@ -665,55 +665,55 @@ namespace ss {
 
   case 11:
 #line 117 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 670 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 12:
 #line 118 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 676 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 13:
 #line 119 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 682 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 14:
 #line 120 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 688 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 15:
 #line 121 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 694 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 16:
 #line 122 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 700 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 17:
 #line 123 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 706 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 18:
 #line 124 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 712 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 19:
 #line 125 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.clearExp(); }
 #line 718 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1121,7 +1121,7 @@ namespace ss {
 
   case 88:
 #line 258 "gramatica.yy" // lalr1.cc:847
-    { /*driver.clearExp();*/ }
+    { ; }
 #line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 

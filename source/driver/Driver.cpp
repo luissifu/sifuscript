@@ -41,10 +41,9 @@ namespace ss {
 			parser.set_debug_level(trace_parsing);
 			return (parser.parse() == 0);
 		}
-		catch(...)
+		catch(CompilerException& e)
 		{
-			std::cout << "Error detected" << std::endl;
-
+			std::cout << "Error detected: " << e.what() << std::endl;
 			return false;
 		}
 	}
@@ -92,8 +91,8 @@ namespace ss {
 
 		if (context.existsVariable(var))
 		{
-			std::cout << "Already exists" << std::endl;
-			return;
+			std::string except = "Redefinition of existing variable: " + var;
+			throw(CompilerException(except.c_str()));
 		}
 
 		Var* v = new Var(var, type, memory.request(type,MEM_LOCAL));
@@ -163,8 +162,8 @@ namespace ss {
 
 		if (paren != '(')
 		{
-			std::cout << "Malformed expresion" << std::endl;
-			return;
+			std::string except = "Missing closing parentesis";
+			throw (CompilerException(except.c_str()));
 		}
 
 		aritmetic.operators.pop();
@@ -236,8 +235,10 @@ namespace ss {
 
 			if (restype == -1)
 			{
-				std::cout << "Invalid operation" << std::endl;
-				return;
+				std::string except = "Operation not permitted, " + vartypenames[left->getType()] + " ";
+				except += topop;
+				except += " " + vartypenames[right->getType()];
+				throw (CompilerException(except.c_str()));
 			}
 
 			Var* result = new Var("temp", restype, memory.request(restype,MEM_TEMP));
@@ -253,8 +254,10 @@ namespace ss {
 
 			if (left->getType() != VARTYPE_BOOL)
 			{
-				std::cout << "Invalid operation" << std::endl;
-				return;
+				std::string except = "Operation not permitted, ";
+				except += topop;
+				except += " " + vartypenames[left->getType()];
+				throw (CompilerException(except.c_str()));
 			}
 
 			Var* result = new Var("temp", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
@@ -268,7 +271,6 @@ namespace ss {
 	char Driver::getMappedOp(char op) {
 		switch(op)
 		{
-			case '=': return OP_ASSIGN;
 			case '+': return OP_ADD;
 			case '-': return OP_SUB;
 			case '*': return OP_MULT;
@@ -283,6 +285,7 @@ namespace ss {
 			case 'e': return OP_EQ;
 			case 'n': return OP_NOTEQ;
 			case '!': return OP_NOT;
+			case '=': return OP_ASSIGN;
 		}
 	}
 
@@ -294,8 +297,8 @@ namespace ss {
 
 		if (eq != '=')
 		{
-			std::cout << "Malformed assignment" << std::endl;
-			return;
+			std::string except = "Malformed assignment";
+			throw (CompilerException(except.c_str()));
 		}
 
 		aritmetic.operators.pop();
@@ -307,6 +310,12 @@ namespace ss {
 
 		Var* left = aritmetic.operands.top();
 		aritmetic.operands.pop();
+
+		if (aritmetic.isValid(realop, left->getType(), result->getType()) == -1)
+		{
+			std::string except = "Incompatible types: Assigning " + vartypenames[result->getType()] + " to " + vartypenames[left->getType()];
+			throw (CompilerException(except.c_str()));
+		}
 
 		program.createStatement(realop, left->getAddress(), -1, result->getAddress());
 	}

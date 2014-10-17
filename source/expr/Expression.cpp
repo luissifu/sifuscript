@@ -40,7 +40,10 @@ Var* SifuContext::getVariable(const std::string &varname) const
 {
 	Var_Store::const_iterator vi = variables.find(varname);
 	if (vi == variables.end())
-		throw(std::runtime_error("Unknown variable."));
+	{
+		std::string except = "Use of undeclared variable: " + varname;
+		throw(CompilerException(except.c_str()));
+	}
 	else
 		return vi->second;
 }

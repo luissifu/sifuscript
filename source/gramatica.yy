@@ -114,15 +114,15 @@ morestates : state morestates 														{ ; }
 		   | /*E*/																	{ ; }
 		   ;
 
-state : assign 																		{ ; }
-	  |	conditional																	{ ; }
-	  |	loop 																		{ ; }
-	  |	class 																		{ ; }
-	  |	function																	{ ; }
-	  |	var 																		{ ; }
-	  |	print 																		{ ; }
-	  |	return 																		{ ; }
-	  |	func_call																	{ ; }
+state : assign 																		{ driver.clearExp(); }
+	  |	conditional																	{ driver.clearExp(); }
+	  |	loop 																		{ driver.clearExp(); }
+	  |	class 																		{ driver.clearExp(); }
+	  |	function																	{ driver.clearExp(); }
+	  |	var 																		{ driver.clearExp(); }
+	  |	print 																		{ driver.clearExp(); }
+	  |	return 																		{ driver.clearExp(); }
+	  |	func_call																	{ driver.clearExp(); }
 	  |	TK_NEWLINE																	{ ; }
 	  ;
 
@@ -255,7 +255,7 @@ list_e : var_const 																	{ ; }
 	   | id 																		{ ; }
 	   ;
 
-expresion : exp stat_exp_aux4														{ /*driver.clearExp();*/ }
+expresion : exp stat_exp_aux4														{ ; }
 		  | exp stat_exp_aux4 rel_op expresion										{ ; }
 		  ;
 

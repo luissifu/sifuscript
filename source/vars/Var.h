@@ -14,14 +14,14 @@ enum vartype {
 };
 
 const std::string vartypenames[] = {
-	"BOOL ",
-	"CHAR ",
+	"BOOL",
+	"CHAR",
 	"SHORT",
-	"INT  ",
-	"LONG ",
+	"INT",
+	"LONG",
 	"FLOAT",
 	"DOUBL",
-	"STR  ",
+	"STR",
 	"CLASS"
 };
 

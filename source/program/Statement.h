@@ -4,7 +4,6 @@
 #include <iomanip>
 
 enum OP_INSTRUCTIONS {
-	OP_ASSIGN,
 	OP_ADD,
 	OP_SUB,
 	OP_MULT,
@@ -18,11 +17,11 @@ enum OP_INSTRUCTIONS {
 	OP_MOREEQ,
 	OP_EQ,
 	OP_NOTEQ,
+	OP_ASSIGN,
 	OP_NOT
 };
 
 const std::string opnames[] = {
-	"ASGN",
 	"ADD ",
 	"SUB ",
 	"MULT",
@@ -36,6 +35,7 @@ const std::string opnames[] = {
 	"MOEQ",
 	"EQ  ",
 	"NOEQ",
+	"ASGN",
 	"NOT "
 };
 
