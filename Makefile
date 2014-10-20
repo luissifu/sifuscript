@@ -1,5 +1,6 @@
 #Source files
-OBJS = $(wildcard source/*.cpp) $(wildcard source/*/*.cpp)
+SIFUC_OBJS = $(wildcard sifuc/*.cpp) $(wildcard sifuc/*/*.cpp)
+JENSVM_OBJS = $(wildcard jensvm/*.cpp)
 
 #Compiler
 CC = g++
@@ -14,5 +15,8 @@ LINK_FLAG = -lfl
 NAME = build/sifuc
 
 #Targets
-sifuc : $(OBJS)
-	$(CC) $(OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)
+sifuc : $(SIFUC_OBJS)
+	$(CC) $(SIFUC_OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)
+
+jensvm : $(JENSVM_OBJS)
+	$(CC) $(JENSVM_OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)

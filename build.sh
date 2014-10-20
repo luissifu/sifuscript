@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd source
+cd sifuc
 bison -d gramatica.yy
 flex tokens.ll
 cd ..

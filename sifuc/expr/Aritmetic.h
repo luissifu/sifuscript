@@ -2,7 +2,7 @@
 
 #include <stack>
 #include "../vars/Var.h"
-#include "../program/Statement.h"
+#include "../../common/Operations.h"
 
 const int NOT_VALID = -1;
 
