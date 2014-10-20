@@ -93,6 +93,7 @@ public:
 	//Extra
 	std::stack<std::string> idstack;
 	std::stack<int> typestack;
+	std::stack<int> jumps;
 	std::vector<Var*> temps;
 	std::vector<Var*> consts;
 
@@ -122,7 +123,11 @@ public:
 
 	void clearExp();
 
+	void genIf();
 
+	void endIf();
+
+	void genElse();
 };
 
 } // namespace ss

@@ -15,8 +15,8 @@
 int main(int argc, char *argv[])
 {
 	SifuContext context;
-	Program object;
-	ss::Driver driver(context, object);
+	Program prog;
+	ss::Driver driver(context, prog);
 	bool readfile = false;
 
 	for(int ai = 1; ai < argc; ++ai)

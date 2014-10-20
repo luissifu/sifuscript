@@ -12,11 +12,19 @@ void Program::save() {
 	std::cout << "Program result: " << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
 	{
-		std::cout << statlist[i].toString() << std::endl;
+		std::cout << i << " " << statlist[i].toString() << std::endl;
 	}
 }
 
 void Program::createStatement(char op, int left, int right, int result) {
 	Statement stmt(op, left, right, result);
 	statlist.push_back(stmt);
+}
+
+void Program::fill(int position, int data) {
+	statlist[position].fillResult(data);
+}
+
+int Program::getCounter() {
+	return statlist.size();
 }

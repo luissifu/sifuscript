@@ -30,3 +30,7 @@ std::string Statement::toHex(int i) {
 	stream << "0x" << std::setfill ('0') << std::setw(sizeof(int)*2) << std::hex << i;
 	return stream.str();
 }
+
+void Statement::fillResult(int res) {
+	result = res;
+}

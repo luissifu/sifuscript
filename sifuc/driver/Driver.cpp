@@ -353,4 +353,38 @@ namespace ss {
 		aritmetic.operands.push(v);
 	}
 
+
+	void Driver::genIf() {
+		Var* result = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		if (result->getType() != VARTYPE_BOOL)
+		{
+			std::string except = "Not a boolean expresion in IF statement";
+			throw (CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_JUMP_FALSE, result->getAddress(), -1, -1);
+		jumps.push(program.getCounter()-1);
+	}
+
+	void Driver::genElse() {
+		program.createStatement(OP_JUMP, -1, -1, -1);
+		
+		int falseJump = jumps.top();
+		jumps.pop();
+
+		program.fill(falseJump, program.getCounter());
+		jumps.push(program.getCounter()-1);
+	}
+
+	void Driver::endIf() {
+		int topJump = jumps.top();
+		jumps.pop();
+
+		program.fill(topJump, program.getCounter());
+	}
+
+
+
 } // namespace example

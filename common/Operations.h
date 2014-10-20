@@ -15,5 +15,29 @@ enum opInstructions {
 	OP_EQ,
 	OP_NOTEQ,
 	OP_ASSIGN,
-	OP_NOT
+	OP_NOT,
+	OP_JUMP_FALSE,
+	OP_JUMP_TRUE,
+	OP_JUMP
+};
+
+const std::string opnames[] = {
+	"ADD ",
+	"SUB ",
+	"MULT",
+	"DIV ",
+	"MOD ",
+	"AND ",
+	"OR  ",
+	"LESS",
+	"MORE",
+	"LSEQ",
+	"MOEQ",
+	"EQ  ",
+	"NOEQ",
+	"ASGN",
+	"NOT ",
+	"JMPF",
+	"JMPT",
+	"JMP "
 };
