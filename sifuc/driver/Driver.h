@@ -128,6 +128,12 @@ public:
 	void endIf();
 
 	void genElse();
+
+	void startWhile();
+
+	void genWhile();
+
+	void endWhile();
 };
 
 } // namespace ss

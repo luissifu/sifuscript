@@ -317,7 +317,7 @@ namespace ss {
 			throw (CompilerException(except.c_str()));
 		}
 
-		program.createStatement(realop, left->getAddress(), -1, result->getAddress());
+		program.createStatement(realop, result->getAddress(), -1, left->getAddress());
 	}
 
 	void Driver::addConst(char* name, char type) {
@@ -385,6 +385,36 @@ namespace ss {
 		program.fill(topJump, program.getCounter());
 	}
 
+	void Driver::startWhile() {
+		jumps.push(program.getCounter());
+	}
+
+	void Driver::genWhile() {
+		Var* expr = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		if (expr->getType() != VARTYPE_BOOL)
+		{
+			std::string except = "Not a boolean expresion in WHILE statement";
+			throw (CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, -1);
+
+		jumps.push(program.getCounter()-1);	
+	}
+
+	void Driver::endWhile() {
+		int falseJump = jumps.top();
+		jumps.pop();
+
+		int resultJump = jumps.top();
+		jumps.pop();
+
+		program.createStatement(OP_JUMP, -1, -1, resultJump);
+
+		program.fill(falseJump, program.getCounter());
+	}
 
 
 } // namespace example

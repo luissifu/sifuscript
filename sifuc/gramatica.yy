@@ -170,7 +170,7 @@ for : TK_FOR assign expresion TK_SEMICOLON assign maybenl block							{ ; }
 do : TK_DO maybenl block TK_WHILE expresion delimiter	 								{ ; }
    ;
 
-while : TK_WHILE expresion maybenl block												{ ; }
+while : TK_WHILE stat_while_aux1 expresion maybenl stat_while_aux2 block				{ driver.endWhile(); }
 	  ;
 
 type : TPNM_BOOL																		{ driver.addType($1); }
@@ -336,6 +336,12 @@ stat_if_aux2 : /*E*/																	{ driver.genElse(); }
 
 stat_if_aux3 : /*E*/																	{ driver.genElse(); driver.genIf(); }
 			 ;
+
+stat_while_aux1 : /*E*/																	{ driver.startWhile(); }
+				;
+
+stat_while_aux2 : /*E*/																	{ driver.genWhile(); }
+				;
 
 %%
 

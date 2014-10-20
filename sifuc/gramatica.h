@@ -494,8 +494,8 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 329,     ///< Last index in yytable_.
-      yynnts_ = 60,  ///< Number of nonterminal symbols.
+      yylast_ = 331,     ///< Last index in yytable_.
+      yynnts_ = 62,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
       yyfinal_ = 74, ///< Termination state number.
       yyterror_ = 1,
