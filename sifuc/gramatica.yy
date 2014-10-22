@@ -68,7 +68,7 @@ using namespace std;
 %token <string> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT
 %token <string> CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
-%token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT
+%token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT TK_READ
 %token <string> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
 %token <token> ACC_PRIVATE ACC_PUBLIC
 %token <token> OP_NOT OP_AND OP_OR
@@ -121,6 +121,7 @@ state : assign 																			{ driver.clearExp(); }
 	  |	function																		{ driver.clearExp(); }
 	  |	var 																			{ driver.clearExp(); }
 	  |	print 																			{ driver.clearExp(); }
+      |	read 																			{ driver.clearExp(); }
 	  |	return 																			{ driver.clearExp(); }
 	  |	func_call																		{ driver.clearExp(); }
 	  |	TK_NEWLINE																		{ ; }
@@ -164,10 +165,10 @@ loop : for 																				{ ; }
 	 | while 																			{ ; }
 	 ;
 
-for : TK_FOR assign expresion TK_SEMICOLON assign maybenl block							{ ; }
+for : TK_FOR assign stat_for_aux1 expresion TK_SEMICOLON stat_for_aux2 assign stat_for_aux3 maybenl block	{ driver.endFor(); }
 	;
 
-do : TK_DO maybenl block TK_WHILE expresion delimiter	 								{ ; }
+do : TK_DO maybenl stat_do_aux block TK_WHILE expresion delimiter	 					{ driver.genDo(); }
    ;
 
 while : TK_WHILE stat_while_aux1 expresion maybenl stat_while_aux2 block				{ driver.endWhile(); }
@@ -218,14 +219,17 @@ func_call : T_ID TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 						{ ; }
 
 call_args : var_const 																	{ ; }
 		  | var_const TK_COMMA call_args 												{ ; }
-		  ;	
+		  ;
 
 var : type id delimiter 																{ driver.checkVar(); }
 	| type id stat_var_aux ass_op stat_assign_aux expresion delimiter 					{ driver.genAssign(); }
 	;
 
-print : TK_PRINT expresion delimiter 													{ ; }
+print : TK_PRINT expresion delimiter 													{ driver.genPrint(); }
 	  ;
+
+read : TK_READ expresion delimiter 													    { driver.genRead(); }
+     ;
 
 block : TK_LEFTBRACKET statelist TK_RIGHTBRACKET 										{ ; }
 	  | TK_LEFTBRACKET TK_RIGHTBRACKET 													{ ; }
@@ -342,6 +346,18 @@ stat_while_aux1 : /*E*/																	{ driver.startWhile(); }
 
 stat_while_aux2 : /*E*/																	{ driver.genWhile(); }
 				;
+
+stat_do_aux : /*E*/                                                                     { driver.startDo(); }
+            ;
+
+stat_for_aux1 : /*E*/                                                                   { driver.startFor(); }
+              ;
+
+stat_for_aux2 : /*E*/                                                                   { driver.genFor(); }
+              ;
+
+stat_for_aux3 : /*E*/                                                                   { driver.saveFor(); }
+              ;
 
 %%
 

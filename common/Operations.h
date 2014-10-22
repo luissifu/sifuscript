@@ -1,6 +1,7 @@
 #pragma once
 
 enum opInstructions {
+	//Binary operators
 	OP_ADD,
 	OP_SUB,
 	OP_MULT,
@@ -15,13 +16,19 @@ enum opInstructions {
 	OP_EQ,
 	OP_NOTEQ,
 	OP_ASSIGN,
+	//Unary operators
 	OP_NOT,
+	//Jumps
 	OP_JUMP_FALSE,
 	OP_JUMP_TRUE,
-	OP_JUMP
+	OP_JUMP,
+	//Special funcs
+	OP_PRINT,
+	OP_READ
 };
 
 const std::string opnames[] = {
+	//Binary operators
 	"ADD ",
 	"SUB ",
 	"MULT",
@@ -36,8 +43,13 @@ const std::string opnames[] = {
 	"EQ  ",
 	"NOEQ",
 	"ASGN",
+	//Unary operators
 	"NOT ",
+	//Jumps
 	"JMPF",
 	"JMPT",
-	"JMP "
+	"JMP ",
+	//Special funcs
+	"PRNT",
+	"READ"
 };

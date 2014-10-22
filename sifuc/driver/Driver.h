@@ -96,6 +96,7 @@ public:
 	std::stack<int> jumps;
 	std::vector<Var*> temps;
 	std::vector<Var*> consts;
+	std::vector<Statement> forstats;
 
 	Aritmetic aritmetic;
 
@@ -134,6 +135,22 @@ public:
 	void genWhile();
 
 	void endWhile();
+
+	void genPrint();
+
+	void genRead();
+
+	void startDo();
+
+	void genDo();
+
+	void startFor();
+
+	void saveFor();
+
+	void genFor();
+
+	void endFor();
 };
 
 } // namespace ss

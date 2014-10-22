@@ -370,7 +370,7 @@ namespace ss {
 
 	void Driver::genElse() {
 		program.createStatement(OP_JUMP, -1, -1, -1);
-		
+
 		int falseJump = jumps.top();
 		jumps.pop();
 
@@ -401,7 +401,7 @@ namespace ss {
 
 		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, -1);
 
-		jumps.push(program.getCounter()-1);	
+		jumps.push(program.getCounter()-1);
 	}
 
 	void Driver::endWhile() {
@@ -416,5 +416,91 @@ namespace ss {
 		program.fill(falseJump, program.getCounter());
 	}
 
+	void Driver::startDo() {
+		jumps.push(program.getCounter());
+	}
+
+	void Driver::genDo() {
+		Var* expr = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		if (expr->getType() != VARTYPE_BOOL)
+		{
+			std::string except = "Not a boolean expresion in DO WHILE statement";
+			throw (CompilerException(except.c_str()));
+		}
+
+		int resultJump = jumps.top();
+		jumps.pop();
+
+		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, resultJump);
+
+	}
+
+	void Driver::genPrint() {
+		Var* res = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
+	}
+
+	void Driver::genRead() {
+		Var* res = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		program.createStatement(OP_READ, -1, -1, res->getAddress());
+	}
+
+	void Driver::startFor() {
+		jumps.push(program.getCounter());
+	}
+
+	void Driver::genFor() {
+		Var* expr = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		if (expr->getType() != VARTYPE_BOOL)
+		{
+			std::string except = "Not a boolean expresion in FOR statement";
+			throw (CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, -1);
+
+		jumps.push(program.getCounter()-1);
+		jumps.push(program.getCounter());
+	}
+
+	void Driver::saveFor() {
+		int from = jumps.top();
+		int until = program.getCounter();
+		jumps.pop();
+
+		std::cout << from << " .. " << until << std::endl;
+
+		for (int i = from; i < until; i++)
+		{
+			forstats.push_back(program.pop());
+		}
+	}
+
+	void Driver::endFor() {
+		while(!forstats.empty())
+		{
+			program.push(forstats.back());
+			forstats.pop_back();
+		}
+
+
+		int falseJump = jumps.top();
+		jumps.pop();
+
+		int resultJump = jumps.top();
+		jumps.pop();
+
+		program.createStatement(OP_JUMP, -1, -1, resultJump);
+
+		program.fill(falseJump, program.getCounter());
+	}
 
 } // namespace example

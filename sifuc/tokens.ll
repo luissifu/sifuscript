@@ -87,6 +87,7 @@ chr		[^\']
 "class"						{ return token::TK_CLASS; }
 "import"					{ return token::TK_IMPORT; }
 "print"						{ return token::TK_PRINT; }
+"read"						{ return token::TK_READ; }
 "return"					{ return token::TK_RETURN; }
 "boolean"					{ yylval->string = strdup(yytext); return token::TPNM_BOOL; }
 "char"						{ yylval->string = strdup(yytext); return token::TPNM_CHAR; }

@@ -1,20 +1,8 @@
-int x = 0
-int y = 0
+int x = 0;
+int i;
 
-while (true) {
-	x = 1 
-
-	while (x < 10) {
-		x = x + 1
-
-		print x
-	}
-
-	if (y % 2 == 0) {
-		print y
-	}
-
-	y = y + 1
+for i = 0; i < 10; i = (i + 1) / 2; {
+	x = x + i
 }
 
-y = 20
+print x

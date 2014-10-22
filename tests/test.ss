@@ -31,7 +31,7 @@ function int contipo() {
 
 
 
-function int conargs(int uno, int dos) 
+function int conargs(int uno, int dos)
 {
 	return uno + dos
 }
@@ -51,41 +51,19 @@ string g = "6"
 
 
 
-int operaciones = 1 + 2 - 3 * 4 / 5 % 6
+int operaciones = 1 + 2 3 * 4 / 5 % 6
 
 
 
 
 int x = 2
-if x == 1
-{
+if x == 1 {
 	print "1"
-} elif x == 2
-{
+} elif x == 2 {
 	print "2"
-} else
-{
+} else {
 	print "3"
 }
 
 int listauno = [1,2,3,4,5]
 int listados = []
-
-
-
-
-for x = 2; x < 3; x + 1
-{
-	print x
-}
-
-do {
-	print x
-	x = x + 1
-} while x < 4
-
-while x < 5
-{
-	print x
-	x = x + 1
-}

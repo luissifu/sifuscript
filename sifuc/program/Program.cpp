@@ -28,3 +28,14 @@ void Program::fill(int position, int data) {
 int Program::getCounter() {
 	return statlist.size();
 }
+
+Statement Program::pop() {
+	Statement stat = statlist.back();
+	statlist.pop_back();
+
+	return stat;
+}
+
+void Program::push(Statement st) {
+	statlist.push_back(st);
+}
