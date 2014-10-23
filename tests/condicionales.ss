@@ -1,13 +1,22 @@
-int x = 0
+boolean x = true
 
-if (x == 0) {
-	x = x + 2
-} elif (x == 3) {
-	x = x + 3
-} elif (x >= 4) {
-	x = x + 4
-} else {
-	x = 1
-}
+do 
+{
+	int y = 0
 
-x = x + 1
+	for y = 0; y < 10; y = y + 1;
+	{
+		if x {
+			print x
+		} elif !x {
+			print "false"
+		} elif x && x {
+			print "?"
+		} else {
+			print "yes"
+		}
+	}
+
+} while x
+
+print "end"

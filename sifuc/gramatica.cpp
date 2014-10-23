@@ -797,7 +797,7 @@ namespace ss {
 
   case 33:
 #line 155 "gramatica.yy" // lalr1.cc:847
-    { driver.endIf(); }
+    { ; }
 #line 802 "gramatica.cpp" // lalr1.cc:847
     break;
 
@@ -1355,7 +1355,7 @@ namespace ss {
 
   case 127:
 #line 341 "gramatica.yy" // lalr1.cc:847
-    { driver.genElse(); driver.genIf(); }
+    { driver.genElseIf(); }
 #line 1360 "gramatica.cpp" // lalr1.cc:847
     break;
 

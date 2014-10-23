@@ -130,6 +130,8 @@ public:
 
 	void genElse();
 
+	void genElseIf();
+
 	void startWhile();
 
 	void genWhile();

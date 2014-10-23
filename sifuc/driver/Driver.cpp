@@ -353,7 +353,6 @@ namespace ss {
 		aritmetic.operands.push(v);
 	}
 
-
 	void Driver::genIf() {
 		Var* result = aritmetic.operands.top();
 		aritmetic.operands.pop();
@@ -365,6 +364,7 @@ namespace ss {
 		}
 
 		program.createStatement(OP_JUMP_FALSE, result->getAddress(), -1, -1);
+		jumps.push(-1);
 		jumps.push(program.getCounter()-1);
 	}
 
@@ -375,6 +375,32 @@ namespace ss {
 		jumps.pop();
 
 		program.fill(falseJump, program.getCounter());
+		
+		jumps.push(program.getCounter()-1);
+	}
+
+	void Driver::genElseIf() {
+		//else
+		program.createStatement(OP_JUMP, -1, -1, -1);
+
+		int falseJump = jumps.top();
+		jumps.pop();
+
+		program.fill(falseJump, program.getCounter());
+		jumps.push(program.getCounter()-1);
+
+		//if
+		Var* result = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		if (result->getType() != VARTYPE_BOOL)
+		{
+			std::string except = "Not a boolean expresion in IF statement";
+			throw (CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_JUMP_FALSE, result->getAddress(), -1, -1);
+
 		jumps.push(program.getCounter()-1);
 	}
 
@@ -382,7 +408,14 @@ namespace ss {
 		int topJump = jumps.top();
 		jumps.pop();
 
-		program.fill(topJump, program.getCounter());
+		do 
+		{
+			program.fill(topJump, program.getCounter());
+
+			topJump = jumps.top();
+			jumps.pop();
+		} 
+		while (topJump != -1);
 	}
 
 	void Driver::startWhile() {
@@ -433,22 +466,8 @@ namespace ss {
 		int resultJump = jumps.top();
 		jumps.pop();
 
-		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, resultJump);
+		program.createStatement(OP_JUMP_TRUE, expr->getAddress(), -1, resultJump);
 
-	}
-
-	void Driver::genPrint() {
-		Var* res = aritmetic.operands.top();
-		aritmetic.operands.pop();
-
-		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
-	}
-
-	void Driver::genRead() {
-		Var* res = aritmetic.operands.top();
-		aritmetic.operands.pop();
-
-		program.createStatement(OP_READ, -1, -1, res->getAddress());
 	}
 
 	void Driver::startFor() {
@@ -476,8 +495,6 @@ namespace ss {
 		int until = program.getCounter();
 		jumps.pop();
 
-		std::cout << from << " .. " << until << std::endl;
-
 		for (int i = from; i < until; i++)
 		{
 			forstats.push_back(program.pop());
@@ -491,7 +508,6 @@ namespace ss {
 			forstats.pop_back();
 		}
 
-
 		int falseJump = jumps.top();
 		jumps.pop();
 
@@ -501,6 +517,20 @@ namespace ss {
 		program.createStatement(OP_JUMP, -1, -1, resultJump);
 
 		program.fill(falseJump, program.getCounter());
+	}
+
+	void Driver::genPrint() {
+		Var* res = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
+	}
+
+	void Driver::genRead() {
+		Var* res = aritmetic.operands.top();
+		aritmetic.operands.pop();
+
+		program.createStatement(OP_READ, -1, -1, res->getAddress());
 	}
 
 } // namespace example
