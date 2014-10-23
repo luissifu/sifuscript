@@ -12,7 +12,8 @@ void Program::save() {
 	std::cout << "Program result: " << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
 	{
-		std::cout << i << " " << statlist[i].toString() << std::endl;
+		std::cout << std::setw(3) << i; 
+		std::cout << " " << statlist[i].toString() << std::endl;
 	}
 }
 
