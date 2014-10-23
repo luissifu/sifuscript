@@ -4,14 +4,14 @@ Memory::Memory() {
 	offset = 0;
 	name = "";
 
-	blocksize = MAX_TYPES * sizeof(bool)
-				+ MAX_TYPES * sizeof(char)
-				+ MAX_TYPES * sizeof(short)
-				+ MAX_TYPES * sizeof(int)
-				+ MAX_TYPES * sizeof(long)
-				+ MAX_TYPES * sizeof(float)
-				+ MAX_TYPES * sizeof(double);
-				+ MAX_TYPES * MAX_STRING_SIZE;
+	blocksize = MAX_TYPES * bool_size
+				+ MAX_TYPES * char_size
+				+ MAX_TYPES * short_size
+				+ MAX_TYPES * int_size
+				+ MAX_TYPES * long_size
+				+ MAX_TYPES * float_size
+				+ MAX_TYPES * double_size
+				+ MAX_TYPES * char_size * MAX_STRING_SIZE;
 
 	clear();
 }

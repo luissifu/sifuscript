@@ -150,15 +150,15 @@ namespace ss {
 
 		Var* v = context.getVariable(name);
 
-		aritmetic.operands.push(v);
+		expr.operands.push(v);
 	}
 
 	void Driver::toOperator(char op) {
-		aritmetic.operators.push(op);
+		expr.operators.push(op);
 	}
 
 	void Driver::endExp() {
-		char paren = aritmetic.operators.top();
+		char paren = expr.operators.top();
 
 		if (paren != '(')
 		{
@@ -166,7 +166,7 @@ namespace ss {
 			throw (CompilerException(except.c_str()));
 		}
 
-		aritmetic.operators.pop();
+		expr.operators.pop();
 	}
 
 	void Driver::clearExp() {
@@ -180,10 +180,10 @@ namespace ss {
 	}
 
 	void Driver::genExp(char type) {
-		if (aritmetic.operators.empty())
+		if (expr.operators.empty())
 			return;
 
-		char topop = aritmetic.operators.top();
+		char topop = expr.operators.top();
 		bool unary = false;
 
 		switch(type)
@@ -219,19 +219,19 @@ namespace ss {
 				return;
 		}
 
-		aritmetic.operators.pop();
+		expr.operators.pop();
 
 		char realop = getMappedOp(topop);
 
 		if (!unary)
 		{
-			Var* right = aritmetic.operands.top();
-			aritmetic.operands.pop();
+			Var* right = expr.operands.top();
+			expr.operands.pop();
 
-			Var* left = aritmetic.operands.top();
-			aritmetic.operands.pop();
+			Var* left = expr.operands.top();
+			expr.operands.pop();
 
-			int restype = aritmetic.isValid(realop, left->getType(), right->getType());
+			int restype = expr.isValid(realop, left->getType(), right->getType());
 
 			if (restype == -1)
 			{
@@ -243,14 +243,14 @@ namespace ss {
 
 			Var* result = new Var("temp", restype, memory.request(restype,MEM_TEMP));
 			temps.push_back(result);
-			aritmetic.operands.push(result);
+			expr.operands.push(result);
 
 			program.createStatement(realop, left->getAddress(), right->getAddress(), result->getAddress());
 		}
 		else
 		{
-			Var* left = aritmetic.operands.top();
-			aritmetic.operands.pop();
+			Var* left = expr.operands.top();
+			expr.operands.pop();
 
 			if (left->getType() != VARTYPE_BOOL)
 			{
@@ -262,7 +262,7 @@ namespace ss {
 
 			Var* result = new Var("temp", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
 			temps.push_back(result);
-			aritmetic.operands.push(result);
+			expr.operands.push(result);
 
 			program.createStatement(realop, left->getAddress(), -1, result->getAddress());
 		}
@@ -290,10 +290,10 @@ namespace ss {
 	}
 
 	void Driver::genAssign() {
-		if (aritmetic.operators.empty())
+		if (expr.operators.empty())
 			return;
 
-		char eq = aritmetic.operators.top();
+		char eq = expr.operators.top();
 
 		if (eq != '=')
 		{
@@ -301,17 +301,17 @@ namespace ss {
 			throw (CompilerException(except.c_str()));
 		}
 
-		aritmetic.operators.pop();
+		expr.operators.pop();
 
 		char realop = getMappedOp(eq);
 
-		Var* result = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* result = expr.operands.top();
+		expr.operands.pop();
 
-		Var* left = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* left = expr.operands.top();
+		expr.operands.pop();
 
-		if (aritmetic.isValid(realop, left->getType(), result->getType()) == -1)
+		if (expr.isValid(realop, left->getType(), result->getType()) == -1)
 		{
 			std::string except = "Incompatible types: Assigning " + vartypenames[result->getType()] + " to " + vartypenames[left->getType()];
 			throw (CompilerException(except.c_str()));
@@ -350,12 +350,12 @@ namespace ss {
 		}
 
 		consts.push_back(v);
-		aritmetic.operands.push(v);
+		expr.operands.push(v);
 	}
 
 	void Driver::genIf() {
-		Var* result = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* result = expr.operands.top();
+		expr.operands.pop();
 
 		if (result->getType() != VARTYPE_BOOL)
 		{
@@ -390,8 +390,8 @@ namespace ss {
 		jumps.push(program.getCounter()-1);
 
 		//if
-		Var* result = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* result = expr.operands.top();
+		expr.operands.pop();
 
 		if (result->getType() != VARTYPE_BOOL)
 		{
@@ -423,16 +423,16 @@ namespace ss {
 	}
 
 	void Driver::genWhile() {
-		Var* expr = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* ex = expr.operands.top();
+		expr.operands.pop();
 
-		if (expr->getType() != VARTYPE_BOOL)
+		if (ex->getType() != VARTYPE_BOOL)
 		{
 			std::string except = "Not a boolean expresion in WHILE statement";
 			throw (CompilerException(except.c_str()));
 		}
 
-		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, -1);
+		program.createStatement(OP_JUMP_FALSE, ex->getAddress(), -1, -1);
 
 		jumps.push(program.getCounter()-1);
 	}
@@ -454,10 +454,10 @@ namespace ss {
 	}
 
 	void Driver::genDo() {
-		Var* expr = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* ex = expr.operands.top();
+		expr.operands.pop();
 
-		if (expr->getType() != VARTYPE_BOOL)
+		if (ex->getType() != VARTYPE_BOOL)
 		{
 			std::string except = "Not a boolean expresion in DO WHILE statement";
 			throw (CompilerException(except.c_str()));
@@ -466,7 +466,7 @@ namespace ss {
 		int resultJump = jumps.top();
 		jumps.pop();
 
-		program.createStatement(OP_JUMP_TRUE, expr->getAddress(), -1, resultJump);
+		program.createStatement(OP_JUMP_TRUE, ex->getAddress(), -1, resultJump);
 
 	}
 
@@ -475,16 +475,16 @@ namespace ss {
 	}
 
 	void Driver::genFor() {
-		Var* expr = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* ex = expr.operands.top();
+		expr.operands.pop();
 
-		if (expr->getType() != VARTYPE_BOOL)
+		if (ex->getType() != VARTYPE_BOOL)
 		{
 			std::string except = "Not a boolean expresion in FOR statement";
 			throw (CompilerException(except.c_str()));
 		}
 
-		program.createStatement(OP_JUMP_FALSE, expr->getAddress(), -1, -1);
+		program.createStatement(OP_JUMP_FALSE, ex->getAddress(), -1, -1);
 
 		jumps.push(program.getCounter()-1);
 		jumps.push(program.getCounter());
@@ -520,15 +520,15 @@ namespace ss {
 	}
 
 	void Driver::genPrint() {
-		Var* res = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* res = expr.operands.top();
+		expr.operands.pop();
 
 		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
 	}
 
 	void Driver::genRead() {
-		Var* res = aritmetic.operands.top();
-		aritmetic.operands.pop();
+		Var* res = expr.operands.top();
+		expr.operands.pop();
 
 		program.createStatement(OP_READ, -1, -1, res->getAddress());
 	}

@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "Statement.h"
-#include "../vars/Var.h"
+#include "../proc/Var.h"
 
 class Program {
 	public:

@@ -1,17 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-
-enum memtype {
-	TYPE_BOOL,
-	TYPE_CHAR,
-	TYPE_SHORT,
-	TYPE_INT,
-	TYPE_LONG,
-	TYPE_FLOAT,
-	TYPE_DOUBLE,
-	TYPE_STR
-};
+#include "../../common/Types.h"
 
 const int MAX_TYPES = 512;
 const int MAX_STRING_SIZE = 256;

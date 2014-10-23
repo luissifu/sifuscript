@@ -8,8 +8,8 @@
 #include <stack>
 
 #include "../tokens.h"
+#include "../expr/Context.h"
 #include "../expr/Expression.h"
-#include "../expr/Aritmetic.h"
 #include "../program/Program.h"
 #include "../memory/MemManager.h"
 #include "../except/Exceptions.h"
@@ -98,7 +98,7 @@ public:
 	std::vector<Var*> consts;
 	std::vector<Statement> forstats;
 
-	Aritmetic aritmetic;
+	Expression expr;
 
 	void addId(char* str);
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Memory.h"
-#include "../vars/Var.h"
+#include "../proc/Var.h"
 
 enum memNames {
 	MEM_GLOBAL,
