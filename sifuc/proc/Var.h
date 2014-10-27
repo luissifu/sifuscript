@@ -10,6 +10,7 @@ enum vartype {
 	VARTYPE_FLOAT,
 	VARTYPE_DOUBLE,
 	VARTYPE_STRING,
+	VARTYPE_VOID,
 	VARTYPE_CLASS
 };
 
@@ -22,6 +23,7 @@ const std::string vartypenames[] = {
 	"FLOAT",
 	"DOUBL",
 	"STR",
+	"VOID",
 	"CLASS"
 };
 

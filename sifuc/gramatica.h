@@ -354,7 +354,7 @@ namespace ss {
     static bool yy_table_value_is_error_ (int yyvalue);
 
     static const signed char yypact_ninf_;
-    static const signed char yytable_ninf_;
+    static const short int yytable_ninf_;
 
     /// Convert a scanner token number \a t to a symbol number.
     static token_number_type yytranslate_ (int t);
@@ -378,7 +378,7 @@ namespace ss {
   // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
   // positive, shift that token.  If negative, reduce the rule whose
   // number is the opposite.  If YYTABLE_NINF, syntax error.
-  static const unsigned char yytable_[];
+  static const short int yytable_[];
 
   static const short int yycheck_[];
 
@@ -495,10 +495,10 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 351,     ///< Last index in yytable_.
-      yynnts_ = 67,  ///< Number of nonterminal symbols.
+      yylast_ = 353,     ///< Last index in yytable_.
+      yynnts_ = 70,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
-      yyfinal_ = 77, ///< Termination state number.
+      yyfinal_ = 78, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 59  ///< Number of tokens.

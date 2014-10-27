@@ -99,6 +99,35 @@ namespace ss {
 		context.addVariable(v);
 	}
 
+	void Driver::checkFunc() {
+		std::string func = idstack.top();
+		idstack.pop();
+
+		int type = VARTYPE_VOID;
+
+		if (!typestack.empty())
+		{
+			int type = typestack.top();
+			typestack.pop();
+		}
+
+		if (context.existsFunction(func))
+		{
+			std::string except = "Redefinition of existing function: " + func;
+			throw(CompilerException(except.c_str()));
+		}
+
+		Function* f = new Function(func);
+		context.addFunction(f);
+	}
+
+	void Driver::verifyFunc() {
+		std::string func = idstack.top();
+		idstack.pop();
+
+		Function* f = context.getFunction(func);
+	}
+
 	void Driver::addType(char* type) {
 		std::string typen(type);
 
@@ -531,6 +560,10 @@ namespace ss {
 		expr.operands.pop();
 
 		program.createStatement(OP_READ, -1, -1, res->getAddress());
+	}
+
+	void Driver::swapCtx() {
+		context.swapGlobalContext();
 	}
 
 } // namespace example

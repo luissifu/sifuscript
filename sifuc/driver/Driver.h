@@ -153,6 +153,12 @@ public:
 	void genFor();
 
 	void endFor();
+
+	void checkFunc();
+	
+	void verifyFunc();
+
+	void swapCtx();
 };
 
 } // namespace ss

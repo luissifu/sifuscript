@@ -137,10 +137,13 @@ delimiter : TK_NEWLINE 																						{ ; }
 return : TK_RETURN expresion delimiter 																		{ ; }
 	   ;
 
-id : T_ID																									{ driver.addId($1); }
+id : simple_id																								{ ; }
    | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 														{ driver.addId($1); }
    | T_ID TK_DOT T_ID 																						{ ; }
    ;
+
+simple_id : T_ID																							{ driver.addId($1); }
+		  ;
 
 conditional : if elseif else 																				{ driver.endIf(); }
 			;
@@ -201,20 +204,20 @@ accesor : ACC_PRIVATE 																						{ ; }
 		| ACC_PUBLIC 																						{ ; }
 		;
 
-function : TK_FUNC type T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block									{ ; }
-		 | TK_FUNC T_ID TK_LEFTPAREN args TK_RIGHTPAREN maybenl block										{ ; }
+function : TK_FUNC type simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl block				{ driver.swapCtx(); }
+		 | TK_FUNC simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl block					{ driver.swapCtx(); }
 		 ;
 
-args : type T_ID moreargs 																					{ ; }
+args : type simple_id moreargs 																				{ ; }
 	 | /*E*/ 																								{ ; }
 	 ;
 
-moreargs : TK_COMMA type T_ID moreargs 																		{ ; }
+moreargs : TK_COMMA type simple_id moreargs 																{ ; }
 		 | /*E*/																							{ ; }
 		 ;
 
-func_call : T_ID TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 											{ ; }
-		  | T_ID TK_LEFTPAREN TK_RIGHTPAREN delimiter 														{ ; }
+func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 						{ ; }
+		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ ; }
 		  ;
 
 call_args : var_const 																						{ ; }
@@ -281,6 +284,7 @@ fact : neg_op f 																							{ driver.genExp('!');; }
 
 f : TK_LEFTPAREN stat_exp_aux1 expresion TK_RIGHTPAREN 														{ driver.endExp(); }
   | var_const 																								{ ; }
+  | func_call 																								{ ; }
   | id 																										{ driver.toOperand(); }
   ;
 
@@ -348,16 +352,22 @@ stat_while_aux2 : /*E*/																						{ driver.genWhile(); }
 				;
 
 stat_do_aux : /*E*/																							{ driver.startDo(); }
-            ;
+			;
 
 stat_for_aux1 : /*E*/																						{ driver.startFor(); }
-              ;
+			  ;
 
 stat_for_aux2 : /*E*/																						{ driver.genFor(); }
-              ;
+			  ;
 
 stat_for_aux3 : /*E*/																						{ driver.saveFor(); }
-              ;
+			  ;
+
+stat_func_aux1 : /*E*/																						{ driver.checkFunc(); }
+			   ;
+
+stat_funcall_aux1 : /*E*/																					{ driver.verifyFunc(); }
+				  ;
 
 %%
 
