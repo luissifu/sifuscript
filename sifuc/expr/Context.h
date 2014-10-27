@@ -1,31 +1,10 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-#include <map>
 #include <vector>
-#include <ostream>
 #include <iostream>
-#include <sstream>
-#include <iomanip>
-
-
-#include "../proc/Var.h"
+#include "../proc/Function.h"
 #include "../except/Exceptions.h"
-
-
-/*Here we gonna start for the abstract syntaxtrees we create during the parsing(gramatica)**/
-/** We gonna split it up in several documents which arebeeing conntected in this file later, when everything is becoming bigger*/
-class BaseObject
-{
-	public:
-		BaseObject()
-		{
-		}
-};
-
-
-
-
 
 /**************************************************************************************************************************************************/
 /***** CONTEXT specific stuff - contection of variable Tables and so on *****/
@@ -35,37 +14,23 @@ class BaseObject
  */
 class SifuContext
 {
-public:
-
-	//Map for storing vabriables
-	typedef std::map<std::string, Var*> Var_Store;
-	Var_Store variables;
-
-	///Array of defined function
-	typedef std::vector<BaseObject*> Func_Store;
-	Func_Store	functions;
-
-	// free the saved expression trees
-	~SifuContext()
-	{
-		clearExpressions();
-	}
-
-	// free all saved expression trees
-	void clearExpressions();
-
-	// check if the given variable name exists in the storage
-	bool existsVariable(const std::string &varname) const;
-
-	// add a var
-	void addVariable(Var* var);
-
-	// return the given variable from the storage. throws an exception if it does not exist.
-	Var* getVariable(const std::string &varname) const;
-
-	void dump();
-
-	std::string toHex(int i);
+	public:
+		// free the saved expression trees
+		SifuContext();
+		~SifuContext();
+		void clearExpressions();
+		bool existsVariable(const std::string &varname) const;
+		void addVariable(Var* var);
+		Var* getVariable(const std::string &varname) const;
+		void dump();
+		bool existsFunction(const std::string& funcname);
+		void addFunction(Function* f);
+		Function* getFunction(const std::string& funcname);
+		void swapGlobalContext();
+	private:
+		typedef std::vector<Function*> Func_Store;
+		Func_Store functions;
+		Function* currCtx;
 };
 
 #endif // CONTEXT_H
