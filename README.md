@@ -1,8 +1,6 @@
 Sifuscript
 ==========
 
-[TOC]
-
 Compilacion del Proyecto
 ----------
 
@@ -25,9 +23,9 @@ Maquina virtual
 
 Estructura del archivo resultante:
 
-[Constantes]
+	Constantes
 
-[Programa]
+	Programa
 
 
 ###Constantes###
