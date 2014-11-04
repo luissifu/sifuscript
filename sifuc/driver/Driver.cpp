@@ -18,12 +18,51 @@ namespace ss {
 
 	Driver::~Driver() {
 		clearExp();
+	}
 
+	void Driver::saveconsts(std::ofstream& file) {
 		for (int i = 0; i < consts.size(); i++)
 		{
-			delete consts[i];
+			file << OP_SET_VALUE << " ";
+
+			switch (consts[i]->getType())
+			{
+				case VARTYPE_BOOL:
+					if (consts[i]->getName()[0] == 't')
+						file << 1 << " " << -1 << " " << consts[i]->getAddress();
+					else
+						file << 0 << " " << -1 << " " << consts[i]->getAddress();
+					break;
+
+				case VARTYPE_CHAR:
+					break;
+
+				case VARTYPE_LONG:
+					{
+						long value = std::stol(consts[i]->getName());
+						int left = (int)(value & 0xffffffff00000000);
+						int right = (int)(value & 0x00000000ffffffff);
+						file << left << " " << right << " " << consts[i]->getAddress();
+					}
+					break;
+
+				case VARTYPE_DOUBLE:
+					{
+						/*
+						double value = std::stod(consts[i]->getName());
+						int left = (int)(value & 0xffffffff00000000);
+						int right = (int)(value & 0x00000000ffffffff);
+						file << left << right << consts[i]->getAddress() << std::endl;
+						*/
+					}
+					break;
+
+				case VARTYPE_STRING:
+					break;
+			}
+
+			file << std::endl;
 		}
-		consts.clear();
 	}
 
 
@@ -351,34 +390,44 @@ namespace ss {
 
 	void Driver::addConst(char* name, char type) {
 		Var* v;
+		std::string nam = std::string(name);
 
-		switch(type)
+		if (context.existsVariable(name))
 		{
-			case 'b':
-				v = new Var("const", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_GLOBAL));
-				break;
+			v = context.getVariable(nam);
+		}
+		else
+		{
+			switch(type)
+			{
+				case 'b':
+					v = new Var(nam, VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_GLOBAL));
+					break;
 
-			case 'c':
-				v = new Var("const", VARTYPE_CHAR, memory.request(VARTYPE_CHAR,MEM_GLOBAL));
-				break;
+				case 'c':
+					v = new Var(nam, VARTYPE_CHAR, memory.request(VARTYPE_CHAR,MEM_GLOBAL));
+					break;
 
-			case 'i':
-				v = new Var("const", VARTYPE_LONG, memory.request(VARTYPE_LONG,MEM_GLOBAL));
-				break;
+				case 'i':
+					v = new Var(nam, VARTYPE_LONG, memory.request(VARTYPE_LONG,MEM_GLOBAL));
+					break;
 
-			case 'f':
-				v = new Var("const", VARTYPE_DOUBLE, memory.request(VARTYPE_DOUBLE,MEM_GLOBAL));
-				break;
+				case 'f':
+					v = new Var(nam, VARTYPE_DOUBLE, memory.request(VARTYPE_DOUBLE,MEM_GLOBAL));
+					break;
 
-			case 's':
-				v = new Var("const", VARTYPE_STRING, memory.request(VARTYPE_STRING,MEM_GLOBAL));
-				break;
+				case 's':
+					v = new Var(nam, VARTYPE_STRING, memory.request(VARTYPE_STRING,MEM_GLOBAL));
+					break;
 
-			default:
-				return;
+				default:
+					return;
+			}
+
+			consts.push_back(v);
+			context.addVariable(v);
 		}
 
-		consts.push_back(v);
 		expr.operands.push(v);
 	}
 
@@ -404,7 +453,7 @@ namespace ss {
 		jumps.pop();
 
 		program.fill(falseJump, program.getCounter());
-		
+
 		jumps.push(program.getCounter()-1);
 	}
 
@@ -437,13 +486,13 @@ namespace ss {
 		int topJump = jumps.top();
 		jumps.pop();
 
-		do 
+		do
 		{
 			program.fill(topJump, program.getCounter());
 
 			topJump = jumps.top();
 			jumps.pop();
-		} 
+		}
 		while (topJump != -1);
 	}
 

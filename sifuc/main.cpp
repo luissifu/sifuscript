@@ -11,6 +11,22 @@
 #include <iostream>
 #include <fstream>
 
+static std::string substr_until(std::string str, char until) {
+	bool found = false;
+	int i;
+
+	for (i = 0; i < str.size(); i++)
+	{
+		if (str[i] == until)
+		{
+			found = true;
+			break;
+		}
+	}
+
+	return found?str.substr(0,i):str;
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -43,8 +59,16 @@ int main(int argc, char *argv[])
 			bool result = driver.parse_stream(infile, argv[ai]);
 			if (result)
 			{
+				std::string outname = substr_until(std::string(argv[ai]),'.') + ".jns";
+				std::ofstream outfile(outname.c_str());
+
+				std::cout << "Writing to " << outname << "..." << std::endl;
+
+				driver.saveconsts(outfile);
 				driver.context.dump();
-				driver.program.save();
+				driver.program.save(outfile);
+
+				outfile.close();
 			}
 
 			readfile = true;

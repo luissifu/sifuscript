@@ -8,12 +8,13 @@ Program::Program(std::string name) {
 	this->name = name;
 }
 
-void Program::save() {
+void Program::save(std::ofstream& file) {
 	std::cout << "Program result: " << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
 	{
-		std::cout << std::setw(3) << i; 
+		std::cout << std::setw(3) << i;
 		std::cout << " " << statlist[i].toString() << std::endl;
+		file << statlist[i].toObj() << std::endl;
 	}
 }
 

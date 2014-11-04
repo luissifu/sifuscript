@@ -78,6 +78,8 @@ public:
 	 * e.g. to a dialog box. */
 	void error(const std::string& m);
 
+	void saveconsts(std::ofstream& file);
+
 	/** Pointer to the current lexer instance, this is used to connect the
 	 * parser to the scanner. It is used in the yylex macro. */
 	class Token* lexer;
@@ -155,7 +157,7 @@ public:
 	void endFor();
 
 	void checkFunc();
-	
+
 	void verifyFunc();
 
 	void swapCtx();
