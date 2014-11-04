@@ -39,10 +39,10 @@ int Driver::run(){
 		command_parser->executeLine(command, (long*)op1, (long*)op2, (long*)res);
 		IP += 13;
 
-	} while( *command != EOF && *op1 != EOF && *op2 != EOF && *res != EOF );
+	} while( (long) command + 12 < fileSize );
 
 	//Command shall have EOF, or filelength corrupted
-	if( * command != EOF) {
+	if( (long) command !=  fileSize) {
 		std::cout << "File Length corrupted!" << std::endl;
 		return 1;
 	}
