@@ -25,8 +25,6 @@ const int double_size = 64;
 
 /*
 global
-true
-
 
 bool 0 - 512
 char 513 - 1511
