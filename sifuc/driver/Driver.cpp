@@ -171,6 +171,9 @@ namespace ss {
 		idstack.pop();
 
 		Function* f = context.getFunction(func);
+
+		curr_func.func = f;
+		curr_func.param = 0;
 	}
 
 	void Driver::addType(char* type) {
@@ -631,7 +634,7 @@ namespace ss {
 		}
 
 		Var* v = new Var(var, type, memory.request(type,MEM_LOCAL));
-		context.addVariable(v);
+		//context.addVariable(v);
 		context.addParam(v);
 	}
 
@@ -645,6 +648,35 @@ namespace ss {
 		program.createStatement(OP_RETURN, -1, -1, -1);
 
 		context.swapGlobalContext();
+	}
+
+	void Driver::genEra() {
+		program.createStatement(OP_ERA, curr_func.func->getNumParams(), -1, -1);
+	}
+
+	void Driver::genParam() {
+		Var* arg = expr.operands.top();
+		expr.operands.pop();
+
+		if (!curr_func.func->checkParam(arg->getType(), curr_func.param))
+		{
+			std::string except = "Incorrect type in argument: " + arg->getName() + " of type " + vartypenames[arg->getType()];
+			throw(CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_SET_PARAM, arg->getAddress(), -1, curr_func.param);
+		curr_func.param++;
+
+	}
+
+	void Driver::genSub() {
+		if (curr_func.func->getNumParams() != curr_func.param)
+		{
+			std::string except = "Wrong number of arguments in function call";
+			throw(CompilerException(except.c_str()));
+		}
+
+		program.createStatement(OP_JUMP_SUB, -1, -1, curr_func.func->getFuncStart());
 	}
 
 } // namespace example

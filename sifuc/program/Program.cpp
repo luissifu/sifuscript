@@ -9,7 +9,7 @@ Program::Program(std::string name) {
 }
 
 void Program::save(std::ofstream& file) {
-	std::cout << "Program result: " << std::endl;
+	std::cout << "Program result: [0.." << statlist.size()-1 << "]" << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
 	{
 		std::cout << std::setw(3) << i;

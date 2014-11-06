@@ -100,6 +100,7 @@ public:
 	std::vector<Var*> consts;
 	std::vector<Statement> forstats;
 
+	CurrentFunction curr_func;
 	Expression expr;
 
 	void addId(char* str);
@@ -165,6 +166,12 @@ public:
 	void endFunc();
 
 	void verifyFunc();
+
+	void genEra();
+
+	void genSub();
+
+	void genParam();
 };
 
 } // namespace ss

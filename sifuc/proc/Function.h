@@ -22,9 +22,10 @@ class Function {
 		void dump();
 		void save(int funcstart);
 		void end();
-		int getNumParam();
+		int getNumParams();
 		int getNumVars();
 		int getFuncStart();
+		bool checkParam(int type, int num);
 		std::string toHex(int i);
 	private:
 		std::string name;

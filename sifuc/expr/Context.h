@@ -12,6 +12,12 @@
  * passed along to the ss::Driver class and fill during parsing via bison
  * actions. So that via Driver every Element of the abract Syntaxtree or BISON/FLEX can access the context
  */
+
+struct CurrentFunction {
+	Function* func;
+	int param;
+};
+
 class SifuContext
 {
 	public:

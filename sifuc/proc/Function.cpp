@@ -73,7 +73,7 @@ void Function::end() {
 	variables.clear();
 }
 
-int Function::getNumParam() {
+int Function::getNumParams() {
 	return params.size();
 }
 
@@ -83,4 +83,11 @@ int Function::getNumVars() {
 
 int Function::getFuncStart() {
 	return func_start;
+}
+
+bool Function::checkParam(int type, int num) {
+	if (num >= params.size())
+		return false;
+
+	return params[num]->getType() == type;
 }

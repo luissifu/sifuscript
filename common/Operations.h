@@ -30,7 +30,8 @@ enum opInstructions {
 	//Functions
 	OP_JUMP_SUB,
 	OP_ERA,
-	OP_RETURN
+	OP_RETURN,
+	OP_SET_PARAM
 };
 
 const std::string opnames[] = {
@@ -63,5 +64,6 @@ const std::string opnames[] = {
 	//Functions
 	"JSUB",
 	"ERA ",
-	"RET "
+	"RET ",
+	"SETP"
 };

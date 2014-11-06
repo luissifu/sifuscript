@@ -114,16 +114,16 @@ morestates : state morestates 																				{ ; }
 		   | /*E*/																							{ ; }
 		   ;
 
-state : assign 																								{ driver.clearExp(); }
-	  |	conditional																							{ driver.clearExp(); }
-	  |	loop 																								{ driver.clearExp(); }
-	  |	class 																								{ driver.clearExp(); }
-	  |	function																							{ driver.clearExp(); }
-	  |	var 																								{ driver.clearExp(); }
-	  |	print 																								{ driver.clearExp(); }
-	  |	read 																								{ driver.clearExp(); }
-	  |	return 																								{ driver.clearExp(); }
-	  |	func_call																							{ driver.clearExp(); }
+state : assign 																								{ ; }
+	  |	conditional																							{ ; }
+	  |	loop 																								{ ; }
+	  |	class 																								{ ; }
+	  |	function																							{ ; }
+	  |	var 																								{ ; }
+	  |	print 																								{ ; }
+	  |	read 																								{ ; }
+	  |	return 																								{ ; }
+	  |	func_call																							{ ; }
 	  |	TK_NEWLINE																							{ ; }
 	  ;
 
@@ -216,12 +216,12 @@ moreargs : TK_COMMA type simple_id moreargs 																{ driver.addParam();
 		 | /*E*/ 																							{ ; }
 		 ;
 
-func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 						{ ; }
-		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ ; }
+func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN stat_funcall_aux2 call_args TK_RIGHTPAREN delimiter 	{ driver.genSub(); }
+		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ driver.genSub(); }
 		  ;
 
-call_args : var_const 																						{ ; }
-		  | var_const TK_COMMA call_args 																	{ ; }
+call_args : expresion 																						{ driver.genParam(); }
+		  | expresion TK_COMMA call_args 																	{ driver.genParam(); }
 		  ;
 
 var : type id delimiter 																					{ driver.checkVar(); }
@@ -371,6 +371,9 @@ stat_func_aux2 : /*E*/																						{ driver.saveFunc(); }
 
 stat_funcall_aux1 : /*E*/																					{ driver.verifyFunc(); }
 				  ;
+
+stat_funcall_aux2 : /*E*/																					{ driver.genEra(); }
+				;
 
 %%
 
