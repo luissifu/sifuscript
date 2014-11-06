@@ -158,9 +158,13 @@ public:
 
 	void checkFunc();
 
-	void verifyFunc();
+	void addParam();
 
-	void swapCtx();
+	void saveFunc();
+
+	void endFunc();
+
+	void verifyFunc();
 };
 
 } // namespace ss

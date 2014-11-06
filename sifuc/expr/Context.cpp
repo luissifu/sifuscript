@@ -21,7 +21,7 @@ void SifuContext::clearExpressions()
 	{
 		delete functions[i];
 	}
-	functions.clear();	
+	functions.clear();
 }
 
 // check if the given variable name exists in the storage
@@ -32,6 +32,10 @@ bool SifuContext::existsVariable(const std::string &varname) const {
 // check if the given variable name exists in the storage
 void SifuContext::addVariable(Var* var) {
 	currCtx->addVariable(var);
+}
+
+void SifuContext::addConst(Var* var) {
+	functions[0]->addVariable(var);
 }
 
 // return the given variable from the storage. throws an exception if it does not exist.
@@ -85,6 +89,18 @@ Function* SifuContext::getFunction(const std::string& funcname) {
 	throw(CompilerException(except.c_str()));
 }
 
+void SifuContext::addParam(Var* v) {
+	currCtx->addParam(v);
+}
+
 void SifuContext::swapGlobalContext() {
 	currCtx = functions[0];
+}
+
+void SifuContext::save(int func) {
+	currCtx->save(func);
+}
+
+void SifuContext::end() {
+	currCtx->end();
 }

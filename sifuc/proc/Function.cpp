@@ -5,12 +5,14 @@ Function::Function(std::string name) {
 }
 
 Function::~Function() {
+	/*
 	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
 	{
 		//delete &it->first;
 		delete it->second;
 	}
 	variables.clear();
+	*/
 }
 
 bool Function::existsVariable(const std::string &varname) const {
@@ -30,10 +32,12 @@ Var* Function::getVariable(const std::string &varname) const {
 }
 
 void Function::dump() {
+	/*
 	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
 	{
 		std::cout << it->second->getName() << " : " << vartypenames[it->second->getType()] << " [" << toHex(it->second->getAddress()) << "]" << std::endl;
 	}
+	*/
 }
 
 std::string Function::toHex(int i) {
@@ -48,4 +52,35 @@ std::string Function::getName() {
 
 void Function::setName(std::string n) {
 	name = n;
+}
+
+void Function::addParam(Var* v) {
+	params.push_back(v);
+}
+
+void Function::save(int funcstart) {
+	func_start = funcstart;
+}
+
+void Function::end() {
+	num_vars = variables.size();
+
+	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
+	{
+		//delete &it->first;
+		delete it->second;
+	}
+	variables.clear();
+}
+
+int Function::getNumParam() {
+	return params.size();
+}
+
+int Function::getNumVars() {
+	return num_vars;
+}
+
+int Function::getFuncStart() {
+	return func_start;
 }

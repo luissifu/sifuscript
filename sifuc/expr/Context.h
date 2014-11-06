@@ -21,12 +21,16 @@ class SifuContext
 		void clearExpressions();
 		bool existsVariable(const std::string &varname) const;
 		void addVariable(Var* var);
+		void addConst(Var* var);
 		Var* getVariable(const std::string &varname) const;
 		void dump();
 		bool existsFunction(const std::string& funcname);
 		void addFunction(Function* f);
 		Function* getFunction(const std::string& funcname);
 		void swapGlobalContext();
+		void addParam(Var* v);
+		void save(int func);
+		void end();
 	private:
 		typedef std::vector<Function*> Func_Store;
 		Func_Store functions;

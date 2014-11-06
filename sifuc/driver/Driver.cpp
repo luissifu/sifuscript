@@ -18,6 +18,12 @@ namespace ss {
 
 	Driver::~Driver() {
 		clearExp();
+
+		for(unsigned int i = 0; i < consts.size(); ++i)
+		{
+			delete consts[i];
+		}
+		consts.clear();
 	}
 
 	void Driver::saveconsts(std::ofstream& file) {
@@ -425,7 +431,7 @@ namespace ss {
 			}
 
 			consts.push_back(v);
-			context.addVariable(v);
+			context.addConst(v);
 		}
 
 		expr.operands.push(v);
@@ -611,7 +617,33 @@ namespace ss {
 		program.createStatement(OP_READ, -1, -1, res->getAddress());
 	}
 
-	void Driver::swapCtx() {
+	void Driver::addParam() {
+		std::string var = idstack.top();
+		idstack.pop();
+
+		int type = typestack.top();
+		typestack.pop();
+
+		if (context.existsVariable(var))
+		{
+			std::string except = "Redifinition of parameter in function: " + var;
+			throw(CompilerException(except.c_str()));
+		}
+
+		Var* v = new Var(var, type, memory.request(type,MEM_LOCAL));
+		context.addVariable(v);
+		context.addParam(v);
+	}
+
+	void Driver::saveFunc() {
+		context.save(program.getCounter());
+	}
+
+	void Driver::endFunc() {
+		context.end();
+
+		program.createStatement(OP_RETURN, -1, -1, -1);
+
 		context.swapGlobalContext();
 	}
 

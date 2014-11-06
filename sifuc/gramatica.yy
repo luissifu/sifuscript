@@ -204,16 +204,16 @@ accesor : ACC_PRIVATE 																						{ ; }
 		| ACC_PUBLIC 																						{ ; }
 		;
 
-function : TK_FUNC type simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl block				{ driver.swapCtx(); }
-		 | TK_FUNC simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl block					{ driver.swapCtx(); }
+function : TK_FUNC type simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl stat_func_aux2 block	{ driver.endFunc(); }
+		 | TK_FUNC simple_id stat_func_aux1 TK_LEFTPAREN args TK_RIGHTPAREN maybenl stat_func_aux2 block		{ driver.endFunc(); }
 		 ;
 
-args : type simple_id moreargs 																				{ ; }
-	 | /*E*/ 																								{ ; }
+args : /*E*/																								{ ; }
+	 | type simple_id moreargs																				{ driver.addParam(); }
 	 ;
 
-moreargs : TK_COMMA type simple_id moreargs 																{ ; }
-		 | /*E*/																							{ ; }
+moreargs : TK_COMMA type simple_id moreargs 																{ driver.addParam(); }
+		 | /*E*/ 																							{ ; }
 		 ;
 
 func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN call_args TK_RIGHTPAREN delimiter 						{ ; }
@@ -364,6 +364,9 @@ stat_for_aux3 : /*E*/																						{ driver.saveFor(); }
 			  ;
 
 stat_func_aux1 : /*E*/																						{ driver.checkFunc(); }
+			   ;
+
+stat_func_aux2 : /*E*/																						{ driver.saveFunc(); }
 			   ;
 
 stat_funcall_aux1 : /*E*/																					{ driver.verifyFunc(); }

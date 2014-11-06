@@ -495,10 +495,10 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 353,     ///< Last index in yytable_.
-      yynnts_ = 70,  ///< Number of nonterminal symbols.
+      yylast_ = 366,     ///< Last index in yytable_.
+      yynnts_ = 71,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
-      yyfinal_ = 78, ///< Termination state number.
+      yyfinal_ = 79, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 59  ///< Number of tokens.
