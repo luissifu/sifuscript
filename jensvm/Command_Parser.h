@@ -1,4 +1,5 @@
 #include "Memory.h"
+#include "../common/Operations.h"
 
 #ifndef	COMMAND_PARSER_H
 #define COMMAND_PARSER_H
@@ -18,7 +19,7 @@ public:
 	~Command_Parser();
 
 	int executeLine( char* com, long* op1, long* op2, long* res);
-	
+
 };
 
 #endif //COMMAND_PARSER_H
