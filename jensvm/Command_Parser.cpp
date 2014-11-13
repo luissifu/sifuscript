@@ -9,8 +9,8 @@ Command_Parser::Command_Parser( Memory* _Memory) :
 }
 
 Command_Parser::~Command_Parser(){
-	free((long*)op1_p);
-	free((long*)op2_p);
+	free((long long*)op1_p);
+	free((long long*)op2_p);
 }
 
 int Command_Parser::executeLine( opInstructions com, long op1, long op2, long res) {
@@ -26,7 +26,11 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 	memtype calculatetype = std::max( op1_info.memtype, op1_info.memtype );
 
 	if( com == OP_SET_VALUE){
-
+		if( outputtypetype == TYPE_DOUBLE || outputtypetype == TYPE_LONG ){
+			*(long long*)op1_p = (long) op1;
+			*(long long*)op1_p <<= 32;
+			*(long long*)op1_p |= (long) op2;
+		}
 	} else if( OP_ADD <= com && com <= OP_NOTEQ  ) {
 
 		switch (calculatetype)
@@ -432,9 +436,9 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				case TYPE_CHAR:		m->write( res, (char)op2); break;
 				case TYPE_SHORT:	m->write( res, (short)op2); break;
 				case TYPE_INT:		m->write( res, (int)op2); break;
-				case TYPE_LONG:		m->write( res, ( (long long)op1 << 32) | op2 ); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p); break;
 				case TYPE_FLOAT:	m->write( res, (float)op2); break;
-				case TYPE_DOUBLE:	m->write( res, reinterpret_cast<double>( (long long)op1 << 32) | op2 ); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}

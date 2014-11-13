@@ -37,7 +37,8 @@ using namespace std;
 %name-prefix "ss"
 
 /* set the parser's class identifier */
-%define "parser_class_name" { Gramatica }
+/*%define "parser_class_name" { Gramatica }*/
+%define parser_class_name "Gramatica"
 
 /* keep track of the current position within the input */
 %locations

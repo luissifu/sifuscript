@@ -32,11 +32,11 @@ int Driver::run(){
 	//Execution of Commands//
 	do {
 		//getCommand and execute ( 1 B OPCode, 4 Byte Op1, 4Byte Op2, 4 byte Res)
-		command = CodeStart + IP;
-		op1 =	  command + 1;
+		command = (opInstructions)*(char*)(CodeStart + IP);
+		op1 =	  (char*) command + 1;
 		op2 =	  op1 + 4;
 		res =	  op2 + 4;
-		command_parser->executeLine(*command, *(long*)op1, *(long*)op2, *(long*)res);
+		command_parser->executeLine(command, *(long*)op1, *(long*)op2, *(long*)res);
 		IP += 13;
 
 	} while( (long) command + 12 < fileSize );
