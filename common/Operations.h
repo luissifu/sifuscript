@@ -1,3 +1,5 @@
+#include <string>
+
 #pragma once
 
 enum opInstructions {
@@ -17,7 +19,7 @@ enum opInstructions {
 	OP_MOREEQ,
 	OP_EQ,
 	OP_NOTEQ,
-	OP_ASSIGN,
+	OP_ASSIGN, //unary as well
 	//Unary operators
 	OP_NOT,
 	//Jumps

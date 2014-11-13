@@ -4,6 +4,7 @@ const int MAX_TYPES = 512;
 const int MAX_STRING_SIZE = 256;
 
 enum memtype {
+	TYPE_INVALID,
 	TYPE_BOOL,
 	TYPE_CHAR,
 	TYPE_SHORT,

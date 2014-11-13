@@ -13,7 +13,7 @@ Driver::Driver( std::ifstream& file ) :
 
 
 	//Memory Allocations Variables and Constant
-	memory = new Memory();
+	memory = new Memory(  );
 	command_parser = new Command_Parser(memory);
 
 	CodeStart = (char*) 0xFFFF; //Position where Code Starts );
@@ -24,7 +24,7 @@ Driver::~Driver(){
 }
 
 int Driver::run(){
-	char* command;
+	opInstructions command;
 	char* op1;
 	char* op2;
 	char* res;
@@ -36,7 +36,7 @@ int Driver::run(){
 		op1 =	  command + 1;
 		op2 =	  op1 + 4;
 		res =	  op2 + 4;
-		command_parser->executeLine(command, (long*)op1, (long*)op2, (long*)res);
+		command_parser->executeLine(*command, *(long*)op1, *(long*)op2, *(long*)res);
 		IP += 13;
 
 	} while( (long) command + 12 < fileSize );
