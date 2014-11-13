@@ -13,7 +13,7 @@ Command_Parser::~Command_Parser(){
 	free((long long*)op2_p);
 }
 
-int Command_Parser::executeLine( opInstructions com, long op1, long op2, long res) {
+int Command_Parser::executeLine( opInstructions com, long op1, long op2, long res, long& IP) {
 
 	/*** Yo sé es mucho código, pero sola la otra oprtunidad que encontré fue con "Templateclasses que es mucho más lento"***/
 
@@ -22,16 +22,16 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 	struct pack op2_info = m->get(op2);
 	
 	/**OUTPUTTYPE Y TYPECAST de los OPERANDES**/
-	memtype outputtypetype = m->getType( res );
-	memtype calculatetype = std::max( op1_info.memtype, op1_info.memtype );
+	memtype outputtype = m->getType( res );
+	memtype calculatetype = std::max( op1_info.memtype, op2_info.memtype );
 
 	if( com == OP_SET_VALUE){
-		if( outputtypetype == TYPE_DOUBLE || outputtypetype == TYPE_LONG ){
+		if( outputtype == TYPE_DOUBLE || outputtype == TYPE_LONG ){
 			*(long long*)op1_p = (long) op1;
 			*(long long*)op1_p <<= 32;
 			*(long long*)op1_p |= (long) op2;
 		}
-	} else if( OP_ADD <= com && com <= OP_NOTEQ  ) {
+	} else if( OP_ADD <= com && com <= OP_NOTEQ || OP_ASSIGN <= com && com <= OP_JUMP_TRUE ) {
 
 		switch (calculatetype)
 		{
@@ -425,13 +425,18 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				//***TBD***//
 				break;
 			default: ;
-			
-		}
+		} 
 	}
 
+
+
+	////***************************************************************////
+	//// FROM HERE STARTS THE EXECUTION OF THE COMMAND, TYPECASTS ARE NOW DONE
+	////***************************************************************////
 	switch (com) {
+		//***SET Value Command***//
 		case OP_SET_VALUE: //Set Value
-			switch( outputtypetype ){
+			switch( outputtype ){
 				case TYPE_BOOL:		m->write( res, (bool)op2); break;
 				case TYPE_CHAR:		m->write( res, (char)op2); break;
 				case TYPE_SHORT:	m->write( res, (short)op2); break;
@@ -446,63 +451,63 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 		//***BINARY OPERANDS***/
 		case OP_ADD: //ADD
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p + *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p + *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p + *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p + *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p + *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p + *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p + *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p + *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p + *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p + *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p + *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p + *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p + *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p + *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_SUB: //SUB
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p - *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p - *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p - *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p - *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p - *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p - *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p - *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p - *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p - *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p - *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p - *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p - *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p - *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p - *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_MULT: //MULT
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p * *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p * *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p * *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p * *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p * *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p * *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p * *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p * *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p * *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p * *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p * *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p * *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p * *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p * *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_DIV: //DIV
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p / *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p / *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p / *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p / *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p / *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p / *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p / *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p / *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p / *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p / *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p / *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p / *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p / *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p / *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_MOD: //MOD
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p % *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p % *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p % *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p % *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p % *(long long*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p % *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p % *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p % *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p % *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p % *(long long*)op2_p); break;
 				case TYPE_FLOAT:	/**/ break;
 				case TYPE_DOUBLE:	/**/ break;
 				case TYPE_STR:		/**/ break;
@@ -511,11 +516,11 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 			break;
 		case OP_AND: //AND
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p & *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p & *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p & *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p & *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p & *(long long*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p & *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p & *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p & *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p & *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p & *(long long*)op2_p); break;
 				case TYPE_FLOAT:	/**/ break;
 				case TYPE_DOUBLE:	/**/ break;
 				case TYPE_STR:		/**/ break;
@@ -524,11 +529,11 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 			break;
 		case OP_OR: //OR
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p | *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p | *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p | *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p | *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p | *(long long*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p | *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p | *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p | *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p | *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p | *(long long*)op2_p); break;
 				case TYPE_FLOAT:	/**/ break;
 				case TYPE_DOUBLE:	/**/ break;
 				case TYPE_STR:		/**/ break;
@@ -537,81 +542,153 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 			break;
 		case OP_LESS: //LESS
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p < *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p < *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p < *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p < *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p < *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p < *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p < *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p < *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p < *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p < *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p < *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p < *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p < *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p < *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_MORE: //MORE
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p > *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p > *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p > *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p > *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p > *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p > *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p > *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p > *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p > *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p > *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p > *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p > *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p > *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p > *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_LESSEQ: //LESSEQ
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p <= *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p <= *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p <= *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p <= *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p <= *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p <= *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p <= *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p <= *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p <= *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p <= *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p <= *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p <= *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p <= *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p <= *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_MOREEQ: //MOREEQ
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p >= *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p >= *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p >= *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p >= *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p >= *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p >= *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p >= *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p >= *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p >= *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p >= *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p >= *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p >= *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p >= *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p >= *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_EQ: //EQ
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p == *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p == *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p == *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p == *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p == *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p == *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p == *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p == *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p == *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p == *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p == *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p == *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p == *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p == *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
 			break;
 		case OP_NOTEQ: //NOTEQ
 			switch( calculatetype ){
-				case TYPE_BOOL:		m->write( res, *(bool*)op1_p != *(bool*)op1_p); break;
-				case TYPE_CHAR:		m->write( res, *(char*)op1_p != *(char*)op1_p); break;
-				case TYPE_SHORT:	m->write( res, *(short*)op1_p != *(short*)op1_p); break;
-				case TYPE_INT:		m->write( res, *(int*)op1_p != *(int*)op1_p); break;
-				case TYPE_LONG:		m->write( res, *(long long*)op1_p != *(long long*)op1_p); break;
-				case TYPE_FLOAT:	m->write( res, *(float*)op1_p != *(float*)op1_p); break;
-				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p != *(double*)op1_p); break;
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p != *(bool*)op2_p); break;
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p != *(char*)op2_p); break;
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p != *(short*)op2_p); break;
+				case TYPE_INT:		m->write( res, *(int*)op1_p != *(int*)op2_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p != *(long long*)op2_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p != *(float*)op2_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p != *(double*)op2_p); break;
 				case TYPE_STR:		/**/ break;
 				default: ;											
 			}
+			break;
+		//***ASSIGN***//
+		case OP_ASSIGN: //save value from an dirección to an other dirección
+			switch( outputtype ){
+				case TYPE_BOOL:		m->write( res, *(bool*)op1_p); break;	
+				case TYPE_CHAR:		m->write( res, *(char*)op1_p); break;	
+				case TYPE_SHORT:	m->write( res, *(short*)op1_p); break;	
+				case TYPE_INT:		m->write( res, *(int*)op1_p); break;
+				case TYPE_LONG:		m->write( res, *(long long*)op1_p); break;
+				case TYPE_FLOAT:	m->write( res, *(float*)op1_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p); break;
+				case TYPE_STR:		/**/ break;
+				default: ;											
+			}
+			break;
+		//***Not***//
+		case OP_NOT: //NOT
+			switch( calculatetype ){ //expecting here that the second emtpy value is not valid, thus "-1" = 1111111111
+				case TYPE_BOOL:		m->write( res, !*(bool*)op1_p); break;
+				case TYPE_CHAR:		m->write( res, !*(char*)op1_p); break;
+				case TYPE_SHORT:	m->write( res, !*(short*)op1_p); break;
+				case TYPE_INT:		m->write( res, !*(int*)op1_p); break;
+				case TYPE_LONG:		m->write( res, !*(long long*)op1_p); break;
+				case TYPE_FLOAT:	m->write( res, !*(float*)op1_p); break;
+				case TYPE_DOUBLE:	m->write( res, *(double*)op1_p); break;
+				case TYPE_STR:		/**/ break;
+				default: ;											
+			}
+			break;
+		//******JUMPS******//
+		//*****************//
+		//***JUMP FALSE***//
+		case OP_JUMP_FALSE: //JUMP_FALSE
+			switch( calculatetype ){ //expecting here that the second emtpy value is not valid, thus "-1" = 1111111111
+				case TYPE_BOOL:		if( !*(bool*)op1_p ){ IP = res; } break;
+				case TYPE_CHAR:		if( !*(char*)op1_p ){ IP = res; } break;
+				case TYPE_SHORT:	if( !*(short*)op1_p ){ IP = res; } break;
+				case TYPE_INT:		if( !*(int*)op1_p ){ IP = res; } break;
+				case TYPE_LONG:		if( !*(long*)op1_p ){ IP = res; } break;
+				case TYPE_FLOAT:	if( !*(float*)op1_p ){ IP = res; } break;
+				case TYPE_DOUBLE:	if( !*(double*)op1_p ){ IP = res; } break;
+				case TYPE_STR:		/**/ break;
+				default: ;											
+			}
+			break;
+		//***JUMP_TRUE***//
+		case OP_JUMP_TRUE: //JUMP_TRUE
+			switch( calculatetype ){ //expecting here that the second emtpy value is not valid, thus "-1" = 1111111111
+				case TYPE_BOOL:		if( *(bool*)op1_p ){ IP = res; } break;
+				case TYPE_CHAR:		if( *(char*)op1_p ){ IP = res; } break;
+				case TYPE_SHORT:	if( *(short*)op1_p ){ IP = res; } break;
+				case TYPE_INT:		if( *(int*)op1_p ){ IP = res; } break;
+				case TYPE_LONG:		if( *(long*)op1_p ){ IP = res; } break;
+				case TYPE_FLOAT:	if( *(float*)op1_p ){ IP = res; } break;
+				case TYPE_DOUBLE:	if( *(double*)op1_p ){ IP = res; } break;
+				case TYPE_STR:		/**/ break;
+				default: ;											
+			}
+			break;
+		//***JUMP***//
+		case OP_JUMP: //JUMP
+			IP = res;
+			break;
+		//******SPECIAL FEATURES******//
+		//*****************//
+		//***PRINT***//
+		case OP_PRINT: //PRINT
+			printf( (char*)res );
+			break;
+		//***READ***//
+		case OP_READ: //PRINT
+			gets( (char*)res );
 			break;
 
 		default: ;

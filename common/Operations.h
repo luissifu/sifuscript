@@ -19,12 +19,12 @@ enum opInstructions {
 	OP_MOREEQ,
 	OP_EQ,
 	OP_NOTEQ,
-	OP_ASSIGN, //unary as well
+	OP_ASSIGN,	//unary as well
 	//Unary operators
-	OP_NOT,
+	OP_NOT,		//unaray
 	//Jumps
-	OP_JUMP_FALSE,
-	OP_JUMP_TRUE,
+	OP_JUMP_FALSE,	//unary
+	OP_JUMP_TRUE,	//unary
 	OP_JUMP,
 	//Special funcs
 	OP_PRINT,

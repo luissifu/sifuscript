@@ -24,7 +24,7 @@ public:
 	Command_Parser( Memory* _Memory);
 	~Command_Parser();
 
-	int executeLine( opInstructions com, long op1, long op2, long res);
+	int executeLine( opInstructions com, long op1, long op2, long res, long& IP);
 
 };
 

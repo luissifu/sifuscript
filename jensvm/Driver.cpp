@@ -36,7 +36,7 @@ int Driver::run(){
 		op1 =	  (char*) command + 1;
 		op2 =	  op1 + 4;
 		res =	  op2 + 4;
-		command_parser->executeLine(command, *(long*)op1, *(long*)op2, *(long*)res);
+		command_parser->executeLine(command, *(long*)op1, *(long*)op2, *(long*)res, IP);
 		IP += 13;
 
 	} while( (long) command + 12 < fileSize );

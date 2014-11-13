@@ -18,7 +18,7 @@ private:
 	std::streampos fileSize;
 	char* Code;
 
-	long IP;
+	long IP;     //instruction pointer!!!
 	char* CodeStart;
 
 	Memory* memory;
