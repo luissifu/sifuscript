@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Autocreated">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\Driver">
+      <UniqueIdentifier>{8580d1ff-93d5-4480-b1bd-7c40a625d838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Except">
+      <UniqueIdentifier>{4797b250-9932-4720-a36d-1540513eeaad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Expr">
+      <UniqueIdentifier>{fb425ff6-a6ed-48f7-8a3b-5bcb1e9e11c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Memory">
+      <UniqueIdentifier>{c41973a6-d34e-4928-b1e8-bc87db02cdb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Proc">
+      <UniqueIdentifier>{d3ab2c73-dd2d-43b8-8db3-ec7d510aebc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Programm">
+      <UniqueIdentifier>{47c4175a-4bca-4c47-8b05-3adf1fb69481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Common">
+      <UniqueIdentifier>{aa27151a-3e2b-44c6-af9e-83ac42d1b198}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\gramatica.cpp">
+      <Filter>Autocreated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\tokens.cpp">
+      <Filter>Autocreated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\driver\Driver.cpp">
+      <Filter>Quelldateien\Driver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\expr\Context.cpp">
+      <Filter>Quelldateien\Expr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\expr\Expression.cpp">
+      <Filter>Quelldateien\Expr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\memory\MemManager.cpp">
+      <Filter>Quelldateien\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\memory\Memory.cpp">
+      <Filter>Quelldateien\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\proc\Function.cpp">
+      <Filter>Quelldateien\Proc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\proc\Var.cpp">
+      <Filter>Quelldateien\Proc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\program\Program.cpp">
+      <Filter>Quelldateien\Programm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\program\Statement.cpp">
+      <Filter>Quelldateien\Programm</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\tokens.h">
+      <Filter>Quelldateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\gramatica.h">
+      <Filter>Autocreated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\driver\Driver.h">
+      <Filter>Quelldateien\Driver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\except\Exceptions.h">
+      <Filter>Quelldateien\Except</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\expr\Context.h">
+      <Filter>Quelldateien\Expr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\expr\Expression.h">
+      <Filter>Quelldateien\Expr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\memory\MemManager.h">
+      <Filter>Quelldateien\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\memory\Memory.h">
+      <Filter>Quelldateien\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\proc\Function.h">
+      <Filter>Quelldateien\Proc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\proc\Var.h">
+      <Filter>Quelldateien\Proc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\program\Program.h">
+      <Filter>Quelldateien\Programm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\program\Statement.h">
+      <Filter>Quelldateien\Programm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\common\Operations.h">
+      <Filter>Headerdateien\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\common\Types.h">
+      <Filter>Headerdateien\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\gramatica.yy">
+      <Filter>Quelldateien</Filter>
+    </None>
+    <None Include="..\..\..\location.hh">
+      <Filter>Autocreated</Filter>
+    </None>
+    <None Include="..\..\..\position.hh">
+      <Filter>Autocreated</Filter>
+    </None>
+    <None Include="..\..\..\stack.hh">
+      <Filter>Autocreated</Filter>
+    </None>
+    <None Include="..\..\..\..\build.bat">
+      <Filter>Quelldateien</Filter>
+    </None>
+    <None Include="..\..\..\..\common\README.md">
+      <Filter>Headerdateien\Common</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\tokens.ll">
+      <Filter>Quelldateien</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

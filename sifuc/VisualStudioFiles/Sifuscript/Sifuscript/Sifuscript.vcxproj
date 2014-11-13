@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{35DCBCCC-4E81-44CA-BCA2-F870E38FDD90}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Sifuscript</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\win_flex_bison-latest\;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\GitHub\sifuscript\sifuc\VisualStudioFiles\win_flex_bison-latest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\driver\Driver.cpp" />
+    <ClCompile Include="..\..\..\expr\Context.cpp" />
+    <ClCompile Include="..\..\..\expr\Expression.cpp" />
+    <ClCompile Include="..\..\..\gramatica.cpp" />
+    <ClCompile Include="..\..\..\main.cpp" />
+    <ClCompile Include="..\..\..\memory\MemManager.cpp" />
+    <ClCompile Include="..\..\..\memory\Memory.cpp" />
+    <ClCompile Include="..\..\..\proc\Function.cpp" />
+    <ClCompile Include="..\..\..\proc\Var.cpp" />
+    <ClCompile Include="..\..\..\program\Program.cpp" />
+    <ClCompile Include="..\..\..\program\Statement.cpp" />
+    <ClCompile Include="..\..\..\tokens.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\common\Operations.h" />
+    <ClInclude Include="..\..\..\..\common\Types.h" />
+    <ClInclude Include="..\..\..\driver\Driver.h" />
+    <ClInclude Include="..\..\..\except\Exceptions.h" />
+    <ClInclude Include="..\..\..\expr\Context.h" />
+    <ClInclude Include="..\..\..\expr\Expression.h" />
+    <ClInclude Include="..\..\..\gramatica.h" />
+    <ClInclude Include="..\..\..\memory\MemManager.h" />
+    <ClInclude Include="..\..\..\memory\Memory.h" />
+    <ClInclude Include="..\..\..\proc\Function.h" />
+    <ClInclude Include="..\..\..\proc\Var.h" />
+    <ClInclude Include="..\..\..\program\Program.h" />
+    <ClInclude Include="..\..\..\program\Statement.h" />
+    <ClInclude Include="..\..\..\tokens.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\build.bat" />
+    <None Include="..\..\..\..\common\README.md" />
+    <None Include="..\..\..\gramatica.yy" />
+    <None Include="..\..\..\location.hh" />
+    <None Include="..\..\..\position.hh" />
+    <None Include="..\..\..\stack.hh" />
+    <CustomBuild Include="..\..\..\tokens.ll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\build.bat</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">FLEXER BISON Custum Build Tool</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">gramatica.h,gramatica.c,tokens.c</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
