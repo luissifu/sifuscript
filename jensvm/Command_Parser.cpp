@@ -23,7 +23,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 	
 	/**OUTPUTTYPE Y TYPECAST de los OPERANDES**/
 	memtype outputtype = m->getType( res );
-	memtype calculatetype = std::max( op1_info.memtype, op2_info.memtype );
+	memtype calculatetype = std::max( op1_info.type, op2_info.type );
 
 	if( com == OP_SET_VALUE){
 		if( outputtype == TYPE_DOUBLE || outputtype == TYPE_LONG ){
@@ -37,7 +37,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 		{
 			//***BOOL***//
 			case TYPE_BOOL:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(bool*)op1_p = * (bool*)op1;
@@ -63,7 +63,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(bool*)op2_p = * (bool*)op2;
@@ -92,7 +92,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***CHAR***//
 			case TYPE_CHAR:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(char*)op1_p = * (bool*)op1;
@@ -118,7 +118,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(char*)op2_p = * (bool*)op2;
@@ -147,7 +147,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***SHORT***//
 			case TYPE_SHORT:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(short*)op1_p = * (bool*)op1;
@@ -173,7 +173,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(short*)op2_p = * (bool*)op2;
@@ -202,7 +202,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***INT***//
 			case TYPE_INT:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(int*)op1_p = * (bool*)op1;
@@ -228,7 +228,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(int*)op2_p = * (bool*)op2;
@@ -257,7 +257,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***LONG LONG***//
 			case TYPE_LONG:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(long long*)op1_p = * (bool*)op1;
@@ -283,7 +283,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(long long*)op2_p = * (bool*)op2;
@@ -312,7 +312,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***FLOAT***//
 			case TYPE_FLOAT:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(float*)op1_p = * (bool*)op1;
@@ -338,7 +338,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(float*)op2_p = * (bool*)op2;
@@ -367,7 +367,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 				break;
 			//***DOUBLE***//
 			case TYPE_DOUBLE:
-				switch (op1_info.memtype)
+				switch (op1_info.type)
 				{
 					case TYPE_BOOL:
 						*(double*)op1_p = * (bool*)op1;
@@ -393,7 +393,7 @@ int Command_Parser::executeLine( opInstructions com, long op1, long op2, long re
 					default: ;
 						//should not get here
 				}
-				switch (op2_info.memtype)
+				switch (op2_info.type)
 				{
 					case TYPE_BOOL:
 						*(double*)op2_p = * (bool*)op2;

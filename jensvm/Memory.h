@@ -1,12 +1,11 @@
-#include "../common/Types.h"
-
 #ifndef	MEMORY_H
 #define MEMORY_H
 
+#include "../common/Types.h"
 
 struct pack{
 	void* dir;
-	memtype memtype;
+	memtype type;
 };
 
 

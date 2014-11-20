@@ -1,52 +1,34 @@
 #include "Driver.h"
 
 
-Driver::Driver( std::ifstream& file ) : 
-	CodeStream(file), IP(0)	
-{
-	//get File in Memory
-	fileSize = file.tellg();
-    Code = new char [(int)fileSize];
-    file.seekg (0, std::ios::beg);
-    file.read (Code, fileSize);
-    file.close();
+Driver::Driver(FILE* infile, bool sf) {
+	fseek(infile, 0, SEEK_END);
+	file_end = ftell(infile);
+	fseek(infile, 0, SEEK_SET);
 
-
-	//Memory Allocations Variables and Constant
-	memory = new Memory(  );
-	command_parser = new Command_Parser(memory);
-
-	CodeStart = (char*) 0xFFFF; //Position where Code Starts );
-	run();
+	file = infile;
+	ins_ptr = 0;
+	show_flow = sf;
 }
 
-Driver::~Driver(){
-}
+Driver::~Driver() {}
 
-int Driver::run(){
-	opInstructions command;
-	char* op1;
-	char* op2;
-	char* res;
+bool Driver::run() {
+	char op;
+	int left;
+	int right;
+	int res;
 
-	//Execution of Commands//
-	do {
-		//getCommand and execute ( 1 B OPCode, 4 Byte Op1, 4Byte Op2, 4 byte Res)
-		command = (opInstructions)*(char*)(CodeStart + IP);
-		op1 =	  (char*) command + 1;
-		op2 =	  op1 + 4;
-		res =	  op2 + 4;
-		command_parser->executeLine(command, *(long*)op1, *(long*)op2, *(long*)res, IP);
-		IP += 13;
+	while (ftell(file) < file_end) 
+	{
+		fread(&op, sizeof(char), 1, file);
+		fread(&left, sizeof(int), 1, file);
+		fread(&right, sizeof(int), 1, file);
+		fread(&res, sizeof(int), 1, file);
 
-	} while( (long) command + 12 < fileSize );
-
-	//Command shall have EOF, or filelength corrupted
-	if( (long) command !=  fileSize) {
-		std::cout << "File Length corrupted!" << std::endl;
-		return 1;
+		std::cout << opnames[op] << " " << left << " " << right << " " << res << std::endl;
 	}
 
 
-	return 0;
+	return true;
 }

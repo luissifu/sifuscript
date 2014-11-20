@@ -1,5 +1,5 @@
 /** \file driver.h Declaration of the example::Driver class. */
-#include <fstream>
+#include <stdio.h>
 #include <iostream>
 
 #include "Memory.h"
@@ -12,26 +12,15 @@
 /*Controls the parsing of the file with instruction pointer etc..*/
 class Driver
 {
-
-private:
-	std::ifstream& CodeStream;
-	std::streampos fileSize;
-	char* Code;
-
-	long IP;     //instruction pointer!!!
-	char* CodeStart;
-
-	Memory* memory;
-	Command_Parser* command_parser;
-
-	int run();
-
-public:
-	Driver( std::ifstream& file);
-	~Driver();
-
-
-	
+	public:
+		Driver(FILE* infile, bool sf = false);
+		~Driver();
+		bool run();
+	private:
+		unsigned long ins_ptr;
+		unsigned long file_end;
+		FILE* file;
+		bool show_flow;
 };
 
 #endif //DRIVER_H
