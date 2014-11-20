@@ -12,11 +12,16 @@ COMP_FLAG = -w -std=c++11
 LINK_FLAG = -lfl
 
 #Name
-NAME = build/sifuc
+SIFUC_NAME = build/sifuc
+JENSVM_NAME = build/jensvm
 
 #Targets
-sifuc : $(SIFUC_OBJS)
-	$(CC) $(SIFUC_OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)
+.PHONY: all sifuc jensvm
 
-jensvm : $(JENSVM_OBJS)
-	$(CC) $(JENSVM_OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(NAME)
+all: sifuc jensvm
+
+sifuc: $(SIFUC_OBJS)
+	$(CC) $(SIFUC_OBJS) $(COMP_FLAG) $(LINK_FLAG) -o $(SIFUC_NAME)
+
+jensvm: $(JENSVM_OBJS)
+	$(CC) $(JENSVM_OBJS) $(COMP_FLAG) -o $(JENSVM_NAME)

@@ -8,6 +8,7 @@ Program::Program(std::string name) {
 	this->name = name;
 }
 
+/*
 void Program::save(std::ofstream& file) {
 	std::cout << "Program result: [0.." << statlist.size()-1 << "]" << std::endl;
 	for (int i =  0; i < statlist.size(); i++)
@@ -15,6 +16,21 @@ void Program::save(std::ofstream& file) {
 		std::cout << std::setw(3) << i;
 		std::cout << " " << statlist[i].toString() << std::endl;
 		file << statlist[i].toObj() << std::endl;
+	}
+}
+*/
+
+void Program::write(FILE* file) {
+	std::cout << "Program result: [0.." << statlist.size()-1 << "]" << std::endl;
+	for (int i = 0; i < statlist.size(); i++)
+	{
+		std::cout << std::setw(3) << i;
+		std::cout << " " << statlist[i].toString() << std::endl;
+		
+		fwrite(statlist[i].getOp(), sizeof(char), 1, file);
+		fwrite(statlist[i].getLeft(), sizeof(int), 1, file);
+		fwrite(statlist[i].getRight(), sizeof(int), 1, file);
+		fwrite(statlist[i].getResult(), sizeof(int), 1, file);
 	}
 }
 

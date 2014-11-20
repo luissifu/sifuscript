@@ -34,3 +34,20 @@ std::string Statement::toHex(int i) {
 void Statement::fillResult(int res) {
 	result = res;
 }
+
+
+char* Statement::getOp() {
+	return &operation;
+}
+
+int* Statement::getLeft() {
+	return &left;
+}
+
+int* Statement::getRight() {
+	return &right;
+}
+
+int* Statement::getResult() {
+	return &result;
+}

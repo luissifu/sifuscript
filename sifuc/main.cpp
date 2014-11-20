@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
 
 static std::string substr_until(std::string str, char until) {
 	bool found = false;
@@ -60,15 +61,17 @@ int main(int argc, char *argv[])
 			if (result)
 			{
 				std::string outname = substr_until(std::string(argv[ai]),'.') + ".jns";
-				std::ofstream outfile(outname.c_str());
+				//std::ofstream outfile(outname.c_str());
+				FILE* outfile;
+				outfile = fopen(outname.c_str(), "wb");
 
 				std::cout << "Writing to " << outname << "..." << std::endl;
 
-				driver.saveconsts(outfile);
+				//driver.saveconsts(outfile);
 				//driver.context.dump();
-				driver.program.save(outfile);
+				driver.program.write(outfile);
 
-				outfile.close();
+				fclose(outfile);
 			}
 
 			readfile = true;

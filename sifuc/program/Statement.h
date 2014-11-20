@@ -11,6 +11,10 @@ class Statement {
 		std::string toObj();
 		std::string toHex(int i);
 		void fillResult(int res);
+		char* getOp();
+		int* getLeft();
+		int* getRight();
+		int* getResult();
 	private:
 		char operation;
 		int left;
