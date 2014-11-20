@@ -16,7 +16,8 @@ int main(int argc, char *argv[])
 {	
 	
 	for(int ai = 1; ai < argc; ++ai)
-	{	
+	{
+		
 		FILE* infile;
 		infile = fopen(argv[ai],"rb");
 
@@ -32,7 +33,6 @@ int main(int argc, char *argv[])
 			fclose(infile);
 		}
 	}
-	
 
 	return 0;
 }

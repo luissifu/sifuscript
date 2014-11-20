@@ -3,6 +3,11 @@
 
 #include "../common/Types.h"
 
+struct data_type {
+	char* data;
+	memtype type;
+};
+
 struct pack{
 	void* dir;
 	memtype type;
