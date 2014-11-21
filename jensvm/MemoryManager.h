@@ -15,6 +15,7 @@ class MemoryManager {
 		void write(int address, double value);
 		void write(int address, std::string value);
 		void dump();
+		data_type read(int address);
 	private:
 		Memory global;
 		Memory local;

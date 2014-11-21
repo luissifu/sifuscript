@@ -14,21 +14,92 @@ Memory::Memory() {
 }
 
 Memory::~Memory() {
-	delete bool_storage;
-	delete char_storage;
-	delete short_storage;
-	delete int_storage;
-	delete long_storage;
-	delete float_storage;
-	delete double_storage;
-	delete str_storage;
+	delete[] bool_storage;
+	delete[] char_storage;
+	delete[] short_storage;
+	delete[] int_storage;
+	delete[] long_storage;
+	delete[] float_storage;
+	delete[] double_storage;
+	delete[] str_storage;
+}
+
+data_type Memory::read(int num) {
+	data_type var;
+
+	int char_lo = MAX_TYPES * bool_size;
+	int short_lo = char_lo + MAX_TYPES * char_size;
+	int int_lo = short_lo + MAX_TYPES * short_size;
+	int long_lo = int_lo + MAX_TYPES * int_size;
+	int float_lo = long_lo + MAX_TYPES * long_size;
+	int double_lo = float_lo + MAX_TYPES * float_size;
+	int str_lo = double_lo + MAX_TYPES * double_size;
+
+	//printf("num: %d\n", num);
+
+	if (num >= 0 && num < char_lo)
+	{
+		var.type = TYPE_BOOL;
+		var.data = (char*)&bool_storage[num];
+	}
+	else if (num >= char_lo && num < short_lo)
+	{
+		int offset = (num - char_lo)/char_size;
+
+		var.type = TYPE_CHAR;
+		var.data = (char*)&char_storage[offset];
+	}
+	else if (num >= short_lo && num < int_lo)
+	{
+		int offset = (num - short_lo)/short_size;
+
+		var.type = TYPE_SHORT;
+		var.data = (char*)&short_storage[offset];
+	}
+	else if (num >= int_lo && num < long_lo)
+	{
+		int offset = (num - int_lo)/int_size;
+
+		var.type = TYPE_INT;
+		var.data = (char*)&int_storage[offset];
+	}
+	else if (num >= long_lo && num < float_lo)
+	{
+		int offset = (num - long_lo)/long_size;
+
+		var.type = TYPE_LONG;
+		var.data = (char*)&long_storage[offset];
+	}
+	else if (num >= float_lo && num < double_lo)
+	{
+		int offset = (num - float_lo)/float_size;
+
+		var.type = TYPE_FLOAT;
+		var.data = (char*)&float_storage[offset];
+	}
+	else if (num >= double_lo && num < str_lo)
+	{
+		int offset = (num - double_lo)/double_size;
+
+		var.type = TYPE_DOUBLE;
+		var.data = (char*)&double_storage[offset];
+	}
+	else
+	{
+		int offset = (num - str_lo)/(char_size * MAX_STRING_SIZE);
+
+		var.type = TYPE_STR;
+		//var.data = (char*)str_storage[offset];
+	}
+
+	return var;
 }
 
 void Memory::init(FILE* file) {
 	fread(&bool_qty, sizeof(int), 1, file);
 	fread(&char_qty, sizeof(int), 1, file);
-	fread(&short_qty, sizeof(int), 1, file);
 	fread(&int_qty, sizeof(int), 1, file);
+	fread(&short_qty, sizeof(int), 1, file);
 	fread(&long_qty, sizeof(int), 1, file);
 	fread(&float_qty, sizeof(int), 1, file);
 	fread(&double_qty, sizeof(int), 1, file);

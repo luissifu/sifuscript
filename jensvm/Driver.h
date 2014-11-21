@@ -22,6 +22,7 @@ class Driver
 		FILE* file;
 		bool show_flow;
 		MemoryManager memory;
+		Command_Parser parser;
 };
 
 #endif //DRIVER_H

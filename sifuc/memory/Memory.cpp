@@ -52,16 +52,6 @@ void Memory::clear() {
 	if (string_num > string_max)
 		string_max = string_num;
 
-	printf("Cleaning %s...\n", name.c_str());
-	printf("%d : %d\n", bool_num, bool_max);
-	printf("%d : %d\n", char_num, char_max);
-	printf("%d : %d\n", short_num, short_max);
-	printf("%d : %d\n", int_num, int_max);
-	printf("%d : %d\n", long_num, long_max);
-	printf("%d : %d\n", float_num, float_max);
-	printf("%d : %d\n", double_num, double_max);
-	printf("%d : %d\n", string_num, string_max);
-
 	bool_num = 0;
 	char_num = 0;
 	short_num = 0;
@@ -89,9 +79,7 @@ void Memory::setName(std::string name) {
 
 int Memory::add(int type) {
 	int location;
-
-	printf("Add to %s...\n", name.c_str());
-
+	
 	switch(type)
 	{
 		case TYPE_BOOL:

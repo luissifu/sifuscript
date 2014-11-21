@@ -8,6 +8,8 @@ Driver::Driver(FILE* infile, bool sf) {
 	file = infile;
 	ins_ptr = 0;
 	show_flow = sf;
+
+	parser.setMemory(&memory);
 }
 
 Driver::~Driver() {}
@@ -83,10 +85,12 @@ bool Driver::run() {
 		fread(&right, sizeof(int), 1, file);
 		fread(&res, sizeof(int), 1, file);
 
-		std::cout << opnames[op] << " " << left << " " << right << " " << res << std::endl;
+		parser.execute_line(op, left, right, res, ins_ptr);
 	}
 
-	memory.dump();
+	//memory.dump();
+
+	printf("\n");
 
 	return true;
 }

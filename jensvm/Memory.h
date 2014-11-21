@@ -26,6 +26,7 @@ class Memory {
 		void write(int num, std::string value);
 		//
 		void dump();
+		data_type read(int num);
 	private:
 		//storage
 		bool* bool_storage;
