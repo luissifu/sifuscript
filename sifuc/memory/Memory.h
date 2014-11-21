@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <stdio.h>
 #include "../../common/Types.h"
 
 class Memory {
@@ -9,8 +10,9 @@ class Memory {
 		void setOffset(int offset);
 		void setName(std::string name);
 		int add(int type);
-		int getBlockSize();
+		//int getBlockSize();
 		void clear();
+		void dump(FILE* file);
 	private:
 		int offset;
 		int blocksize;
@@ -24,13 +26,13 @@ class Memory {
 		int float_num;
 		int double_num;
 		int string_num;
-		/*
-		std::vector<char*> charlist;
-		std::vector<std::string*> strlist;
-		std::vector<short*> shortlist;
-		std::vector<int*> intlist;
-		std::vector<long*> longlist;
-		std::vector<float*> floatlist;
-		std::vector<double*> doublelist;
-		*/
+		//max
+		int bool_max;
+		int char_max;
+		int short_max;
+		int int_max;
+		int long_max;
+		int float_max;
+		int double_max;
+		int string_max;
 };

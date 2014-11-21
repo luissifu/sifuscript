@@ -13,6 +13,7 @@ class MemManager {
 		MemManager();
 		int request(int type, int from);
 		void clear(int which);
+		void dump(FILE* file);
 	private:
 		int requestBool(int from);
 		int requestChar(int from);

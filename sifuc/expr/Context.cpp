@@ -104,3 +104,7 @@ void SifuContext::save(int func) {
 void SifuContext::end() {
 	currCtx->end();
 }
+
+bool SifuContext::isGlobal() {
+	return currCtx == functions[0];
+}

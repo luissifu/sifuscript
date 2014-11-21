@@ -4,16 +4,23 @@ Memory::Memory() {
 	offset = 0;
 	name = "";
 
-	blocksize = MAX_TYPES * bool_size
-				+ MAX_TYPES * char_size
-				+ MAX_TYPES * short_size
-				+ MAX_TYPES * int_size
-				+ MAX_TYPES * long_size
-				+ MAX_TYPES * float_size
-				+ MAX_TYPES * double_size
-				+ MAX_TYPES * char_size * MAX_STRING_SIZE;
+	bool_max = 0;
+	char_max = 0;
+	short_max = 0;
+	int_max = 0;
+	long_max = 0;
+	float_max = 0;
+	double_max = 0;
+	string_max = 0;
 
-	clear();
+	bool_num = 0;
+	char_num = 0;
+	short_num = 0;
+	int_num = 0;
+	long_num = 0;
+	float_num = 0;
+	double_num = 0;
+	string_num = 0;
 }
 
 void Memory::setOffset(int offset) {
@@ -21,7 +28,59 @@ void Memory::setOffset(int offset) {
 }
 
 void Memory::clear() {
-	bool_num = char_num = short_num = int_num = long_num = float_num = double_num = string_num = 0;
+	if (bool_num > bool_max)
+		bool_max = bool_num;
+
+	if (char_num > char_max)
+		char_max = char_num;
+
+	if (short_num > short_max)
+		short_max = short_num;
+
+	if (int_num > int_max)
+		int_max = int_num;
+
+	if (long_num > long_max)
+		long_max = long_num;
+
+	if (float_num > float_max)
+		float_max = float_num;
+
+	if (double_num > double_max)
+		double_max = double_num;
+
+	if (string_num > string_max)
+		string_max = string_num;
+
+	printf("Cleaning %s...\n", name.c_str());
+	printf("%d : %d\n", bool_num, bool_max);
+	printf("%d : %d\n", char_num, char_max);
+	printf("%d : %d\n", short_num, short_max);
+	printf("%d : %d\n", int_num, int_max);
+	printf("%d : %d\n", long_num, long_max);
+	printf("%d : %d\n", float_num, float_max);
+	printf("%d : %d\n", double_num, double_max);
+	printf("%d : %d\n", string_num, string_max);
+
+	bool_num = 0;
+	char_num = 0;
+	short_num = 0;
+	int_num = 0;
+	long_num = 0;
+	float_num = 0;
+	double_num = 0;
+	string_num = 0;
+}
+
+void Memory::dump(FILE* file) {
+	fwrite(&bool_max, sizeof(int), 1, file);
+	fwrite(&char_max, sizeof(int), 1, file);
+	fwrite(&short_max, sizeof(int), 1, file);
+	fwrite(&int_max, sizeof(int), 1, file);
+	fwrite(&long_max, sizeof(int), 1, file);
+	fwrite(&float_max, sizeof(int), 1, file);
+	fwrite(&double_max, sizeof(int), 1, file);
+	fwrite(&string_max, sizeof(int), 1, file);
 }
 
 void Memory::setName(std::string name) {
@@ -30,6 +89,9 @@ void Memory::setName(std::string name) {
 
 int Memory::add(int type) {
 	int location;
+
+	printf("Add to %s...\n", name.c_str());
+
 	switch(type)
 	{
 		case TYPE_BOOL:
@@ -103,6 +165,8 @@ int Memory::add(int type) {
 	return location + offset;
 }
 
+/*
 int Memory::getBlockSize() {
 	return blocksize;
 }
+*/

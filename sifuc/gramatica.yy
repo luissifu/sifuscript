@@ -108,7 +108,7 @@ moreimps : imports																							{ ; }
 		 | /*E*/																							{ ; }
 		 ;
 
-statelist : state morestates																				{ ; }
+statelist : state morestates																				{ driver.endProg(); }
 		  ;
 
 morestates : state morestates 																				{ ; }

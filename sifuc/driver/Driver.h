@@ -6,6 +6,9 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
 
 #include "../tokens.h"
 #include "../expr/Context.h"
@@ -78,7 +81,7 @@ public:
 	 * e.g. to a dialog box. */
 	void error(const std::string& m);
 
-	void saveconsts(std::ofstream& file);
+	void saveconsts(FILE* file);
 
 	/** Pointer to the current lexer instance, this is used to connect the
 	 * parser to the scanner. It is used in the yylex macro. */
@@ -172,6 +175,8 @@ public:
 	void genSub();
 
 	void genParam();
+
+	void endProg();
 };
 
 } // namespace ss

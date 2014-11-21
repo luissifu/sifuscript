@@ -1,9 +1,6 @@
 // $Id: driver.cc 39 2008-08-03 10:07:15Z tb $
 /** \file driver.cc Implementation of the example::Driver class. */
 
-#include <fstream>
-#include <sstream>
-
 #include "Driver.h"
 
 namespace ss {
@@ -26,40 +23,53 @@ namespace ss {
 		consts.clear();
 	}
 
-	void Driver::saveconsts(std::ofstream& file) {
-		for (int i = 0; i < consts.size(); i++)
+	void Driver::saveconsts(FILE* file) {
+		int size = consts.size();
+		fwrite(&size, sizeof(int), 1, file);
+		for(int i = 0; i < size; i++)
 		{
-			file << OP_SET_VALUE << " ";
+			int type = consts[i]->getType();
+			fwrite(&type, sizeof(int), 1, file);
 
-			switch (consts[i]->getType())
+			switch(type)
 			{
 				case VARTYPE_BOOL:
-					if (consts[i]->getName()[0] == 't')
-						file << 1 << " " << -1 << " " << consts[i]->getAddress();
-					else
-						file << 0 << " " << -1 << " " << consts[i]->getAddress();
+					{
+						bool val = consts[i]->getName()[0] == 't';
+						int add = consts[i]->getAddress();
+
+						fwrite(&add, sizeof(int), 1, file);
+						fwrite(&val, sizeof(bool), 1, file);
+					}
 					break;
 
 				case VARTYPE_CHAR:
+					{
+						char val = consts[i]->getName()[1];
+						int add = consts[i]->getAddress();
+
+						fwrite(&add, sizeof(int), 1, file);
+						fwrite(&val, sizeof(char), 1, file);
+					}
 					break;
 
 				case VARTYPE_LONG:
 					{
-						long value = std::stol(consts[i]->getName());
-						int left = (int)(value & 0xffffffff00000000);
-						int right = (int)(value & 0x00000000ffffffff);
-						file << left << " " << right << " " << consts[i]->getAddress();
+						long val = std::stol(consts[i]->getName());
+						int add = consts[i]->getAddress();
+
+						fwrite(&add, sizeof(int), 1, file);
+						fwrite(&val, sizeof(long), 1, file);
 					}
 					break;
 
 				case VARTYPE_DOUBLE:
 					{
-						/*
-						double value = std::stod(consts[i]->getName());
-						int left = (int)(value & 0xffffffff00000000);
-						int right = (int)(value & 0x00000000ffffffff);
-						file << left << right << consts[i]->getAddress() << std::endl;
-						*/
+						double val = std::stod(consts[i]->getName());
+						int add = consts[i]->getAddress();
+
+						fwrite(&add, sizeof(int), 1, file);
+						fwrite(&val, sizeof(double), 1, file);
 					}
 					break;
 
@@ -67,10 +77,8 @@ namespace ss {
 					break;
 			}
 
-			file << std::endl;
 		}
 	}
-
 
 	bool Driver::parse_stream(std::istream& in, const std::string& sname)
 	{
@@ -140,7 +148,9 @@ namespace ss {
 			throw(CompilerException(except.c_str()));
 		}
 
-		Var* v = new Var(var, type, memory.request(type,MEM_LOCAL));
+		int mem_type = context.isGlobal() ? MEM_GLOBAL : MEM_LOCAL;
+
+		Var* v = new Var(var, type, memory.request(type,mem_type));
 		context.addVariable(v);
 	}
 
@@ -645,6 +655,8 @@ namespace ss {
 	void Driver::endFunc() {
 		context.end();
 
+		memory.clear(MEM_LOCAL);
+
 		program.createStatement(OP_RETURN, -1, -1, -1);
 
 		context.swapGlobalContext();
@@ -677,6 +689,12 @@ namespace ss {
 		}
 
 		program.createStatement(OP_JUMP_SUB, -1, -1, curr_func.func->getFuncStart());
+	}
+
+	void Driver::endProg() {
+		memory.clear(MEM_GLOBAL);
+		memory.clear(MEM_LOCAL);
+		memory.clear(MEM_TEMP);
 	}
 
 } // namespace example

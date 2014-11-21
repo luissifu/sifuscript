@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "Memory.h"
+#include "MemoryManager.h"
 #include "Command_Parser.h"
 
 #ifndef DRIVER_H
@@ -21,6 +21,7 @@ class Driver
 		unsigned long file_end;
 		FILE* file;
 		bool show_flow;
+		MemoryManager memory;
 };
 
 #endif //DRIVER_H

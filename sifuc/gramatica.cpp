@@ -647,7 +647,7 @@ namespace ss {
 
   case 8:
 #line 111 "gramatica.yy" // lalr1.cc:847
-    { ; }
+    { driver.endProg(); }
 #line 652 "gramatica.cpp" // lalr1.cc:847
     break;
 

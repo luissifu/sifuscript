@@ -37,6 +37,7 @@ class SifuContext
 		void addParam(Var* v);
 		void save(int func);
 		void end();
+		bool isGlobal();
 	private:
 		typedef std::vector<Function*> Func_Store;
 		Func_Store functions;

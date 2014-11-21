@@ -3,9 +3,9 @@
 MemManager::MemManager() {
 	global.setName("global");
 	local.setName("local");
-	local.setOffset(global.getBlockSize());
+	local.setOffset(block_size);
 	temp.setName("temp");
-	temp.setOffset(global.getBlockSize() + local.getBlockSize());
+	temp.setOffset(block_size*2);
 }
 
 void MemManager::clear(int which) {
@@ -23,6 +23,12 @@ void MemManager::clear(int which) {
 			temp.clear();
 			break;
 	}
+}
+
+void MemManager::dump(FILE* file) {
+	global.dump(file);
+	local.dump(file);
+	temp.dump(file);
 }
 
 int MemManager::request(int type, int from) {
