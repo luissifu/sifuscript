@@ -17,7 +17,7 @@ std::string Statement::toString() {
 }
 
 std::string Statement::toObj() {
-	std::string op = std::to_string(operation);
+	std::string op = opnames[(int)operation];
 	std::string l = std::to_string(left);
 	std::string r = std::to_string(right);
 	std::string res = std::to_string(result);

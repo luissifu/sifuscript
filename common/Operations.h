@@ -3,8 +3,8 @@
 #pragma once
 
 enum opInstructions {
-	//Constants
-	OP_SET_VALUE,
+	//End program
+	OP_END_PROGRAM,
 	//Binary operators
 	OP_ADD,
 	OP_SUB,
@@ -37,8 +37,8 @@ enum opInstructions {
 };
 
 const std::string opnames[] = {
-	//Constants
-	"SETV",
+	//End program
+	"END ",
 	//Binary operators
 	"ADD ",
 	"SUB ",

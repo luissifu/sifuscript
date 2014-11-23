@@ -18,13 +18,13 @@ enum memtype {
 };
 
 //bytes
-const int bool_size = 1;
-const int char_size = 1;
-const int short_size = 2;
-const int int_size = 4;
-const int long_size = 8;
-const int float_size = 4;
-const int double_size = 8;
+const int bool_size = sizeof(bool);
+const int char_size = sizeof(char);
+const int short_size = sizeof(short);
+const int int_size = sizeof(int);
+const int long_size = sizeof(long);
+const int float_size = sizeof(float);
+const int double_size = sizeof(double);
 
 const int block_size = MAX_TYPES * bool_size
 	+ MAX_TYPES * char_size

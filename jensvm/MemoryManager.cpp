@@ -18,10 +18,10 @@ data_type MemoryManager::read(int address) {
 	if (address >= 0 && address < block_size)
 		return global.read(address);
 	else if (address >= block_size && address < block_size*2)
-		return local.read(address);
+		return local.read(address - block_size);
 	else if (address >= block_size*2 && address < block_size*3)
-		return temp.read(address);
-	else
+		return temp.read(address - block_size*2);
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -32,7 +32,7 @@ void MemoryManager::write(int address, bool value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -43,7 +43,7 @@ void MemoryManager::write(int address, char value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -54,7 +54,7 @@ void MemoryManager::write(int address, short value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -65,7 +65,7 @@ void MemoryManager::write(int address, int value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -76,7 +76,7 @@ void MemoryManager::write(int address, long value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -87,7 +87,7 @@ void MemoryManager::write(int address, float value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -98,7 +98,7 @@ void MemoryManager::write(int address, double value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }
 
@@ -109,6 +109,6 @@ void MemoryManager::write(int address, std::string value) {
 		local.write(address - block_size, value);
 	else if (address >= block_size*2 && address < block_size*3)
 		temp.write(address - block_size*2, value);
-	else
+	else if (address != -1)
 		printf("Access of invalid address\n");
 }

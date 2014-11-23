@@ -695,6 +695,8 @@ namespace ss {
 		memory.clear(MEM_GLOBAL);
 		memory.clear(MEM_LOCAL);
 		memory.clear(MEM_TEMP);
+
+		program.createStatement(OP_END_PROGRAM, -1, -1, -1);
 	}
 
 } // namespace example

@@ -25,8 +25,8 @@ void Program::write(FILE* file) {
 	for (int i = 0; i < statlist.size(); i++)
 	{
 		std::cout << std::setw(3) << i;
-		std::cout << " " << statlist[i].toString() << std::endl;
-		
+		std::cout << " | " << statlist[i].toObj() << std::endl;
+
 		fwrite(statlist[i].getOp(), sizeof(char), 1, file);
 		fwrite(statlist[i].getLeft(), sizeof(int), 1, file);
 		fwrite(statlist[i].getRight(), sizeof(int), 1, file);

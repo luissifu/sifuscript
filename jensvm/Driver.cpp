@@ -78,8 +78,13 @@ bool Driver::run() {
 	}
 
 	//execute program
+	int prog_start = ftell(file);
+	int register_size = sizeof(char) + 3 * sizeof(int);
+
 	while (ftell(file) < file_end)
 	{
+		fseek(file, prog_start + ins_ptr * register_size, SEEK_SET);
+
 		fread(&op, sizeof(char), 1, file);
 		fread(&left, sizeof(int), 1, file);
 		fread(&right, sizeof(int), 1, file);
