@@ -13,6 +13,6 @@ function int twoParams(int x, int y) {
 int a = 0
 int b = 1
 
-print twoParams(a, b) + 2;
+println twoParams(a, b) + 2;
 
 voidType()

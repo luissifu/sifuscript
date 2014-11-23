@@ -230,7 +230,7 @@ var : type id delimiter 																					{ driver.checkVar(); }
 	;
 
 print : TK_PRINT expresion delimiter 																		{ driver.genPrint(); }
-	  | TK_PRINTLN expresion delimiter 																		{ driver.genPrint(); }
+	  | TK_PRINTLN expresion delimiter 																		{ driver.genPrintLine(); }
 	  ;
 
 read : TK_READ expresion delimiter 																		    { driver.genRead(); }

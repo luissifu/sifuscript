@@ -176,6 +176,9 @@ namespace ss {
 
 		Function* f = new Function(func, type, address);
 		context.addFunction(f);
+
+		program.createStatement(OP_JUMP, -1, -1, -1);
+		jumps.push(program.getCounter()-1);
 	}
 
 	void Driver::verifyFunc() {
@@ -636,7 +639,7 @@ namespace ss {
 		Var* res = expr.operands.top();
 		expr.operands.pop();
 
-		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
+		program.createStatement(OP_PRINT_LINE, -1, -1, res->getAddress());
 	}
 
 	void Driver::genRead() {
@@ -674,6 +677,11 @@ namespace ss {
 		memory.clear(MEM_LOCAL);
 
 		program.createStatement(OP_END_FUNC, -1, -1, -1);
+
+		int skip_func = jumps.top();
+		jumps.pop();
+
+		program.fill(skip_func, program.getCounter());
 
 		context.swapGlobalContext();
 	}

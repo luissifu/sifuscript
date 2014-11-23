@@ -114,11 +114,12 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_READ:
+			read(mem->read(result));
 			ip++;
 			break;
 
 		case OP_JUMP_SUB:
-			ip++;
+			jump(mem->read(left), result, ip, JUMP_COMP_SUB);
 			break;
 
 		case OP_ERA:
@@ -130,7 +131,7 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_END_FUNC:
-			ip++;
+			jump(mem->read(left), result, ip, JUMP_COMP_RETURN);
 			break;
 
 		case OP_SET_PARAM:
@@ -162,6 +163,16 @@ void Command_Parser::jump(data_type left, int res, unsigned long& ip, char comp)
 
 		case JUMP_COMP_NONE:
 			ip = res;
+			break;
+
+		case JUMP_COMP_SUB:
+			func_jumps.push(ip);
+			ip = res;
+			break;
+
+		case JUMP_COMP_RETURN:
+			ip = func_jumps.top() + 1;
+			func_jumps.pop();
 			break;
 
 		default:
@@ -278,6 +289,46 @@ void Command_Parser::print(data_type var, bool newline) {
 
 		case TYPE_STR:
 			std::cout << var.data << nl;
+			break;
+
+		default:
+			//shouldnt happen
+			break;
+	}
+}
+
+void Command_Parser::read(data_type var) {
+	switch(var.type)
+	{
+		case TYPE_BOOL:
+			std::cin >> *((bool*)var.data);
+			break;
+
+		case TYPE_CHAR:
+			std::cin >> *var.data;
+			break;
+
+		case TYPE_SHORT:
+			std::cin >> *((short*)var.data);
+			break;
+
+		case TYPE_INT:
+			std::cin >> *((int*)var.data);
+			break;
+
+		case TYPE_LONG:
+			std::cin >> *((long*)var.data);
+			break;
+
+		case TYPE_FLOAT:
+			std::cin >> *((float*)var.data);
+			break;
+
+		case TYPE_DOUBLE:
+			std::cin >> *((double*)var.data);
+			break;
+
+		case TYPE_STR:
 			break;
 
 		default:
