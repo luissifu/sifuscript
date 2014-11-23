@@ -96,9 +96,9 @@ using namespace std;
 
 %%
 
-program : imports statelist 																				{ ; }
-		| imports 																							{ ; }
-		| statelist																							{ ; }
+program : imports statelist 																				{ driver.endProg(); }
+		| imports 																							{ driver.endProg(); }
+		| statelist																							{ driver.endProg(); }
 		;
 
 imports : TK_IMPORT CONST_STR delimiter moreimps 															{ ; }
@@ -108,7 +108,7 @@ moreimps : imports																							{ ; }
 		 | /*E*/																							{ ; }
 		 ;
 
-statelist : state morestates																				{ driver.endProg(); }
+statelist : state morestates																				{ ; }
 		  ;
 
 morestates : state morestates 																				{ ; }
