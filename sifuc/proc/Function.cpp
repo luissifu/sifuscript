@@ -1,7 +1,9 @@
 #include "Function.h"
 
-Function::Function(std::string name) {
+Function::Function(std::string name, int type, int address) {
 	this->name = name;
+	this->type = type;
+	this->address = address;
 }
 
 Function::~Function() {
@@ -24,6 +26,12 @@ void Function::addVariable(Var* var) {
 }
 
 Var* Function::getVariable(const std::string &varname) const {
+	for (int i = 0; i < params.size(); i++)
+	{
+		if (params[i]->getName().compare(varname) == 0)
+			return params[i];
+	}
+
 	Var_Store::const_iterator vi = variables.find(varname);
 	if (vi == variables.end())
 		return nullptr;
@@ -31,13 +39,17 @@ Var* Function::getVariable(const std::string &varname) const {
 		return vi->second;
 }
 
-void Function::dump() {
-	/*
-	for (Var_Store::iterator it=variables.begin(); it!=variables.end(); ++it)
+void Function::dump(FILE* file) {
+	printf("dumping vars for %s\n", name.c_str());
+
+	int param_num = params.size();
+	fwrite(&param_num, sizeof(int), 1, file);
+
+	for (int i = 0 ; i < param_num; i++)
 	{
-		std::cout << it->second->getName() << " : " << vartypenames[it->second->getType()] << " [" << toHex(it->second->getAddress()) << "]" << std::endl;
+		char type = (char)params[i]->getType();
+		fwrite(&type, sizeof(char), 1, file);
 	}
-	*/
 }
 
 std::string Function::toHex(int i) {
@@ -90,4 +102,12 @@ bool Function::checkParam(int type, int num) {
 		return false;
 
 	return params[num]->getType() == type;
+}
+
+int Function::getType() {
+	return type;
+}
+
+int Function::getAddress() {
+	return address;
 }

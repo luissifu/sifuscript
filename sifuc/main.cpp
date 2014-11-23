@@ -67,9 +67,9 @@ int main(int argc, char *argv[])
 
 				std::cout << "Writing to " << outname << "..." << std::endl;
 
-				//driver.context.dump();
 				driver.memory.dump(outfile);
 				driver.saveconsts(outfile);
+				driver.context.dump(outfile);
 				driver.program.write(outfile);
 
 				fclose(outfile);

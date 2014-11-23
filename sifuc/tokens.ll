@@ -86,6 +86,7 @@ chr		[^\']
 "function"					{ return token::TK_FUNC; }
 "class"						{ return token::TK_CLASS; }
 "import"					{ return token::TK_IMPORT; }
+"println"					{ return token::TK_PRINTLN; }
 "print"						{ return token::TK_PRINT; }
 "read"						{ return token::TK_READ; }
 "return"					{ return token::TK_RETURN; }

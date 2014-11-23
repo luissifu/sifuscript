@@ -6,10 +6,13 @@ function voidType() {
 	int a = 0
 }
 
-function oneParam(int x) {
-	int y = 2
+function int twoParams(int x, int y) {
+	return x + y
 }
 
 int a = 0
+int b = 1
 
-oneParam(a);
+print twoParams(a, b) + 2;
+
+voidType()

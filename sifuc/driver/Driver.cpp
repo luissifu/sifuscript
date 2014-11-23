@@ -162,7 +162,7 @@ namespace ss {
 
 		if (!typestack.empty())
 		{
-			int type = typestack.top();
+			type = typestack.top();
 			typestack.pop();
 		}
 
@@ -172,7 +172,9 @@ namespace ss {
 			throw(CompilerException(except.c_str()));
 		}
 
-		Function* f = new Function(func);
+		int address = (type == VARTYPE_VOID)?-1:memory.request(type, MEM_GLOBAL);
+
+		Function* f = new Function(func, type, address);
 		context.addFunction(f);
 	}
 
@@ -184,6 +186,13 @@ namespace ss {
 
 		curr_func.func = f;
 		curr_func.param = 0;
+
+		if (f->getType() != VARTYPE_VOID)
+		{
+			Var* v = new Var(f->getName(), f->getType(), f->getAddress());
+			expr.operands.push(v);
+		}
+
 	}
 
 	void Driver::addType(char* type) {
@@ -623,6 +632,13 @@ namespace ss {
 		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
 	}
 
+	void Driver::genPrintLine() {
+		Var* res = expr.operands.top();
+		expr.operands.pop();
+
+		program.createStatement(OP_PRINT, -1, -1, res->getAddress());
+	}
+
 	void Driver::genRead() {
 		Var* res = expr.operands.top();
 		expr.operands.pop();
@@ -657,7 +673,7 @@ namespace ss {
 
 		memory.clear(MEM_LOCAL);
 
-		program.createStatement(OP_RETURN, -1, -1, -1);
+		program.createStatement(OP_END_FUNC, -1, -1, -1);
 
 		context.swapGlobalContext();
 	}
@@ -697,6 +713,19 @@ namespace ss {
 		memory.clear(MEM_TEMP);
 
 		program.createStatement(OP_END_PROGRAM, -1, -1, -1);
+	}
+
+	void Driver::genReturn() {
+		if (context.is_void())
+		{
+			std::string except = context.isGlobal()?"Stray return in global scope":"Return statement in VOID function";
+			throw(CompilerException(except.c_str()));
+		}
+
+		Var* ret = expr.operands.top();
+		expr.operands.pop();
+
+		program.createStatement(OP_RETURN, ret->getAddress(), -1, curr_func.func->getAddress());
 	}
 
 } // namespace example

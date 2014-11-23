@@ -104,7 +104,12 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_PRINT:
-			print(mem->read(result));
+			print(mem->read(result), false);
+			ip++;
+			break;
+
+		case OP_PRINT_LINE:
+			print(mem->read(result), true);
 			ip++;
 			break;
 
@@ -113,6 +118,7 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_JUMP_SUB:
+			ip++;
 			break;
 
 		case OP_ERA:
@@ -120,6 +126,11 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_RETURN:
+			ip++;
+			break;
+
+		case OP_END_FUNC:
+			ip++;
 			break;
 
 		case OP_SET_PARAM:
@@ -213,57 +224,60 @@ void Command_Parser::assign(data_type left, data_type res) {
 	}
 }
 
-void Command_Parser::print(data_type var) {
+void Command_Parser::print(data_type var, bool newline) {
+	std::string nl = newline?"\n":"";
+
 	switch(var.type)
 	{
 		case TYPE_BOOL:
 			{
 				bool* val = (bool*)var.data;
-				printf("%s\n", *val?"true":"false");
+				std::string str_val = *val?"true":"false";
+				std::cout << str_val << nl;
 			}
 			break;
 
 		case TYPE_CHAR:
-			printf("%c\n", *var.data);
+			std::cout << *var.data << nl;
 			break;
 
 		case TYPE_SHORT:
 			{
 				short* val = (short*)var.data;
-				printf("%d\n", *val);
+				std::cout << *val << nl;
 			}
 			break;
 
 		case TYPE_INT:
 			{
 				int* val = (int*)var.data;
-				printf("%d\n", *val);
+				std::cout << *val << nl;
 			}
 			break;
 
 		case TYPE_LONG:
 			{
 				long* val = (long*)var.data;
-				printf("%ld\n", *val);
+				std::cout << *val << nl;
 			}
 			break;
 
 		case TYPE_FLOAT:
 			{
 				float* val = (float*)var.data;
-				printf("%f\n", *val);
+				std::cout << *val << nl;
 			}
 			break;
 
 		case TYPE_DOUBLE:
 			{
 				double* val = (double*)var.data;
-				printf("%lf\n", *val);
+				std::cout << *val << nl;
 			}
 			break;
 
 		case TYPE_STR:
-			printf("%s\n", var.data);
+			std::cout << var.data << nl;
 			break;
 
 		default:

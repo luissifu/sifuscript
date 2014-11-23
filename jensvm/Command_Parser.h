@@ -5,6 +5,7 @@
 #include "../common/Operations.h"
 
 #include <stdlib.h>
+#include <iostream>
 
 enum jump_comp_types {
 	JUMP_COMP_FALSE,
@@ -25,7 +26,7 @@ class Command_Parser {
 		void bool_op(char op, data_type left, data_type right, data_type res);
 		void compare_op(char op, data_type left, data_type right, data_type res);
 		void not_op(data_type left, data_type res);
-		void print(data_type var);
+		void print(data_type var, bool newline);
 		void assign(data_type left, data_type res);
 		void jump(data_type left, int res, unsigned long& ip, char comp);
 };

@@ -167,44 +167,45 @@ namespace ss {
         TK_CLASS = 273,
         TK_IMPORT = 274,
         TK_PRINT = 275,
-        TK_READ = 276,
-        TPNM_BOOL = 277,
-        TPNM_CHAR = 278,
-        TPNM_SHORT = 279,
-        TPNM_INT = 280,
-        TPNM_LONG = 281,
-        TPNM_FLOAT = 282,
-        TPNM_DOUBLE = 283,
-        TPNM_STR = 284,
-        ACC_PRIVATE = 285,
-        ACC_PUBLIC = 286,
-        OP_NOT = 287,
-        OP_AND = 288,
-        OP_OR = 289,
-        OP_MULT = 290,
-        OP_DIV = 291,
-        OP_MOD = 292,
-        OP_ADD = 293,
-        OP_SUB = 294,
-        OP_LESS = 295,
-        OP_MORE = 296,
-        OP_MOREEQ = 297,
-        OP_LESSEQ = 298,
-        OP_EQ = 299,
-        OP_NOTEQ = 300,
-        OP_ASSIGN = 301,
-        TK_LEFTBRACKET = 302,
-        TK_RIGHTBRACKET = 303,
-        TK_LEFTPAREN = 304,
-        TK_RIGHTPAREN = 305,
-        TK_LEFTSQBRACKET = 306,
-        TK_RIGHTSQBRACKET = 307,
-        TK_COMMA = 308,
-        TK_SEMICOLON = 309,
-        TK_NEWLINE = 310,
-        TK_DOT = 311,
-        T_ID = 312,
-        T_CLASSNAME = 313
+        TK_PRINTLN = 276,
+        TK_READ = 277,
+        TPNM_BOOL = 278,
+        TPNM_CHAR = 279,
+        TPNM_SHORT = 280,
+        TPNM_INT = 281,
+        TPNM_LONG = 282,
+        TPNM_FLOAT = 283,
+        TPNM_DOUBLE = 284,
+        TPNM_STR = 285,
+        ACC_PRIVATE = 286,
+        ACC_PUBLIC = 287,
+        OP_NOT = 288,
+        OP_AND = 289,
+        OP_OR = 290,
+        OP_MULT = 291,
+        OP_DIV = 292,
+        OP_MOD = 293,
+        OP_ADD = 294,
+        OP_SUB = 295,
+        OP_LESS = 296,
+        OP_MORE = 297,
+        OP_MOREEQ = 298,
+        OP_LESSEQ = 299,
+        OP_EQ = 300,
+        OP_NOTEQ = 301,
+        OP_ASSIGN = 302,
+        TK_LEFTBRACKET = 303,
+        TK_RIGHTBRACKET = 304,
+        TK_LEFTPAREN = 305,
+        TK_RIGHTPAREN = 306,
+        TK_LEFTSQBRACKET = 307,
+        TK_RIGHTSQBRACKET = 308,
+        TK_COMMA = 309,
+        TK_SEMICOLON = 310,
+        TK_NEWLINE = 311,
+        TK_DOT = 312,
+        T_ID = 313,
+        T_CLASSNAME = 314
       };
     };
 
@@ -495,13 +496,13 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 341,     ///< Last index in yytable_.
+      yylast_ = 337,     ///< Last index in yytable_.
       yynnts_ = 72,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
-      yyfinal_ = 79, ///< Termination state number.
+      yyfinal_ = 81, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 59  ///< Number of tokens.
+      yyntokens_ = 60  ///< Number of tokens.
     };
 
 
@@ -512,7 +513,7 @@ namespace ss {
 
 
 } // ss
-#line 516 "gramatica.h" // lalr1.cc:372
+#line 517 "gramatica.h" // lalr1.cc:372
 
 
 

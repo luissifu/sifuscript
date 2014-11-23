@@ -146,6 +146,8 @@ public:
 
 	void genPrint();
 
+	void genPrintLine();
+
 	void genRead();
 
 	void startDo();
@@ -177,6 +179,8 @@ public:
 	void genParam();
 
 	void endProg();
+
+	void genReturn();
 };
 
 } // namespace ss

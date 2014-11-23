@@ -6,7 +6,7 @@
 #include "Context.h"
 
 SifuContext::SifuContext() {
-	currCtx = new Function("global");
+	currCtx = new Function("global", VARTYPE_VOID, -1);
 	functions.push_back(currCtx);
 }
 
@@ -51,11 +51,13 @@ Var* SifuContext::getVariable(const std::string &varname) const {
 		return var;
 }
 
-void SifuContext::dump() {
-	for (int i = 0; i < functions.size(); i++)
+void SifuContext::dump(FILE* file) {
+	int func_num = functions.size() - 1;
+	fwrite(&func_num, sizeof(int), 1, file);
+
+	for (int i = 1; i < functions.size(); i++)
 	{
-		std::cout << "Dumping vars for \"" << functions[i]->getName() << "\"..." << std::endl;
-		functions[i]->dump();
+		functions[i]->dump(file);
 	}
 }
 
@@ -74,6 +76,10 @@ bool SifuContext::existsFunction(const std::string& funcname) {
 void SifuContext::addFunction(Function* f) {
 	currCtx = f;
 	functions.push_back(f);
+}
+
+bool SifuContext::is_void() {
+	return currCtx->getType() == VARTYPE_VOID;
 }
 
 Function* SifuContext::getFunction(const std::string& funcname) {

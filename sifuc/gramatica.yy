@@ -69,7 +69,7 @@ using namespace std;
 %token <string> CONST_NULL CONST_FALSE CONST_TRUE CONST_INT CONST_FLOAT
 %token <string> CONST_STR CONST_CHAR
 %token <token> TK_IF TK_ELSE TK_ELIF TK_FOR TK_DO TK_WHILE TK_RETURN
-%token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT TK_READ
+%token <token> TK_FUNC TK_CLASS TK_IMPORT TK_PRINT TK_PRINTLN TK_READ
 %token <string> TPNM_BOOL TPNM_CHAR TPNM_SHORT TPNM_INT TPNM_LONG TPNM_FLOAT TPNM_DOUBLE TPNM_STR
 %token <token> ACC_PRIVATE ACC_PUBLIC
 %token <token> OP_NOT OP_AND OP_OR
@@ -135,7 +135,7 @@ delimiter : TK_NEWLINE 																						{ ; }
 		  | TK_SEMICOLON 																					{ ; }
 		  ;
 
-return : TK_RETURN expresion delimiter 																		{ ; }
+return : TK_RETURN expresion delimiter 																		{ driver.genReturn(); }
 	   ;
 
 id : simple_id																								{ ; }
@@ -217,8 +217,8 @@ moreargs : TK_COMMA type simple_id moreargs 																{ driver.addParam();
 		 | /*E*/ 																							{ ; }
 		 ;
 
-func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN stat_funcall_aux2 call_args TK_RIGHTPAREN delimiter 	{ driver.genSub(); }
-		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN delimiter 								{ driver.genSub(); }
+func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN stat_funcall_aux2 call_args TK_RIGHTPAREN  			{ driver.genSub(); }
+		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN  										{ driver.genSub(); }
 		  ;
 
 call_args : expresion 																						{ driver.genParam(); }
@@ -230,6 +230,7 @@ var : type id delimiter 																					{ driver.checkVar(); }
 	;
 
 print : TK_PRINT expresion delimiter 																		{ driver.genPrint(); }
+	  | TK_PRINTLN expresion delimiter 																		{ driver.genPrint(); }
 	  ;
 
 read : TK_READ expresion delimiter 																		    { driver.genRead(); }

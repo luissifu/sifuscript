@@ -77,6 +77,22 @@ bool Driver::run() {
 		}
 	}
 
+	//functions
+	int func_qty, param_qty;
+	char param_type;
+
+	fread(&func_qty, sizeof(int), 1, file);
+
+	for (int i = 0; i < func_qty; i++)
+	{
+		fread(&param_qty, sizeof(int), 1, file);
+
+		for (int j = 0; j < param_qty; j++)
+		{
+			fread(&param_type, sizeof(char), 1, file);
+		}
+	}
+
 	//execute program
 	int prog_start = ftell(file);
 	int register_size = sizeof(char) + 3 * sizeof(int);

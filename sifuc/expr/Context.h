@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <stdio.h>
 #include "../proc/Function.h"
 #include "../except/Exceptions.h"
 
@@ -29,7 +30,6 @@ class SifuContext
 		void addVariable(Var* var);
 		void addConst(Var* var);
 		Var* getVariable(const std::string &varname) const;
-		void dump();
 		bool existsFunction(const std::string& funcname);
 		void addFunction(Function* f);
 		Function* getFunction(const std::string& funcname);
@@ -38,6 +38,8 @@ class SifuContext
 		void save(int func);
 		void end();
 		bool isGlobal();
+		void dump(FILE* file);
+		bool is_void();
 	private:
 		typedef std::vector<Function*> Func_Store;
 		Func_Store functions;

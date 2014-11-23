@@ -28,11 +28,13 @@ enum opInstructions {
 	OP_JUMP,
 	//Special funcs
 	OP_PRINT,
+	OP_PRINT_LINE,
 	OP_READ,
 	//Functions
 	OP_JUMP_SUB,
 	OP_ERA,
 	OP_RETURN,
+	OP_END_FUNC,
 	OP_SET_PARAM
 };
 
@@ -62,10 +64,12 @@ const std::string opnames[] = {
 	"JMP ",
 	//Special funcs
 	"PRNT",
+	"PRLN",
 	"READ",
 	//Functions
 	"JSUB",
 	"ERA ",
 	"RET ",
+	"FEND",
 	"SETP"
 };
