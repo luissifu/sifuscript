@@ -58,7 +58,9 @@ mayu	[A-Z]
 minu	[a-z]
 str		[^\"]
 chr		[^\']
+comm    #.*\n
 
+%x COMMENT
 
 %%
 
@@ -68,7 +70,6 @@ chr		[^\']
 	// reset location
 	yylloc->step();
 %}
-
 
 [ \t\r]						{ ; }
 "null"						{ yylval->string = strdup(yytext); return token::CONST_NULL; }
@@ -132,6 +133,14 @@ chr		[^\']
 {dig}+\.{dig}+				{ yylval->string = strdup(yytext); return token::CONST_FLOAT; }
 \"{str}*\"					{ yylval->string = strdup(yytext); return token::CONST_STR; }
 \'{chr}\'					{ yylval->string = strdup(yytext); return token::CONST_CHAR; }
+
+"/*" 						{ BEGIN(COMMENT); }
+<COMMENT>"*/" 				{ BEGIN(INITIAL); }
+<COMMENT>[^*\n]+			{ ; }
+<COMMENT>"*" 				{ ; }
+<COMMENT>\n 				{ ; }
+
+{comm} 						{ ; }
 
 .							{ ; }
 
