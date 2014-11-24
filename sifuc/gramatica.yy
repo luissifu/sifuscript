@@ -124,7 +124,7 @@ state : assign 																								{ ; }
 	  |	print 																								{ ; }
 	  |	read 																								{ ; }
 	  |	return 																								{ ; }
-	  |	func_call																							{ ; }
+	  |	func_call 																							{ ; }
 	  |	TK_NEWLINE																							{ ; }
 	  ;
 
@@ -139,7 +139,7 @@ return : TK_RETURN expresion delimiter 																		{ driver.genReturn(); }
 	   ;
 
 id : simple_id																								{ ; }
-   | T_ID TK_LEFTSQBRACKET CONST_INT TK_RIGHTSQBRACKET 														{ driver.addId($1); }
+   | T_ID TK_LEFTSQBRACKET array_dim TK_RIGHTSQBRACKET 														{ driver.addId($1); }
    | T_ID TK_DOT T_ID 																						{ ; }
    ;
 
@@ -227,7 +227,12 @@ call_args : expresion 																						{ driver.genParam(); }
 
 var : type id delimiter 																					{ driver.checkVar(); }
 	| type id stat_var_aux ass_op stat_assign_aux expresion delimiter 										{ driver.genAssign(); }
+	| type id TK_LEFTSQBRACKET array_dim TK_RIGHTSQBRACKET delimiter 										{ driver.checkVar(); }
 	;
+
+array_dim : CONST_INT																						{ ; }
+		  | CONST_INT TK_COMMA array_dim 																	{ ; }
+		  ;
 
 print : TK_PRINT expresion delimiter 																		{ driver.genPrint(); }
 	  | TK_PRINTLN expresion delimiter 																		{ driver.genPrintLine(); }
@@ -245,24 +250,11 @@ var_const : boolean 																						{ ; }
 		  | CONST_INT 																						{ driver.addConst($1, 'i'); }
 		  | CONST_FLOAT 																					{ driver.addConst($1, 'f'); }
 		  | CONST_STR 																						{ driver.addConst($1, 's'); }
-		  | list 																							{ ; }
 		  ;
 
 boolean : CONST_TRUE 																						{ driver.addConst($1, 'b'); }
 		| CONST_FALSE 																						{ driver.addConst($1, 'b'); }
 		;
-
-list : TK_LEFTSQBRACKET list_elem TK_RIGHTSQBRACKET			 												{ ; }
-	 | TK_LEFTSQBRACKET TK_RIGHTSQBRACKET 		 															{ ; }
-	 ;
-
-list_elem : list_e 																							{ ; }
-		  | list_e TK_COMMA list_elem 																		{ ; }
-		  ;
-
-list_e : var_const 																							{ ; }
-	   | id 																								{ ; }
-	   ;
 
 expresion : exp stat_exp_aux4																				{ ; }
 		  | exp stat_exp_aux4 rel_op expresion																{ ; }

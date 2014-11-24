@@ -496,10 +496,10 @@ namespace ss {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 365,     ///< Last index in yytable_.
-      yynnts_ = 72,  ///< Number of nonterminal symbols.
+      yylast_ = 334,     ///< Last index in yytable_.
+      yynnts_ = 70,  ///< Number of nonterminal symbols.
       yyempty_ = -2,
-      yyfinal_ = 81, ///< Termination state number.
+      yyfinal_ = 79, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
       yyntokens_ = 60  ///< Number of tokens.

@@ -7,7 +7,7 @@ void Command_Parser::setMemory(MemoryManager* m) {
 }
 
 int Command_Parser::execute_line(char op, int left, int right, int result, unsigned long& ip) {
-	printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
+	//printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
 
 	switch(op)
 	{
@@ -138,7 +138,7 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_SET_PARAM:
-			assign(mem->read(left), mem->read(result));
+			assign(mem->read(left), mem->read_sp(result));
 			ip++;
 			break;
 	}
@@ -241,6 +241,8 @@ void Command_Parser::assign(data_type left, data_type res) {
 
 void Command_Parser::print(data_type var, bool newline) {
 	std::string nl = newline?"\n":"";
+
+	//printf("{%d}\n", var.type);
 
 	switch(var.type)
 	{

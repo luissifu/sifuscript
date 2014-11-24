@@ -1,16 +1,3 @@
-int x = 0;
-int i;
+int matrix[2,3]
 
-for i = 0; i < 10; i = i + 1; {
-	x = x + i
-
-	if (i % 2 == 0)
-	{
-		print 'p'
-	} else
-	{
-		print 'i'
-	}
-}
-
-print x
+int x = matrix[0,1]

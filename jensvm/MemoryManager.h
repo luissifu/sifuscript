@@ -18,6 +18,7 @@ class MemoryManager {
 		void write(int address, std::string value);
 		void dump();
 		data_type read(int address);
+		data_type read_sp(int address);
 		void expand_mem();
 		void free_mem();
 	private:
