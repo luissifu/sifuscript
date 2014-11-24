@@ -218,7 +218,7 @@ moreargs : TK_COMMA type simple_id moreargs 																{ driver.addParam();
 		 ;
 
 func_call : simple_id stat_funcall_aux1 TK_LEFTPAREN stat_funcall_aux2 call_args TK_RIGHTPAREN  			{ driver.genSub(); }
-		  | simple_id stat_funcall_aux1 TK_LEFTPAREN TK_RIGHTPAREN  										{ driver.genSub(); }
+		  | simple_id stat_funcall_aux1 TK_LEFTPAREN stat_funcall_aux2 TK_RIGHTPAREN  						{ driver.genSub(); }
 		  ;
 
 call_args : expresion 																						{ driver.genParam(); }

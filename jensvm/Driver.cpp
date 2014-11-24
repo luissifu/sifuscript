@@ -78,8 +78,7 @@ bool Driver::run() {
 	}
 
 	//functions
-	int func_qty, param_qty;
-	char param_type;
+	int func_qty, param_qty, param_add;
 
 	fread(&func_qty, sizeof(int), 1, file);
 
@@ -89,7 +88,7 @@ bool Driver::run() {
 
 		for (int j = 0; j < param_qty; j++)
 		{
-			fread(&param_type, sizeof(char), 1, file);
+			fread(&param_add, sizeof(int), 1, file);
 		}
 	}
 

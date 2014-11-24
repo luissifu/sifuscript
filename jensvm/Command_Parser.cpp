@@ -123,18 +123,22 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_ERA:
+			mem->expand_mem();
 			ip++;
 			break;
 
 		case OP_RETURN:
+			assign(mem->read(left), mem->read(result));
 			ip++;
 			break;
 
 		case OP_END_FUNC:
+			mem->free_mem();
 			jump(mem->read(left), result, ip, JUMP_COMP_RETURN);
 			break;
 
 		case OP_SET_PARAM:
+			assign(mem->read(left), mem->read(result));
 			ip++;
 			break;
 	}
@@ -166,12 +170,12 @@ void Command_Parser::jump(data_type left, int res, unsigned long& ip, char comp)
 			break;
 
 		case JUMP_COMP_SUB:
-			func_jumps.push(ip);
+			func_jumps.push(ip + 1);
 			ip = res;
 			break;
 
 		case JUMP_COMP_RETURN:
-			ip = func_jumps.top() + 1;
+			ip = func_jumps.top();
 			func_jumps.pop();
 			break;
 

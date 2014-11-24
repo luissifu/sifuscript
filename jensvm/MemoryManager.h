@@ -1,10 +1,12 @@
 #pragma once
 
+#include <vector>
 #include "Memory.h"
 
 class MemoryManager {
 	public:
 		MemoryManager();
+		~MemoryManager();
 		void init(FILE* file);
 		void write(int address, bool value);
 		void write(int address, char value);
@@ -16,9 +18,12 @@ class MemoryManager {
 		void write(int address, std::string value);
 		void dump();
 		data_type read(int address);
+		void expand_mem();
+		void free_mem();
 	private:
 		Memory global;
-		Memory local;
+		std::vector<Memory*> local_mems;
 		Memory temp;
 		int blocksize;
+		int selected_local;
 };

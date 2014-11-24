@@ -14,14 +14,17 @@ Memory::Memory() {
 }
 
 Memory::~Memory() {
-	delete[] bool_storage;
-	delete[] char_storage;
-	delete[] short_storage;
-	delete[] int_storage;
-	delete[] long_storage;
-	delete[] float_storage;
-	delete[] double_storage;
-	delete[] str_storage;
+	if (initialized)
+	{
+		delete[] bool_storage;
+		delete[] char_storage;
+		delete[] short_storage;
+		delete[] int_storage;
+		delete[] long_storage;
+		delete[] float_storage;
+		delete[] double_storage;
+		//delete[] str_storage;
+	}
 }
 
 data_type Memory::read(int num) {
@@ -95,7 +98,7 @@ data_type Memory::read(int num) {
 	return var;
 }
 
-void Memory::init(FILE* file) {
+void Memory::init(FILE* file, bool init) {
 	fread(&bool_qty, sizeof(int), 1, file);
 	fread(&char_qty, sizeof(int), 1, file);
 	fread(&int_qty, sizeof(int), 1, file);
@@ -106,6 +109,33 @@ void Memory::init(FILE* file) {
 	fread(&str_qty, sizeof(int), 1, file);
 
 	//dump();
+
+	initialized = init;
+
+	if (init)
+	{
+		bool_storage = new bool[bool_qty];
+		char_storage = new char[char_qty];
+		short_storage = new short[short_qty];
+		int_storage = new int[int_qty];
+		long_storage = new long[long_qty];
+		float_storage = new float[float_qty];
+		double_storage = new double[double_qty];
+		//str_storage = new std::string[str_qty];
+	}
+}
+
+void Memory::copy(const Memory* other) {
+	bool_qty = other->bool_qty;
+	char_qty = other->char_qty;
+	int_qty = other->int_qty;
+	short_qty = other->short_qty;
+	long_qty = other->long_qty;
+	float_qty = other->float_qty;
+	double_qty = other->double_qty;
+	str_qty = other->str_qty;
+
+	initialized = true;
 
 	bool_storage = new bool[bool_qty];
 	char_storage = new char[char_qty];

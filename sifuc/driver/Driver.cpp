@@ -700,7 +700,7 @@ namespace ss {
 			throw(CompilerException(except.c_str()));
 		}
 
-		program.createStatement(OP_SET_PARAM, arg->getAddress(), -1, curr_func.param);
+		program.createStatement(OP_SET_PARAM, arg->getAddress(), -1, curr_func.func->getParamAddress(curr_func.param));
 		curr_func.param++;
 
 	}
@@ -733,7 +733,7 @@ namespace ss {
 		Var* ret = expr.operands.top();
 		expr.operands.pop();
 
-		program.createStatement(OP_RETURN, ret->getAddress(), -1, curr_func.func->getAddress());
+		program.createStatement(OP_RETURN, ret->getAddress(), -1, context.getAddress());
 	}
 
 } // namespace example

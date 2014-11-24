@@ -40,6 +40,7 @@ class SifuContext
 		bool isGlobal();
 		void dump(FILE* file);
 		bool is_void();
+		int getAddress();
 	private:
 		typedef std::vector<Function*> Func_Store;
 		Func_Store functions;

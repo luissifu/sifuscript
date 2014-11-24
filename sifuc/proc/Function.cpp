@@ -40,15 +40,13 @@ Var* Function::getVariable(const std::string &varname) const {
 }
 
 void Function::dump(FILE* file) {
-	printf("dumping vars for %s\n", name.c_str());
-
 	int param_num = params.size();
 	fwrite(&param_num, sizeof(int), 1, file);
 
 	for (int i = 0 ; i < param_num; i++)
 	{
-		char type = (char)params[i]->getType();
-		fwrite(&type, sizeof(char), 1, file);
+		int address = params[i]->getAddress();
+		fwrite(&address, sizeof(int), 1, file);
 	}
 }
 
@@ -110,4 +108,8 @@ int Function::getType() {
 
 int Function::getAddress() {
 	return address;
+}
+
+int Function::getParamAddress(int which) {
+	return params[which]->getAddress();
 }

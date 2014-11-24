@@ -111,6 +111,10 @@ void SifuContext::end() {
 	currCtx->end();
 }
 
+int SifuContext::getAddress() {
+	return currCtx->getAddress();
+}
+
 bool SifuContext::isGlobal() {
 	return currCtx == functions[0];
 }

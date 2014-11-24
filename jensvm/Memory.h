@@ -14,7 +14,7 @@ class Memory {
 	public:
 		Memory();
 		~Memory();
-		void init(FILE* file);
+		void init(FILE* file, bool init = true);
 		//writes
 		void write(int num, bool value);
 		void write(int num, char value);
@@ -27,6 +27,16 @@ class Memory {
 		//
 		void dump();
 		data_type read(int num);
+		void copy(const Memory* other);
+		//counts
+		int bool_qty;
+		int char_qty;
+		int short_qty;
+		int int_qty;
+		int long_qty;
+		int float_qty;
+		int double_qty;
+		int str_qty;
 	private:
 		//storage
 		bool* bool_storage;
@@ -37,15 +47,7 @@ class Memory {
 		float* float_storage;
 		double* double_storage;
 		std::string* str_storage;
-		//counts
-		int bool_qty;
-		int char_qty;
-		int short_qty;
-		int int_qty;
-		int long_qty;
-		int float_qty;
-		int double_qty;
-		int str_qty;
+		bool initialized;
 };
 
 #endif //MEMORY_H

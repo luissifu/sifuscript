@@ -30,6 +30,7 @@ class Function {
 		int getAddress();
 		bool checkParam(int type, int num);
 		std::string toHex(int i);
+		int getParamAddress(int which);
 	private:
 		std::string name;
 		std::vector<Var*> params;
