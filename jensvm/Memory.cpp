@@ -23,7 +23,7 @@ Memory::~Memory() {
 		delete[] long_storage;
 		delete[] float_storage;
 		delete[] double_storage;
-		//delete[] str_storage;
+		delete[] str_storage;
 	}
 }
 
@@ -43,56 +43,60 @@ data_type Memory::read(int num) {
 	if (num >= 0 && num < char_lo)
 	{
 		var.type = TYPE_BOOL;
-		var.data = (char*)&bool_storage[num];
+		var.data = (void*)&bool_storage[num];
 	}
 	else if (num >= char_lo && num < short_lo)
 	{
 		int offset = (num - char_lo)/char_size;
 
 		var.type = TYPE_CHAR;
-		var.data = (char*)&char_storage[offset];
+		var.data = (void*)&char_storage[offset];
 	}
 	else if (num >= short_lo && num < int_lo)
 	{
 		int offset = (num - short_lo)/short_size;
 
 		var.type = TYPE_SHORT;
-		var.data = (char*)&short_storage[offset];
+		var.data = (void*)&short_storage[offset];
 	}
 	else if (num >= int_lo && num < long_lo)
 	{
 		int offset = (num - int_lo)/int_size;
 
 		var.type = TYPE_INT;
-		var.data = (char*)&int_storage[offset];
+		var.data = (void*)&int_storage[offset];
 	}
 	else if (num >= long_lo && num < float_lo)
 	{
 		int offset = (num - long_lo)/long_size;
 
 		var.type = TYPE_LONG;
-		var.data = (char*)&long_storage[offset];
+		var.data = (void*)&long_storage[offset];
 	}
 	else if (num >= float_lo && num < double_lo)
 	{
 		int offset = (num - float_lo)/float_size;
 
 		var.type = TYPE_FLOAT;
-		var.data = (char*)&float_storage[offset];
+		var.data = (void*)&float_storage[offset];
 	}
 	else if (num >= double_lo && num < str_lo)
 	{
 		int offset = (num - double_lo)/double_size;
 
 		var.type = TYPE_DOUBLE;
-		var.data = (char*)&double_storage[offset];
+		var.data = (void*)&double_storage[offset];
 	}
 	else
 	{
 		int offset = (num - str_lo)/(char_size * MAX_STRING_SIZE);
 
+		printf("meep [%d:%d]\n", offset, num);
+
 		var.type = TYPE_STR;
-		//var.data = (char*)str_storage[offset];
+		var.data = (void*)str_storage[offset];
+
+		printf("got the meep\n");
 	}
 
 	return var;
@@ -121,7 +125,7 @@ void Memory::init(FILE* file, bool init) {
 		long_storage = new long[long_qty];
 		float_storage = new float[float_qty];
 		double_storage = new double[double_qty];
-		//str_storage = new std::string[str_qty];
+		str_storage = new char*[str_qty];
 	}
 }
 
@@ -144,7 +148,7 @@ void Memory::copy(const Memory* other) {
 	long_storage = new long[long_qty];
 	float_storage = new float[float_qty];
 	double_storage = new double[double_qty];
-	//str_storage = new std::string[str_qty];
+	str_storage = new char*[str_qty];
 }
 
 void Memory::dump() {
@@ -214,8 +218,8 @@ void Memory::write(int num, double value) {
 	double_storage[offset] = value;
 }
 
-void Memory::write(int num, std::string value) {
-	/*int offset = (num - MAX_TYPES * bool_size
+void Memory::write(int num, char* value) {
+	int offset = (num - MAX_TYPES * bool_size
 					- MAX_TYPES * char_size
 					- MAX_TYPES * short_size
 					- MAX_TYPES * int_size
@@ -223,5 +227,5 @@ void Memory::write(int num, std::string value) {
 					- MAX_TYPES * float_size
 					- MAX_TYPES * double_size)/(char_size * MAX_STRING_SIZE);
 
-	str_storage[offset] = value;*/
+	str_storage[offset] = value;
 }

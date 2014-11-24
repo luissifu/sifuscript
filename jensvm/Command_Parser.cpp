@@ -7,7 +7,7 @@ void Command_Parser::setMemory(MemoryManager* m) {
 }
 
 int Command_Parser::execute_line(char op, int left, int right, int result, unsigned long& ip) {
-	//printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
+	printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
 
 	switch(op)
 	{
@@ -207,7 +207,7 @@ void Command_Parser::assign(data_type left, data_type res) {
 			break;
 
 		case TYPE_CHAR:
-			*res.data = *left.data;
+			*((char*)res.data)= *((char*)left.data);
 			break;
 
 		case TYPE_SHORT:
@@ -231,6 +231,7 @@ void Command_Parser::assign(data_type left, data_type res) {
 			break;
 
 		case TYPE_STR:
+			*((char**)res.data) = *((char**)left.data);
 			break;
 
 		default:
@@ -255,7 +256,7 @@ void Command_Parser::print(data_type var, bool newline) {
 			break;
 
 		case TYPE_CHAR:
-			std::cout << *var.data << nl;
+			std::cout << *((char*)var.data) << nl;
 			break;
 
 		case TYPE_SHORT:
@@ -294,7 +295,10 @@ void Command_Parser::print(data_type var, bool newline) {
 			break;
 
 		case TYPE_STR:
-			std::cout << var.data << nl;
+			{
+				std::string str(*(char**)var.data);
+				std::cout << str << nl;
+			}
 			break;
 
 		default:
@@ -311,7 +315,7 @@ void Command_Parser::read(data_type var) {
 			break;
 
 		case TYPE_CHAR:
-			std::cin >> *var.data;
+			std::cin >> *((char*)var.data);
 			break;
 
 		case TYPE_SHORT:
@@ -335,6 +339,7 @@ void Command_Parser::read(data_type var) {
 			break;
 
 		case TYPE_STR:
+			std::cin >> *((char**)var.data);
 			break;
 
 		default:

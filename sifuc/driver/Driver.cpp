@@ -74,6 +74,21 @@ namespace ss {
 					break;
 
 				case VARTYPE_STRING:
+					{
+						char str[MAX_STRING_SIZE] = "";
+						int j, add = consts[i]->getAddress();
+						std::string name = consts[i]->getName();
+
+						for (j = 1; j < name.length() - 1 && j < MAX_STRING_SIZE; j++)
+						{
+							str[j - 1] = name[j];
+						}
+
+						str[j] = '\0';
+
+						fwrite(&add, sizeof(int), 1, file);
+						fwrite(str, sizeof(char), MAX_STRING_SIZE, file);
+					}
 					break;
 			}
 

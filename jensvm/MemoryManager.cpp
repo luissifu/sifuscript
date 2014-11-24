@@ -144,7 +144,9 @@ void MemoryManager::write(int address, double value) {
 		printf("Access of invalid address\n");
 }
 
-void MemoryManager::write(int address, std::string value) {
+void MemoryManager::write(int address, char* value) {
+	printf("ultra meep\n");
+
 	if (address >= 0 && address < block_size)
 		global.write(address, value);
 	else if (address >= block_size && address < block_size*2)

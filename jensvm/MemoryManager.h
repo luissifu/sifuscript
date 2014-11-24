@@ -15,7 +15,7 @@ class MemoryManager {
 		void write(int address, long value);
 		void write(int address, float value);
 		void write(int address, double value);
-		void write(int address, std::string value);
+		void write(int address, char* value);
 		void dump();
 		data_type read(int address);
 		data_type read_sp(int address);

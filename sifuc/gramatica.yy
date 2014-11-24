@@ -272,7 +272,7 @@ term : fact	stat_exp_aux3																					{ ; }
 	 | fact stat_exp_aux3 mult_op term																		{ ; }
 	 ;
 
-fact : neg_op f 																							{ driver.genExp('!');; }
+fact : neg_op f 																							{ driver.genExp('!'); }
 	 | f 																									{ ; }
 	 ;
 

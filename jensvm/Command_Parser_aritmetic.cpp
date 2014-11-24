@@ -7,23 +7,23 @@ void Command_Parser::aritmetic_op(char op, data_type left, data_type right, data
 			switch(op)
 			{
 				case '+':
-					*res.data = *left.data + *right.data;
+					*((char*)res.data) = *((char*)left.data) + *((char*)right.data);
 					break;
 
 				case '-':
-					*res.data = *left.data - *right.data;
+					*((char*)res.data) = *((char*)left.data) - *((char*)right.data);
 					break;
 
 				case '*':
-					*res.data = *left.data * *right.data;
+					*((char*)res.data) = *((char*)left.data) * *((char*)right.data);
 					break;
 
 				case '/':
-					*res.data = *left.data / *right.data;
+					*((char*)res.data) = *((char*)left.data) / *((char*)right.data);
 					break;
 
 				case '%':
-					*res.data = *left.data % *right.data;
+					*((char*)res.data) = *((char*)left.data) % *((char*)right.data);
 					break;
 			}
 			break;

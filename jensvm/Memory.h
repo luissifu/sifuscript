@@ -5,7 +5,7 @@
 #include <string>
 
 struct data_type {
-	char* data;
+	void* data;
 	memtype type;
 };
 
@@ -23,7 +23,7 @@ class Memory {
 		void write(int num, long value);
 		void write(int num, float value);
 		void write(int num, double value);
-		void write(int num, std::string value);
+		void write(int num, char* value);
 		//
 		void dump();
 		data_type read(int num);
@@ -46,7 +46,7 @@ class Memory {
 		long* long_storage;
 		float* float_storage;
 		double* double_storage;
-		std::string* str_storage;
+		char** str_storage;
 		bool initialized;
 };
 

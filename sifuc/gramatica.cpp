@@ -1169,7 +1169,7 @@ namespace ss {
 
   case 96:
 #line 275 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('!');; }
+    { driver.genExp('!'); }
 #line 1174 "gramatica.cpp" // lalr1.cc:847
     break;
 
