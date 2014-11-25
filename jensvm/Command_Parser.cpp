@@ -7,7 +7,7 @@ void Command_Parser::setMemory(MemoryManager* m) {
 }
 
 int Command_Parser::execute_line(char op, int left, int right, int result, unsigned long& ip) {
-	//printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
+	//uprintf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
 
 	switch(op)
 	{
