@@ -99,6 +99,7 @@ public:
 	std::stack<std::string> idstack;
 	std::stack<int> typestack;
 	std::stack<int> jumps;
+	std::vector<int> dimensions;
 	std::vector<Var*> temps;
 	std::vector<Var*> consts;
 	std::vector<Statement> forstats;
@@ -181,6 +182,14 @@ public:
 	void endProg();
 
 	void genReturn();
+
+	void addDimension(char* size);
+
+	void genVerify();
+
+	void addExpDim();
+
+	void checkDim();
 };
 
 } // namespace ss

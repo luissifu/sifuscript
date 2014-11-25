@@ -773,648 +773,660 @@ namespace ss {
 
   case 29:
 #line 146 "gramatica.yy" // lalr1.cc:847
-    { driver.addId((yystack_[0].value.string)); }
+    { driver.addExpDim(); }
 #line 778 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 30:
-#line 149 "gramatica.yy" // lalr1.cc:847
-    { driver.endIf(); }
+#line 147 "gramatica.yy" // lalr1.cc:847
+    { driver.addExpDim(); }
 #line 784 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 31:
-#line 152 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 151 "gramatica.yy" // lalr1.cc:847
+    { driver.addId((yystack_[0].value.string)); }
 #line 790 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 32:
-#line 153 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 154 "gramatica.yy" // lalr1.cc:847
+    { driver.endIf(); }
 #line 796 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 33:
-#line 156 "gramatica.yy" // lalr1.cc:847
+#line 157 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 802 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 34:
-#line 159 "gramatica.yy" // lalr1.cc:847
+#line 158 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 808 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 35:
-#line 160 "gramatica.yy" // lalr1.cc:847
+#line 161 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 814 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 36:
-#line 163 "gramatica.yy" // lalr1.cc:847
+#line 164 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 820 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 37:
-#line 164 "gramatica.yy" // lalr1.cc:847
+#line 165 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 826 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 38:
-#line 167 "gramatica.yy" // lalr1.cc:847
+#line 168 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 832 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 39:
-#line 168 "gramatica.yy" // lalr1.cc:847
+#line 169 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 838 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 40:
-#line 169 "gramatica.yy" // lalr1.cc:847
+#line 172 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 844 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 41:
-#line 172 "gramatica.yy" // lalr1.cc:847
-    { driver.endFor(); }
+#line 173 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 850 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 42:
-#line 175 "gramatica.yy" // lalr1.cc:847
-    { driver.genDo(); }
+#line 174 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 856 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 43:
-#line 178 "gramatica.yy" // lalr1.cc:847
-    { driver.endWhile(); }
+#line 177 "gramatica.yy" // lalr1.cc:847
+    { driver.endFor(); }
 #line 862 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 44:
-#line 181 "gramatica.yy" // lalr1.cc:847
-    { driver.addType((yystack_[0].value.string)); }
+#line 180 "gramatica.yy" // lalr1.cc:847
+    { driver.genDo(); }
 #line 868 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 45:
-#line 182 "gramatica.yy" // lalr1.cc:847
-    { driver.addType((yystack_[0].value.string)); }
+#line 183 "gramatica.yy" // lalr1.cc:847
+    { driver.endWhile(); }
 #line 874 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 46:
-#line 183 "gramatica.yy" // lalr1.cc:847
+#line 186 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 880 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 47:
-#line 184 "gramatica.yy" // lalr1.cc:847
+#line 187 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 886 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 48:
-#line 185 "gramatica.yy" // lalr1.cc:847
+#line 188 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 892 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 49:
-#line 186 "gramatica.yy" // lalr1.cc:847
+#line 189 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 898 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 50:
-#line 187 "gramatica.yy" // lalr1.cc:847
+#line 190 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 904 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 51:
-#line 188 "gramatica.yy" // lalr1.cc:847
+#line 191 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 910 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 52:
-#line 189 "gramatica.yy" // lalr1.cc:847
+#line 192 "gramatica.yy" // lalr1.cc:847
     { driver.addType((yystack_[0].value.string)); }
 #line 916 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 53:
-#line 192 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 193 "gramatica.yy" // lalr1.cc:847
+    { driver.addType((yystack_[0].value.string)); }
 #line 922 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 54:
-#line 195 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 194 "gramatica.yy" // lalr1.cc:847
+    { driver.addType((yystack_[0].value.string)); }
 #line 928 "gramatica.cpp" // lalr1.cc:847
     break;
 
-  case 56:
-#line 199 "gramatica.yy" // lalr1.cc:847
+  case 55:
+#line 197 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 934 "gramatica.cpp" // lalr1.cc:847
     break;
 
-  case 57:
+  case 56:
 #line 200 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 940 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 58:
-#line 201 "gramatica.yy" // lalr1.cc:847
+#line 204 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 946 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 59:
-#line 204 "gramatica.yy" // lalr1.cc:847
+#line 205 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 952 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 60:
-#line 205 "gramatica.yy" // lalr1.cc:847
+#line 206 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 958 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 61:
-#line 208 "gramatica.yy" // lalr1.cc:847
-    { driver.endFunc(); }
+#line 209 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 964 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 62:
-#line 209 "gramatica.yy" // lalr1.cc:847
-    { driver.endFunc(); }
+#line 210 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 970 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 63:
-#line 212 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 213 "gramatica.yy" // lalr1.cc:847
+    { driver.endFunc(); }
 #line 976 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 64:
-#line 213 "gramatica.yy" // lalr1.cc:847
-    { driver.addParam(); }
+#line 214 "gramatica.yy" // lalr1.cc:847
+    { driver.endFunc(); }
 #line 982 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 65:
-#line 216 "gramatica.yy" // lalr1.cc:847
-    { driver.addParam(); }
+#line 217 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 988 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 66:
-#line 217 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 218 "gramatica.yy" // lalr1.cc:847
+    { driver.addParam(); }
 #line 994 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 67:
-#line 220 "gramatica.yy" // lalr1.cc:847
-    { driver.genSub(); }
+#line 221 "gramatica.yy" // lalr1.cc:847
+    { driver.addParam(); }
 #line 1000 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 68:
-#line 221 "gramatica.yy" // lalr1.cc:847
-    { driver.genSub(); }
+#line 222 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1006 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 69:
-#line 224 "gramatica.yy" // lalr1.cc:847
-    { driver.genParam(); }
+#line 225 "gramatica.yy" // lalr1.cc:847
+    { driver.genSub(); }
 #line 1012 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 70:
-#line 225 "gramatica.yy" // lalr1.cc:847
-    { driver.genParam(); }
+#line 226 "gramatica.yy" // lalr1.cc:847
+    { driver.genSub(); }
 #line 1018 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 71:
-#line 228 "gramatica.yy" // lalr1.cc:847
-    { driver.checkVar(); }
+#line 229 "gramatica.yy" // lalr1.cc:847
+    { driver.genParam(); }
 #line 1024 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 72:
-#line 229 "gramatica.yy" // lalr1.cc:847
-    { driver.genAssign(); }
+#line 230 "gramatica.yy" // lalr1.cc:847
+    { driver.genParam(); }
 #line 1030 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 73:
-#line 230 "gramatica.yy" // lalr1.cc:847
+#line 233 "gramatica.yy" // lalr1.cc:847
     { driver.checkVar(); }
 #line 1036 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 74:
-#line 233 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 234 "gramatica.yy" // lalr1.cc:847
+    { driver.genAssign(); }
 #line 1042 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 75:
-#line 234 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 235 "gramatica.yy" // lalr1.cc:847
+    { driver.checkVar(); }
 #line 1048 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 76:
-#line 237 "gramatica.yy" // lalr1.cc:847
-    { driver.genPrint(); }
+#line 238 "gramatica.yy" // lalr1.cc:847
+    { driver.addDimension((yystack_[0].value.string)); }
 #line 1054 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 77:
-#line 238 "gramatica.yy" // lalr1.cc:847
-    { driver.genPrintLine(); }
+#line 239 "gramatica.yy" // lalr1.cc:847
+    { driver.addDimension((yystack_[2].value.string)); }
 #line 1060 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 78:
-#line 241 "gramatica.yy" // lalr1.cc:847
-    { driver.genRead(); }
+#line 242 "gramatica.yy" // lalr1.cc:847
+    { driver.genPrint(); }
 #line 1066 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 79:
-#line 244 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 243 "gramatica.yy" // lalr1.cc:847
+    { driver.genPrintLine(); }
 #line 1072 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 80:
-#line 245 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 246 "gramatica.yy" // lalr1.cc:847
+    { driver.genRead(); }
 #line 1078 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 81:
-#line 248 "gramatica.yy" // lalr1.cc:847
+#line 249 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1084 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 82:
-#line 249 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 'c'); }
+#line 250 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1090 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 83:
-#line 250 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 'i'); }
+#line 253 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1096 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 84:
-#line 251 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 'f'); }
+#line 254 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 'c'); }
 #line 1102 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 85:
-#line 252 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 's'); }
+#line 255 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 'i'); }
 #line 1108 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 86:
-#line 255 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 'b'); }
+#line 256 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 'f'); }
 #line 1114 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 87:
-#line 256 "gramatica.yy" // lalr1.cc:847
-    { driver.addConst((yystack_[0].value.string), 'b'); }
+#line 257 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 's'); }
 #line 1120 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 88:
-#line 259 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 260 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 'b'); }
 #line 1126 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 89:
-#line 260 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 261 "gramatica.yy" // lalr1.cc:847
+    { driver.addConst((yystack_[0].value.string), 'b'); }
 #line 1132 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 90:
-#line 263 "gramatica.yy" // lalr1.cc:847
+#line 264 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1138 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 91:
-#line 264 "gramatica.yy" // lalr1.cc:847
+#line 265 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1144 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 92:
-#line 267 "gramatica.yy" // lalr1.cc:847
+#line 268 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1150 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 93:
-#line 268 "gramatica.yy" // lalr1.cc:847
+#line 269 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1156 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 94:
-#line 271 "gramatica.yy" // lalr1.cc:847
+#line 272 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1162 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 95:
-#line 272 "gramatica.yy" // lalr1.cc:847
+#line 273 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1168 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 96:
-#line 275 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('!'); }
+#line 276 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1174 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 97:
-#line 276 "gramatica.yy" // lalr1.cc:847
+#line 277 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1180 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 98:
-#line 279 "gramatica.yy" // lalr1.cc:847
-    { driver.endExp(); }
+#line 280 "gramatica.yy" // lalr1.cc:847
+    { driver.genExp('!'); }
 #line 1186 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 99:
-#line 280 "gramatica.yy" // lalr1.cc:847
+#line 281 "gramatica.yy" // lalr1.cc:847
     { ; }
 #line 1192 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 100:
-#line 281 "gramatica.yy" // lalr1.cc:847
-    { ; }
+#line 284 "gramatica.yy" // lalr1.cc:847
+    { driver.endExp(); }
 #line 1198 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 101:
-#line 282 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperand(); }
+#line 285 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1204 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 102:
-#line 285 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('&'); }
+#line 286 "gramatica.yy" // lalr1.cc:847
+    { ; }
 #line 1210 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 103:
-#line 286 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('|'); }
+#line 287 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperand(); }
 #line 1216 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 104:
-#line 289 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('<'); }
+#line 290 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('&'); }
 #line 1222 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 105:
-#line 290 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('>'); }
+#line 291 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('|'); }
 #line 1228 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 106:
-#line 291 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('l'); }
+#line 294 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('<'); }
 #line 1234 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 107:
-#line 292 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('m'); }
+#line 295 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('>'); }
 #line 1240 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 108:
-#line 293 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('e'); }
+#line 296 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('l'); }
 #line 1246 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 109:
-#line 294 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('n'); }
+#line 297 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('m'); }
 #line 1252 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 110:
-#line 297 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('*'); }
+#line 298 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('e'); }
 #line 1258 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 111:
-#line 298 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('/'); }
+#line 299 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('n'); }
 #line 1264 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 112:
-#line 299 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('%'); }
+#line 302 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('*'); }
 #line 1270 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 113:
-#line 302 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('+'); }
+#line 303 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('/'); }
 #line 1276 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 114:
-#line 303 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('-'); }
+#line 304 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('%'); }
 #line 1282 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 115:
-#line 306 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('!'); }
+#line 307 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('+'); }
 #line 1288 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 116:
-#line 309 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('='); }
+#line 308 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('-'); }
 #line 1294 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 117:
-#line 312 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperator('('); }
+#line 311 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('!'); }
 #line 1300 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 118:
-#line 315 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('+'); }
+#line 314 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('='); }
 #line 1306 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 119:
-#line 318 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('*'); }
+#line 317 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperator('('); }
 #line 1312 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 120:
-#line 321 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('&'); }
+#line 320 "gramatica.yy" // lalr1.cc:847
+    { driver.genExp('+'); }
 #line 1318 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 121:
-#line 324 "gramatica.yy" // lalr1.cc:847
-    { driver.genExp('>'); }
+#line 323 "gramatica.yy" // lalr1.cc:847
+    { driver.genExp('*'); }
 #line 1324 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 122:
-#line 327 "gramatica.yy" // lalr1.cc:847
-    { driver.toOperand(); }
+#line 326 "gramatica.yy" // lalr1.cc:847
+    { driver.genExp('&'); }
 #line 1330 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 123:
-#line 330 "gramatica.yy" // lalr1.cc:847
-    { driver.copyId(); driver.checkVar(); }
+#line 329 "gramatica.yy" // lalr1.cc:847
+    { driver.genExp('>'); }
 #line 1336 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 124:
-#line 333 "gramatica.yy" // lalr1.cc:847
-    { driver.genIf(); }
+#line 332 "gramatica.yy" // lalr1.cc:847
+    { driver.toOperand(); }
 #line 1342 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 125:
-#line 336 "gramatica.yy" // lalr1.cc:847
-    { driver.genElse(); }
+#line 335 "gramatica.yy" // lalr1.cc:847
+    { driver.copyId(); driver.checkVar(); }
 #line 1348 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 126:
-#line 339 "gramatica.yy" // lalr1.cc:847
-    { driver.genElseIf(); }
+#line 338 "gramatica.yy" // lalr1.cc:847
+    { driver.genIf(); }
 #line 1354 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 127:
-#line 342 "gramatica.yy" // lalr1.cc:847
-    { driver.startWhile(); }
+#line 341 "gramatica.yy" // lalr1.cc:847
+    { driver.genElse(); }
 #line 1360 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 128:
-#line 345 "gramatica.yy" // lalr1.cc:847
-    { driver.genWhile(); }
+#line 344 "gramatica.yy" // lalr1.cc:847
+    { driver.genElseIf(); }
 #line 1366 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 129:
-#line 348 "gramatica.yy" // lalr1.cc:847
-    { driver.startDo(); }
+#line 347 "gramatica.yy" // lalr1.cc:847
+    { driver.startWhile(); }
 #line 1372 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 130:
-#line 351 "gramatica.yy" // lalr1.cc:847
-    { driver.startFor(); }
+#line 350 "gramatica.yy" // lalr1.cc:847
+    { driver.genWhile(); }
 #line 1378 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 131:
-#line 354 "gramatica.yy" // lalr1.cc:847
-    { driver.genFor(); }
+#line 353 "gramatica.yy" // lalr1.cc:847
+    { driver.startDo(); }
 #line 1384 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 132:
-#line 357 "gramatica.yy" // lalr1.cc:847
-    { driver.saveFor(); }
+#line 356 "gramatica.yy" // lalr1.cc:847
+    { driver.startFor(); }
 #line 1390 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 133:
-#line 360 "gramatica.yy" // lalr1.cc:847
-    { driver.checkFunc(); }
+#line 359 "gramatica.yy" // lalr1.cc:847
+    { driver.genFor(); }
 #line 1396 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 134:
-#line 363 "gramatica.yy" // lalr1.cc:847
-    { driver.saveFunc(); }
+#line 362 "gramatica.yy" // lalr1.cc:847
+    { driver.saveFor(); }
 #line 1402 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 135:
-#line 366 "gramatica.yy" // lalr1.cc:847
-    { driver.verifyFunc(); }
+#line 365 "gramatica.yy" // lalr1.cc:847
+    { driver.checkFunc(); }
 #line 1408 "gramatica.cpp" // lalr1.cc:847
     break;
 
   case 136:
-#line 369 "gramatica.yy" // lalr1.cc:847
-    { driver.genEra(); }
+#line 368 "gramatica.yy" // lalr1.cc:847
+    { driver.saveFunc(); }
 #line 1414 "gramatica.cpp" // lalr1.cc:847
     break;
 
+  case 137:
+#line 371 "gramatica.yy" // lalr1.cc:847
+    { driver.verifyFunc(); }
+#line 1420 "gramatica.cpp" // lalr1.cc:847
+    break;
 
-#line 1418 "gramatica.cpp" // lalr1.cc:847
+  case 138:
+#line 374 "gramatica.yy" // lalr1.cc:847
+    { driver.genEra(); }
+#line 1426 "gramatica.cpp" // lalr1.cc:847
+    break;
+
+
+#line 1430 "gramatica.cpp" // lalr1.cc:847
             default:
               break;
             }
@@ -1669,166 +1681,168 @@ namespace ss {
   }
 
 
-  const signed char Gramatica::yypact_ninf_ = -108;
+  const signed char Gramatica::yypact_ninf_ = -120;
 
-  const short int Gramatica::yytable_ninf_ = -136;
+  const short int Gramatica::yytable_ninf_ = -138;
 
   const short int
   Gramatica::yypact_[] =
   {
-     199,    58,   -38,   -34,  -108,    58,   145,   -29,    24,    58,
-      58,    58,  -108,  -108,  -108,  -108,  -108,  -108,  -108,  -108,
-    -108,   -24,  -108,    34,   267,  -108,   267,  -108,  -108,   -11,
-      -9,  -108,    26,  -108,  -108,  -108,  -108,   -38,  -108,  -108,
-    -108,  -108,  -108,  -108,  -108,  -108,  -108,  -108,  -108,  -108,
-    -108,  -108,  -108,  -108,  -108,  -108,   -34,  -108,    56,  -108,
-    -108,  -108,    75,  -108,  -108,  -108,  -108,    58,    22,  -108,
-    -108,    14,   -34,    22,    22,    22,    22,    43,    28,  -108,
-    -108,  -108,   267,  -108,  -108,    11,    58,    42,    -1,    58,
-    -108,    70,  -108,  -108,  -108,  -108,  -108,  -108,    58,    53,
-      21,  -108,    58,    62,   -34,  -108,  -108,  -108,    61,  -108,
-      65,    87,  -108,  -108,  -108,    60,    64,  -108,  -108,    58,
-    -108,   -34,   -34,  -108,    43,  -108,   -11,    67,    62,  -108,
-    -108,    58,  -108,  -108,  -108,    58,  -108,  -108,  -108,    58,
-      66,   220,   100,  -108,   275,    69,    -6,  -108,  -108,    43,
-    -108,    22,    38,  -108,  -108,    71,  -108,  -108,  -108,  -108,
-    -108,  -108,  -108,  -108,  -108,    73,    58,    62,    14,    72,
-     275,  -108,  -108,  -108,    79,    -6,   123,  -108,  -108,  -108,
-      78,    76,    62,    62,    22,    58,   -38,  -108,    22,  -108,
-      80,   -34,    84,  -108,  -108,  -108,  -108,  -108,    58,    26,
-    -108,  -108,    22,  -108,  -108,   275,  -108,  -108,   -34,  -108,
-    -108,  -108,   -34,    14,    62,  -108,    62,    80,  -108,    62,
-    -108,  -108,  -108
+     201,   105,   -34,   -39,  -120,   105,    48,   -33,    20,   105,
+     105,   105,  -120,  -120,  -120,  -120,  -120,  -120,  -120,  -120,
+    -120,   -27,  -120,    32,   269,  -120,   269,  -120,  -120,   -13,
+     -14,  -120,    26,  -120,  -120,  -120,  -120,    -8,  -120,  -120,
+    -120,  -120,  -120,  -120,  -120,  -120,  -120,  -120,  -120,  -120,
+    -120,  -120,  -120,  -120,  -120,  -120,   -39,  -120,    85,  -120,
+    -120,  -120,    36,  -120,  -120,  -120,  -120,   105,    11,  -120,
+    -120,    -8,   -39,    11,    11,    11,    11,   105,    21,  -120,
+    -120,  -120,   269,  -120,  -120,    34,   105,    35,    -4,   105,
+    -120,    54,  -120,  -120,  -120,  -120,  -120,  -120,   105,    52,
+      24,  -120,   105,    45,   -39,  -120,  -120,  -120,    55,  -120,
+      56,    63,  -120,  -120,  -120,    62,    44,  -120,  -120,   105,
+    -120,   -39,   -39,  -120,   110,  -120,   -13,    66,    45,  -120,
+    -120,   105,  -120,  -120,  -120,   105,  -120,  -120,  -120,   105,
+      64,   222,   103,  -120,   277,    71,    -9,  -120,  -120,  -120,
+     105,    11,    50,  -120,  -120,    68,    70,  -120,  -120,  -120,
+    -120,  -120,  -120,  -120,  -120,  -120,    75,   105,    45,    -8,
+      82,   277,  -120,  -120,  -120,    87,    -9,   153,  -120,  -120,
+    -120,    83,    86,    45,    45,   110,  -120,   105,   -34,  -120,
+      11,  -120,    88,   -39,    90,  -120,  -120,  -120,  -120,  -120,
+     105,    26,  -120,  -120,    11,  -120,  -120,   277,  -120,  -120,
+     -39,  -120,  -120,  -120,   -39,    -8,    45,  -120,    45,    88,
+    -120,    45,  -120,  -120,  -120
   };
 
   const unsigned char
   Gramatica::yydefact_[] =
   {
-       0,     0,     0,    32,   127,     0,     0,     0,     0,     0,
-       0,     0,    44,    45,    46,    47,    48,    49,    50,    51,
-      21,    29,    52,     0,     3,     4,    10,    11,    19,     0,
-      26,    12,    35,    13,    38,    39,    40,     0,    14,    15,
-      20,    16,    17,    18,    87,    86,    83,    84,    85,    82,
-     115,   117,   101,   100,    99,    81,    32,   120,    90,   118,
-     119,    97,     0,   130,    26,    31,   129,     0,     0,    29,
-     133,     0,    32,     0,     0,     0,     0,     0,     0,     1,
-       2,     8,    10,   116,   122,     0,     0,    37,   123,     0,
-     124,    88,   104,   105,   107,   106,   108,   109,     0,    92,
-      94,    96,     0,     0,    32,    24,    23,    25,     0,   133,
-       0,     7,    76,    77,    78,    74,     0,    28,     9,     0,
-     136,    32,    32,    30,     0,    71,     0,     0,     0,   102,
-     103,     0,   121,   113,   114,     0,   110,   111,   112,     0,
-       0,     0,     0,   128,    63,     0,    55,     6,     5,     0,
-      27,     0,     0,   126,   125,     0,   122,    98,    33,    89,
-      91,    93,    95,   131,    80,     0,     0,     0,     0,     0,
-      63,    59,    60,    58,     0,    55,     0,    75,    22,    68,
-       0,    69,     0,     0,     0,     0,     0,    79,     0,    43,
-      66,    32,     0,    53,    54,    57,    56,    67,     0,    35,
-      36,    73,     0,   132,    42,     0,    64,   134,    32,    70,
-      34,    72,    32,     0,     0,   134,     0,    66,    62,     0,
-      41,    65,    61
+       0,     0,     0,    34,   129,     0,     0,     0,     0,     0,
+       0,     0,    46,    47,    48,    49,    50,    51,    52,    53,
+      21,    31,    54,     0,     3,     4,    10,    11,    19,     0,
+      26,    12,    37,    13,    40,    41,    42,     0,    14,    15,
+      20,    16,    17,    18,    89,    88,    85,    86,    87,    84,
+     117,   119,   103,   102,   101,    83,    34,   122,    92,   120,
+     121,    99,     0,   132,    26,    33,   131,     0,     0,    31,
+     135,     0,    34,     0,     0,     0,     0,     0,     0,     1,
+       2,     8,    10,   118,   124,     0,     0,    39,   125,     0,
+     126,    90,   106,   107,   109,   108,   110,   111,     0,    94,
+      96,    98,     0,     0,    34,    24,    23,    25,     0,   135,
+       0,     7,    78,    79,    80,     0,    29,    28,     9,     0,
+     138,    34,    34,    32,     0,    73,     0,     0,     0,   104,
+     105,     0,   123,   115,   116,     0,   112,   113,   114,     0,
+       0,     0,     0,   130,    65,     0,    57,     6,     5,    27,
+       0,     0,     0,   128,   127,    76,     0,   124,   100,    35,
+      91,    93,    95,    97,   133,    82,     0,     0,     0,     0,
+       0,    65,    61,    62,    60,     0,    57,     0,    30,    22,
+      70,     0,    71,     0,     0,     0,    75,     0,     0,    81,
+       0,    45,    68,    34,     0,    55,    56,    59,    58,    69,
+       0,    37,    38,    77,     0,   134,    44,     0,    66,   136,
+      34,    72,    36,    74,    34,     0,     0,   136,     0,    68,
+      64,     0,    43,    67,    63
   };
 
   const signed char
   Gramatica::yypgoto_[] =
   {
-    -108,  -108,    25,  -108,   -15,    55,   -12,     5,   -57,  -108,
-       3,    -2,  -108,   -48,  -108,   -61,  -108,  -108,  -108,  -108,
-    -108,    -5,  -108,   -33,  -108,  -108,   -35,   -14,   -62,    13,
-     -41,   -18,  -101,  -108,  -108,  -107,  -108,  -108,     1,  -108,
-     -83,    20,  -108,    99,  -108,  -108,  -108,  -108,  -108,    36,
-    -108,  -108,  -108,  -108,  -108,     7,  -108,  -108,  -108,  -108,
-    -108,  -108,  -108,  -108,  -108,  -108,    68,   -39,  -108,  -108
+    -120,  -120,    37,  -120,   -16,    61,   -12,     5,   -55,  -120,
+       3,    -3,    -2,  -120,   -41,  -120,   -64,  -120,  -120,  -120,
+    -120,  -120,    -5,  -120,   -31,  -120,  -120,   -26,   -25,   -69,
+      13,   -44,   -20,   -24,  -120,  -120,  -119,  -120,  -120,     1,
+    -120,   -82,    19,  -120,    97,  -120,  -120,  -120,  -120,  -120,
+      38,  -120,  -120,  -120,  -120,  -120,     8,  -120,  -120,  -120,
+    -120,  -120,  -120,  -120,  -120,  -120,  -120,    51,   -46,  -120,
+    -120
   };
 
   const short int
   Gramatica::yydefgoto_[] =
   {
       -1,    23,    24,   148,    25,    81,    26,    27,   107,    28,
-      52,    30,    31,    66,    32,    87,   123,    33,    34,    35,
-      36,    37,    38,   174,   175,   176,    39,   169,   206,    53,
-     180,    41,   116,    42,    43,   142,    54,    55,   181,    57,
-      58,    59,    60,    61,   131,    98,   139,   135,    62,    84,
-      89,    99,   100,    91,   160,   119,   126,   128,   183,   182,
-      67,   167,   103,   102,   186,   212,   108,   214,    85,   152
+      52,   115,    30,    31,    66,    32,    87,   123,    33,    34,
+      35,    36,    37,    38,   175,   176,   177,    39,   170,   208,
+      53,   181,    41,   156,    42,    43,   142,    54,    55,   116,
+      57,    58,    59,    60,    61,   131,    98,   139,   135,    62,
+      84,    89,    99,   100,    91,   161,   119,   126,   128,   184,
+     183,    67,   168,   103,   102,   188,   214,   108,   216,    85,
+     152
   };
 
   const short int
   Gramatica::yytable_[] =
   {
-      64,    71,    56,    29,    70,    29,    68,    63,    90,    80,
-      74,    75,    76,    40,    82,   132,   111,   112,   113,   114,
-      21,   158,    65,   155,   110,   171,   172,    29,    77,    29,
-      72,   125,    73,    78,    79,    64,    83,    40,    86,    40,
-      88,  -135,    44,    45,    46,    47,    48,    49,   177,   115,
-     173,   124,   161,   122,   105,   106,   143,   136,   137,   138,
-     189,   120,    44,    45,    46,    47,    48,    49,   104,   109,
-      82,    50,    69,   153,   154,   199,   200,   105,   106,    44,
-      45,    46,    47,    48,    49,    29,   117,   121,    51,   179,
-     127,    50,   133,   134,   178,    40,    21,    92,    93,    94,
-      95,    96,    97,   140,   129,   130,     8,   218,    51,   220,
-     141,   144,   222,   146,   149,   166,    21,   150,   157,   170,
-     151,   163,   187,   191,   184,    51,   165,   201,   193,   197,
-     198,   204,   159,    21,   205,   208,   147,   118,   210,   168,
-       6,   195,   194,   207,    29,   211,    12,    13,    14,    15,
-      16,    17,    18,    19,    40,   221,   192,   209,   196,   162,
-     215,   101,   156,   185,   216,   168,   190,   188,    12,    13,
-      14,    15,    16,    17,    18,    19,   219,   145,     0,     0,
-       0,     0,    22,     0,    64,     0,   202,     0,     0,    29,
-       0,   203,     0,     0,     0,     0,     0,     0,     0,     0,
-     213,     0,     0,    69,    22,     0,     0,     0,     0,     1,
-       0,   217,     2,     3,     4,     5,     6,     7,     8,     9,
+      64,    71,    56,    29,    70,    29,    68,    63,    80,   159,
+      74,    75,    76,    40,    82,    90,   132,    65,   111,   112,
+     113,   114,   172,   173,    21,    77,    72,    29,    73,    29,
+      78,   110,    79,   125,    83,    88,  -137,    40,    86,    40,
+      44,    45,    46,    47,    48,    49,   122,   174,   124,   191,
+      69,   105,   106,   162,    44,    45,    46,    47,    48,    49,
+     136,   137,   138,   143,   201,   202,   105,   106,   104,   109,
+      82,    12,    13,    14,    15,    16,    17,    18,    19,   117,
+     153,   154,     8,    50,   120,    29,    51,   121,   129,   130,
+     127,   133,   134,   141,    21,    40,   179,   220,   150,   222,
+      51,   180,   224,   140,   146,   144,    69,    22,    21,    44,
+      45,    46,    47,    48,    49,   149,   155,   158,   167,   164,
+     151,   171,   185,   186,   189,   166,    92,    93,    94,    95,
+      96,    97,   160,   193,   199,   206,   195,   212,    50,   169,
+     200,   210,   207,   118,    29,   196,   194,   178,   147,   213,
+     223,   197,   209,   182,    40,    51,   211,   198,   163,   101,
+     145,   203,     0,    21,   157,   187,   169,   192,   190,   217,
+       6,   221,     0,   218,     0,     0,    12,    13,    14,    15,
+      16,    17,    18,    19,     0,     0,    64,     0,   204,     0,
+       0,    29,     0,   205,     0,     0,     0,     0,     0,     0,
+       0,   182,   215,     0,     0,     0,     0,     0,     0,     0,
+       0,     1,    22,   219,     2,     3,     4,     5,     6,     7,
+       8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
+      18,    19,     1,     0,     0,     2,     3,     4,     5,     6,
+       7,     0,     9,    10,    11,    12,    13,    14,    15,    16,
+      17,    18,    19,     0,     0,     0,     0,    20,     0,    21,
+      22,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,   165,     0,     0,     0,     0,     0,     0,    20,     1,
+      21,    22,     2,     3,     4,     5,     6,     7,     0,     9,
       10,    11,    12,    13,    14,    15,    16,    17,    18,    19,
-       1,     0,     0,     2,     3,     4,     5,     6,     7,     0,
-       9,    10,    11,    12,    13,    14,    15,    16,    17,    18,
-      19,     0,     0,     0,     0,    20,     0,    21,    22,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,   164,
-       0,     0,     0,     0,     0,     0,    20,     1,    21,    22,
-       2,     3,     4,     5,     6,     7,     0,     9,    10,    11,
-      12,    13,    14,    15,    16,    17,    18,    19,    12,    13,
-      14,    15,    16,    17,    18,    19,     0,     0,     0,     0,
+      12,    13,    14,    15,    16,    17,    18,    19,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,    20,     0,    21,    22,     0,     0,     0,
-       0,     0,     0,     0,    22
+       0,     0,     0,     0,     0,    20,     0,    21,    22,     0,
+       0,     0,     0,     0,     0,     0,    22
   };
 
   const short int
   Gramatica::yycheck_[] =
   {
-       2,     6,     1,     0,     6,     2,     5,     2,    56,    24,
-       9,    10,    11,     0,    26,    98,    73,    74,    75,    76,
-      58,   128,    56,   124,    72,    31,    32,    24,    52,    26,
-      59,    88,     8,    57,     0,    37,    47,    24,    12,    26,
-      37,    50,     4,     5,     6,     7,     8,     9,   149,     6,
-      56,    52,   135,    11,    55,    56,   104,    36,    37,    38,
-     167,    50,     4,     5,     6,     7,     8,     9,    67,    71,
-      82,    33,    58,   121,   122,   182,   183,    55,    56,     4,
-       5,     6,     7,     8,     9,    82,    58,    86,    50,    51,
-      89,    33,    39,    40,   151,    82,    58,    41,    42,    43,
-      44,    45,    46,   102,    34,    35,    19,   214,    50,   216,
-      48,    50,   219,    48,    54,    15,    58,    53,    51,    50,
-     119,    55,    49,    51,    53,    50,   141,   184,    49,    51,
-      54,   188,   131,    58,    54,    51,   111,    82,   199,   144,
-      17,   176,   175,   191,   141,   202,    23,    24,    25,    26,
-      27,    28,    29,    30,   141,   217,   170,   198,   176,   139,
-     208,    62,   126,   156,   212,   170,   168,   166,    23,    24,
-      25,    26,    27,    28,    29,    30,   215,   109,    -1,    -1,
-      -1,    -1,    59,    -1,   186,    -1,   185,    -1,    -1,   186,
-      -1,   186,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-     205,    -1,    -1,    58,    59,    -1,    -1,    -1,    -1,    10,
-      -1,   213,    13,    14,    15,    16,    17,    18,    19,    20,
+       2,     6,     1,     0,     6,     2,     5,     2,    24,   128,
+       9,    10,    11,     0,    26,    56,    98,    56,    73,    74,
+      75,    76,    31,    32,    58,    52,    59,    24,     8,    26,
+      57,    72,     0,    88,    47,    37,    50,    24,    12,    26,
+       4,     5,     6,     7,     8,     9,    11,    56,    52,   168,
+      58,    55,    56,   135,     4,     5,     6,     7,     8,     9,
+      36,    37,    38,   104,   183,   184,    55,    56,    67,    71,
+      82,    23,    24,    25,    26,    27,    28,    29,    30,    58,
+     121,   122,    19,    33,    50,    82,    50,    86,    34,    35,
+      89,    39,    40,    48,    58,    82,   151,   216,    54,   218,
+      50,    51,   221,   102,    48,    50,    58,    59,    58,     4,
+       5,     6,     7,     8,     9,    53,     6,    51,    15,    55,
+     119,    50,    54,    53,    49,   141,    41,    42,    43,    44,
+      45,    46,   131,    51,    51,   190,    49,   201,    33,   144,
+      54,    51,    54,    82,   141,   176,   171,   150,   111,   204,
+     219,   177,   193,   152,   141,    50,   200,   177,   139,    62,
+     109,   185,    -1,    58,   126,   157,   171,   169,   167,   210,
+      17,   217,    -1,   214,    -1,    -1,    23,    24,    25,    26,
+      27,    28,    29,    30,    -1,    -1,   188,    -1,   187,    -1,
+      -1,   188,    -1,   188,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,   200,   207,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    10,    59,   215,    13,    14,    15,    16,    17,    18,
+      19,    20,    21,    22,    23,    24,    25,    26,    27,    28,
+      29,    30,    10,    -1,    -1,    13,    14,    15,    16,    17,
+      18,    -1,    20,    21,    22,    23,    24,    25,    26,    27,
+      28,    29,    30,    -1,    -1,    -1,    -1,    56,    -1,    58,
+      59,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    49,    -1,    -1,    -1,    -1,    -1,    -1,    56,    10,
+      58,    59,    13,    14,    15,    16,    17,    18,    -1,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
-      10,    -1,    -1,    13,    14,    15,    16,    17,    18,    -1,
-      20,    21,    22,    23,    24,    25,    26,    27,    28,    29,
-      30,    -1,    -1,    -1,    -1,    56,    -1,    58,    59,    -1,
-      -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    49,
-      -1,    -1,    -1,    -1,    -1,    -1,    56,    10,    58,    59,
-      13,    14,    15,    16,    17,    18,    -1,    20,    21,    22,
-      23,    24,    25,    26,    27,    28,    29,    30,    23,    24,
-      25,    26,    27,    28,    29,    30,    -1,    -1,    -1,    -1,
+      23,    24,    25,    26,    27,    28,    29,    30,    -1,    -1,
       -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    -1,    -1,    56,    -1,    58,    59,    -1,    -1,    -1,
-      -1,    -1,    -1,    -1,    59
+      -1,    -1,    -1,    -1,    -1,    56,    -1,    58,    59,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    59
   };
 
   const unsigned char
@@ -1837,26 +1851,26 @@ namespace ss {
        0,    10,    13,    14,    15,    16,    17,    18,    19,    20,
       21,    22,    23,    24,    25,    26,    27,    28,    29,    30,
       56,    58,    59,    61,    62,    64,    66,    67,    69,    70,
-      71,    72,    74,    77,    78,    79,    80,    81,    82,    86,
-      89,    91,    93,    94,     4,     5,     6,     7,     8,     9,
-      33,    50,    70,    89,    96,    97,    98,    99,   100,   101,
-     102,   103,   108,    67,    71,    56,    73,   120,    98,    58,
-      71,    81,    59,     8,    98,    98,    98,    52,    57,     0,
-      64,    65,    66,    47,   109,   128,    12,    75,    70,   110,
-      73,   113,    41,    42,    43,    44,    45,    46,   105,   111,
-     112,   103,   123,   122,    98,    55,    56,    68,   126,    71,
-      73,    68,    68,    68,    68,     6,    92,    58,    65,   115,
-      50,    98,    11,    76,    52,    68,   116,    98,   117,    34,
-      35,   104,   100,    39,    40,   107,    36,    37,    38,   106,
-      98,    48,    95,    73,    50,   126,    48,    62,    63,    54,
-      53,    98,   129,    73,    73,    92,   109,    51,    95,    98,
-     114,   100,   101,    55,    49,    64,    15,   121,    81,    87,
-      50,    31,    32,    56,    83,    84,    85,    92,    68,    51,
-      90,    98,   119,   118,    53,   115,   124,    49,    98,    95,
-      71,    51,    87,    49,    83,    86,    91,    51,    54,    95,
-      95,    68,    98,    67,    68,    54,    88,    73,    51,    90,
-      75,    68,   125,    81,   127,    73,    73,    71,    95,   127,
-      95,    88,    95
+      72,    73,    75,    78,    79,    80,    81,    82,    83,    87,
+      90,    92,    94,    95,     4,     5,     6,     7,     8,     9,
+      33,    50,    70,    90,    97,    98,    99,   100,   101,   102,
+     103,   104,   109,    67,    72,    56,    74,   121,    99,    58,
+      72,    82,    59,     8,    99,    99,    99,    52,    57,     0,
+      64,    65,    66,    47,   110,   129,    12,    76,    72,   111,
+      74,   114,    41,    42,    43,    44,    45,    46,   106,   112,
+     113,   104,   124,   123,    99,    55,    56,    68,   127,    72,
+      74,    68,    68,    68,    68,    71,    99,    58,    65,   116,
+      50,    99,    11,    77,    52,    68,   117,    99,   118,    34,
+      35,   105,   101,    39,    40,   108,    36,    37,    38,   107,
+      99,    48,    96,    74,    50,   127,    48,    62,    63,    53,
+      54,    99,   130,    74,    74,     6,    93,   110,    51,    96,
+      99,   115,   101,   102,    55,    49,    64,    15,   122,    82,
+      88,    50,    31,    32,    56,    84,    85,    86,    71,    68,
+      51,    91,    99,   120,   119,    54,    53,   116,   125,    49,
+      99,    96,    72,    51,    88,    49,    84,    87,    92,    51,
+      54,    96,    96,    93,    99,    67,    68,    54,    89,    74,
+      51,    91,    76,    68,   126,    82,   128,    74,    74,    72,
+      96,   128,    96,    89,    96
   };
 
   const unsigned char
@@ -1865,17 +1879,17 @@ namespace ss {
        0,    60,    61,    61,    61,    62,    63,    63,    64,    65,
       65,    66,    66,    66,    66,    66,    66,    66,    66,    66,
       66,    66,    67,    68,    68,    69,    70,    70,    70,    71,
-      72,    73,    73,    74,    75,    75,    76,    76,    77,    77,
-      77,    78,    79,    80,    81,    81,    81,    81,    81,    81,
-      81,    81,    81,    82,    83,    83,    84,    84,    84,    85,
+      71,    72,    73,    74,    74,    75,    76,    76,    77,    77,
+      78,    78,    78,    79,    80,    81,    82,    82,    82,    82,
+      82,    82,    82,    82,    82,    83,    84,    84,    85,    85,
       85,    86,    86,    87,    87,    88,    88,    89,    89,    90,
-      90,    91,    91,    91,    92,    92,    93,    93,    94,    95,
-      95,    96,    96,    96,    96,    96,    97,    97,    98,    98,
+      90,    91,    91,    92,    92,    92,    93,    93,    94,    94,
+      95,    96,    96,    97,    97,    97,    97,    97,    98,    98,
       99,    99,   100,   100,   101,   101,   102,   102,   103,   103,
-     103,   103,   104,   104,   105,   105,   105,   105,   105,   105,
-     106,   106,   106,   107,   107,   108,   109,   110,   111,   112,
-     113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
-     123,   124,   125,   126,   127,   128,   129
+     104,   104,   104,   104,   105,   105,   106,   106,   106,   106,
+     106,   106,   107,   107,   107,   108,   108,   109,   110,   111,
+     112,   113,   114,   115,   116,   117,   118,   119,   120,   121,
+     122,   123,   124,   125,   126,   127,   128,   129,   130
   };
 
   const unsigned char
@@ -1884,17 +1898,17 @@ namespace ss {
        0,     2,     2,     1,     1,     4,     1,     0,     2,     2,
        0,     1,     1,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     5,     1,     1,     3,     1,     4,     3,     1,
-       3,     1,     0,     5,     6,     0,     4,     0,     1,     1,
-       1,    10,     7,     6,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     6,     2,     0,     2,     2,     1,     1,
-       1,    10,     9,     0,     3,     4,     0,     6,     5,     1,
-       3,     3,     7,     6,     1,     3,     3,     3,     3,     3,
-       2,     1,     1,     1,     1,     1,     1,     1,     2,     4,
-       1,     4,     2,     4,     2,     4,     2,     1,     4,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     0,     0,     0,
+       3,     1,     3,     1,     0,     5,     6,     0,     4,     0,
+       1,     1,     1,    10,     7,     6,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     6,     2,     0,     2,     2,
+       1,     1,     1,    10,     9,     0,     3,     4,     0,     6,
+       5,     1,     3,     3,     7,     5,     1,     3,     3,     3,
+       3,     3,     2,     1,     1,     1,     1,     1,     1,     1,
+       2,     4,     1,     4,     2,     4,     2,     4,     2,     1,
+       4,     1,     1,     1,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     1,     1,     1,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0
+       0,     0,     0,     0,     0,     0,     0,     0,     0
   };
 
 
@@ -1917,17 +1931,17 @@ namespace ss {
   "TK_LEFTSQBRACKET", "TK_RIGHTSQBRACKET", "TK_COMMA", "TK_SEMICOLON",
   "TK_NEWLINE", "TK_DOT", "T_ID", "T_CLASSNAME", "$accept", "program",
   "imports", "moreimps", "statelist", "morestates", "state", "assign",
-  "delimiter", "return", "id", "simple_id", "conditional", "maybenl", "if",
-  "elseif", "else", "loop", "for", "do", "while", "type", "class",
-  "class_dec", "class_st", "accesor", "function", "args", "moreargs",
-  "func_call", "call_args", "var", "array_dim", "print", "read", "block",
-  "var_const", "boolean", "expresion", "exp", "e", "term", "fact", "f",
-  "rel_op", "comp_op", "mult_op", "add_op", "neg_op", "ass_op",
-  "stat_exp_aux1", "stat_exp_aux2", "stat_exp_aux3", "stat_exp_aux4",
-  "stat_exp_aux5", "stat_assign_aux", "stat_var_aux", "stat_if_aux1",
-  "stat_if_aux2", "stat_if_aux3", "stat_while_aux1", "stat_while_aux2",
-  "stat_do_aux", "stat_for_aux1", "stat_for_aux2", "stat_for_aux3",
-  "stat_func_aux1", "stat_func_aux2", "stat_funcall_aux1",
+  "delimiter", "return", "id", "array_acc", "simple_id", "conditional",
+  "maybenl", "if", "elseif", "else", "loop", "for", "do", "while", "type",
+  "class", "class_dec", "class_st", "accesor", "function", "args",
+  "moreargs", "func_call", "call_args", "var", "array_dim", "print",
+  "read", "block", "var_const", "boolean", "expresion", "exp", "e", "term",
+  "fact", "f", "rel_op", "comp_op", "mult_op", "add_op", "neg_op",
+  "ass_op", "stat_exp_aux1", "stat_exp_aux2", "stat_exp_aux3",
+  "stat_exp_aux4", "stat_exp_aux5", "stat_assign_aux", "stat_var_aux",
+  "stat_if_aux1", "stat_if_aux2", "stat_if_aux3", "stat_while_aux1",
+  "stat_while_aux2", "stat_do_aux", "stat_for_aux1", "stat_for_aux2",
+  "stat_for_aux3", "stat_func_aux1", "stat_func_aux2", "stat_funcall_aux1",
   "stat_funcall_aux2", YY_NULLPTR
   };
 
@@ -1938,17 +1952,17 @@ namespace ss {
        0,    99,    99,   100,   101,   104,   107,   108,   111,   114,
      115,   118,   119,   120,   121,   122,   123,   124,   125,   126,
      127,   128,   131,   134,   135,   138,   141,   142,   143,   146,
-     149,   152,   153,   156,   159,   160,   163,   164,   167,   168,
-     169,   172,   175,   178,   181,   182,   183,   184,   185,   186,
-     187,   188,   189,   192,   195,   196,   199,   200,   201,   204,
-     205,   208,   209,   212,   213,   216,   217,   220,   221,   224,
-     225,   228,   229,   230,   233,   234,   237,   238,   241,   244,
-     245,   248,   249,   250,   251,   252,   255,   256,   259,   260,
-     263,   264,   267,   268,   271,   272,   275,   276,   279,   280,
-     281,   282,   285,   286,   289,   290,   291,   292,   293,   294,
-     297,   298,   299,   302,   303,   306,   309,   312,   315,   318,
-     321,   324,   327,   330,   333,   336,   339,   342,   345,   348,
-     351,   354,   357,   360,   363,   366,   369
+     147,   151,   154,   157,   158,   161,   164,   165,   168,   169,
+     172,   173,   174,   177,   180,   183,   186,   187,   188,   189,
+     190,   191,   192,   193,   194,   197,   200,   201,   204,   205,
+     206,   209,   210,   213,   214,   217,   218,   221,   222,   225,
+     226,   229,   230,   233,   234,   235,   238,   239,   242,   243,
+     246,   249,   250,   253,   254,   255,   256,   257,   260,   261,
+     264,   265,   268,   269,   272,   273,   276,   277,   280,   281,
+     284,   285,   286,   287,   290,   291,   294,   295,   296,   297,
+     298,   299,   302,   303,   304,   307,   308,   311,   314,   317,
+     320,   323,   326,   329,   332,   335,   338,   341,   344,   347,
+     350,   353,   356,   359,   362,   365,   368,   371,   374
   };
 
   // Print the state stack on the debug stream.
@@ -2035,8 +2049,8 @@ namespace ss {
 
 
 } // ss
-#line 2039 "gramatica.cpp" // lalr1.cc:1155
-#line 372 "gramatica.yy" // lalr1.cc:1156
+#line 2053 "gramatica.cpp" // lalr1.cc:1155
+#line 377 "gramatica.yy" // lalr1.cc:1156
 
 
 void ss::Gramatica::error(const Gramatica::location_type& l, const std::string& m)

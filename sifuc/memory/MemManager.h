@@ -23,6 +23,7 @@ class MemManager {
 		int requestFloat(int from);
 		int requestDouble(int from);
 		int requestString(int from);
+		int requestAddress(int from);
 		Memory global;
 		Memory local;
 		Memory temp;

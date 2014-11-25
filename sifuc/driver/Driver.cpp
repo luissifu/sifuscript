@@ -165,7 +165,27 @@ namespace ss {
 
 		int mem_type = context.isGlobal() ? MEM_GLOBAL : MEM_LOCAL;
 
-		Var* v = new Var(var, type, memory.request(type,mem_type));
+		bool dim = dimensions.size() > 0;
+
+		Var* v = new Var(var, type, memory.request(type,mem_type), dim);
+
+		if (dim)
+		{
+			for (int i = dimensions.size() - 1; i >= 0; i--)
+			{
+				v->add_dim(dimensions[i]);
+			}
+
+			dimensions.clear();
+
+			v->calculate_offset();
+
+			for (int i = 1; i < v->getSize(); i++)
+				memory.request(type,mem_type);
+
+			printf("added dim var %s\n", var.c_str());
+		}
+
 		context.addVariable(v);
 	}
 
@@ -263,8 +283,93 @@ namespace ss {
 		idstack.pop();
 
 		Var* v = context.getVariable(name);
-
 		expr.operands.push(v);
+
+		if (v->isDimension())
+		{
+			checkDim();
+		}
+	}
+
+	void Driver::checkDim() {
+		Var* v = expr.operands.top();
+		expr.operands.pop();
+
+		printf("checking dims for %s\n", v->getName().c_str());
+
+		if (dimensions.size() < 1)
+		{
+			std::string except = "Use of array type without specifying dimensions: " + v->getName();
+			throw (CompilerException(except.c_str()));
+		}
+		else if (dimensions.size() != v->getDimNum())
+		{
+			std::string dims = std::to_string(dimensions.size());
+			std::string dimn = std::to_string(v->getDimNum());
+			std::string except = "Incorrect number of dimensions: " + dims + " instead of " + dimn;
+			throw (CompilerException(except.c_str()));
+		}
+
+		int address = -1;
+
+		for (int i = 0; i < v->getDimNum(); i++)
+		{
+			dim_info info = v->getInfo(i);
+			address = dimensions[dimensions.size()-1-i];
+
+			printf("Current check is %d in [%d:%d]\n", address, info.size, info.m);
+
+			program.createStatement(OP_VERIFY, address, 0, info.size);
+
+			if (i < v->getDimNum() - 1)
+			{
+				Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+
+				program.createStatement(OP_MULT, address, info.m, result->getAddress());
+
+				expr.operands.push(result);
+			}
+			if (i > 0)
+			{
+				Var* aux = expr.operands.top();
+				expr.operands.pop();
+
+				if (!expr.operands.empty())
+				{
+					Var* other = expr.operands.top();
+					expr.operands.pop();
+
+					Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+
+					program.createStatement(OP_ADD, other->getAddress(), aux->getAddress(), result->getAddress());
+
+					expr.operands.push(result);
+				}
+				else
+				{
+					Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+
+					program.createStatement(OP_ADD, address, aux->getAddress(), result->getAddress());
+
+					expr.operands.push(result);
+				}
+			}
+		}
+
+
+		if (v->getDimNum() > 1)
+		{
+			Var* other = expr.operands.top();
+			expr.operands.pop();
+			address = other->getAddress();
+		}
+
+		Var* result = new Var("temp", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP));
+		program.createStatement(OP_ADD, address, v->getAddress(), result->getAddress());
+
+		expr.operands.push(result);
+
+		dimensions.clear();
 	}
 
 	void Driver::toOperator(char op) {
@@ -419,11 +524,17 @@ namespace ss {
 
 		char realop = getMappedOp(eq);
 
+		printf("???\n");
+
 		Var* result = expr.operands.top();
 		expr.operands.pop();
 
+		printf("!!!\n");
+
 		Var* left = expr.operands.top();
 		expr.operands.pop();
+
+		printf(":0\n");
 
 		if (expr.isValid(realop, left->getType(), result->getType()) == -1)
 		{
@@ -463,7 +574,6 @@ namespace ss {
 					break;
 
 				case 's':
-					printf("added new string\n");
 					v = new Var(nam, VARTYPE_STRING, memory.request(VARTYPE_STRING,MEM_GLOBAL));
 					break;
 
@@ -750,6 +860,27 @@ namespace ss {
 		expr.operands.pop();
 
 		program.createStatement(OP_RETURN, ret->getAddress(), -1, context.getAddress());
+	}
+
+	void Driver::addDimension(char* size) {
+		int dim = atoi(size);
+
+		printf("%d\n", dim);
+
+		if (dim <= 0)
+		{
+			std::string except = "Dimension must be a positive integer";
+			throw(CompilerException(except.c_str()));
+		}
+
+		dimensions.push_back(dim);
+	}
+
+	void Driver::addExpDim() {
+		Var* dim = expr.operands.top();
+		//expr.operands.pop();
+
+		dimensions.push_back(dim->getAddress());
 	}
 
 } // namespace example
