@@ -87,7 +87,7 @@ namespace ss {
 						str[j] = '\0';
 
 						fwrite(&add, sizeof(int), 1, file);
-						fwrite(str, sizeof(char), MAX_STRING_SIZE, file);
+						fwrite(&str[0], sizeof(char), MAX_STRING_SIZE, file);
 					}
 					break;
 			}
@@ -463,6 +463,7 @@ namespace ss {
 					break;
 
 				case 's':
+					printf("added new string\n");
 					v = new Var(nam, VARTYPE_STRING, memory.request(VARTYPE_STRING,MEM_GLOBAL));
 					break;
 

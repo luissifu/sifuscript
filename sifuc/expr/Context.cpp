@@ -26,7 +26,10 @@ void SifuContext::clearExpressions()
 
 // check if the given variable name exists in the storage
 bool SifuContext::existsVariable(const std::string &varname) const {
-	return currCtx->existsVariable(varname);
+	if (currCtx != functions[0])
+		return currCtx->existsVariable(varname) && functions[0]->existsVariable(varname);
+	else
+		return currCtx->existsVariable(varname);
 }
 
 // check if the given variable name exists in the storage

@@ -10,7 +10,6 @@ Memory::Memory() {
 	long_storage = NULL;
 	float_storage = NULL;
 	double_storage = NULL;
-	str_storage = NULL;
 }
 
 Memory::~Memory() {
@@ -23,7 +22,6 @@ Memory::~Memory() {
 		delete[] long_storage;
 		delete[] float_storage;
 		delete[] double_storage;
-		delete[] str_storage;
 	}
 }
 
@@ -91,12 +89,8 @@ data_type Memory::read(int num) {
 	{
 		int offset = (num - str_lo)/(char_size * MAX_STRING_SIZE);
 
-		printf("meep [%d:%d]\n", offset, num);
-
 		var.type = TYPE_STR;
-		var.data = (void*)str_storage[offset];
-
-		printf("got the meep\n");
+		var.data = (void*)&str_storage[offset];
 	}
 
 	return var;
@@ -125,7 +119,9 @@ void Memory::init(FILE* file, bool init) {
 		long_storage = new long[long_qty];
 		float_storage = new float[float_qty];
 		double_storage = new double[double_qty];
-		str_storage = new char*[str_qty];
+
+		for (int i = 0; i < str_qty; i++)
+			str_storage.push_back("");
 	}
 }
 
@@ -148,7 +144,9 @@ void Memory::copy(const Memory* other) {
 	long_storage = new long[long_qty];
 	float_storage = new float[float_qty];
 	double_storage = new double[double_qty];
-	str_storage = new char*[str_qty];
+
+	for (int i = 0; i < str_qty; i++)
+		str_storage.push_back("");
 }
 
 void Memory::dump() {
@@ -227,5 +225,7 @@ void Memory::write(int num, char* value) {
 					- MAX_TYPES * float_size
 					- MAX_TYPES * double_size)/(char_size * MAX_STRING_SIZE);
 
-	str_storage[offset] = value;
+	std::string new_str(value);
+
+	str_storage[offset] = new_str;
 }

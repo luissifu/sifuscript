@@ -63,7 +63,7 @@ data_type MemoryManager::read(int address) {
 data_type MemoryManager::read_sp(int address) {
 	if (address >= block_size && address < block_size*2)
 		return local_mems[selected_local]->read(address - block_size);
-	else 
+	else
 		printf("Access of invalid address\n");
 }
 
@@ -145,8 +145,6 @@ void MemoryManager::write(int address, double value) {
 }
 
 void MemoryManager::write(int address, char* value) {
-	printf("ultra meep\n");
-
 	if (address >= 0 && address < block_size)
 		global.write(address, value);
 	else if (address >= block_size && address < block_size*2)

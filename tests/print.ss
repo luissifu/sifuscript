@@ -1,4 +1,6 @@
-print 1
-print 2.0
-print false
-print 'a'
+println 1
+println 2.0
+println false
+println 'a'
+println "test one"
+println "test two"
