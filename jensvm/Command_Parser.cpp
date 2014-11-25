@@ -119,6 +119,7 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_JUMP_SUB:
+			mem->jump_sub();
 			jump(mem->read(left), result, ip, JUMP_COMP_SUB);
 			break;
 

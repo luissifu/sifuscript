@@ -38,6 +38,7 @@ class Memory {
 		int float_qty;
 		int double_qty;
 		int str_qty;
+		int add_qty;
 	private:
 		//storage
 		bool* bool_storage;
@@ -48,6 +49,7 @@ class Memory {
 		float* float_storage;
 		double* double_storage;
 		std::vector<std::string> str_storage;
+		int* add_storage;
 		bool initialized;
 };
 

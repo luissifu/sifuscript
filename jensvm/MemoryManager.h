@@ -21,6 +21,7 @@ class MemoryManager {
 		data_type read_sp(int address);
 		void expand_mem();
 		void free_mem();
+		void jump_sub();
 	private:
 		Memory global;
 		std::vector<Memory*> local_mems;

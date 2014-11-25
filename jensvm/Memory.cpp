@@ -22,6 +22,7 @@ Memory::~Memory() {
 		delete[] long_storage;
 		delete[] float_storage;
 		delete[] double_storage;
+		delete[] add_storage;
 	}
 }
 
@@ -35,6 +36,7 @@ data_type Memory::read(int num) {
 	int float_lo = long_lo + MAX_TYPES * long_size;
 	int double_lo = float_lo + MAX_TYPES * float_size;
 	int str_lo = double_lo + MAX_TYPES * double_size;
+	int add_lo = str_lo + MAX_TYPES * MAX_STRING_SIZE * char_size;
 
 	//printf("num: %d\n", num);
 
@@ -85,12 +87,19 @@ data_type Memory::read(int num) {
 		var.type = TYPE_DOUBLE;
 		var.data = (void*)&double_storage[offset];
 	}
-	else
+	else if (num >= str_lo && num < add_lo)
 	{
 		int offset = (num - str_lo)/(char_size * MAX_STRING_SIZE);
 
 		var.type = TYPE_STR;
 		var.data = (void*)&str_storage[offset];
+	}
+	else
+	{
+		int offset = (num - add_lo)/(int_size);
+
+		var.type = TYPE_ADDRESS;
+		var.data = (void*)&add_storage[offset];
 	}
 
 	return var;
@@ -105,6 +114,7 @@ void Memory::init(FILE* file, bool init) {
 	fread(&float_qty, sizeof(int), 1, file);
 	fread(&double_qty, sizeof(int), 1, file);
 	fread(&str_qty, sizeof(int), 1, file);
+	fread(&add_qty, sizeof(int), 1, file);
 
 	//dump();
 
@@ -119,6 +129,7 @@ void Memory::init(FILE* file, bool init) {
 		long_storage = new long[long_qty];
 		float_storage = new float[float_qty];
 		double_storage = new double[double_qty];
+		add_storage = new int[add_qty];
 
 		for (int i = 0; i < str_qty; i++)
 			str_storage.push_back("");
@@ -134,6 +145,7 @@ void Memory::copy(const Memory* other) {
 	float_qty = other->float_qty;
 	double_qty = other->double_qty;
 	str_qty = other->str_qty;
+	add_qty = other->add_qty;
 
 	initialized = true;
 
@@ -144,6 +156,7 @@ void Memory::copy(const Memory* other) {
 	long_storage = new long[long_qty];
 	float_storage = new float[float_qty];
 	double_storage = new double[double_qty];
+	add_storage = new int[add_qty];
 
 	for (int i = 0; i < str_qty; i++)
 		str_storage.push_back("");
@@ -159,6 +172,7 @@ void Memory::dump() {
 	printf("Flt  qty: %d\n", float_qty);
 	printf("Doub qty: %d\n", double_qty);
 	printf("Str  qty: %d\n", str_qty);
+	printf("Add  qty: %d\n", add_qty);
 }
 
 void Memory::write(int num, bool value) {

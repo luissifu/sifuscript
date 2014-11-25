@@ -32,7 +32,6 @@ void MemoryManager::expand_mem() {
 	new_local->copy(local_mems[0]);
 
 	local_mems.push_back(new_local);
-	selected_local++;
 
 	//printf("Selected local [%d]\n", selected_local);
 }
@@ -48,12 +47,7 @@ data_type MemoryManager::read(int address) {
 	if (address >= 0 && address < block_size)
 		return global.read(address);
 	else if (address >= block_size && address < block_size*2)
-	{
-		if (selected_local > 1)
-			return local_mems[selected_local - 1]->read(address - block_size);
-		else
-			return local_mems[1]->read(address - block_size);
-	}
+		return local_mems[selected_local]->read(address - block_size);
 	else if (address >= block_size*2 && address < block_size*3)
 		return temp.read(address - block_size*2);
 	else if (address != -1)
@@ -62,9 +56,13 @@ data_type MemoryManager::read(int address) {
 
 data_type MemoryManager::read_sp(int address) {
 	if (address >= block_size && address < block_size*2)
-		return local_mems[selected_local]->read(address - block_size);
+		return local_mems[selected_local+1]->read(address - block_size);
 	else
 		printf("Access of invalid address\n");
+}
+
+void MemoryManager::jump_sub() {
+	selected_local++;
 }
 
 void MemoryManager::write(int address, bool value) {
