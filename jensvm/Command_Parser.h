@@ -35,7 +35,8 @@ class Command_Parser {
 		void assign(data_type left, data_type res);
 		void jump(data_type left, int res, unsigned long& ip, char comp);
 		bool verify(data_type val, int linf, int lsup);
-		void add(data_type val, int base, data_type res);
+		void add_b(data_type val, int base, data_type res);
+		void mult_b(data_type val, int offset, data_type res);
 };
 
 #endif //COMMAND_PARSER_H

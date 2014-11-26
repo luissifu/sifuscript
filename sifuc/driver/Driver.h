@@ -189,7 +189,7 @@ public:
 
 	void addExpDim();
 
-	void checkDim();
+	void checkDim(char* name);
 };
 
 } // namespace ss

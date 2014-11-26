@@ -38,7 +38,8 @@ enum opInstructions {
 	OP_SET_PARAM,
 	//arrays
 	OP_VERIFY,
-	OP_ADD_BASE
+	OP_ADD_BASE,
+	OP_MULT_BASE
 };
 
 const std::string opnames[] = {
@@ -77,5 +78,6 @@ const std::string opnames[] = {
 	"SETP",
 	//arrays
 	"VERF",
-	"ADDB"
+	"ADDB",
+	"MULB"
 };

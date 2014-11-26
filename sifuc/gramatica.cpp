@@ -761,7 +761,7 @@ namespace ss {
 
   case 27:
 #line 142 "gramatica.yy" // lalr1.cc:847
-    { driver.addId((yystack_[4].value.string)); }
+    { driver.checkDim((yystack_[4].value.string)); }
 #line 766 "gramatica.cpp" // lalr1.cc:847
     break;
 

@@ -151,7 +151,12 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 			break;
 
 		case OP_ADD_BASE:
-			add(mem->read(left), right, mem->read(result));
+			add_b(mem->read(left), right, mem->read(result));
+			ip++;
+			break;
+
+		case OP_MULT_BASE:
+			mult_b(mem->read(left), right, mem->read(result));
 			ip++;
 			break;
 	}
@@ -160,8 +165,6 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 }
 
 void Command_Parser::jump(data_type left, int res, unsigned long& ip, char comp) {
-	int new_ip = 0;
-
 	switch(comp)
 	{
 		case JUMP_COMP_FALSE:
@@ -213,6 +216,13 @@ void Command_Parser::bool_op(char op, data_type left, data_type right, data_type
 }
 
 void Command_Parser::assign(data_type left, data_type res) {
+	if (left.type == TYPE_ADDRESS)
+	{
+		int* address = (int*)left.data;
+		assign(mem->read(*address),res);
+		return;
+	}
+
 	switch(res.type)
 	{
 		case TYPE_BOOL:
@@ -245,6 +255,13 @@ void Command_Parser::assign(data_type left, data_type res) {
 
 		case TYPE_STR:
 			*((std::string*)res.data) = *((std::string*)left.data);
+			break;
+
+		case TYPE_ADDRESS:
+			{
+				int* address = (int*)res.data;
+				assign(left,mem->read(*address));
+			}
 			break;
 
 		default:
@@ -314,6 +331,13 @@ void Command_Parser::print(data_type var, bool newline) {
 			}
 			break;
 
+		case TYPE_ADDRESS:
+			{
+				int* address = (int*)var.data;
+				print(mem->read(*address), newline);
+			}
+			break;
+
 		default:
 			//shouldnt happen
 			break;
@@ -367,34 +391,42 @@ bool Command_Parser::verify(data_type val, int linf, int lsup) {
 	{
 		case TYPE_CHAR:
 			{
-				char* val = (char*)val.data;
-				return *val >= linf && *val < lsup;
+				char* ret_val = (char*)val.data;
+				return *ret_val >= linf && *ret_val < lsup;
 			}
 			break;
 
 		case TYPE_SHORT:
 			{
-				char* val = (char*)val.data;
-				return *val >= linf && *val < lsup;
+				short* ret_val = (short*)val.data;
+				return *ret_val >= linf && *ret_val < lsup;
 			}
 			break;
 
 		case TYPE_INT:
 			{
-				char* val = (char*)val.data;
-				return *val >= linf && *val < lsup;
+				int* ret_val = (int*)val.data;
+				return *ret_val >= linf && *ret_val < lsup;
 			}
 			break;
 
 		case TYPE_LONG:
 			{
-				char* val = (char*)val.data;
-				return *val >= linf && *val < lsup;
+				long* ret_val = (long*)val.data;
+				return *ret_val >= linf && *ret_val < lsup;
 			}
 			break;
 	}
 }
 
-void Command_Parser::add(data_type val, int base, data_type res) {
+void Command_Parser::add_b(data_type val, int base, data_type res) {
+	//printf("%d res", res.type);
 
+	*((int*)res.data) = *((int*)val.data) + base;
+}
+
+void Command_Parser::mult_b(data_type val, int offset, data_type res) {
+	//printf("%d res", res.type);
+
+	*((int*)res.data) = *((int*)val.data) * offset;
 }

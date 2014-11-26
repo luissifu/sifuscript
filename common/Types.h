@@ -26,6 +26,7 @@ const int int_size = sizeof(int);
 const int long_size = sizeof(long);
 const int float_size = sizeof(float);
 const int double_size = sizeof(double);
+const int address_size = sizeof(int);
 
 const int block_size = MAX_TYPES * bool_size
 	+ MAX_TYPES * char_size
@@ -34,4 +35,5 @@ const int block_size = MAX_TYPES * bool_size
 	+ MAX_TYPES * long_size
 	+ MAX_TYPES * float_size
 	+ MAX_TYPES * double_size
-	+ MAX_TYPES * char_size * MAX_STRING_SIZE;
+	+ MAX_TYPES * address_size
+	+ MAX_TYPES * MAX_STRING_SIZE;

@@ -281,17 +281,14 @@ namespace ss {
 		idstack.pop();
 
 		Var* v = context.getVariable(name);
-		expr.operands.push(v);
 
-		if (v->isDimension())
-		{
-			checkDim();
-		}
+		if (!v->isDimension())
+			expr.operands.push(v);
 	}
 
-	void Driver::checkDim() {
-		Var* v = expr.operands.top();
-		expr.operands.pop();
+	void Driver::checkDim(char* name) {
+		std::string nam = std::string(name);
+		Var* v = context.getVariable(nam);
 
 		Var* top = new Var("-1", -1, -1);
 		expr.operands.push(top);
@@ -364,13 +361,57 @@ namespace ss {
 			address = other->getAddress();
 		}
 
+		int size = 0;
+
+		switch(v->getType())
+		{
+			case VARTYPE_STRING:
+				size = MAX_STRING_SIZE;
+				break;
+
+			case VARTYPE_DOUBLE:
+				size = double_size;
+				break;
+
+			case VARTYPE_FLOAT:
+				size = float_size;
+				break;
+
+			case VARTYPE_LONG:
+				size = long_size;
+				break;
+
+			case VARTYPE_INT:
+				size = int_size;
+				break;
+
+			case VARTYPE_SHORT:
+				size = short_size;
+				break;
+
+			case VARTYPE_CHAR:
+				size = char_size;
+				break;
+
+			case VARTYPE_BOOL:
+				size = bool_size;
+				break;
+
+		}
+
+		Var* pre_result = new Var("temp_arr_offset", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+		program.createStatement(OP_MULT_BASE, address, size, pre_result->getAddress());
+
 		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP));
-		program.createStatement(OP_ADD_BASE, address, v->getAddress(), result->getAddress());
+		program.createStatement(OP_ADD_BASE, pre_result->getAddress(), v->getAddress(), result->getAddress());
 
 		expr.operands.pop();
 		delete top;
+		delete pre_result;
 
 		expr.operands.push(result);
+
+		idstack.push(nam);
 
 		dimensions.clear();
 	}
