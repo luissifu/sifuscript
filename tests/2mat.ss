@@ -1,12 +1,32 @@
 #test for matrix
 
-int y[2,3]
+println 1
 
-println "    "
+int y[2,2,2]
 
-y[1,0] = 2
+y[1,1,1] = 1
 
 /*
+y[0,0,1] = 2
+y[0,1,0] = 3
+y[0,1,1] = 4
+y[1,0,0] = 5
+y[1,0,1] = 6
+y[1,1,0] = 7
+y[1,1,1] = 8
+
+int i
+int j
+int k
+
+for i = 0; i < 2; i = i+1; {
+	for j = 0; j < 2; j = j+1; {
+		for k = 0; k < 2; k = k+1; {
+			println "[" + i  + "," + j + "," + k + "] = " + y[i,j,k]
+		}
+	}
+}
+
 int x[5]
 boolean y[2]
 

@@ -173,10 +173,7 @@ void Command_Parser::aritmetic_op(char op, data_type left, data_type right, data
 						break;
 
 					case TYPE_CHAR:
-						{
-							std::string val = std::to_string(*((char*)right.data));
-							*((std::string*)res.data) = *((std::string*)left.data) + val;
-						}
+						*((std::string*)res.data) = *((std::string*)left.data) + *((char*)right.data);
 						break;
 
 					case TYPE_SHORT:
@@ -228,69 +225,58 @@ void Command_Parser::aritmetic_op(char op, data_type left, data_type right, data
 				{
 					case TYPE_BOOL:
 						{
-							std::string val = (*((bool*)right.data))?"true":"false";
+							std::string val = (*((bool*)left.data))?"true":"false";
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_CHAR:
-						{
-							std::string val = std::to_string(*((char*)right.data));
-							*((std::string*)res.data) = val + *((std::string*)right.data);
-						}
+						*((std::string*)res.data) = *((char*)left.data) + *((std::string*)right.data);
 						break;
 
 					case TYPE_SHORT:
 						{
-							std::string val = std::to_string(*((short*)right.data));
+							std::string val = std::to_string(*((short*)left.data));
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_INT:
 						{
-							std::string val = std::to_string(*((int*)right.data));
+							std::string val = std::to_string(*((int*)left.data));
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_LONG:
 						{
-							std::string val = std::to_string(*((long*)right.data));
+							std::string val = std::to_string(*((long*)left.data));
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_FLOAT:
 						{
-							std::string val = std::to_string(*((float*)right.data));
+							std::string val = std::to_string(*((float*)left.data));
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_DOUBLE:
 						{
-							std::string val = std::to_string(*((double*)right.data));
+							std::string val = std::to_string(*((double*)left.data));
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 
 					case TYPE_STR:
 						{
-							std::string val = *((std::string*)right.data);
+							std::string val = *((std::string*)left.data);
 							*((std::string*)res.data) = val + *((std::string*)right.data);
 						}
 						break;
 				}
 			}
 			break;
-
-			case TYPE_ADDRESS:
-				{
-					int* address = (int*)res.data;
-					printf("i dunno what to do %d \n", *address);
-					aritmetic_op(op,left,right,mem->read(*address));
-				}
-				break;
 	}
 }
