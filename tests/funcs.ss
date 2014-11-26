@@ -30,8 +30,7 @@ function long fibonacci(long n) {
 	} else {
 		long n1 = fibonacci(n - 1)
 		long n2 = fibonacci(n - 2)
-		long n = n2 + n1
-		return n
+		return n2 + n1
 	}
 }
 

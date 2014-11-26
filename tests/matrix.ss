@@ -1,43 +1,67 @@
-int x [5]
-int y [2,2]
-int z [1,2,3]
+long m1[3,3]
+long m2[3,3]
+long m3
 
-/*
-x[0] = 1
-x[1] = 2
-x[2] = 3
-x[3] = 4
-x[4] = 5
-*/
-y[0,0] = 1
-y[0,1] = 2
-y[1,0] = 3
-y[1,1] = 4
+m1[0,0] = 1
+m1[0,1] = 0
+m1[0,2] = 0
+m1[1,0] = 0
+m1[1,1] = 1
+m1[1,2] = 0
+m1[2,0] = 0
+m1[2,1] = 0
+m1[2,2] = 1
 
-/*
-z[0,0,0] = 1
-z[0,0,1] = 2
-z[0,0,2] = 3
-z[0,1,0] = 4
-z[0,1,1] = 5
-z[0,1,2] = 6
-*/
+m2[0,0] = 1
+m2[0,1] = 0
+m2[0,2] = 0
+m2[1,0] = 0
+m2[1,1] = 1
+m2[1,2] = 0
+m2[2,0] = 0
+m2[2,1] = 0
+m2[2,2] = 1
 
-/*
-println y[0,0]
-println y[0,1]
-println y[1,0]
-println y[1,1]
-*/
+function print_mat(long m) {
+	int i = 0
+	int j = 0
 
-int i = 0
-int j = 0
-
-for i = 0; i < 2; i = i+1; {
-	for j = 0; j < 2; j = j+1; {
-		println "[" + i + "," + j + "]"
+	for i = 0; i < 3; i = i+1; {
+		for j = 0; j < 3; j = j+1; {
+			if m == 1 {
+				print m1[i,j] + " "
+			} elif m == 2 {
+				print m2[i,j] + " "
+			} else {
+				print m3[i,j] + " "
+			}
+		}
+		println " "
 	}
 }
 
-#println z[0,1,2]
-#int w = x[0] + y[0,0] + z[0,1,2]
+function mult_mat() {
+	int i = 0
+	int j = 0
+	int k = 0
+	int sum = 0
+
+	for i = 0; i < 3; i = i+1; {
+		for j = 0; j < 3; j = j+1; {
+			for j = 0; j < 3; j = j+1; {
+				sum = sum + m1[i,k] * m2[k,j]
+			]
+			m3[i,j] = sum
+			sum = 0
+		}
+	}
+}
+
+
+println "Matrix 1"
+print_mat(1)
+println "Matrix 2"
+print_mat(2)
+println "Result"
+mult_mat()
+print_mat(3)

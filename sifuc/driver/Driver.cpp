@@ -321,7 +321,7 @@ namespace ss {
 			if (i < v->getDimNum() - 1)
 			{
 				Var* result = new Var("temp_arr_mult", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
-
+				temps.push_back(result);
 				program.createStatement(OP_MULT, address, info.m, result->getAddress());
 
 				expr.operands.push(result);
@@ -337,7 +337,7 @@ namespace ss {
 					expr.operands.pop();
 
 					Var* result = new Var("temp_arr_sum_other", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
-
+					temps.push_back(result);
 					program.createStatement(OP_ADD, other->getAddress(), aux->getAddress(), result->getAddress());
 
 					expr.operands.push(result);
@@ -345,7 +345,7 @@ namespace ss {
 				else
 				{
 					Var* result = new Var("temp_arr_sum", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
-
+					temps.push_back(result);
 					program.createStatement(OP_ADD, address, aux->getAddress(), result->getAddress());
 
 					expr.operands.push(result);
@@ -401,15 +401,16 @@ namespace ss {
 
 		Var* pre_result = new Var("temp_arr_offset", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
 		program.createStatement(OP_MULT_BASE, address, size, pre_result->getAddress());
+		temps.push_back(pre_result);
 
 		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP), true);
 		program.createStatement(OP_ADD_BASE, pre_result->getAddress(), v->getAddress(), result->getAddress());
+		temps.push_back(result);
 
 		result->setArrayType(v->getType());
 
 		expr.operands.pop();
 		delete top;
-		delete pre_result;
 
 		expr.operands.push(result);
 
@@ -885,6 +886,21 @@ namespace ss {
 		}
 
 		program.createStatement(OP_JUMP_SUB, -1, -1, curr_func.func->getFuncStart());
+
+		int type = curr_func.func->getType();
+
+		if (type != VARTYPE_VOID)
+		{
+			Var* temp = new Var("temp_func_ret", type, memory.request(type,MEM_TEMP));
+			temps.push_back(temp);
+
+			Var* func = expr.operands.top();
+			expr.operands.pop();
+
+			program.createStatement(OP_ASSIGN, func->getAddress(), -1, temp->getAddress());
+
+			expr.operands.push(temp);
+		}
 	}
 
 	void Driver::endProg() {
