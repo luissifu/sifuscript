@@ -768,6 +768,8 @@ namespace ss {
 		int until = program.getCounter();
 		jumps.pop();
 
+		program.createDummyStatement();
+
 		for (int i = from; i < until; i++)
 		{
 			forstats.push_back(program.pop());
@@ -775,11 +777,13 @@ namespace ss {
 	}
 
 	void Driver::endFor() {
-		while(!forstats.empty())
+		while(!forstats.back().dummy())
 		{
 			program.push(forstats.back());
 			forstats.pop_back();
 		}
+
+		forstats.pop_back();
 
 		int falseJump = jumps.top();
 		jumps.pop();

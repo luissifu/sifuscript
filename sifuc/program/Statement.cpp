@@ -51,3 +51,7 @@ int* Statement::getRight() {
 int* Statement::getResult() {
 	return &result;
 }
+
+bool Statement::dummy() {
+	return operation == -1;
+}

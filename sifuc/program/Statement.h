@@ -15,6 +15,7 @@ class Statement {
 		int* getLeft();
 		int* getRight();
 		int* getResult();
+		bool dummy();
 	private:
 		char operation;
 		int left;

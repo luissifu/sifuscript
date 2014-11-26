@@ -20,6 +20,7 @@ class Program {
 		int getCounter();
 		Statement pop();
 		void push(Statement st);
+		void createDummyStatement();
 	private:
 		std::vector<Statement> statlist;
 		std::string name;
