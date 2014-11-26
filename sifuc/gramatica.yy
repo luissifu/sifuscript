@@ -139,7 +139,7 @@ return : TK_RETURN expresion delimiter 																		{ driver.genReturn(); }
 	   ;
 
 id : simple_id																								{ ; }
-   | T_ID TK_LEFTSQBRACKET array_acc TK_RIGHTSQBRACKET 														{ driver.addId($1); }
+   | T_ID TK_LEFTSQBRACKET stat_array_aux array_acc TK_RIGHTSQBRACKET 										{ driver.addId($1); }
    | T_ID TK_DOT T_ID 																						{ ; }
    ;
 
@@ -373,6 +373,9 @@ stat_funcall_aux1 : /*E*/																					{ driver.verifyFunc(); }
 
 stat_funcall_aux2 : /*E*/																					{ driver.genEra(); }
 				;
+
+stat_array_aux : /*E*/																						{ driver.toOperator('['); }
+			   ;
 
 %%
 

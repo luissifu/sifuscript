@@ -182,8 +182,6 @@ namespace ss {
 
 			for (int i = 1; i < v->getSize(); i++)
 				memory.request(type,mem_type);
-
-			printf("added dim var %s\n", var.c_str());
 		}
 
 		context.addVariable(v);
@@ -295,7 +293,11 @@ namespace ss {
 		Var* v = expr.operands.top();
 		expr.operands.pop();
 
-		printf("checking dims for %s\n", v->getName().c_str());
+		Var* top = new Var("-1", -1, -1);
+		expr.operands.push(top);
+
+		char op = expr.operators.top();
+		expr.operators.pop();
 
 		if (dimensions.size() < 1)
 		{
@@ -317,13 +319,11 @@ namespace ss {
 			dim_info info = v->getInfo(i);
 			address = dimensions[dimensions.size()-1-i];
 
-			printf("Current check is %d in [%d:%d]\n", address, info.size, info.m);
-
 			program.createStatement(OP_VERIFY, address, 0, info.size);
 
 			if (i < v->getDimNum() - 1)
 			{
-				Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+				Var* result = new Var("temp_arr_mult", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
 
 				program.createStatement(OP_MULT, address, info.m, result->getAddress());
 
@@ -334,12 +334,12 @@ namespace ss {
 				Var* aux = expr.operands.top();
 				expr.operands.pop();
 
-				if (!expr.operands.empty())
+				if (expr.operands.top() != top)
 				{
 					Var* other = expr.operands.top();
 					expr.operands.pop();
 
-					Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+					Var* result = new Var("temp_arr_sum_other", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
 
 					program.createStatement(OP_ADD, other->getAddress(), aux->getAddress(), result->getAddress());
 
@@ -347,7 +347,7 @@ namespace ss {
 				}
 				else
 				{
-					Var* result = new Var("temp", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+					Var* result = new Var("temp_arr_sum", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
 
 					program.createStatement(OP_ADD, address, aux->getAddress(), result->getAddress());
 
@@ -364,8 +364,11 @@ namespace ss {
 			address = other->getAddress();
 		}
 
-		Var* result = new Var("temp", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP));
-		program.createStatement(OP_ADD, address, v->getAddress(), result->getAddress());
+		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP));
+		program.createStatement(OP_ADD_BASE, address, v->getAddress(), result->getAddress());
+
+		expr.operands.pop();
+		delete top;
 
 		expr.operands.push(result);
 
@@ -460,7 +463,7 @@ namespace ss {
 				throw (CompilerException(except.c_str()));
 			}
 
-			Var* result = new Var("temp", restype, memory.request(restype,MEM_TEMP));
+			Var* result = new Var("temp_exp_bin", restype, memory.request(restype,MEM_TEMP));
 			temps.push_back(result);
 			expr.operands.push(result);
 
@@ -479,7 +482,7 @@ namespace ss {
 				throw (CompilerException(except.c_str()));
 			}
 
-			Var* result = new Var("temp", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
+			Var* result = new Var("temp_exp_un", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
 			temps.push_back(result);
 			expr.operands.push(result);
 
@@ -524,17 +527,11 @@ namespace ss {
 
 		char realop = getMappedOp(eq);
 
-		printf("???\n");
-
 		Var* result = expr.operands.top();
 		expr.operands.pop();
 
-		printf("!!!\n");
-
 		Var* left = expr.operands.top();
 		expr.operands.pop();
-
-		printf(":0\n");
 
 		if (expr.isValid(realop, left->getType(), result->getType()) == -1)
 		{
@@ -865,8 +862,6 @@ namespace ss {
 	void Driver::addDimension(char* size) {
 		int dim = atoi(size);
 
-		printf("%d\n", dim);
-
 		if (dim <= 0)
 		{
 			std::string except = "Dimension must be a positive integer";
@@ -878,7 +873,13 @@ namespace ss {
 
 	void Driver::addExpDim() {
 		Var* dim = expr.operands.top();
-		//expr.operands.pop();
+		expr.operands.pop();
+
+		if (dim->getType() < VARTYPE_CHAR || dim->getType() > VARTYPE_LONG)
+		{
+			std::string except = "Dimension must be a positive integer: " + dim->getName();
+			throw(CompilerException(except.c_str()));
+		}
 
 		dimensions.push_back(dim->getAddress());
 	}

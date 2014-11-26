@@ -7,7 +7,7 @@ void Command_Parser::setMemory(MemoryManager* m) {
 }
 
 int Command_Parser::execute_line(char op, int left, int right, int result, unsigned long& ip) {
-	//uprintf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
+	//printf("%3ld | %s %d %d %d\n", ip, opnames[op].c_str(), left, right, result);
 
 	switch(op)
 	{
@@ -140,6 +140,18 @@ int Command_Parser::execute_line(char op, int left, int right, int result, unsig
 
 		case OP_SET_PARAM:
 			assign(mem->read(left), mem->read_sp(result));
+			ip++;
+			break;
+
+		case OP_VERIFY:
+			if (!verify(mem->read(left), right, result))
+				ip = -1;
+			else
+				ip++;
+			break;
+
+		case OP_ADD_BASE:
+			add(mem->read(left), right, mem->read(result));
 			ip++;
 			break;
 	}
@@ -347,4 +359,42 @@ void Command_Parser::read(data_type var) {
 			//shouldnt happen
 			break;
 	}
+}
+
+
+bool Command_Parser::verify(data_type val, int linf, int lsup) {
+	switch(val.type)
+	{
+		case TYPE_CHAR:
+			{
+				char* val = (char*)val.data;
+				return *val >= linf && *val < lsup;
+			}
+			break;
+
+		case TYPE_SHORT:
+			{
+				char* val = (char*)val.data;
+				return *val >= linf && *val < lsup;
+			}
+			break;
+
+		case TYPE_INT:
+			{
+				char* val = (char*)val.data;
+				return *val >= linf && *val < lsup;
+			}
+			break;
+
+		case TYPE_LONG:
+			{
+				char* val = (char*)val.data;
+				return *val >= linf && *val < lsup;
+			}
+			break;
+	}
+}
+
+void Command_Parser::add(data_type val, int base, data_type res) {
+
 }

@@ -37,7 +37,8 @@ enum opInstructions {
 	OP_END_FUNC,
 	OP_SET_PARAM,
 	//arrays
-	OP_VERIFY
+	OP_VERIFY,
+	OP_ADD_BASE
 };
 
 const std::string opnames[] = {
@@ -75,5 +76,6 @@ const std::string opnames[] = {
 	"FEND",
 	"SETP",
 	//arrays
-	"VERF"
+	"VERF",
+	"ADDB"
 };
