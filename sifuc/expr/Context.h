@@ -25,21 +25,37 @@ class SifuContext
 		// free the saved expression trees
 		SifuContext();
 		~SifuContext();
+		//limpia los news
 		void clearExpressions();
+		//regresa si existe una variable
 		bool existsVariable(const std::string &varname) const;
+		//agrega una variable
 		void addVariable(Var* var);
+		//agrega una constante (diferente lugar)
 		void addConst(Var* var);
+		//obtiene variable si existe
 		Var* getVariable(const std::string &varname) const;
+		//regresa si existe una funcion
 		bool existsFunction(const std::string& funcname);
+		//agrega una funcion
 		void addFunction(Function* f);
+		//obtiene la funcion si existe
 		Function* getFunction(const std::string& funcname);
+		//cambia al contexto global
 		void swapGlobalContext();
+		//agrega un parametro
 		void addParam(Var* v);
+		//guarda la funcion
 		void save(int func);
+		//limpia las variables
 		void end();
+		//si es global o no el contexto actual
 		bool isGlobal();
+		//guarda los datos en el archivo
 		void dump(FILE* file);
+		//si es de tipo void el contexto actual
 		bool is_void();
+		//obtiene la direccion del contexto actual
 		int getAddress();
 	private:
 		typedef std::vector<Function*> Func_Store;

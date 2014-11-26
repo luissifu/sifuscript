@@ -1,5 +1,3 @@
-/** \file driver.h Declaration of the example::Driver class. */
-
 #ifndef DRIVER_H
 #define DRIVER_H
 
@@ -17,19 +15,9 @@
 #include "../memory/MemManager.h"
 #include "../except/Exceptions.h"
 
-// forward declaration
-//class SifuContext;
-
-/** The example namespace is used to encapsulate the three parser classes
- * ss::Gramatica, ss::Tokens and ss::Driver */
 namespace ss {
 
-/** The Driver class brings together all components. It creates an instance of
- * the Tokens and Gramatica classes and connects them. Then the input stream is
- * fed into the scanner object and the parser gets it's token
- * sequence. Furthermore the driver object is available in the grammar rules as
- * a parameter. Therefore the driver class contains a reference to the
- * structure into which the parsed data is saved. */
+/** Clase que se encarga de generar codigo en base a los tokens que recibe */
 class Driver
 {
 public:
@@ -91,104 +79,164 @@ public:
 	 * expressions.(Variable-tables and so on) */
 	class SifuContext& context;
 
+	//para crear los cuadruplos
 	Program& program;
 
+	//Manejador de memoria
 	MemManager memory;
 
-	//Extra
+	//nombres de variables
 	std::stack<std::string> idstack;
+
+	//tipos de variables
 	std::stack<int> typestack;
+
+	//pila de saltos
 	std::stack<int> jumps;
+
+	//pila de dimensiones
 	std::vector<int> dimensions;
+
+	//lista de temporales
 	std::vector<Var*> temps;
+
+	//lista de constantes
 	std::vector<Var*> consts;
+
+	//lista para el for
 	std::vector<Statement> forstats;
 
+	//funcion actual
 	CurrentFunction curr_func;
+
+	//expresiones
 	Expression expr;
 
+	//agrega una id a la pila de ids
 	void addId(char* str);
 
+	//copia el tope de la pila de ids
 	void copyId();
 
+	//checa que la variable exsita
 	void checkVar();
 
+	//agrega un tipo a la pila de tipos
 	void addType(char* type);
 
+	//crear un operando en base a las pilas de tipos y de ids
 	void toOperand();
 
+	//agrega un operador
 	void toOperator(char op);
 
+	//termina la expresion, para quitar el fondo falso
 	void endExp();
 
+	//genera expresion del tipo pedido
 	void genExp(char type);
 
+	//obtiene la operaciones dado el operador
 	char getMappedOp(char op);
 
+	//genera una asignacion
 	void genAssign();
 
+	//agrega una constante
 	void addConst(char* name, char type);
 
+	//limpia los temporales
 	void clearExp();
 
+	//genera el if
 	void genIf();
 
+	//termina el if y actualiza los saltos restantes de los ifs
 	void endIf();
 
+	//genera un else, actualiza los saltos del if anterio
 	void genElse();
 
+	//genera un else if, actualiza los saltos del if anterio
 	void genElseIf();
 
+	//guarda el inicio del while
 	void startWhile();
 
+	//genera la condicion de salto
 	void genWhile();
 
+	//actualiza los saltos del while
 	void endWhile();
 
+	//genera un print
 	void genPrint();
 
+	//genera un println
 	void genPrintLine();
 
+	//genera un read
 	void genRead();
 
+	//guarda el inicio del do while
 	void startDo();
 
+	//genera la condicion de salto en base al inicio
 	void genDo();
 
+	//guarda el inicio del for
 	void startFor();
 
+	//remueve los estatuso de incremento y los pasa al temporal
 	void saveFor();
 
+	//genera la condicion, guarda el inicio de los estatutos de incremento
 	void genFor();
 
+
+	//vuelve a poner los estatutos del temporal y luego rellena los saltos
 	void endFor();
 
+	//verifica que la funcion no existe
 	void checkFunc();
 
+	//agrega un parametro
 	void addParam();
 
+	//guarda los parametros de la funcion
 	void saveFunc();
 
+	//genera el end func, cambia el contexto de vuelta al global
 	void endFunc();
 
+	//verifica que la funcionn exista
 	void verifyFunc();
 
+	//genera expansion
 	void genEra();
 
+	//genera salto a la subrutina
 	void genSub();
 
+	//genera el set param
 	void genParam();
 
+	//genera end prog
 	void endProg();
 
+	//genera el return
 	void genReturn();
 
+	//agrega una dimension a la pila
 	void addDimension(char* size);
 
+	//genera la verificacion de las dimensiones
 	void genVerify();
 
+	//agrega la direccion de los operadores
 	void addExpDim();
 
+	//checa que las dimensiones sean validas para la variable
 	void checkDim(char* name);
 };
 
