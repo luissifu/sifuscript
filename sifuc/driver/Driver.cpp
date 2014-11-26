@@ -402,8 +402,10 @@ namespace ss {
 		Var* pre_result = new Var("temp_arr_offset", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
 		program.createStatement(OP_MULT_BASE, address, size, pre_result->getAddress());
 
-		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP));
+		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP), true);
 		program.createStatement(OP_ADD_BASE, pre_result->getAddress(), v->getAddress(), result->getAddress());
+
+		result->setArrayType(v->getType());
 
 		expr.operands.pop();
 		delete top;
@@ -494,13 +496,15 @@ namespace ss {
 			Var* left = expr.operands.top();
 			expr.operands.pop();
 
-			int restype = expr.isValid(realop, left->getType(), right->getType());
+			int right_type = right->isDimension()?right->getArrayType():right->getType();
+			int left_type = left->isDimension()?left->getArrayType():left->getType();
+			int restype = expr.isValid(realop, left_type, right_type);
 
 			if (restype == -1)
 			{
-				std::string except = "Operation not permitted, " + vartypenames[left->getType()] + " ";
+				std::string except = "Operation not permitted, " + vartypenames[left_type] + " ";
 				except += topop;
-				except += " " + vartypenames[right->getType()];
+				except += " " + vartypenames[right_type];
 				throw (CompilerException(except.c_str()));
 			}
 
@@ -515,7 +519,7 @@ namespace ss {
 			Var* left = expr.operands.top();
 			expr.operands.pop();
 
-			if (left->getType() != VARTYPE_BOOL)
+			if (left->getType() != VARTYPE_BOOL && left->getType() != VARTYPE_ADDRESS)
 			{
 				std::string except = "Operation not permitted, ";
 				except += topop;

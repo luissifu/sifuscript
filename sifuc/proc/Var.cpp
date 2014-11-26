@@ -5,8 +5,16 @@ Var::Var(std::string name, int type, int address, bool dim) {
 	this->type = type;
 	this->address = address;
 	dimension = dim;
-
+	array_type = type;
 	size = 0;
+}
+
+void Var::setArrayType(int type) {
+	array_type = type;
+}
+
+int Var::getArrayType() {
+	return array_type;
 }
 
 bool Var::isOfType(vartype t) {

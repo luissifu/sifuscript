@@ -1,6 +1,21 @@
 #include "Command_Parser.h"
 
 void Command_Parser::aritmetic_op(char op, data_type left, data_type right, data_type res) {
+	if (left.type == TYPE_ADDRESS)
+	{
+		int* address = (int*)left.data;
+		int* add = (int*)res.data;
+		aritmetic_op(op,mem->read(*address),right,res);
+		return;
+	}
+	if (right.type == TYPE_ADDRESS)
+	{
+		int* address = (int*)right.data;
+		int* add = (int*)res.data;
+		aritmetic_op(op,left,mem->read(*address),res);
+		return;
+	}
+
 	switch(res.type)
 	{
 		case TYPE_CHAR:
@@ -269,5 +284,13 @@ void Command_Parser::aritmetic_op(char op, data_type left, data_type right, data
 				}
 			}
 			break;
+
+			case TYPE_ADDRESS:
+				{
+					int* address = (int*)res.data;
+					printf("i dunno what to do %d \n", *address);
+					aritmetic_op(op,left,right,mem->read(*address));
+				}
+				break;
 	}
 }

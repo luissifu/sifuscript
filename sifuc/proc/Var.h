@@ -25,8 +25,8 @@ const std::string vartypenames[] = {
 	"FLOAT",
 	"DOUBL",
 	"STR",
-	"VOID",
 	"ADDRESS",
+	"VOID",
 	"CLASS"
 };
 
@@ -50,10 +50,13 @@ class Var {
 		int getSize();
 		int getDimNum();
 		dim_info getInfo(int which);
+		void setArrayType(int type);
+		int getArrayType();
 	private:
 		std::string name;
 		std::vector<dim_info> info;
 		int type;
+		int array_type;
 		int address;
 		int size;
 		bool dimension;
