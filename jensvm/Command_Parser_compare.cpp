@@ -2,6 +2,19 @@
 
 
 void Command_Parser::compare_op(char op, data_type left, data_type right, data_type res) {
+	if (left.type == TYPE_ADDRESS)
+	{
+		int* address = (int*)left.data;
+		compare_op(op,mem->read(*address),right,res);
+		return;
+	}
+	if (right.type == TYPE_ADDRESS)
+	{
+		int* address = (int*)right.data;
+		compare_op(op,left,mem->read(*address),res);
+		return;
+	}
+
 	switch(left.type)
 	{
 		case TYPE_CHAR:
@@ -1075,6 +1088,13 @@ void Command_Parser::compare_op(char op, data_type left, data_type right, data_t
 							break;
 					}
 					break;
+			}
+			break;
+
+		case TYPE_ADDRESS:
+			{
+				int* address = (int*)res.data;
+				compare_op(op,left,right,mem->read(*address));
 			}
 			break;
 	}

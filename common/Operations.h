@@ -35,7 +35,11 @@ enum opInstructions {
 	OP_ERA,
 	OP_RETURN,
 	OP_END_FUNC,
-	OP_SET_PARAM
+	OP_SET_PARAM,
+	//arrays
+	OP_VERIFY,
+	OP_ADD_BASE,
+	OP_MULT_BASE
 };
 
 const std::string opnames[] = {
@@ -71,5 +75,9 @@ const std::string opnames[] = {
 	"ERA ",
 	"RET ",
 	"FEND",
-	"SETP"
+	"SETP",
+	//arrays
+	"VERF",
+	"ADDB",
+	"MULB"
 };

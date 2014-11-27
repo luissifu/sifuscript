@@ -4,6 +4,10 @@
  */
 
 %{
+	
+#ifdef WIN32				//usage of _strdup instead stread in winduws usage
+#define strdup _strdup		//Windows:		_strdup
+#endif						//Linux:		strdup
 #include "tokens.h"
 #include <iostream>
 using namespace std;

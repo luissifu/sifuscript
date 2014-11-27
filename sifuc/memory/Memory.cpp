@@ -11,6 +11,7 @@ Memory::Memory() {
 	long_max = 0;
 	float_max = 0;
 	double_max = 0;
+	address_max = 0;
 	string_max = 0;
 
 	bool_num = 0;
@@ -20,6 +21,7 @@ Memory::Memory() {
 	long_num = 0;
 	float_num = 0;
 	double_num = 0;
+	address_num = 0;
 	string_num = 0;
 }
 
@@ -49,6 +51,9 @@ void Memory::clear() {
 	if (double_num > double_max)
 		double_max = double_num;
 
+	if (address_num > address_max)
+		address_max = address_num;
+
 	if (string_num > string_max)
 		string_max = string_num;
 
@@ -59,6 +64,7 @@ void Memory::clear() {
 	long_num = 0;
 	float_num = 0;
 	double_num = 0;
+	address_num = 0;
 	string_num = 0;
 }
 
@@ -70,6 +76,7 @@ void Memory::dump(FILE* file) {
 	fwrite(&long_max, sizeof(int), 1, file);
 	fwrite(&float_max, sizeof(int), 1, file);
 	fwrite(&double_max, sizeof(int), 1, file);
+	fwrite(&address_max, sizeof(int), 1, file);
 	fwrite(&string_max, sizeof(int), 1, file);
 }
 
@@ -79,7 +86,7 @@ void Memory::setName(std::string name) {
 
 int Memory::add(int type) {
 	int location;
-	
+
 	switch(type)
 	{
 		case TYPE_BOOL:
@@ -138,8 +145,21 @@ int Memory::add(int type) {
 			double_num++;
 			break;
 
+		case TYPE_ADDRESS:
+			location = address_num * sizeof(int)
+						+ MAX_TYPES * sizeof(double)
+						+ MAX_TYPES * sizeof(float)
+						+ MAX_TYPES * sizeof(long)
+						+ MAX_TYPES * sizeof(int)
+						+ MAX_TYPES * sizeof(short)
+						+ MAX_TYPES * sizeof(char)
+						+ MAX_TYPES * sizeof(bool);
+			address_num++;
+			break;
+
 		case TYPE_STR:
 			location = string_num * MAX_STRING_SIZE
+						+ MAX_TYPES * sizeof(int)
 						+ MAX_TYPES * sizeof(double)
 						+ MAX_TYPES * sizeof(float)
 						+ MAX_TYPES * sizeof(long)

@@ -17,7 +17,7 @@
 #define FLEX_SCANNER
 #define YY_FLEX_MAJOR_VERSION 2
 #define YY_FLEX_MINOR_VERSION 5
-#define YY_FLEX_SUBMINOR_VERSION 35
+#define YY_FLEX_SUBMINOR_VERSION 37
 #if YY_FLEX_SUBMINOR_VERSION > 0
 #define FLEX_BETA
 #endif
@@ -192,15 +192,7 @@ typedef unsigned int flex_uint32_t;
 
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
-#ifdef __ia64__
-/* On IA-64, the buffer size is 16k, not 8k.
- * Moreover, YY_BUF_SIZE is 2*YY_READ_BUF_SIZE in the general case.
- * Ditto for the __ia64__ case accordingly.
- */
-#define YY_BUF_SIZE 32768
-#else
 #define YY_BUF_SIZE 16384
-#endif /* __ia64__ */
 #endif
 
 /* The state buf must be large enough to hold one state per character in the main buffer.
@@ -212,8 +204,13 @@ typedef unsigned int flex_uint32_t;
 typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #endif
 
+#ifndef YY_TYPEDEF_YY_SIZE_T
+#define YY_TYPEDEF_YY_SIZE_T
+typedef size_t yy_size_t;
+#endif
+
 /* %if-not-reentrant */
-extern int yyleng;
+extern yy_size_t yyleng;
 /* %endif */
 
 /* %if-c-only */
@@ -243,11 +240,6 @@ extern int yyleng;
 
 #define unput(c) yyunput( c, (yytext_ptr)  )
 
-#ifndef YY_TYPEDEF_YY_SIZE_T
-#define YY_TYPEDEF_YY_SIZE_T
-typedef size_t yy_size_t;
-#endif
-
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
 struct yy_buffer_state
@@ -270,7 +262,7 @@ struct yy_buffer_state
 	/* Number of characters read into yy_ch_buf, not including EOB
 	 * characters.
 	 */
-	int yy_n_chars;
+	yy_size_t yy_n_chars;
 
 	/* Whether we "own" the buffer - i.e., we know we created it,
 	 * and can realloc() it to grow it, and should free() it to
@@ -588,13 +580,13 @@ static yyconst flex_int16_t yy_chk[243] =
 
 static yyconst flex_int16_t yy_rule_linenum[69] =
     {   0,
-       74,   75,   76,   77,   78,   79,   80,   81,   82,   83,
-       84,   85,   86,   87,   88,   89,   90,   91,   92,   93,
-       94,   95,   96,   97,   98,   99,  100,  101,  102,  103,
-      104,  105,  106,  107,  108,  109,  110,  111,  112,  113,
-      114,  115,  116,  117,  118,  119,  120,  121,  122,  123,
-      124,  125,  126,  127,  128,  130,  131,  132,  133,  134,
-      135,  137,  138,  139,  140,  141,  143,  145
+       78,   79,   80,   81,   82,   83,   84,   85,   86,   87,
+       88,   89,   90,   91,   92,   93,   94,   95,   96,   97,
+       98,   99,  100,  101,  102,  103,  104,  105,  106,  107,
+      108,  109,  110,  111,  112,  113,  114,  115,  116,  117,
+      118,  119,  120,  121,  122,  123,  124,  125,  126,  127,
+      128,  129,  130,  131,  132,  134,  135,  136,  137,  138,
+      139,  141,  142,  143,  144,  145,  147,  149
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -604,12 +596,16 @@ static yyconst flex_int16_t yy_rule_linenum[69] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "tokens.ll"
+#line 1 "..\\..\\..\\tokens.ll"
 /*
  * Tokens.l file
  * in order to specify the work of the Lexer
  */
-#line 7 "tokens.ll"
+#line 7 "..\\..\\..\\tokens.ll"
+	
+#ifdef WIN32				//usage of _strdup instead stread in winduws usage
+#define strdup _strdup		//Windows:		_strdup
+#endif						//Linux:		strdup
 #include "tokens.h"
 #include <iostream>
 using namespace std;
@@ -637,26 +633,19 @@ typedef ss::Gramatica::token_type token_type;
 /* enables the use of start condition stacks */
 /* The following paragraph suffices to track locations accurately. Each time
  * yylex is invoked, the begin position is moved onto the end position. */
-#line 52 "tokens.ll"
+#line 56 "..\\..\\..\\tokens.ll"
 	#define YY_USER_ACTION  yylloc->columns(yyleng);//not necessary, nowhere else found:-(
 
-#line 644 "tokens.cpp"
+#line 640 "tokens.cpp"
 
 #define INITIAL 0
 #define COMMENT 1
 
-#ifndef YY_NO_UNISTD_H
-/* Special case for "unistd.h", since it is non-ANSI. We include it way
- * down here because we want the user's section 1 to have been scanned first.
- * The user has a chance to override it with an option.
- */
-/* %if-c-only */
-/* %endif */
-/* %if-c++-only */
-#include <unistd.h>
-/* %endif */
-#endif
-
+/*windows compatibility case*/
+#include <io.h>
+#define isatty _isatty
+#define fileno _fileno
+    
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -698,12 +687,7 @@ static int yy_flex_strlen (yyconst char * );
 
 /* Amount of stuff to slurp up with each read. */
 #ifndef YY_READ_BUF_SIZE
-#ifdef __ia64__
-/* On IA-64, the buffer size is 16k, not 8k */
-#define YY_READ_BUF_SIZE 16384
-#else
 #define YY_READ_BUF_SIZE 8192
-#endif /* __ia64__ */
 #endif
 
 /* Copy whatever the last rule matched to the standard output. */
@@ -803,7 +787,7 @@ YY_DECL
 	register int yy_act;
     
 /* %% [7.0] user's declarations go here */
-#line 65 "tokens.ll"
+#line 69 "..\\..\\..\\tokens.ll"
 
 
 
@@ -813,7 +797,7 @@ YY_DECL
 	yylloc->step();
 
 
-#line 817 "tokens.cpp"
+#line 801 "tokens.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -924,355 +908,355 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 74 "tokens.ll"
+#line 78 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 75 "tokens.ll"
+#line 79 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_NULL; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 76 "tokens.ll"
+#line 80 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_FALSE; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 77 "tokens.ll"
+#line 81 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_TRUE; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 78 "tokens.ll"
+#line 82 "..\\..\\..\\tokens.ll"
 { return token::OP_AND; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 79 "tokens.ll"
+#line 83 "..\\..\\..\\tokens.ll"
 { return token::OP_OR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 80 "tokens.ll"
+#line 84 "..\\..\\..\\tokens.ll"
 { return token::OP_NOT; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 81 "tokens.ll"
+#line 85 "..\\..\\..\\tokens.ll"
 { return token::TK_IF; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 82 "tokens.ll"
+#line 86 "..\\..\\..\\tokens.ll"
 { return token::TK_ELSE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 83 "tokens.ll"
+#line 87 "..\\..\\..\\tokens.ll"
 { return token::TK_ELIF; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 84 "tokens.ll"
+#line 88 "..\\..\\..\\tokens.ll"
 { return token::TK_FOR; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 85 "tokens.ll"
+#line 89 "..\\..\\..\\tokens.ll"
 { return token::TK_DO; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 86 "tokens.ll"
+#line 90 "..\\..\\..\\tokens.ll"
 { return token::TK_WHILE; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 87 "tokens.ll"
+#line 91 "..\\..\\..\\tokens.ll"
 { return token::TK_FUNC; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 88 "tokens.ll"
+#line 92 "..\\..\\..\\tokens.ll"
 { return token::TK_CLASS; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 89 "tokens.ll"
+#line 93 "..\\..\\..\\tokens.ll"
 { return token::TK_IMPORT; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 90 "tokens.ll"
+#line 94 "..\\..\\..\\tokens.ll"
 { return token::TK_PRINTLN; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 91 "tokens.ll"
+#line 95 "..\\..\\..\\tokens.ll"
 { return token::TK_PRINT; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 92 "tokens.ll"
+#line 96 "..\\..\\..\\tokens.ll"
 { return token::TK_READ; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 93 "tokens.ll"
+#line 97 "..\\..\\..\\tokens.ll"
 { return token::TK_RETURN; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 94 "tokens.ll"
+#line 98 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_BOOL; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 95 "tokens.ll"
+#line 99 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_CHAR; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 96 "tokens.ll"
+#line 100 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_SHORT; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 97 "tokens.ll"
+#line 101 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_INT; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 98 "tokens.ll"
+#line 102 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_LONG; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 99 "tokens.ll"
+#line 103 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_FLOAT; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 100 "tokens.ll"
+#line 104 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_DOUBLE; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 101 "tokens.ll"
+#line 105 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::TPNM_STR; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 102 "tokens.ll"
+#line 106 "..\\..\\..\\tokens.ll"
 { return token::ACC_PRIVATE; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 103 "tokens.ll"
+#line 107 "..\\..\\..\\tokens.ll"
 { return token::ACC_PUBLIC; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 104 "tokens.ll"
+#line 108 "..\\..\\..\\tokens.ll"
 { return token::OP_NOT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 105 "tokens.ll"
+#line 109 "..\\..\\..\\tokens.ll"
 { return token::OP_AND; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 106 "tokens.ll"
+#line 110 "..\\..\\..\\tokens.ll"
 { return token::OP_OR; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 107 "tokens.ll"
+#line 111 "..\\..\\..\\tokens.ll"
 { return token::OP_MULT; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 108 "tokens.ll"
+#line 112 "..\\..\\..\\tokens.ll"
 { return token::OP_DIV; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 109 "tokens.ll"
+#line 113 "..\\..\\..\\tokens.ll"
 { return token::OP_MOD; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 110 "tokens.ll"
+#line 114 "..\\..\\..\\tokens.ll"
 { return token::OP_ADD; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 111 "tokens.ll"
+#line 115 "..\\..\\..\\tokens.ll"
 { return token::OP_SUB; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 112 "tokens.ll"
+#line 116 "..\\..\\..\\tokens.ll"
 { return token::OP_LESS; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 113 "tokens.ll"
+#line 117 "..\\..\\..\\tokens.ll"
 { return token::OP_MORE; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 114 "tokens.ll"
+#line 118 "..\\..\\..\\tokens.ll"
 { return token::OP_MOREEQ; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 115 "tokens.ll"
+#line 119 "..\\..\\..\\tokens.ll"
 { return token::OP_LESSEQ; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 116 "tokens.ll"
+#line 120 "..\\..\\..\\tokens.ll"
 { return token::OP_EQ; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 117 "tokens.ll"
+#line 121 "..\\..\\..\\tokens.ll"
 { return token::OP_NOTEQ; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 118 "tokens.ll"
+#line 122 "..\\..\\..\\tokens.ll"
 { return token::OP_ASSIGN; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 119 "tokens.ll"
+#line 123 "..\\..\\..\\tokens.ll"
 { return token::TK_LEFTBRACKET; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 120 "tokens.ll"
+#line 124 "..\\..\\..\\tokens.ll"
 { return token::TK_RIGHTBRACKET; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 121 "tokens.ll"
+#line 125 "..\\..\\..\\tokens.ll"
 { return token::TK_LEFTPAREN; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 122 "tokens.ll"
+#line 126 "..\\..\\..\\tokens.ll"
 { return token::TK_RIGHTPAREN; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 123 "tokens.ll"
+#line 127 "..\\..\\..\\tokens.ll"
 { return token::TK_LEFTSQBRACKET; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 124 "tokens.ll"
+#line 128 "..\\..\\..\\tokens.ll"
 { return token::TK_RIGHTSQBRACKET; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 125 "tokens.ll"
+#line 129 "..\\..\\..\\tokens.ll"
 { return token::TK_SEMICOLON; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 126 "tokens.ll"
+#line 130 "..\\..\\..\\tokens.ll"
 { return token::TK_COMMA; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 127 "tokens.ll"
+#line 131 "..\\..\\..\\tokens.ll"
 { return token::TK_DOT; }
 	YY_BREAK
 case 55:
 /* rule 55 can match eol */
 YY_RULE_SETUP
-#line 128 "tokens.ll"
+#line 132 "..\\..\\..\\tokens.ll"
 { return token::TK_NEWLINE; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 130 "tokens.ll"
+#line 134 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::T_ID; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 131 "tokens.ll"
+#line 135 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::T_CLASSNAME; }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 132 "tokens.ll"
+#line 136 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_INT; }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 133 "tokens.ll"
+#line 137 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_FLOAT; }
 	YY_BREAK
 case 60:
 /* rule 60 can match eol */
 YY_RULE_SETUP
-#line 134 "tokens.ll"
+#line 138 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_STR; }
 	YY_BREAK
 case 61:
 /* rule 61 can match eol */
 YY_RULE_SETUP
-#line 135 "tokens.ll"
+#line 139 "..\\..\\..\\tokens.ll"
 { yylval->string = strdup(yytext); return token::CONST_CHAR; }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 137 "tokens.ll"
+#line 141 "..\\..\\..\\tokens.ll"
 { BEGIN(COMMENT); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 138 "tokens.ll"
+#line 142 "..\\..\\..\\tokens.ll"
 { BEGIN(INITIAL); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 139 "tokens.ll"
+#line 143 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 140 "tokens.ll"
+#line 144 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 66:
 /* rule 66 can match eol */
 YY_RULE_SETUP
-#line 141 "tokens.ll"
+#line 145 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 67:
 /* rule 67 can match eol */
 YY_RULE_SETUP
-#line 143 "tokens.ll"
+#line 147 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 145 "tokens.ll"
+#line 149 "..\\..\\..\\tokens.ll"
 { ; }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 148 "tokens.ll"
+#line 152 "..\\..\\..\\tokens.ll"
 ECHO;
 	YY_BREAK
-#line 1276 "tokens.cpp"
+#line 1260 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(COMMENT):
 	yyterminate();
@@ -1561,21 +1545,21 @@ int yyFlexLexer::yy_get_next_buffer()
 
 	else
 		{
-			int num_to_read =
+			yy_size_t num_to_read =
 			YY_CURRENT_BUFFER_LVALUE->yy_buf_size - number_to_move - 1;
 
 		while ( num_to_read <= 0 )
 			{ /* Not enough room in the buffer - grow it. */
 
 			/* just a shorter name for the current buffer */
-			YY_BUFFER_STATE b = YY_CURRENT_BUFFER;
+			YY_BUFFER_STATE b = YY_CURRENT_BUFFER_LVALUE;
 
 			int yy_c_buf_p_offset =
 				(int) ((yy_c_buf_p) - b->yy_ch_buf);
 
 			if ( b->yy_is_our_buffer )
 				{
-				int new_size = b->yy_buf_size * 2;
+				yy_size_t new_size = b->yy_buf_size * 2;
 
 				if ( new_size <= 0 )
 					b->yy_buf_size += b->yy_buf_size / 8;
@@ -1606,7 +1590,7 @@ int yyFlexLexer::yy_get_next_buffer()
 
 		/* Read in more data. */
 		YY_INPUT( (&YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[number_to_move]),
-			(yy_n_chars), (size_t) num_to_read );
+			(yy_n_chars), num_to_read );
 
 		YY_CURRENT_BUFFER_LVALUE->yy_n_chars = (yy_n_chars);
 		}
@@ -1714,7 +1698,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 	yy_is_jam = (yy_current_state == 170);
 
-	return yy_is_jam ? 0 : yy_current_state;
+		return yy_is_jam ? 0 : yy_current_state;
 }
 
 /* %if-c-only */
@@ -1733,7 +1717,7 @@ int yyFlexLexer::yy_get_next_buffer()
 	if ( yy_cp < YY_CURRENT_BUFFER_LVALUE->yy_ch_buf + 2 )
 		{ /* need to shift things up to make room */
 		/* +2 for EOB chars. */
-		register int number_to_move = (yy_n_chars) + 2;
+		register yy_size_t number_to_move = (yy_n_chars) + 2;
 		register char *dest = &YY_CURRENT_BUFFER_LVALUE->yy_ch_buf[
 					YY_CURRENT_BUFFER_LVALUE->yy_buf_size + 2];
 		register char *source =
@@ -1784,7 +1768,7 @@ int yyFlexLexer::yy_get_next_buffer()
 
 		else
 			{ /* need more input */
-			int offset = (yy_c_buf_p) - (yytext_ptr);
+			yy_size_t offset = (yy_c_buf_p) - (yytext_ptr);
 			++(yy_c_buf_p);
 
 			switch ( yy_get_next_buffer(  ) )
@@ -1967,15 +1951,6 @@ int yyFlexLexer::yy_get_next_buffer()
 	Sifufree((void *) b  );
 }
 
-/* %if-c-only */
-/* %endif */
-
-/* %if-c++-only */
-
-extern "C" int isatty (int );
-
-/* %endif */
-
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
  * such as during a yyrestart() or at EOF.
@@ -2116,7 +2091,7 @@ void yyFlexLexer::yypop_buffer_state (void)
 void yyFlexLexer::yyensure_buffer_stack(void)
 /* %endif */
 {
-	int num_to_alloc;
+	yy_size_t num_to_alloc;
     
 	if (!(yy_buffer_stack)) {
 
@@ -2322,7 +2297,7 @@ void Sifufree (void * ptr )
 
 /* %ok-for-header */
 
-#line 148 "tokens.ll"
+#line 151 "..\\..\\..\\tokens.ll"
 
 
 

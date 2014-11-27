@@ -28,13 +28,16 @@ function long fibonacci(long n) {
 	if (n <= 2) {
 		return 1
 	} else {
-		return fibonacci(n - 1)
+		long n1 = fibonacci(n - 1)
+		long n2 = fibonacci(n - 2)
+		return n2 + n1
 	}
 }
 
+long n
 
-long x = twoParams(2,1)
-println x
-println '_'
-println new(x)
-println '_'
+println "dame el numero de fibonnacci que deseas calcular"
+
+read n
+
+println fibonacci(n)

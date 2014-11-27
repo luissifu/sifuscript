@@ -139,9 +139,14 @@ return : TK_RETURN expresion delimiter 																		{ driver.genReturn(); }
 	   ;
 
 id : simple_id																								{ ; }
-   | T_ID TK_LEFTSQBRACKET array_dim TK_RIGHTSQBRACKET 														{ driver.addId($1); }
+   | T_ID TK_LEFTSQBRACKET stat_array_aux array_acc TK_RIGHTSQBRACKET 										{ driver.checkDim($1); }
    | T_ID TK_DOT T_ID 																						{ ; }
    ;
+
+array_acc : expresion																						{ driver.addExpDim(); }
+		  | expresion TK_COMMA array_acc 																	{ driver.addExpDim(); }
+		  ;
+
 
 simple_id : T_ID																							{ driver.addId($1); }
 		  ;
@@ -225,13 +230,13 @@ call_args : expresion 																						{ driver.genParam(); }
 		  | expresion TK_COMMA call_args 																	{ driver.genParam(); }
 		  ;
 
-var : type id delimiter 																					{ driver.checkVar(); }
-	| type id stat_var_aux ass_op stat_assign_aux expresion delimiter 										{ driver.genAssign(); }
-	| type id TK_LEFTSQBRACKET array_dim TK_RIGHTSQBRACKET delimiter 										{ driver.checkVar(); }
+var : type simple_id delimiter 																				{ driver.checkVar(); }
+	| type simple_id stat_var_aux ass_op stat_assign_aux expresion delimiter 								{ driver.genAssign(); }
+	| type simple_id TK_LEFTSQBRACKET array_dim TK_RIGHTSQBRACKET 											{ driver.checkVar(); }
 	;
 
-array_dim : CONST_INT																						{ ; }
-		  | CONST_INT TK_COMMA array_dim 																	{ ; }
+array_dim : CONST_INT																						{ driver.addDimension($1); }
+		  | CONST_INT TK_COMMA array_dim 																	{ driver.addDimension($1); }
 		  ;
 
 print : TK_PRINT expresion delimiter 																		{ driver.genPrint(); }
@@ -368,6 +373,9 @@ stat_funcall_aux1 : /*E*/																					{ driver.verifyFunc(); }
 
 stat_funcall_aux2 : /*E*/																					{ driver.genEra(); }
 				;
+
+stat_array_aux : /*E*/																						{ driver.toOperator('['); }
+			   ;
 
 %%
 

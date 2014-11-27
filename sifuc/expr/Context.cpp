@@ -26,7 +26,10 @@ void SifuContext::clearExpressions()
 
 // check if the given variable name exists in the storage
 bool SifuContext::existsVariable(const std::string &varname) const {
-	return currCtx->existsVariable(varname);
+	if (currCtx != functions[0])
+		return currCtx->existsVariable(varname) || functions[0]->existsVariable(varname);
+	else
+		return currCtx->existsVariable(varname);
 }
 
 // check if the given variable name exists in the storage
@@ -44,8 +47,23 @@ Var* SifuContext::getVariable(const std::string &varname) const {
 
 	if (var == nullptr)
 	{
-		std::string except = "Use of undeclared variable: " + varname;
-		throw(CompilerException(except.c_str()));
+		if (currCtx != functions[0])
+		{
+			var = functions[0]->getVariable(varname);
+
+			if (var == nullptr)
+			{
+				std::string except = "Use of undeclared variable: " + varname;
+				throw(CompilerException(except.c_str()));
+			}
+			else
+				return var;
+		}
+		else
+		{
+			std::string except = "Use of undeclared variable: " + varname;
+			throw(CompilerException(except.c_str()));
+		}
 	}
 	else
 		return var;

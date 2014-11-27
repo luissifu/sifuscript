@@ -1,7 +1,7 @@
 #include "Memory.h"
 
 Memory::Memory() {
-	bool_qty = char_qty = short_qty = int_qty = long_qty = float_qty = double_qty = str_qty = 0;
+	bool_qty = char_qty = short_qty = int_qty = long_qty = float_qty = double_qty = str_qty = add_qty = 0;
 
 	bool_storage = NULL;
 	char_storage = NULL;
@@ -10,7 +10,7 @@ Memory::Memory() {
 	long_storage = NULL;
 	float_storage = NULL;
 	double_storage = NULL;
-	str_storage = NULL;
+	add_storage = NULL;
 }
 
 Memory::~Memory() {
@@ -23,7 +23,7 @@ Memory::~Memory() {
 		delete[] long_storage;
 		delete[] float_storage;
 		delete[] double_storage;
-		delete[] str_storage;
+		delete[] add_storage;
 	}
 }
 
@@ -36,7 +36,8 @@ data_type Memory::read(int num) {
 	int long_lo = int_lo + MAX_TYPES * int_size;
 	int float_lo = long_lo + MAX_TYPES * long_size;
 	int double_lo = float_lo + MAX_TYPES * float_size;
-	int str_lo = double_lo + MAX_TYPES * double_size;
+	int add_lo = double_lo + MAX_TYPES * double_size;
+	int str_lo = add_lo + MAX_TYPES * address_size;
 
 	//printf("num: %d\n", num);
 
@@ -80,23 +81,26 @@ data_type Memory::read(int num) {
 		var.type = TYPE_FLOAT;
 		var.data = (void*)&float_storage[offset];
 	}
-	else if (num >= double_lo && num < str_lo)
+	else if (num >= double_lo && num < add_lo)
 	{
 		int offset = (num - double_lo)/double_size;
 
 		var.type = TYPE_DOUBLE;
 		var.data = (void*)&double_storage[offset];
 	}
+	else if (num >= add_lo && num < str_lo)
+	{
+		int offset = (num - add_lo)/(address_size);
+
+		var.type = TYPE_ADDRESS;
+		var.data = (void*)&add_storage[offset];
+	}
 	else
 	{
 		int offset = (num - str_lo)/(char_size * MAX_STRING_SIZE);
 
-		printf("meep [%d:%d]\n", offset, num);
-
 		var.type = TYPE_STR;
-		var.data = (void*)str_storage[offset];
-
-		printf("got the meep\n");
+		var.data = (void*)&str_storage[offset];
 	}
 
 	return var;
@@ -105,11 +109,12 @@ data_type Memory::read(int num) {
 void Memory::init(FILE* file, bool init) {
 	fread(&bool_qty, sizeof(int), 1, file);
 	fread(&char_qty, sizeof(int), 1, file);
-	fread(&int_qty, sizeof(int), 1, file);
 	fread(&short_qty, sizeof(int), 1, file);
+	fread(&int_qty, sizeof(int), 1, file);
 	fread(&long_qty, sizeof(int), 1, file);
 	fread(&float_qty, sizeof(int), 1, file);
 	fread(&double_qty, sizeof(int), 1, file);
+	fread(&add_qty, sizeof(int), 1, file);
 	fread(&str_qty, sizeof(int), 1, file);
 
 	//dump();
@@ -125,7 +130,10 @@ void Memory::init(FILE* file, bool init) {
 		long_storage = new long[long_qty];
 		float_storage = new float[float_qty];
 		double_storage = new double[double_qty];
-		str_storage = new char*[str_qty];
+		add_storage = new int[add_qty];
+
+		for (int i = 0; i < str_qty; i++)
+			str_storage.push_back("");
 	}
 }
 
@@ -138,6 +146,7 @@ void Memory::copy(const Memory* other) {
 	float_qty = other->float_qty;
 	double_qty = other->double_qty;
 	str_qty = other->str_qty;
+	add_qty = other->add_qty;
 
 	initialized = true;
 
@@ -148,7 +157,10 @@ void Memory::copy(const Memory* other) {
 	long_storage = new long[long_qty];
 	float_storage = new float[float_qty];
 	double_storage = new double[double_qty];
-	str_storage = new char*[str_qty];
+	add_storage = new int[add_qty];
+
+	for (int i = 0; i < str_qty; i++)
+		str_storage.push_back("");
 }
 
 void Memory::dump() {
@@ -161,6 +173,19 @@ void Memory::dump() {
 	printf("Flt  qty: %d\n", float_qty);
 	printf("Doub qty: %d\n", double_qty);
 	printf("Str  qty: %d\n", str_qty);
+	printf("Add  qty: %d\n", add_qty);
+
+	int full_block = MAX_TYPES * bool_size
+					+ MAX_TYPES * char_size
+					+ MAX_TYPES * short_size
+					+ MAX_TYPES * int_size
+					+ MAX_TYPES * long_size
+					+ MAX_TYPES * float_size
+					+ MAX_TYPES * double_size
+					+ MAX_TYPES * address_size
+					+ MAX_TYPES * MAX_STRING_SIZE;
+
+	printf("Full size is: [%d/%d]\n", full_block, block_size);
 }
 
 void Memory::write(int num, bool value) {
@@ -218,6 +243,20 @@ void Memory::write(int num, double value) {
 	double_storage[offset] = value;
 }
 
+/*
+void Memory::write(int num, int value) {
+	int offset = (num - MAX_TYPES * bool_size
+					- MAX_TYPES * char_size
+					- MAX_TYPES * short_size
+					- MAX_TYPES * int_size
+					- MAX_TYPES * long_size
+					- MAX_TYPES * float_size
+					- MAX_TYPES * double_size)/address_size;
+
+	add_storage[offset] = value;
+}
+*/
+
 void Memory::write(int num, char* value) {
 	int offset = (num - MAX_TYPES * bool_size
 					- MAX_TYPES * char_size
@@ -225,7 +264,10 @@ void Memory::write(int num, char* value) {
 					- MAX_TYPES * int_size
 					- MAX_TYPES * long_size
 					- MAX_TYPES * float_size
-					- MAX_TYPES * double_size)/(char_size * MAX_STRING_SIZE);
+					- MAX_TYPES * double_size
+					- MAX_TYPES * address_size)/(char_size * MAX_STRING_SIZE);
 
-	str_storage[offset] = value;
+	std::string new_str(value);
+
+	str_storage[offset] = new_str;
 }

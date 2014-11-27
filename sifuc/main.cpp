@@ -1,7 +1,7 @@
 /*
  * main.c file
  */
-
+#define _CRT_SECURE_NO_WARNINGS //portability of Linux and Windows
 #include "expr/Expression.h"
 #include "driver/Driver.h"
 #include "program/Program.h"

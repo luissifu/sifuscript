@@ -26,6 +26,7 @@ class Memory {
 		int float_num;
 		int double_num;
 		int string_num;
+		int address_num;
 		//max
 		int bool_max;
 		int char_max;
@@ -35,4 +36,5 @@ class Memory {
 		int float_max;
 		int double_max;
 		int string_max;
+		int address_max;
 };

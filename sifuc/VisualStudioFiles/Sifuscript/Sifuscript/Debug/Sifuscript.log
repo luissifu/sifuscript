@@ -1,1 +1,55 @@
-﻿
+﻿  FLEXER BISON Custum Build Tool
+  Path:
+  D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\GitHub\sifuscript\ 
+   Datenträger in Laufwerk D: ist Fuffi
+   Volumeseriennummer: A882-FC2E
+  
+   Verzeichnis von D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\GitHub\sifuscript\sifuc\VisualStudioFiles\Sifuscript\Sifuscript
+  
+  26.11.2014  12:48    <DIR>          .
+  26.11.2014  12:48    <DIR>          ..
+  26.11.2014  12:49    <DIR>          Debug
+  13.11.2014  00:40             6.783 Sifuscript.vcxproj
+  13.11.2014  00:26             5.559 Sifuscript.vcxproj.filters
+  06.10.2014  17:50                 0 ~flex_temp_out_main_a44912
+                 3 Datei(en),         12.342 Bytes
+                 3 Verzeichnis(se),  5.636.911.104 Bytes frei
+  LexerWork
+          1 Datei(en) verschoben.
+  BisonWork
+          1 Datei(en) verschoben.
+          1 Datei(en) verschoben.
+  Stack,Position,Location place change
+          1 Datei(en) verschoben.
+          1 Datei(en) verschoben.
+          1 Datei(en) verschoben.
+  tokens.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\visualstudiofiles\sifuscript\sifuscript\tokens.cpp(1479): warning C4244: 'return': Konvertierung von 'std::streamsize' in 'int', möglicher Datenverlust
+  Statement.cpp
+  Program.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\program\program.cpp(25): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+  Var.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\proc\var.cpp(55): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\proc\var.cpp(62): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+  Function.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\proc\function.cpp(29): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\proc\function.cpp(99): warning C4018: '>=': Konflikt zwischen 'signed' und 'unsigned'
+  Memory.cpp
+  MemManager.cpp
+  main.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\main.cpp(19): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+  gramatica.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\visualstudiofiles\sifuscript\sifuscript\gramatica.cpp(236): warning C4065: switch-Anweisung enthält 'default', aber keine case-Marken
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\visualstudiofiles\sifuscript\sifuscript\gramatica.cpp(268): warning C4065: switch-Anweisung enthält 'default', aber keine case-Marken
+  Expression.cpp
+  Context.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\expr\context.cpp(76): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\expr\context.cpp(83): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\expr\context.cpp(104): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+  Driver.cpp
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\driver\driver.cpp(82): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\driver\driver.cpp(439): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
+  Code wird generiert...
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\driver\driver.cpp(558): warning C4715: "ss::Driver::getMappedOp": Nicht alle Steuerelementpfade geben einen Wert zurück.
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\sifuc\memory\memmanager.cpp(56): warning C4715: "MemManager::request": Nicht alle Steuerelementpfade geben einen Wert zurück.
+  Sifuscript.vcxproj -> D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\GitHub\sifuscript\sifuc\VisualStudioFiles\Sifuscript\Debug\Sifuscript.exe

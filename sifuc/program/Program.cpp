@@ -34,6 +34,11 @@ void Program::write(FILE* file) {
 	}
 }
 
+void Program::createDummyStatement() {
+	Statement stmt(-1, -1, -1, -1);
+	statlist.push_back(stmt);
+}
+
 void Program::createStatement(char op, int left, int right, int result) {
 	Statement stmt(op, left, right, result);
 	statlist.push_back(stmt);

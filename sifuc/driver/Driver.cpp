@@ -87,7 +87,7 @@ namespace ss {
 						str[j] = '\0';
 
 						fwrite(&add, sizeof(int), 1, file);
-						fwrite(str, sizeof(char), MAX_STRING_SIZE, file);
+						fwrite(&str[0], sizeof(char), MAX_STRING_SIZE, file);
 					}
 					break;
 			}
@@ -165,7 +165,25 @@ namespace ss {
 
 		int mem_type = context.isGlobal() ? MEM_GLOBAL : MEM_LOCAL;
 
-		Var* v = new Var(var, type, memory.request(type,mem_type));
+		bool dim = dimensions.size() > 0;
+
+		Var* v = new Var(var, type, memory.request(type,mem_type), dim);
+
+		if (dim)
+		{
+			for (int i = dimensions.size() - 1; i >= 0; i--)
+			{
+				v->add_dim(dimensions[i]);
+			}
+
+			dimensions.clear();
+
+			v->calculate_offset();
+
+			for (int i = 1; i < v->getSize(); i++)
+				memory.request(type,mem_type);
+		}
+
 		context.addVariable(v);
 	}
 
@@ -264,7 +282,141 @@ namespace ss {
 
 		Var* v = context.getVariable(name);
 
-		expr.operands.push(v);
+		if (!v->isDimension())
+			expr.operands.push(v);
+	}
+
+	void Driver::checkDim(char* name) {
+		std::string nam = std::string(name);
+		Var* v = context.getVariable(nam);
+
+		Var* top = new Var("-1", -1, -1);
+		expr.operands.push(top);
+
+		char op = expr.operators.top();
+		expr.operators.pop();
+
+		if (dimensions.size() < 1)
+		{
+			std::string except = "Use of array type without specifying dimensions: " + v->getName();
+			throw (CompilerException(except.c_str()));
+		}
+		else if (dimensions.size() != v->getDimNum())
+		{
+			std::string dims = std::to_string(dimensions.size());
+			std::string dimn = std::to_string(v->getDimNum());
+			std::string except = "Incorrect number of dimensions: " + dims + " instead of " + dimn;
+			throw (CompilerException(except.c_str()));
+		}
+
+		int address = -1;
+
+		for (int i = 0; i < v->getDimNum(); i++)
+		{
+			dim_info info = v->getInfo(i);
+			address = dimensions[dimensions.size()-1-i];
+
+			program.createStatement(OP_VERIFY, address, 0, info.size);
+
+			if (i < v->getDimNum() - 1)
+			{
+				Var* result = new Var("temp_arr_mult", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+				temps.push_back(result);
+				program.createStatement(OP_MULT, address, info.m, result->getAddress());
+
+				expr.operands.push(result);
+			}
+			if (i > 0)
+			{
+				Var* aux = expr.operands.top();
+				expr.operands.pop();
+
+				if (expr.operands.top() != top)
+				{
+					Var* other = expr.operands.top();
+					expr.operands.pop();
+
+					Var* result = new Var("temp_arr_sum_other", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+					temps.push_back(result);
+					program.createStatement(OP_ADD, other->getAddress(), aux->getAddress(), result->getAddress());
+
+					expr.operands.push(result);
+				}
+				else
+				{
+					Var* result = new Var("temp_arr_sum", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+					temps.push_back(result);
+					program.createStatement(OP_ADD, address, aux->getAddress(), result->getAddress());
+
+					expr.operands.push(result);
+				}
+			}
+		}
+
+
+		if (v->getDimNum() > 1)
+		{
+			Var* other = expr.operands.top();
+			expr.operands.pop();
+			address = other->getAddress();
+		}
+
+		int size = 0;
+
+		switch(v->getType())
+		{
+			case VARTYPE_STRING:
+				size = MAX_STRING_SIZE;
+				break;
+
+			case VARTYPE_DOUBLE:
+				size = double_size;
+				break;
+
+			case VARTYPE_FLOAT:
+				size = float_size;
+				break;
+
+			case VARTYPE_LONG:
+				size = long_size;
+				break;
+
+			case VARTYPE_INT:
+				size = int_size;
+				break;
+
+			case VARTYPE_SHORT:
+				size = short_size;
+				break;
+
+			case VARTYPE_CHAR:
+				size = char_size;
+				break;
+
+			case VARTYPE_BOOL:
+				size = bool_size;
+				break;
+
+		}
+
+		Var* pre_result = new Var("temp_arr_offset", VARTYPE_INT, memory.request(VARTYPE_INT,MEM_TEMP));
+		program.createStatement(OP_MULT_BASE, address, size, pre_result->getAddress());
+		temps.push_back(pre_result);
+
+		Var* result = new Var("temp_arr_base", VARTYPE_ADDRESS, memory.request(VARTYPE_ADDRESS,MEM_TEMP), true);
+		program.createStatement(OP_ADD_BASE, pre_result->getAddress(), v->getAddress(), result->getAddress());
+		temps.push_back(result);
+
+		result->setArrayType(v->getType());
+
+		expr.operands.pop();
+		delete top;
+
+		expr.operands.push(result);
+
+		idstack.push(nam);
+
+		dimensions.clear();
 	}
 
 	void Driver::toOperator(char op) {
@@ -345,17 +497,19 @@ namespace ss {
 			Var* left = expr.operands.top();
 			expr.operands.pop();
 
-			int restype = expr.isValid(realop, left->getType(), right->getType());
+			int right_type = right->isDimension()?right->getArrayType():right->getType();
+			int left_type = left->isDimension()?left->getArrayType():left->getType();
+			int restype = expr.isValid(realop, left_type, right_type);
 
 			if (restype == -1)
 			{
-				std::string except = "Operation not permitted, " + vartypenames[left->getType()] + " ";
+				std::string except = "Operation not permitted, " + vartypenames[left_type] + " ";
 				except += topop;
-				except += " " + vartypenames[right->getType()];
+				except += " " + vartypenames[right_type];
 				throw (CompilerException(except.c_str()));
 			}
 
-			Var* result = new Var("temp", restype, memory.request(restype,MEM_TEMP));
+			Var* result = new Var("temp_exp_bin", restype, memory.request(restype,MEM_TEMP));
 			temps.push_back(result);
 			expr.operands.push(result);
 
@@ -366,7 +520,7 @@ namespace ss {
 			Var* left = expr.operands.top();
 			expr.operands.pop();
 
-			if (left->getType() != VARTYPE_BOOL)
+			if (left->getType() != VARTYPE_BOOL && left->getType() != VARTYPE_ADDRESS)
 			{
 				std::string except = "Operation not permitted, ";
 				except += topop;
@@ -374,7 +528,7 @@ namespace ss {
 				throw (CompilerException(except.c_str()));
 			}
 
-			Var* result = new Var("temp", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
+			Var* result = new Var("temp_exp_un", VARTYPE_BOOL, memory.request(VARTYPE_BOOL,MEM_TEMP));
 			temps.push_back(result);
 			expr.operands.push(result);
 
@@ -619,6 +773,8 @@ namespace ss {
 		int until = program.getCounter();
 		jumps.pop();
 
+		program.createDummyStatement();
+
 		for (int i = from; i < until; i++)
 		{
 			forstats.push_back(program.pop());
@@ -626,11 +782,13 @@ namespace ss {
 	}
 
 	void Driver::endFor() {
-		while(!forstats.empty())
+		while(!forstats.back().dummy())
 		{
 			program.push(forstats.back());
 			forstats.pop_back();
 		}
+
+		forstats.pop_back();
 
 		int falseJump = jumps.top();
 		jumps.pop();
@@ -728,6 +886,21 @@ namespace ss {
 		}
 
 		program.createStatement(OP_JUMP_SUB, -1, -1, curr_func.func->getFuncStart());
+
+		int type = curr_func.func->getType();
+
+		if (type != VARTYPE_VOID)
+		{
+			Var* temp = new Var("temp_func_ret", type, memory.request(type,MEM_TEMP));
+			temps.push_back(temp);
+
+			Var* func = expr.operands.top();
+			expr.operands.pop();
+
+			program.createStatement(OP_ASSIGN, func->getAddress(), -1, temp->getAddress());
+
+			expr.operands.push(temp);
+		}
 	}
 
 	void Driver::endProg() {
@@ -749,6 +922,31 @@ namespace ss {
 		expr.operands.pop();
 
 		program.createStatement(OP_RETURN, ret->getAddress(), -1, context.getAddress());
+	}
+
+	void Driver::addDimension(char* size) {
+		int dim = atoi(size);
+
+		if (dim <= 0)
+		{
+			std::string except = "Dimension must be a positive integer";
+			throw(CompilerException(except.c_str()));
+		}
+
+		dimensions.push_back(dim);
+	}
+
+	void Driver::addExpDim() {
+		Var* dim = expr.operands.top();
+		expr.operands.pop();
+
+		if (dim->getType() < VARTYPE_CHAR || dim->getType() > VARTYPE_LONG)
+		{
+			std::string except = "Dimension must be a positive integer: " + dim->getName();
+			throw(CompilerException(except.c_str()));
+		}
+
+		dimensions.push_back(dim->getAddress());
 	}
 
 } // namespace example

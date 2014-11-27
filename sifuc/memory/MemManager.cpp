@@ -50,6 +50,8 @@ int MemManager::request(int type, int from) {
 			return requestDouble(from);
 		case VARTYPE_STRING:
 			return requestString(from);
+		case VARTYPE_ADDRESS:
+			return requestAddress(from);
 	}
 }
 
@@ -183,6 +185,24 @@ int MemManager::requestString(int from) {
 
 		case MEM_TEMP:
 			return temp.add(TYPE_STR);
+
+		default:
+			return -1;
+	}
+}
+
+
+int MemManager::requestAddress(int from) {
+	switch (from)
+	{
+		case MEM_GLOBAL:
+			return global.add(TYPE_ADDRESS);
+
+		case MEM_LOCAL:
+			return local.add(TYPE_ADDRESS);
+
+		case MEM_TEMP:
+			return temp.add(TYPE_ADDRESS);
 
 		default:
 			return -1;

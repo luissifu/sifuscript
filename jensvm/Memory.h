@@ -3,6 +3,7 @@
 
 #include "../common/Types.h"
 #include <string>
+#include <vector>
 
 struct data_type {
 	void* data;
@@ -37,6 +38,7 @@ class Memory {
 		int float_qty;
 		int double_qty;
 		int str_qty;
+		int add_qty;
 	private:
 		//storage
 		bool* bool_storage;
@@ -46,7 +48,8 @@ class Memory {
 		long* long_storage;
 		float* float_storage;
 		double* double_storage;
-		char** str_storage;
+		std::vector<std::string> str_storage;
+		int* add_storage;
 		bool initialized;
 };
 

@@ -74,9 +74,9 @@ bool Driver::run() {
 			case TYPE_STR:
 				{
 					char str[MAX_STRING_SIZE];
-					fread(str, sizeof(char), MAX_STRING_SIZE, file);
+					fread(&str[0], sizeof(char), MAX_STRING_SIZE, file);
 
-					//memory.write(address, str);
+					memory.write(address, str);
 				}
 				break;
 

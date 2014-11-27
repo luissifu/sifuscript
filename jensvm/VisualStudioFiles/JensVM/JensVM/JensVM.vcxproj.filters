@@ -27,6 +27,15 @@
     <ClCompile Include="..\..\..\Memory.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Command_Parser_aritmetic.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Command_Parser_compare.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MemoryManager.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Command_Parser.h">
@@ -44,6 +53,9 @@
     <ClInclude Include="..\..\..\..\common\Types.h">
       <Filter>Ressourcendateien</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\MemoryManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\README.txt">
@@ -54,5 +66,6 @@
     <None Include="..\..\..\..\common\README.md">
       <Filter>Ressourcendateien</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
