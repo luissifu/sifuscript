@@ -1,14 +1,13 @@
-﻿  MemoryManager.cpp
-d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\memorymanager.cpp(8): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
-  Memory.cpp
+﻿  Command_Parser.cpp
+  Code wird generiert...
+d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\command_parser.cpp(459): warning C4715: "Command_Parser::verify": Nicht alle Steuerelementpfade geben einen Wert zurück.
+  Kompilieren...
   main.cpp
   Driver.cpp
 d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\driver.cpp(105): warning C4018: '<': Konflikt zwischen 'signed' und 'unsigned'
   Command_Parser_compare.cpp
   Command_Parser_aritmetic.cpp
-  Command_Parser.cpp
   Code wird generiert...
-d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\command_parser.cpp(459): warning C4715: "Command_Parser::verify": Nicht alle Steuerelementpfade geben einen Wert zurück.
-d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\memorymanager.cpp(55): warning C4715: "MemoryManager::read": Nicht alle Steuerelementpfade geben einen Wert zurück.
-d:\informatikstudium\semester5ws1415tec\compiladores\finalproject\sifuscript\github\sifuscript\jensvm\memorymanager.cpp(62): warning C4715: "MemoryManager::read_sp": Nicht alle Steuerelementpfade geben einen Wert zurück.
+  Überspringen... (keine relevanten Änderungen gefunden)
+  MemoryManager.cpp
   JensVM.vcxproj -> D:\Informatikstudium\Semester5WS1415TEC\Compiladores\FinalProject\Sifuscript\GitHub\sifuscript\jensvm\VisualStudioFiles\JensVM\Debug\JensVM.exe
